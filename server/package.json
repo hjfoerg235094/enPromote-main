@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "vegePeapa",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "axios": "^1.10.0",
+    "connect-mongo": "^5.1.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "https-proxy-agent": "^7.0.6",
+    "mongoose": "^8.15.1",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.7.0",
+    "nodemailer": "^7.0.6",
+    "openai": "^5.12.1",
+    "socks-proxy-agent": "^8.0.5",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

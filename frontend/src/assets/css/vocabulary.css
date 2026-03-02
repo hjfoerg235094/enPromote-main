@@ -1,0 +1,446 @@
+/* 主容器 */
+.vocabulary-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 模式选择页面 */
+.mode-selection {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.welcome-section {
+    margin-bottom: 40px;
+}
+
+.welcome-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.welcome-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 16px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* 模式卡片 */
+.mode-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.mode-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 32px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.practice-card:hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.review-card:hover {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+}
+
+.card-arrow {
+    font-size: 1.5rem;
+    color: #667eea;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    transition: transform 0.3s ease;
+}
+
+.mode-card:hover .card-arrow {
+    transform: translateX(4px);
+}
+
+/* 统计区域 */
+.stats-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-item {
+    text-align: center;
+    color: white;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 练习模式页面 */
+.practice-mode {
+    max-width: 600px;
+    width: 100%;
+}
+
+.practice-header {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.progress-info {
+    text-align: center;
+    color: white;
+}
+
+.progress-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+}
+
+.progress-count {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 单词显示区域 */
+.word-display-area {
+    margin-bottom: 24px;
+}
+
+.word-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.word-main {
+    margin-bottom: 24px;
+}
+
+.word-text {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 12px 0;
+    letter-spacing: 2px;
+}
+
+.phonetic {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    color: #666;
+    margin: 0;
+}
+
+.word-actions {
+    margin-bottom: 20px;
+}
+
+.hint-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.hint-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.hint-btn.active {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.meaning-section {
+    border-top: 2px solid #f0f0f0;
+    padding-top: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.meaning-content {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.meaning-header {
+    margin-bottom: 12px;
+}
+
+.meaning-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #667eea;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.meaning-text {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 操作区域 */
+.action-section {
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 16px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.know-btn {
+    border-color: #4CAF50;
+    color: #4CAF50;
+}
+
+.know-btn:hover {
+    background: #4CAF50;
+    color: white;
+}
+
+.know-btn.disabled,
+.know-btn:disabled {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+    color: #bbb;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.know-btn.disabled:hover,
+.know-btn:disabled:hover {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+    color: #bbb;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.vague-btn {
+    border-color: #FF9800;
+    color: #FF9800;
+}
+
+.vague-btn:hover {
+    background: #FF9800;
+    color: white;
+}
+
+.unknown-btn {
+    border-color: #F44336;
+    color: #F44336;
+}
+
+.unknown-btn:hover {
+    background: #F44336;
+    color: white;
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+}
+
+.btn-text {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.quick-actions {
+    margin-top: 16px;
+}
+
+.quick-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .vocabulary-container {
+        padding: 16px;
+    }
+
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+
+    .mode-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .stats-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .word-text {
+        font-size: 2.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .word-card {
+        padding: 24px 20px;
+    }
+
+    .word-text {
+        font-size: 2rem;
+    }
+
+    .mode-card {
+        padding: 24px 20px;
+    }
+}

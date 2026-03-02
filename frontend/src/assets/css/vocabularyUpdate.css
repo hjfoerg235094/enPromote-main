@@ -1,0 +1,34 @@
+/* 优化认识按钮样式 */
+.action-btn.know-btn {
+  background: linear-gradient(135deg, #52c41a, #389e0d);
+  border: none;
+  color: white;
+  transition: all 0.3s;
+}
+
+.action-btn.know-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.4);
+}
+
+.action-btn.know-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(82, 196, 26, 0.3);
+}
+
+/* 确保认识按钮始终可用，不受showMeaning状态影响 */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* 优化按钮图标和文本样式 */
+.btn-icon {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.btn-text {
+  font-weight: 600;
+}

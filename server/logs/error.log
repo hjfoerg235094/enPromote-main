@@ -1,0 +1,378 @@
+2026-01-03 21:13:15 [ERROR]: ReferenceError: UserWord is not defined
+    at D:\下载\enPromote-main\enPromote-main\server\router\word.js:381:25
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-01-03 21:13:17 [ERROR]: ReferenceError: UserWord is not defined
+    at D:\下载\enPromote-main\enPromote-main\server\router\word.js:381:25
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-01-03 21:14:05 [ERROR]: ReferenceError: UserWord is not defined
+    at D:\下载\enPromote-main\enPromote-main\server\router\word.js:381:25
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-01-03 21:14:08 [ERROR]: ReferenceError: UserWord is not defined
+    at D:\下载\enPromote-main\enPromote-main\server\router\word.js:381:25
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-01-04 12:53:49 [ERROR]: ReferenceError: UserWord is not defined
+    at D:\下载\enPromote-main\enPromote-main\server\router\word.js:381:25
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-01-04 12:54:18 [ERROR]: ReferenceError: UserWord is not defined
+    at D:\下载\enPromote-main\enPromote-main\server\router\word.js:381:25
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-01-10 14:49:59 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:369:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-10 14:51:59 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:384:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-10 14:52:00 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:384:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-10 14:52:01 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:384:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-10 18:59:51 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:384:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-10 19:01:26 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:384:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-10 19:01:26 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:384:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-19 19:32:28 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:396:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-19 19:41:10 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:396:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-19 19:42:04 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:396:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-23 19:28:58 [ERROR]: 未处理的Promise拒绝
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 19:28:58 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-23 20:30:28 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:403:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-23 21:16:58 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:403:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-23 21:34:07 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:403:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-25 21:02:51 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-25 21:16:32 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-25 21:18:37 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-25 21:24:56 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-25 21:42:24 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-25 21:47:46 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-27 19:16:04 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-27 19:22:26 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-28 15:16:04 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-01-28 16:58:42 [ERROR]: VersionError: No matching document found for id "695739220c736cdbd01af0c5" version 7 modifiedPaths "message"
+    at generateVersionError (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\model.js:571:10)
+    at model.save (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\model.js:629:28)
+    at summarizeConversation (D:\下载\enPromote-main\enPromote-main\server\router\ai.js:429:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async aiChat (D:\下载\enPromote-main\enPromote-main\server\router\ai.js:366:9)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\ai.js:116:24
+2026-01-29 17:41:34 [ERROR]: 未处理的Promise拒绝
+2026-01-29 17:41:34 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:41:34 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:41:34 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:41:34 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:41:34 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:41:34 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:44:19 [ERROR]: 未处理的Promise拒绝
+2026-01-29 17:44:19 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:44:19 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-01-29 17:44:19 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-02-02 11:10:18 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-02 11:10:20 [ERROR]: AI生成题目错误: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+2026-02-02 11:10:39 [ERROR]: AI生成题目错误: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+2026-02-02 11:11:11 [ERROR]: AI生成题目错误: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+2026-02-02 11:11:28 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-02 11:11:30 [ERROR]: AI生成题目错误: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+2026-02-02 11:12:43 [ERROR]: AI生成题目错误: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+2026-02-02 11:12:53 [ERROR]: AI生成题目错误: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+2026-02-02 11:23:08 [ERROR]: Error: 403 Access to model denied. Please make sure you are eligible for using the model.
+    at APIError.generate (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\core\error.js:51:20)
+    at OpenAI.makeStatusError (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:159:32)
+    at OpenAI.makeRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:304:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\question.js:345:24
+2026-02-02 11:30:37 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-02 11:34:32 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-06 16:58:35 [ERROR]: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+    at APIError.generate (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:159:32)
+    at OpenAI.makeRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:304:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\ai.js:587:28
+2026-02-06 16:59:31 [ERROR]: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+    at APIError.generate (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:159:32)
+    at OpenAI.makeRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:304:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\ai.js:587:28
+2026-02-06 17:02:18 [ERROR]: Error: 401 Authentication Fails (auth header format should be Bearer sk-...)
+    at APIError.generate (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:159:32)
+    at OpenAI.makeRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\openai\client.js:304:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\ai.js:587:28
+2026-02-06 17:40:19 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-06 17:44:44 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-24 19:27:29 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-02-24 19:27:56 [ERROR]: JSON解析彻底失败，原始内容: {
+  "multiple_choice": [
+    {
+      "question": "When a guest checks in, they usually talk to the ______ who handles the room booking and check-in process.",
+      "options": [
+        {"key": "A", "content": "bartender"},
+        {"key": "B", "content": "valet"},
+        {"key": "C", "content": "doorman"},
+        {"key": "D", "content": "receptionist"}
+      ],
+      "correctAnswer": "D",
+      "explanation": "The receptionist is responsible for handling the check-in and check-out process, as...
+2026-02-24 19:29:43 [ERROR]: JSON解析彻底失败，原始内容: {
+  "multiple_choice": [
+    {
+      "question": "When a guest checks in, they usually talk to the ______ who handles the room booking and check-in process.",
+      "options": [
+        {"key": "A", "content": "bartender"},
+        {"key": "B", "content": "valet"},
+        {"key": "C", "content": "doorman"},
+        {"key": "D", "content": "receptionist"}
+      ],
+      "correctAnswer": "D",
+      "explanation": "The receptionist is responsible for handling guest check-ins and reservations. The ...

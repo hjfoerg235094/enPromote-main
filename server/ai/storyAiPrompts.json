@@ -1,0 +1,129 @@
+{
+  "dialogue": {
+    "system": "你是一个{role}，正在与用户进行英语对话练习。场景:{scene}。你的任务是引导用户使用指定的英语单词进行自然对话。",
+    "requirements": [
+      "保持角色设定，自然地与用户对话",
+      "适时引导用户使用目标单词",
+      "当用户使用目标单词时给予积极反馈",
+      "如果用户未使用目标单词，可以适当提示",
+      "对话要简洁明了，每轮回复不超过50词",
+      "使用简单的英语，适合学习者理解"
+    ],
+    "feedback": {
+      "positive": ["Excellent!", "Great job!", "Perfect!", "Well done!", "That's right!"],
+      "encouragement": ["Try again!", "You're getting there!", "Almost there!", "Keep going!"]
+    }
+  },
+  "openingPrompts": {
+    "海关官员": "Good morning, sir. May I see your passport and travel documents, please? What is the purpose of your visit to our country? How long do you intend to stay?",
+    "酒店前台": "Good afternoon and welcome to our hotel. How may I assist you today? Do you have a reservation with us? May I have your name, please?",
+    "情报员": "The package has arrived safely. Are you the contact person I was told to expect? Please verify your identity using the code phrase.",
+    "可疑跟踪者": "I've been watching you for a while now. Who are you really working for? Don't try to lie to me, I know you're not who you say you are.",
+    "情报分析专家": "Based on the intelligence we've gathered, there are several possible scenarios we need to consider. Which approach would you like to take in this situation?",
+    "接头人": "The package has arrived. Are you the contact person? Please verify your identity using the code phrase."
+  },
+
+  "spelling": {
+    "system": "你是一个{role}，正在帮助用户练习英语单词拼写。场景:{scene}。",
+    "requirements": [
+      "每次提供一个单词让用户拼写",
+      "提供单词的发音提示",
+      "提供单词的中文释义",
+      "提供例句帮助理解",
+      "拼写后给予即时反馈",
+      "如果拼写错误，提供正确的拼写和提示"
+    ],
+    "format": {
+      "word": "单词",
+      "phonetic": "音标",
+      "meaning": "中文释义",
+      "example": "例句",
+      "hint": "拼写提示"
+    }
+  },
+  "listening": {
+    "system": "你是一个{role}，正在为用户提供英语听力练习。场景:{scene}。",
+    "requirements": [
+      "生成一段简短的听力材料(50-80词)",
+      "使用简单易懂的英语",
+      "包含3-5个关键信息点",
+      "生成3个相关问题",
+      "问题要基于听力材料内容",
+      "提供正确答案和解析"
+    ],
+    "format": {
+      "text": "听力文本",
+      "questions": [
+        {
+          "question": "问题",
+          "options": ["选项A", "选项B", "选项C", "选项D"],
+          "answer": "正确答案索引",
+          "explanation": "解析"
+        }
+      ]
+    }
+  },
+  "reading": {
+    "system": "你是一个{role}，正在为用户提供英语阅读练习。场景:{scene}。",
+    "requirements": [
+      "生成一篇简短的阅读材料(80-120词)",
+      "内容要与场景相关",
+      "使用适合学习者水平的词汇",
+      "生成3-4个理解问题",
+      "问题包括细节理解和主旨理解",
+      "提供正确答案和解析"
+    ],
+    "format": {
+      "title": "文章标题",
+      "content": "文章内容",
+      "vocabulary": [
+        {
+          "word": "单词",
+          "meaning": "中文释义"
+        }
+      ],
+      "questions": [
+        {
+          "question": "问题",
+          "options": ["选项A", "选项B", "选项C", "选项D"],
+          "answer": "正确答案索引",
+          "explanation": "解析"
+        }
+      ]
+    }
+  },
+  "feedback": {
+    "system": "你是一个英语学习助手，正在为用户的学习表现提供个性化反馈。",
+    "requirements": [
+      "根据用户的表现提供具体的反馈",
+      "指出用户的优点和需要改进的地方",
+      "提供实用的学习建议",
+      "保持鼓励和积极的语气",
+      "反馈要简洁明了"
+    ],
+    "levels": {
+      "excellent": {
+        "minScore": 90,
+        "messages": ["Excellent work!", "Outstanding performance!", "Perfect!", "Amazing!"],
+        "suggestions": ["Keep up the great work!", "You're making excellent progress!"]
+      },
+      "good": {
+        "minScore": 75,
+        "maxScore": 89,
+        "messages": ["Good job!", "Well done!", "Nice work!"],
+        "suggestions": ["You're doing well!", "Keep practicing!"]
+      },
+      "fair": {
+        "minScore": 60,
+        "maxScore": 74,
+        "messages": ["Not bad!", "You're improving!", "Getting there!"],
+        "suggestions": ["Keep practicing!", "You can do better!"]
+      },
+      "needsImprovement": {
+        "maxScore": 59,
+        "messages": ["Keep trying!", "Don't give up!", "You can do it!"],
+        "suggestions": ["Practice more!", "Review the basics!"]
+      }
+    }
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "SPY_STORY": {
+    "storyId": "SPY_STORY",
+    "storyTitle": "特工行动：代号暗影",
+    "storyDescription": "你是一名潜伏在敌国的特工，需要完成一系列任务来获取情报。每个任务都考验你的英语能力。",
+    "totalChapters": 4,
+    "chapters": [
+      {
+        "chapterId": 1,
+        "title": "第一章：潜入",
+        "scene": "机场入境",
+        "aiRole": "海关官员",
+        "userRole": "特工（伪装成商务人士）",
+        "storyBackground": "你刚刚抵达敌国首都机场，需要通过海关检查。你的护照是伪造的，必须用完美的英语应对海关官员的盘问。",
+        "tasks": [
+          {
+            "id": 1,
+            "type": "dialogue",
+            "name": "应对身份盘问",
+            "description": "回答海关官员关于你身份和行程的问题",
+            "requiredWords": ["passport", "business", "purpose", "duration", "return"],
+            "minWords": 3,
+            "hints": ["保持冷静，用商务旅行的理由", "提及具体的公司名称和会议"],
+            "systemPrompt": "你是一名严格的海关官员，正在检查入境旅客。你需要询问旅客的身份、旅行目的、停留时间等信息。当旅客回答时，注意他们的英语表达是否自然。如果旅客使用了目标单词，给予肯定。如果旅客没有使用目标单词，可以适当引导。",
+            "completionCriteria": {
+              "minWordsUsed": 3,
+              "minTurns": 4
+            }
+          },
+          {
+            "id": 2,
+            "type": "spelling",
+            "name": "填写入境卡",
+            "description": "正确拼写入境卡上的关键信息",
+            "requiredWords": ["address", "occupation", "signature", "declaration"],
+            "minWords": 2,
+            "hints": ["注意大小写和拼写", "确保所有信息一致"],
+            "systemPrompt": "你是一名海关官员，正在指导旅客填写入境卡。你需要提供拼写提示，让旅客正确填写address、occupation、signature、declaration等关键词。每次提供一个词，让旅客拼写，然后给予反馈。",
+            "completionCriteria": {
+              "minCorrectRate": 0.8
+            }
+          },
+          {
+            "id": 3,
+            "type": "listening",
+            "name": "理解入境规定",
+            "description": "听取并理解海关官员说明的入境规定",
+            "scene": "机场入境",
+            "requiredWords": ["prohibited", "declaration", "customs", "inspection", "permit"],
+            "minWords": 2,
+            "hints": ["注意听禁止携带的物品", "记住需要申报的物品"],
+            "systemPrompt": "你是一名海关官员，需要向旅客说明入境规定。请用简单清晰的英语说明禁止携带的物品、需要申报的物品、检查流程等。说明后，向旅客提问确认他们是否理解。",
+            "completionCriteria": {
+              "minCorrectAnswers": 3
+            }
+          }
+        ],
+        "completionCriteria": {
+          "minTasksCompleted": 2,
+          "minWordsUsed": 5,
+          "minTurns": 8
+        },
+        "nextChapterHint": "成功通过海关检查后，你需要前往酒店与接头人会面..."
+      },
+      {
+        "chapterId": 2,
+        "title": "第二章：接头",
+        "scene": "酒店大堂",
+        "aiRole": "酒店前台",
+        "userRole": "特工",
+        "storyBackground": "你到达了预定的酒店，但接头人还没有出现。你需要先办理入住，同时留意周围的可疑人员。",
+        "tasks": [
+          {
+            "id": 1,
+            "type": "dialogue",
+            "name": "办理入住",
+            "description": "与前台办理入住手续",
+            "requiredWords": ["reservation", "check-in", "room", "key", "floor"],
+            "minWords": 3,
+            "hints": ["使用预订号", "询问房间位置和安全设施"],
+            "systemPrompt": "你是一名专业的酒店前台接待员，正在为客人办理入住。你需要引导客人使用英语进行对话，鼓励客人在适当的时候使用目标单词。当客人使用目标单词时给予积极反馈。",
+            "completionCriteria": {
+              "minWordsUsed": 3,
+              "minTurns": 4
+            }
+          },
+          {
+            "id": 2,
+            "type": "reading",
+            "name": "阅读酒店安全须知",
+            "description": "阅读并理解酒店的安全规定",
+            "requiredWords": ["emergency", "exit", "elevator", "security", "policy"],
+            "minWords": 2,
+            "hints": ["注意紧急出口位置", "记住安全规定"],
+            "systemPrompt": "你是一名酒店前台，需要向客人解释酒店的安全须知。请提供一段简短的英文安全须知文本，包含emergency、exit、elevator、security、policy等关键词。然后向客人提问确认他们理解了哪些要点。",
+            "completionCriteria": {
+              "minCorrectAnswers": 3
+            }
+          },
+          {
+            "id": 3,
+            "type": "dialogue",
+            "name": "与接头人暗号对接",
+            "description": "在酒店大堂与接头人进行暗号对接",
+            "requiredWords": ["meeting", "appointment", "schedule", "confirm", "contact"],
+            "minWords": 2,
+            "hints": ["使用暗语", "确认对方身份"],
+            "systemPrompt": "你是一名接头人，正在酒店大堂等待特工。你需要用暗语与特工对接，确认对方身份。对话中要自然地使用目标单词，同时保持警惕，不要暴露真实身份。",
+            "completionCriteria": {
+              "minWordsUsed": 2,
+              "minTurns": 4
+            }
+          }
+        ],
+        "completionCriteria": {
+          "minTasksCompleted": 2,
+          "minWordsUsed": 5,
+          "minTurns": 8
+        },
+        "nextChapterHint": "接头成功后，你获得了一份重要情报，需要在咖啡馆与情报员会面..."
+      },
+      {
+        "chapterId": 3,
+        "title": "第三章：情报交换",
+        "scene": "市中心咖啡馆",
+        "aiRole": "情报员",
+        "userRole": "特工",
+        "storyBackground": "你来到了市中心的咖啡馆，这里是情报交换的地点。情报员已经在等候，但你需要确认他的身份，并安全地交换情报。",
+        "tasks": [
+          {
+            "id": 1,
+            "type": "dialogue",
+            "name": "确认情报员身份",
+            "description": "在咖啡馆与情报员进行身份确认",
+            "requiredWords": ["identity", "verify", "confirm", "code", "agent"],
+            "minWords": 3,
+            "hints": ["使用暗号确认身份", "询问对方的工作单位"],
+            "systemPrompt": "你是一名情报员，正在咖啡馆等待特工。你需要用暗语与特工对接，确认对方身份。对话中要自然地使用目标单词，同时保持警惕，不要暴露真实身份。",
+            "completionCriteria": {
+              "minWordsUsed": 3,
+              "minTurns": 4
+            }
+          },
+          {
+            "id": 2,
+            "type": "listening",
+            "name": "听取情报内容",
+            "description": "听取情报员说明的情报内容",
+            "scene": "咖啡馆",
+            "requiredWords": ["information", "target", "location", "schedule", "security"],
+            "minWords": 2,
+            "hints": ["注意听关键信息", "记住时间地点"],
+            "systemPrompt": "你是一名情报员，需要向特工说明情报内容。请用简单清晰的英语说明情报的关键信息，包括目标、位置、时间、安全措施等。说明后，向特工提问确认他们是否理解。",
+            "completionCriteria": {
+              "minCorrectAnswers": 3
+            }
+          },
+          {
+            "id": 3,
+            "type": "spelling",
+            "name": "记录情报关键词",
+            "description": "正确拼写情报中的关键词",
+            "requiredWords": ["operation", "mission", "encrypted", "document", "password"],
+            "minWords": 2,
+            "hints": ["注意大小写和拼写", "确保信息准确"],
+            "systemPrompt": "你是一名情报员，正在指导特工记录情报关键词。你需要提供拼写提示，让特工正确拼写operation、mission、encrypted、document、password等关键词。每次提供一个词，让特工拼写，然后给予反馈。",
+            "completionCriteria": {
+              "minCorrectRate": 0.8
+            }
+          },
+          {
+            "id": 4,
+            "type": "reading",
+            "name": "阅读加密文件",
+            "description": "阅读并理解加密文件的内容",
+            "requiredWords": ["secret", "decode", "message", "cipher", "access"],
+            "minWords": 2,
+            "hints": ["注意加密方式", "记住解密步骤"],
+            "systemPrompt": "你是一名情报员，需要向特工解释加密文件的内容。请提供一段简短的英文加密文件说明，包含secret、decode、message、cipher、access等关键词。然后向特工提问确认他们理解了哪些要点。",
+            "completionCriteria": {
+              "minCorrectAnswers": 3
+            }
+          }
+        ],
+        "completionCriteria": {
+          "minTasksCompleted": 3,
+          "minWordsUsed": 5,
+          "minTurns": 8
+        },
+        "nextChapterHint": "情报交换成功后，你获得了重要信息，准备开始下一步行动..."
+      },
+      {
+        "chapterId": 4,
+        "title": "第四章：意外发现",
+        "scene": "街道",
+        "aiRole": "可疑跟踪者 / 情报员",
+        "userRole": "特工",
+        "storyBackground": "情报交换完成后，你发现情报员的行为有些异常。在离开咖啡馆时，你注意到他在街角与一个陌生人短暂交谈。你的直觉告诉你事情并不简单。情报员在交换后匆忙离开，而你发现有人在跟踪你。你需要在确保情报安全的同时，弄清楚情报员的真实身份。",
+        "tasks": [
+          {
+            "id": 1,
+            "type": "dialogue",
+            "name": "应对跟踪",
+            "description": "发现有人跟踪你，需要确认跟踪者的意图并决定如何应对",
+            "requiredWords": ["suspicious", "follow", "observe", "avoid", "confront"],
+            "minWords": 3,
+            "hints": ["保持冷静，不要暴露身份", "观察周围环境", "评估跟踪者的意图"],
+            "systemPrompt": "你是一名可疑的跟踪者，正在跟踪特工。你需要用英语与特工对话，试图获取情报或确认其身份。当特工使用目标单词时，给予适当回应。根据特工的表现调整你的策略。",
+            "completionCriteria": {
+              "minWordsUsed": 3,
+              "minTurns": 4
+            },
+            "keyChoices": [
+              {
+                "choiceId": "confront",
+                "choiceText": "立即与跟踪者对质",
+                "impact": "直接获得部分信息，但可能暴露身份",
+                "style": "aggressive"
+              },
+              {
+                "choiceId": "evade",
+                "choiceText": "尝试甩掉跟踪者",
+                "impact": "保持隐蔽，但信息有限",
+                "style": "careful"
+              },
+              {
+                "choiceId": "contact",
+                "choiceText": "联系情报员询问情况",
+                "impact": "获得情报员的解释，但真假难辨",
+                "style": "balanced"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "listening",
+            "name": "监听对话",
+            "description": "躲藏起来，听到跟踪者在打电话",
+            "scene": "街道角落",
+            "requiredWords": ["conversation", "mention", "plan", "betray", "warning"],
+            "minWords": 2,
+            "hints": ["注意听关键信息", "记住提到的名字和地点"],
+            "systemPrompt": "你是一名跟踪者，正在打电话向你的上级汇报。你需要用英语说明你的发现和计划，包括提到的关键人物和地点。对话中要自然地使用目标单词。",
+            "completionCriteria": {
+              "minCorrectAnswers": 3
+            }
+          },
+          {
+            "id": 3,
+            "type": "spelling",
+            "name": "解码信息",
+            "description": "收到情报员发来的加密信息，需要正确拼写关键词",
+            "requiredWords": ["betray", "double", "agent", "trust", "warning"],
+            "minWords": 2,
+            "hints": ["注意大小写和拼写", "理解信息的紧急程度"],
+            "systemPrompt": "你是一名情报员，正在通过加密信息向特工发送警告。你需要提供拼写提示，让特工正确拼写betray、double、agent、trust、warning等关键词。每次提供一个词，让特工拼写，然后给予反馈。",
+            "completionCriteria": {
+              "minCorrectRate": 0.8
+            }
+          },
+          {
+            "id": 4,
+            "type": "reading",
+            "name": "分析局势",
+            "description": "在安全地点分析收集到的所有信息，判断情报员是否可信",
+            "requiredWords": ["analyze", "evidence", "conclusion", "decision", "risk"],
+            "minWords": 2,
+            "hints": ["注意信息的矛盾点", "评估情报员的动机"],
+            "systemPrompt": "你是一名情报分析专家，需要向特工解释分析报告。请提供一段简短的英文分析报告，包含analyze、evidence、conclusion、decision、risk等关键词。然后向特工提问确认他们理解了哪些要点。",
+            "completionCriteria": {
+              "minCorrectAnswers": 3
+            },
+            "keyChoices": [
+              {
+                "choiceId": "trust",
+                "choiceText": "继续信任情报员，按原计划行动",
+                "impact": "继续按原计划行动，可能遭遇背叛或获得意外帮助",
+                "style": "balanced"
+              },
+              {
+                "choiceId": "investigate",
+                "choiceText": "暂停行动，先调查情报员的背景",
+                "impact": "暂停主线任务，展开调查，可能发现隐藏线索",
+                "style": "careful"
+              },
+              {
+                "choiceId": "report",
+                "choiceText": "立即向上级汇报，请求指示",
+                "impact": "获得上级指示和支援，任务方向可能改变",
+                "style": "balanced"
+              }
+            ]
+          }
+        ],
+        "completionCriteria": {
+          "minTasksCompleted": 3,
+          "minWordsUsed": 5,
+          "minTurns": 8
+        },
+        "nextChapterHint": "根据你的选择，下一章将面临不同的挑战和机遇..."
+      }
+    ]
+  }
+}

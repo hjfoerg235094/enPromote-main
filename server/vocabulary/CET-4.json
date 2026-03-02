@@ -1,0 +1,545 @@
+{
+    "A": [
+        {
+            "word": "reservation",
+            "mean": "n. 预订；预约；保留",
+            "phonetic_symbol": "/ˌrezərˈveɪʃn/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "booking",
+            "mean": "n. 预订；预约；预订的房间（或票等）",
+            "phonetic_symbol": "/ˈbʊkɪŋ/",
+            "initial": "B",
+            "sence": "A"
+        },
+        {
+            "word": "reception",
+            "mean": "n. 接待处；接待；欢迎会；接受",
+            "phonetic_symbol": "/rɪˈsepʃn/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "identification",
+            "mean": "n. 身份证明；识别；鉴定",
+            "phonetic_symbol": "/aɪˌdentɪfɪˈkeɪʃn/",
+            "initial": "I",
+            "sence": "A"
+        },
+        {
+            "word": "passport",
+            "mean": "n. 护照；通行证",
+            "phonetic_symbol": "/ˈpɑːspɔːrt/",
+            "initial": "P",
+            "sence": "A"
+        },
+        {
+            "word": "vacancy",
+            "mean": "n. 空房；空缺；空位；空白",
+            "phonetic_symbol": "/ˈveɪkənsi/",
+            "initial": "V",
+            "sence": "A"
+        },
+        {
+            "word": "confirmation",
+            "mean": "n. 确认；证实；确认书",
+            "phonetic_symbol": "/ˌkɒnfəˈmeɪʃn/",
+            "initial": "C",
+            "sence": "A"
+        },
+        {
+            "word": "suite",
+            "mean": "n. 套房；一套家具；组曲",
+            "phonetic_symbol": "/swiːt/",
+            "initial": "S",
+            "sence": "A"
+        },
+        {
+            "word": "amenities",
+            "mean": "n. 便利设施；舒适条件（amenity的复数）",
+            "phonetic_symbol": "/əˈmenɪtiz/",
+            "initial": "A",
+            "sence": "A"
+        },
+        {
+            "word": "available",
+            "mean": "adj. 可用的；可获得的；有空的",
+            "phonetic_symbol": "/əˈveɪləbl/",
+            "initial": "A",
+            "sence": "A"
+        },
+        {
+            "word": "request",
+            "mean": "v. 请求；要求 n. 请求；要求；需求",
+            "phonetic_symbol": "/rɪˈkwest/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "receipt",
+            "mean": "n. 收据；收条；收到 v. 开收据",
+            "phonetic_symbol": "/rɪˈsiːt/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "bellhop",
+            "mean": "n. 行李员；旅馆服务员",
+            "phonetic_symbol": "/ˈbelhɑːp/",
+            "initial": "B",
+            "sence": "A"
+        },
+        {
+            "word": "luggage",
+            "mean": "n. 行李",
+            "phonetic_symbol": "/ˈlʌɡɪdʒ/",
+            "initial": "L",
+            "sence": "A"
+        },
+        {
+            "word": "single",
+            "mean": "adj. 单个的;n.单身者;单人房",
+            "phonetic_symbol": "/ˌsɪŋɡl/",
+            "initial": "S",
+            "sence": "A"
+        },
+        {
+            "word": "double",
+            "mean": "adj. 双人的；两倍的 n. 双人间；两倍",
+            "phonetic_symbol": "/ˈdʌbl/",
+            "initial": "D",
+            "sence": "A"
+        },
+        {
+            "word": "check-in",
+            "mean": "n. 登记入住；签到 v. 登记入住；签到",
+            "phonetic_symbol": "/tʃekɪn/",
+            "initial": "C",
+            "sence": "A"
+        },
+        {
+            "word": "check-out",
+            "mean": "n. 退房；结账离开 v. 退房；结账离开",
+            "phonetic_symbol": "/tʃekaʊt/",
+            "initial": "C",
+            "sence": "A"
+        },
+        {
+            "word": "concierge",
+            "mean": "n. 礼宾部；服务台；看门人",
+            "phonetic_symbol": "/ˌkɒnsieəʒ/",
+            "initial": "C",
+            "sence": "A"
+        },
+        {
+            "word": "lobby",
+            "mean": "n. 大厅；门廊；休息室 v. 游说；疏通",
+            "phonetic_symbol": "/ˈlɒbi/",
+            "initial": "L",
+            "sence": "A"
+        },
+        {
+            "word": "keycard",
+            "mean": "n. 房卡；钥匙卡",
+            "phonetic_symbol": "/ˈkiːkɑːd/",
+            "initial": "K",
+            "sence": "A"
+        },
+        {
+            "word": "housekeeping",
+            "mean": "n. 客房服务；家务管理",
+            "phonetic_symbol": "/ˈhaʊskiːpɪŋ/",
+            "initial": "H",
+            "sence": "A"
+        },
+        {
+            "word": "towel",
+            "mean": "n. 毛巾",
+            "phonetic_symbol": "/ˈtaʊəl/",
+            "initial": "T",
+            "sence": "A"
+        },
+        {
+            "word": "shampoo",
+            "mean": "n. 洗发水 v. 洗发",
+            "phonetic_symbol": "/ʃæmˈpuː/",
+            "initial": "S",
+            "sence": "A"
+        },
+        {
+            "word": "valet",
+            "mean": "n. 贴身男仆；代客停车服务员",
+            "phonetic_symbol": "/ˈvæleɪ/",
+            "initial": "V",
+            "sence": "A"
+        },
+        {
+            "word": "frontdesk",
+            "mean": "n. 前台；接待处",
+            "phonetic_symbol": "/frʌntdesk/",
+            "initial": "F",
+            "sence": "A"
+        },
+        {
+            "word": " minibar",
+            "mean": "n. 小冰箱；迷你吧",
+            "phonetic_symbol": "/ˈmɪnibɑːr/",
+            "initial": "M",
+            "sence": "A"
+        },
+        {
+            "word": "wake-upcall",
+            "mean": "n. 叫醒服务",
+            "phonetic_symbol": "/weɪkʌpkɔːl/",
+            "initial": "W",
+            "sence": "A"
+        },
+        {
+            "word": "roomservice",
+            "mean": "n. 客房服务",
+            "phonetic_symbol": "/ruːmˈsɜːrvɪs/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "hangers",
+            "mean": "n. 衣架（hanger的复数）",
+            "phonetic_symbol": "/ˈhæŋərz/",
+            "initial": "H",
+            "sence": "A"
+        },
+        {
+            "word": "laundry",
+            "mean": "n. 洗衣店；要洗的衣服",
+            "phonetic_symbol": "/ˈlɔːndri/",
+            "initial": "L",
+            "sence": "A"
+        },
+        {
+            "word": "receptionist",
+            "mean": "n. 接待员；前台服务员",
+            "phonetic_symbol": "/rɪˈsepʃənɪst/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "bellboy",
+            "mean": "n. 行李员；旅馆服务员",
+            "phonetic_symbol": "/ˈbelbɔɪ/",
+            "initial": "B",
+            "sence": "A"
+        },
+        {
+            "word": "doorman",
+            "mean": "n. 门童；看门人",
+            "phonetic_symbol": "/ˈdɔːrmən/",
+            "initial": "D",
+            "sence": "A"
+        },
+        {
+            "word": "elevator",
+            "mean": "n. 电梯；升降机",
+            "phonetic_symbol": "/ˈelɪveɪtər/",
+            "initial": "E",
+            "sence": "A"
+        },
+        {
+            "word": "reservationist",
+            "mean": "n. 预订员",
+            "phonetic_symbol": "/ˌrezərˈveɪʃənɪst/",
+            "initial": "R",
+            "sence": "A"
+        },
+        {
+            "word": "housekeeper",
+            "mean": "n. 管家；客房服务员",
+            "phonetic_symbol": "/ˈhaʊsˌkiːpər/",
+            "initial": "H",
+            "sence": "A"
+        },
+        {
+        "word": "suite",
+        "mean": "n. 套房；一套家具；组曲",
+        "phonetic_symbol": "/swiːt/",
+        "initial": "S",
+        "sence": "A"
+        },
+        {
+            "word": "courier",
+            "mean": "n. 快递员；信使 v. 快递",
+            "phonetic_symbol": "/ˈkʊriə/",
+            "initial": "C",
+            "sence": "A"
+        },
+        {
+            "word": "courier",
+            "mean": "n. 快递员；信使 v. 快递",
+            "phonetic_symbol": "/ˈkʊriə/",
+            "initial": "C",
+            "sence": "A"
+        },
+        {
+            "word": "delivery",
+            "mean": "n. 递送；交付；分娩",
+            "phonetic_symbol": "/dɪˈlɪvəri/",
+            "initial": "D",
+            "sence": "A"
+        }
+    ],
+    "B": [
+        {
+            "word": "menu",
+            "mean": "n. 菜单；饭菜",
+            "phonetic_symbol": "/ˈmenjuː/",
+            "initial": "M",
+            "sence": "B"
+        },
+        {
+            "word": "appetizer",
+            "mean": "n. 开胃菜；前菜",
+            "phonetic_symbol": "/ˈæpɪtaɪzər/",
+            "initial": "A",
+            "sence": "B"
+        },
+        {
+            "word": "chef",
+            "mean": "n. 厨师；主厨",
+            "phonetic_symbol": "/ʃef/",
+            "initial": "C",
+            "sence": "B"
+        },
+        {
+            "word": "dessert",
+            "mean": "n. 甜点；甜食",
+            "phonetic_symbol": "/dɪˈzɜːrt/",
+            "initial": "D",
+            "sence": "B"
+        },
+        {
+            "word": "beverage",
+            "mean": "n. 饮料",
+            "phonetic_symbol": "/ˈbevərɪdʒ/",
+            "initial": "B",
+            "sence": "B"
+        },
+        {
+            "word": "recommendation",
+            "mean": "n. 推荐；建议；推荐信",
+            "phonetic_symbol": "/ˌrekəmenˈdeɪʃn/",
+            "initial": "R",
+            "sence": "B"
+        },
+        {
+            "word": "specialty",
+            "mean": "n. 特色菜；专业；特长 adj. 特色的；专门的",
+            "phonetic_symbol": "/ˈspeʃəlti/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "ingredients",
+            "mean": "n. 食材；原料；组成部分（ingredient的复数）",
+            "phonetic_symbol": "/ɪnˈɡriːdiənts/",
+            "initial": "I",
+            "sence": "B"
+        },
+        {
+            "word": "allergy",
+            "mean": "n. 过敏；反感",
+            "phonetic_symbol": "/ˈælərdʒi/",
+            "initial": "A",
+            "sence": "B"
+        },
+        {
+            "word": "vegetarian",
+            "mean": "n. 素食者；素食主义者 adj. 素食的；素的",
+            "phonetic_symbol": "/ˌvedʒəˈteriən/",
+            "initial": "V",
+            "sence": "B"
+        },
+        {
+            "word": "reservation",
+            "mean": "n. 预订；预约；保留",
+            "phonetic_symbol": "/ˌrezərˈveɪʃn/",
+            "initial": "R",
+            "sence": "B"
+        },
+        {
+            "word": "waiter",
+            "mean": "n. 服务员；侍者（男）",
+            "phonetic_symbol": "/ˈweɪtər/",
+            "initial": "W",
+            "sence": "B"
+        },
+        {
+            "word": "waitress",
+            "mean": "n. 女服务员；女侍者",
+            "phonetic_symbol": "/ˈweɪtrəs/",
+            "initial": "W",
+            "sence": "B"
+        },
+        {
+            "word": "bill",
+            "mean": "n. 账单；钞票；法案 v. 给…开账单；宣布",
+            "phonetic_symbol": "/bɪl/",
+            "initial": "B",
+            "sence": "B"
+        },
+        {
+            "word": "tip",
+            "mean": "n. 小费；提示；尖端 v. 给小费；倾斜；提示",
+            "phonetic_symbol": "/tɪp/",
+            "initial": "T",
+            "sence": "B"
+        },
+        {
+            "word": "maincourse",
+            "mean": "n. 主菜",
+            "phonetic_symbol": "/meɪnkɔːrs/",
+            "initial": "M",
+            "sence": "B"
+        },
+        {
+            "word": "starter",
+            "mean": "n. 开胃菜；起始者",
+            "phonetic_symbol": "/ˈstɑːrtər/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "sideorder",
+            "mean": "n. 配菜；附加菜",
+            "phonetic_symbol": "/saɪdɔːrdər/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "utensils",
+            "mean": "n. 餐具（utensil的复数）",
+            "phonetic_symbol": "/juːˈtenslz/",
+            "initial": "U",
+            "sence": "B"
+        },
+        {
+            "word": "napkin",
+            "mean": "n. 餐巾；尿布",
+            "phonetic_symbol": "/ˈnæpkɪn/",
+            "initial": "N",
+            "sence": "B"
+        },
+        {
+            "word": "cutlery",
+            "mean": "n. 刀叉餐具；金属餐具",
+            "phonetic_symbol": "/ˈkʌtləri/",
+            "initial": "C",
+            "sence": "B"
+        },
+        {
+            "word": "buffet",
+            "mean": "n. 自助餐；打击 v. 连续猛击",
+            "phonetic_symbol": "/bʊˈfeɪ/",
+            "initial": "B",
+            "sence": "B"
+        },
+        {
+            "word": "cuisine",
+            "mean": "n. 菜肴；烹饪；厨房",
+            "phonetic_symbol": "/kwɪˈziːn/",
+            "initial": "C",
+            "sence": "B"
+        },
+        {
+            "word": "gourmet",
+            "mean": "n. 美食家 adj. 美食的；精美的",
+            "phonetic_symbol": "/ˈɡʊərmeɪ/",
+            "initial": "G",
+            "sence": "B"
+        },
+        {
+            "word": "seasoning",
+            "mean": "n. 调味品；调味",
+            "phonetic_symbol": "/ˈsiːzənɪŋ/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "spicy",
+            "mean": "adj. 辣的；辛辣的；加香料的",
+            "phonetic_symbol": "/ˈspaɪsi/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "takeaway",
+            "mean": "n. 外卖；要点 adj. 外卖的",
+            "phonetic_symbol": "/ˈteɪkəweɪ/",
+            "initial": "T",
+            "sence": "B"
+        },
+        {
+            "word": "tablecloth",
+            "mean": "n. 桌布",
+            "phonetic_symbol": "/ˈteɪblklɔːθ/",
+            "initial": "T",
+            "sence": "B"
+        },
+        {
+            "word": "condiments",
+            "mean": "n. 调味品（condiment的复数）",
+            "phonetic_symbol": "/ˈkɒndɪmənts/",
+            "initial": "C",
+            "sence": "B"
+        },
+        {
+            "word": "specials",
+            "mean": "n. 特色菜；特价菜（special的复数）",
+            "phonetic_symbol": "/ˈspeʃlz/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "beverages",
+            "mean": "n. 饮料（beverage的复数）",
+            "phonetic_symbol": "/ˈbevərɪdʒɪz/",
+            "initial": "B",
+            "sence": "B"
+        },
+        {
+            "word": "hostess",
+            "mean": "n. 女主人；女服务员",
+            "phonetic_symbol": "/ˈhoʊstəs/",
+            "initial": "H",
+            "sence": "B"
+        },
+        {
+            "word": "sommelier",
+            "mean": "n. 侍酒师；酒窖管理员",
+            "phonetic_symbol": "/ˌsʌməlˈjeɪ/",
+            "initial": "S",
+            "sence": "B"
+        },
+        {
+            "word": "bartender",
+            "mean": "n. 酒吧服务员；调酒师",
+            "phonetic_symbol": "/ˈbɑːrtendər/",
+            "initial": "B",
+            "sence": "B"
+        },
+        {
+            "word": "reservation",
+            "mean": "n. 预订；预约；保留",
+            "phonetic_symbol": "/ˌrezərˈveɪʃn/",
+            "initial": "R",
+            "sence": "B"
+        },
+        {
+            "word": "entree",
+            "mean": "n. 主菜；入场",
+            "phonetic_symbol": "/ˈɒntreɪ/",
+            "initial": "E",
+            "sence": "B"
+        }
+    ]
+}

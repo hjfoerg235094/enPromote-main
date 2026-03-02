@@ -1,0 +1,112 @@
+{
+  "A": {
+    "scene": "酒店入住",
+    "aiRole": "酒店前台接待员",
+    "userRole": "客人",
+    "taskDescription": "作为客人完成酒店入住对话，练习使用相关英语单词",
+    "systemPrompt": "你是一名专业的酒店前台接待员，正在为客人办理入住手续。你需要引导客人使用英语进行对话，鼓励客人在适当的时候使用目标单词。当客人使用目标单词时给予积极反馈。",
+    "tasks": [
+      {
+        "id": 1,
+        "name": "提供预订信息",
+        "description": "向前台说明你的预订情况，使用预订相关词汇",
+        "requiredWords": ["reservation", "booking", "confirmation"],
+        "minWords": 2,
+        "completed": false
+      },
+      {
+        "id": 2,
+        "name": "出示身份证件",
+        "description": "配合前台要求，提供身份证明文件",
+        "requiredWords": ["identification", "passport", "document"],
+        "minWords": 1,
+        "completed": false
+      },
+      {
+        "id": 3,
+        "name": "询问房间设施",
+        "description": "主动询问房间类型、设施和服务信息",
+        "requiredWords": ["room", "amenities", "facilities", "service"],
+        "minWords": 2,
+        "completed": false
+      },
+      {
+        "id": 4,
+        "name": "了解酒店政策",
+        "description": "询问退房时间、餐厅位置等酒店政策",
+        "requiredWords": ["policy", "checkout", "restaurant", "breakfast"],
+        "minWords": 2,
+        "completed": false
+      },
+      {
+        "id": 5,
+        "name": "完成入住手续",
+        "description": "接收房卡，表达感谢和期待",
+        "requiredWords": ["key", "card", "enjoy", "stay"],
+        "minWords": 2,
+        "completed": false
+      }
+    ],
+    "completionCriteria": {
+      "minTasksCompleted": 4,
+      "minWordsUsed": 8,
+      "minTurns": 6
+    },
+    "rolePrompt": "作为酒店前台接待员，你需要：\n1. 保持专业和友好的态度\n2. 创造机会让客人主动使用目标单词\n3. 当客人使用目标单词时给予积极鼓励和确认\n4. 如果客人没有使用目标单词，巧妙地引导或提示\n5. 让对话自然流畅，不要显得刻意\n6. 鼓励客人提问和表达需求\n7. 当客人完成学习目标后，自然地结束对话"
+  },
+  "B": {
+    "scene": "餐厅用餐",
+    "aiRole": "餐厅服务员",
+    "userRole": "顾客",
+    "taskDescription": "作为顾客完成餐厅用餐对话，练习使用相关英语单词",
+    "systemPrompt": "你是一名热情的餐厅服务员，正在为顾客提供用餐服务。你需要引导顾客使用英语进行对话，鼓励顾客在适当的时候使用目标单词。当顾客使用目标单词时给予积极反馈。",
+    "tasks": [
+      {
+        "id": 1,
+        "name": "请求座位和菜单",
+        "description": "向服务员要求座位并索取菜单",
+        "requiredWords": ["welcome", "table", "seat", "menu"],
+        "minWords": 2,
+        "completed": false
+      },
+      {
+        "id": 2,
+        "name": "询问推荐菜品",
+        "description": "主动询问今日特色菜品和推荐",
+        "requiredWords": ["special", "recommend", "popular", "delicious"],
+        "minWords": 2,
+        "completed": false
+      },
+      {
+        "id": 3,
+        "name": "点餐和饮品",
+        "description": "向服务员说明你的点餐内容和饮品选择",
+        "requiredWords": ["order", "dish", "drink", "beverage"],
+        "minWords": 2,
+        "completed": false
+      },
+      {
+        "id": 4,
+        "name": "说明饮食需求",
+        "description": "告知服务员你的过敏或特殊饮食要求",
+        "requiredWords": ["allergy", "dietary", "spicy", "vegetarian"],
+        "minWords": 1,
+        "completed": false
+      },
+      {
+        "id": 5,
+        "name": "结账和付款",
+        "description": "要求账单并完成付款流程",
+        "requiredWords": ["bill", "payment", "tip", "receipt"],
+        "minWords": 2,
+        "completed": false
+      }
+    ],
+    "completionCriteria": {
+      "minTasksCompleted": 4,
+      "minWordsUsed": 8,
+      "minTurns": 6
+    },
+    "rolePrompt": "作为餐厅服务员，你需要：\n1. 保持热情和专业的服务态度\n2. 创造机会让顾客主动使用目标单词\n3. 当顾客使用目标单词时给予积极鼓励和确认\n4. 如果顾客没有使用目标单词，巧妙地引导或提示\n5. 让对话自然流畅，不要显得刻意\n6. 鼓励顾客提问和表达需求\n7. 当顾客完成学习目标后，自然地结束对话"
+  }
+}

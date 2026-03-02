@@ -1,0 +1,80 @@
+/* 签到卡片样式 */
+.daily-check-in {
+  margin: 20px 0;
+}
+
+.check-in-card {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.check-in-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.check-in-info p {
+  margin: 0 0 16px 0;
+  opacity: 0.9;
+}
+
+.check-in-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat .number {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.stat .label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.check-in-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.check-in-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.check-in-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .check-in-card {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .check-in-stats {
+    justify-content: center;
+  }
+}
