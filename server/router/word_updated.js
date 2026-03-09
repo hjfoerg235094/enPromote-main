@@ -13,6 +13,7 @@ const { logger, logApiError, logUserAction, logDbError } = require('../utils/log
 const { LEGAL_TLS_SOCKET_OPTIONS } = require('mongodb');
 const http = require('http');
 const { updateWordReviewStatus } = require('../utils/spacedRepetition');
+const StudyRecordService = require('../modules/StudyRecordService');
 
 // 更新用户单词状态
 async function updateUserWordStatus(userId, wordId, status, isCorrect) {
@@ -451,6 +452,22 @@ router.post('/updateWordProgress', async (req, res) => {
         }
 
         await user.save();
+
+        // 记录学习活动到StudyRecord
+        try {
+            await StudyRecordService.recordStudyActivity(userid, 'vocabulary', {
+                studyTime: Math.ceil(studyWords / 2), // 估算学习时间：每2个单词1分钟
+                newWords: studyWords,
+                reviewWords: 0,
+                wordsCount: studyWords,
+                accuracy: 0, // 词汇学习不计算准确率
+                startTime: new Date(Date.now() - Math.ceil(studyWords / 2) * 60 * 1000), // 估算开始时间
+                endTime: new Date()
+            });
+        } catch (recordError) {
+            logger.error('记录学习活动失败:', recordError);
+            // 不影响主流程，继续返回成功
+        }
 
         logUserAction(req, 'UPDATE_WORD_PROGRESS', { 
             userId: userid, 

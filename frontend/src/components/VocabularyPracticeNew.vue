@@ -100,6 +100,10 @@ const showMeaning = ref(false)
 const isFavorite = ref(false)
 const favoriteLoading = ref(false)
 
+// 学习时长记录
+const studyStartTime = ref(null)
+const totalStudyTime = ref(0)
+
 // 计算属性：当前显示的单词
 const currentWord = computed(() => {
   if (!props.words || props.words.length === 0) {
@@ -151,20 +155,85 @@ watch(() => props.currentIndex, (newIndex) => {
 
 // 监听currentWord以播放音频
 watch(currentWord, async (newWord) => {
-  if (newWord) {
+  if (newWord && newWord !== '加载中...' && newWord !== '本组单词学习完成') {
+    // 记录学习开始时间
+    if (!studyStartTime.value) {
+      studyStartTime.value = new Date();
+    }
     const result = await getWordAudio({ word: newWord });
     const audioUrl = result.data.data;
     console.log('audioUrl:' + audioUrl);
 
-    const audio = new Audio(audioUrl);
-    audio.play().catch(err => {
-      console.error('词汇练习音频播放失败', err);
-    })
+    // 检查音频URL是否有效
+    if (!audioUrl || typeof audioUrl !== 'string') {
+      console.error('无效的音频URL:', audioUrl);
+      // 检查收藏状态
+      checkFavoriteStatus();
+      return;
+    }
+
+    const audio = new Audio();
+
+      // 添加音频加载事件监听
+      audio.addEventListener('canplaythrough', () => {
+        audio.play().catch(err => {
+          console.error('音频播放失败:', err);
+        });
+      }, { once: true });
+
+      // 添加错误处理
+      audio.addEventListener('error', (err) => {
+        console.error('音频加载失败:', err);
+        // 尝试使用备用音频源
+        tryBackupAudioSource(newWord);
+      }, { once: true });
+
+      // 设置音频源
+      audio.src = audioUrl;
+
+      // 设置超时，如果音频加载时间过长则尝试备用源
+      setTimeout(() => {
+        if (audio.readyState < 2) { // HAVE_CURRENT_DATA
+          console.warn('音频加载超时，尝试备用源');
+          tryBackupAudioSource(newWord);
+        }
+      }, 5000); // 5秒超时
     
     // 检查收藏状态
     checkFavoriteStatus();
+  } else if (newWord === '本组单词学习完成') {
+    // 学习完成，计算总学习时长
+    if (studyStartTime.value) {
+      const endTime = new Date();
+      const sessionDuration = (endTime.getTime() - studyStartTime.value.getTime()) / 1000 / 60; // 转换为分钟
+      totalStudyTime.value += sessionDuration;
+      console.log(`学习完成，本次学习时长: ${sessionDuration.toFixed(2)}分钟，总学习时长: ${totalStudyTime.value.toFixed(2)}分钟`);
+    }
   }
 })
+
+// 尝试使用备用音频源
+const tryBackupAudioSource = async (word) => {
+  try {
+    // 使用备用音频API（例如Google TTS）
+    const backupAudioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(word)}&tl=en&client=tw-ob`;
+    const backupAudio = new Audio(backupAudioUrl);
+
+    backupAudio.addEventListener('canplaythrough', () => {
+      backupAudio.play().catch(err => {
+        console.error('备用音频播放失败:', err);
+      });
+    }, { once: true });
+
+    backupAudio.addEventListener('error', (err) => {
+      console.error('备用音频加载失败:', err);
+    }, { once: true });
+
+    backupAudio.load();
+  } catch (err) {
+    console.error('备用音频源尝试失败:', err);
+  }
+}
 
 // 检查单词是否已收藏
 const checkFavoriteStatus = async () => {
@@ -343,7 +412,8 @@ const nextWord = () => {
     // 当前批次单词学习完成
     emit('complete', {
       wordsCount: props.words.length,
-      chapter: props.chapter
+      chapter: props.chapter,
+      studyTime: Math.round(totalStudyTime.value * 100) / 100 // 保留两位小数
     })
   }
 }

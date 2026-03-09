@@ -21,10 +21,11 @@ const checkInRouter = require('./router/checkin');
 const reviewPlanRouter = require('./router/reviewPlan');
 const favoriteWordsRouter = require('./router/favoriteWords');
 const questionRouter = require('./router/question');
-const reportRouter = require('./router/report');
+const reportRouter = require('./router/report_new');
 const storyRouter = require('./router/story_new');
 const storyProgressRouter = require('./router/storyProgress');
 const listeningRouter = require('./router/listening');
+const studyRecordRouter = require('./router/studyRecord');
 
 const app = express();
 
@@ -37,22 +38,23 @@ db(() => {
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 
-// 会话配置
+// 会话配置 - 直接使用 MongoDB 作为 session 存储
 app.use(session({
     name: 'sid',
     secret: process.env.SESSION_SECRET || 'your-super-secret-key',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: process.env.MONGO_URL || 'mongodb://localhost:27017/session'
     }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 30,
-        secure: process.env.NODE_ENV === 'production', // 生产环境使用HTTPS
+        secure: false,
         httpOnly: true,
-        sameSite: 'strict'
+        sameSite: 'lax'
     }
 }));
+logger.info('MongoDB session store 初始化成功');
 
 // 请求体解析
 app.use(express.json());
@@ -102,6 +104,7 @@ app.use('/api/report', reportRouter);
 app.use('/api/story', storyRouter);
 app.use('/api/story', storyProgressRouter);
 app.use('/api/listening', listeningRouter);
+app.use('/api/study-record', studyRecordRouter);
 
 // 404处理
 app.use((req, res) => {
@@ -127,25 +130,20 @@ app.use((err, req, res, next) => {
     });
 });
 
-// 服务器启动
-const server = app.listen(port, host, () => {
-    logger.info('服务器启动成功', {
-        host,
-        port,
-        env: process.env.NODE_ENV || 'development',
-        pid: process.pid
-    });
-    console.log(`服务器运行在 http://${host}:${port}`);
-});
-
 // 优雅关闭
+let server;
+
 const gracefulShutdown = (signal) => {
     logger.info(`收到${signal}信号，正在关闭服务器...`);
-    server.close(() => {
-        logger.info('服务器已关闭');
+    if (server) {
+        server.close(() => {
+            logger.info('服务器已关闭');
+            process.exit(0);
+        });
+    } else {
         process.exit(0);
-    });
-    
+    }
+
     // 强制关闭超时
     setTimeout(() => {
         logger.error('服务器关闭超时，强制退出');
@@ -155,6 +153,17 @@ const gracefulShutdown = (signal) => {
 
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+// 服务器启动
+server = app.listen(port, host, () => {
+    logger.info('服务器启动成功', {
+        host,
+        port,
+        env: process.env.NODE_ENV || 'development',
+        pid: process.pid
+    });
+    console.log(`服务器运行在 http://${host}:${port}`);
+});
 
 // 错误处理
 process.on('uncaughtException', (err) => {

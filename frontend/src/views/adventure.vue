@@ -642,11 +642,44 @@ const handleVocabularyComplete = async (stats) => {
     unknownWords.value = stats.unknownWords || unknownWords.value
   }
 
+  // 记录学习活动到StudyRecord，使用实际的学习时长
+  const studyTime = stats.studyTime || 0; // 使用前端记录的实际学习时长
+  if (studyTime > 0) {
+    try {
+      await fetch('/api/report/record', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          module: 'vocabulary',
+          studyTime: studyTime,
+          newWords: stats.knownWords || 0,
+          reviewWords: stats.vagueWords + stats.unknownWords || 0,
+          accuracy: stats.knownWords / (stats.knownWords + stats.vagueWords + stats.unknownWords) * 100 || 0,
+          startTime: new Date(Date.now() - studyTime * 60 * 1000),
+          endTime: new Date()
+        })
+      });
+      console.log('学习活动记录成功，学习时长:', studyTime, '分钟');
+    } catch (error) {
+      console.error('记录学习活动失败:', error);
+    }
+  }
+
   // 更新用户学习进度
   try {
     // 获取当前进度
+    console.log('开始获取当前学习进度...')
     const progressResponse = await fetch('/api/word/getWordProgress')
+    
+    if (!progressResponse.ok) {
+      console.error('获取学习进度请求失败，状态码:', progressResponse.status)
+      return
+    }
+    
     const progressData = await progressResponse.json()
+    console.log('获取到的学习进度数据:', progressData)
 
     if (progressData.code === 200 && progressData.data) {
       // 解析当前位置
@@ -655,11 +688,13 @@ const handleVocabularyComplete = async (stats) => {
       if (parts.length === 2) {
         const letter = parts[0]
         let index = parseInt(parts[1]) || 0
+        console.log(`当前位置: ${letter}:${index}, 将增加 ${vocabularyWords.value.length} 个单词`)
 
         // 增加已学习的单词数量
         index += vocabularyWords.value.length
 
         // 更新进度
+        console.log('开始更新学习进度...')
         const updateResponse = await fetch('/api/word/updateWordProgress', {
           method: 'POST',
           headers: {
@@ -670,13 +705,24 @@ const handleVocabularyComplete = async (stats) => {
           })
         })
 
+        if (!updateResponse.ok) {
+          console.error('更新学习进度请求失败，状态码:', updateResponse.status)
+          return
+        }
+        
         const updateData = await updateResponse.json()
+        console.log('更新学习进度响应数据:', updateData)
+        
         if (updateData.code === 200) {
           console.log('学习进度更新成功')
         } else {
           console.error('学习进度更新失败:', updateData.message)
         }
+      } else {
+        console.error('学习进度格式错误:', position)
       }
+    } else {
+      console.error('获取学习进度失败:', progressData.message || '未知错误')
     }
   } catch (error) {
     console.error('更新学习进度出错:', error)

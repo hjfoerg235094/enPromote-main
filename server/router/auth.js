@@ -42,6 +42,11 @@ router.post('/login', async (req, res) => {
         }
 
         if (passwordValid) {
+            // 确保 session 存在
+            if (!req.session) {
+                req.session = {};
+            }
+
             req.session.userid = user._id;
             req.session.isLogin = true;
 
@@ -111,8 +116,13 @@ router.post('/logout', (req, res) => {
 
 router.get('/info', async (req, res) => {
     try {
-        const { userid } = req.session;
-        if (!userid || userid === undefined) {
+        // 确保 session 存在
+        if (!req.session) {
+            return res.status(401).json({ code: 401, message: '未登录', redirect: '/login' });
+        }
+
+        const { userid } = req.session || {};
+        if (!userid) {
             return res.status(401).json({ code: 401, message: '未登录', redirect: '/login' });
         }
 
@@ -364,7 +374,5 @@ async function advanceToNextStage(userid) {
 
     await user.save();
 }
-
-
 
 module.exports = router;

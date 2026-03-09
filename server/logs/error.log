@@ -376,3 +376,753 @@
       ],
       "correctAnswer": "D",
       "explanation": "The receptionist is responsible for handling guest check-ins and reservations. The ...
+2026-03-02 21:02:45 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-02 21:02:45 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-02 21:02:47 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 19:31:09 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:31:20
+2026-03-03 19:31:09 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:127:21
+2026-03-03 19:32:56 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 19:33:30 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:31:20
+2026-03-03 19:33:30 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:127:21
+2026-03-03 19:33:32 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:31:20
+2026-03-03 19:33:32 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:127:21
+2026-03-03 19:33:33 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:31:20
+2026-03-03 19:33:34 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:127:21
+2026-03-03 19:34:56 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:31:20
+2026-03-03 19:34:56 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:127:21
+2026-03-03 19:34:58 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:31:20
+2026-03-03 19:34:58 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:127:21
+2026-03-03 19:47:58 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:47:58 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:48:08 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:48:08 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:48:22 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 19:48:52 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:48:53 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:49:22 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:22 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:49:23 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:23 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:49:26 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:26 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:27 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:27 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:34 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:49:34 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:50:01 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:50:01 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:51:11 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:51:11 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:52:52 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:52:52 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 19:52:54 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:52:55 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:52:56 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 19:52:56 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:04:08 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:04:08 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:04:10 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:04:10 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:04:37 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:04:37 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:06:02 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:06:02 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:06:03 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:06:03 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:10:15 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:10:15 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:13:50 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:13:50 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:14:32 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:15:01 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:15:01 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:15:43 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:89:20
+2026-03-03 22:15:43 [ERROR]: CastError: Cast to date failed for value "Invalid Date" (type Date) at path "date" for model "StudyRecord"
+    at SchemaDate.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:377:11)
+    at SchemaDate.handleSingle (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:389:15)
+    at SchemaDate.castForQuery (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\schema\date.js:427:18)
+    at cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\cast.js:367:39)
+    at Query.cast (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._find (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:2378:8)
+    at model.Query.exec (D:\下载\enPromote-main\enPromote-main\server\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async D:\下载\enPromote-main\enPromote-main\server\router\report_new.js:185:21
+2026-03-03 22:16:29 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:22:12 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:25:27 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:25:27 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:25:28 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-03 22:25:36 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-06 10:35:56 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-06 10:36:29 [ERROR]: JSON解析彻底失败，原始内容: {
+  "multiple_choice": [
+    {
+      "question": "During a dinner reservation at a high-end restaurant, the guest asked for a table with a view of the city skyline. Which of the following words best describes the guest's request?",
+      "options": [
+        {"key": "A", "content": "valet"},
+        {"key": "B", "content": "tablecloth"},
+        {"key": "C", "content": "cutlery"},
+        {"key": "D", "content": "reservation"}
+      ],
+      "correctAnswer": "D",
+      "explanation": "The guest ...
+2026-03-06 10:43:51 [ERROR]: TypeError: Cannot read properties of undefined (reading 'length')
+    at D:\下载\enPromote-main\enPromote-main\server\router\word_updated.js:406:51
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-06 12:53:26 [ERROR]: JSON解析彻底失败，原始内容: {
+  "multiple_choice": [
+    {
+      "question": "When a customer asks for a table with a special view, which staff member is most likely to assist them?",
+      "options": [
+        {"key": "A", "content": "Bartender"},
+        {"key": "B", "content": "Valet"},
+        {"key": "C", "content": "Doorman"},
+        {"key": "D", "content": "Reservationist"}
+      ],
+      "correctAnswer": "D",
+      "explanation": "A reservationist is responsible for booking tables and may assist with special reque...
+2026-03-09 12:06:01 [ERROR]: TypeError: connectRedis is not a function
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:09:05 [ERROR]: TypeError: Cannot set properties of undefined (setting 'userid')
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:45:32
+2026-03-09 12:10:34 [ERROR]: TypeError: ConnectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:10:41 [ERROR]: TypeError: ConnectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:11:29 [ERROR]: TypeError: ConnectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:18:11 [ERROR]: TypeError: ConnectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:18:36 [ERROR]: TypeError: ConnectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:18:44 [ERROR]: TypeError: Cannot set properties of undefined (setting 'userid')
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:45:32
+2026-03-09 12:19:00 [ERROR]: TypeError: ConnectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:19:30 [ERROR]: TypeError: connectRedis is not a constructor
+    at D:\下载\enPromote-main\enPromote-main\server\app.js:48:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-09 12:20:10 [ERROR]: TypeError: Cannot set properties of undefined (setting 'userid')
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:45:32
+2026-03-09 12:20:18 [ERROR]: TypeError: Cannot set properties of undefined (setting 'userid')
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:45:32
+2026-03-09 13:03:20 [ERROR]: TypeError: Cannot destructure property 'userid' of 'req.session' as it is undefined.
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:114:17
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-03-09 13:03:20 [ERROR]: TypeError: Cannot destructure property 'userid' of 'req.session' as it is undefined.
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:114:17
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-03-09 13:03:20 [ERROR]: TypeError: Cannot destructure property 'userid' of 'req.session' as it is undefined.
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:114:17
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-03-09 13:03:20 [ERROR]: TypeError: Cannot destructure property 'userid' of 'req.session' as it is undefined.
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:114:17
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\lib\layer.js:152:17)
+    at D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:295:15
+    at processParams (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:582:12)
+    at next (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\下载\enPromote-main\enPromote-main\server\node_modules\router\index.js:186:3)
+2026-03-09 13:03:26 [ERROR]: TypeError: Cannot set properties of undefined (setting 'userid')
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:45:32
+2026-03-09 13:05:03 [ERROR]: Error: Session 未初始化
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:47:34
+2026-03-09 13:11:53 [ERROR]: Error: Session 未初始化
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:47:34
+2026-03-09 13:34:22 [ERROR]: Error: Session 未初始化
+    at D:\下载\enPromote-main\enPromote-main\server\router\auth.js:47:34

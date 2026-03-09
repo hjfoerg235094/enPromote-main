@@ -30,7 +30,7 @@ let userWordSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    nextReviewTime: { // 推荐下次复习哦时间
+    nextReviewTime: { // 推荐下次复习的时间
         type: Date,
         default: Date.now
     },

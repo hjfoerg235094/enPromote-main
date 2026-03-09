@@ -114,6 +114,7 @@ import StudyProgressModal from '@/components/StudyProgressModal.vue';
 import { ref, computed, onMounted } from 'vue';
 import { getUserInfo } from '@/api/auth';
 import { getWordList, updateWordProgress, getWordInfo, updateWordPriority, getReviewWords } from '@/api/word';
+import axios from 'axios';
 
 // 用户信息及进度
 const userInfo = ref({});
@@ -459,6 +460,28 @@ const nextWord = async () => {
       // 更新今日学习数量
       todayStudiedWords.value += words.value.length;
 
+      // 计算学习时长（分钟）
+      const studyEndTime = new Date();
+      let studyDuration = 0;
+      
+      if (studyStartTime.value) {
+        studyDuration = Math.round((studyEndTime - studyStartTime.value) / 1000 / 60);
+        console.log('学习时长:', studyDuration, '分钟');
+      } else {
+        console.warn('学习开始时间未设置');
+      }
+
+      // 记录学习时长
+      if (studyDuration > 0) {
+        await recordStudyTime(
+          currentMode.value === 'practice' ? 'vocabulary' : 'review',
+          studyDuration,
+          currentMode.value === 'practice' ? words.value.length : 0,
+          currentMode.value === 'review' ? words.value.length : 0,
+          0
+        );
+      }
+
       // 显示学习进度弹窗，默认为完成模式
       progressModalMode.value = 'completed';
       showProgressModal.value = true;
@@ -524,6 +547,24 @@ const handleFavoriteChanged = (data) => {
   // 调用个人主页的刷新方法，更新收藏列表
   if (window.refreshFavoriteWords) {
     window.refreshFavoriteWords();
+  }
+};
+
+// 记录学习时长
+const recordStudyTime = async (moduleType, studyTime, newWords = 0, reviewWords = 0, accuracy = 0) => {
+  try {
+    const response = await axios.post('/api/report/record', {
+      module: moduleType,
+      studyTime: studyTime,
+      newWords: newWords,
+      reviewWords: reviewWords,
+      accuracy: accuracy,
+      startTime: studyStartTime.value,
+      endTime: new Date()
+    });
+    console.log('学习时长记录成功:', response.data);
+  } catch (error) {
+    console.error('记录学习时长失败:', error);
   }
 };
 </script>

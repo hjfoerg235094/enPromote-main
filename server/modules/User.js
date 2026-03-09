@@ -64,6 +64,20 @@ let userSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    // 学习历史记录
+    studyHistory: {
+        type: [{
+            date: {
+                type: Date,
+                required: true
+            },
+            words: {
+                type: Number,
+                default: 0
+            }
+        }],
+        default: []
+    },
     planReviweWords: {
         type: Number,
         default: 30

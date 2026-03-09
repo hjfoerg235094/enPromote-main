@@ -214,15 +214,15 @@
             <!-- 渐变定义 -->
             <defs>
               <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" :stop-color="chartColors.primary" stop-opacity="0.6"/>
-                <stop offset="100%" :stop-color="chartColors.primary" stop-opacity="1"/>
+                <stop offset="0%" :stop-color="chartColors.primary" stop-opacity="0.6" />
+                <stop offset="100%" :stop-color="chartColors.primary" stop-opacity="1" />
               </linearGradient>
               <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" :stop-color="chartColors.primary" stop-opacity="0.3"/>
-                <stop offset="100%" :stop-color="chartColors.primary" stop-opacity="0"/>
+                <stop offset="0%" :stop-color="chartColors.primary" stop-opacity="0.3" />
+                <stop offset="100%" :stop-color="chartColors.primary" stop-opacity="0" />
               </linearGradient>
               <filter id="shadow">
-                <feDropShadow dx="0" dy="2" stdDeviation="2" :flood-color="chartColors.primary" flood-opacity="0.3"/>
+                <feDropShadow dx="0" dy="2" stdDeviation="2" :flood-color="chartColors.primary" flood-opacity="0.3" />
               </filter>
             </defs>
             <!-- 填充区域 -->
@@ -280,7 +280,7 @@
                 font-weight="600"
                 class="label-text"
               >
-                {{ trendData[index].studyTime }}分钟
+                {{ trendPoints[index].value }}分钟
               </text>
             </g>
           </svg>
@@ -326,15 +326,15 @@
             <!-- 渐变定义 -->
             <defs>
               <linearGradient id="efficiencyLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" :stop-color="chartColors.secondary" stop-opacity="0.6"/>
-                <stop offset="100%" :stop-color="chartColors.secondary" stop-opacity="1"/>
+                <stop offset="0%" :stop-color="chartColors.secondary" stop-opacity="0.6" />
+                <stop offset="100%" :stop-color="chartColors.secondary" stop-opacity="1" />
               </linearGradient>
               <linearGradient id="efficiencyAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" :stop-color="chartColors.secondary" stop-opacity="0.3"/>
-                <stop offset="100%" :stop-color="chartColors.secondary" stop-opacity="0"/>
+                <stop offset="0%" :stop-color="chartColors.secondary" stop-opacity="0.3" />
+                <stop offset="100%" :stop-color="chartColors.secondary" stop-opacity="0" />
               </linearGradient>
               <filter id="efficiencyShadow">
-                <feDropShadow dx="0" dy="2" stdDeviation="2" :flood-color="chartColors.secondary" flood-opacity="0.3"/>
+                <feDropShadow dx="0" dy="2" stdDeviation="2" :flood-color="chartColors.secondary" flood-opacity="0.3" />
               </filter>
             </defs>
             <!-- 填充区域 -->
@@ -392,7 +392,7 @@
                 font-weight="600"
                 class="label-text"
               >
-                {{ efficiencyTrendData[index].wordsPerMinute.toFixed(2) }}
+                {{ efficiencyTrendPoints[index].value.toFixed(2) }}
               </text>
             </g>
           </svg>
@@ -463,6 +463,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import StudyQualityAssessment from './StudyQualityAssessment.vue';
+import * as api from '@/api/report';
 
 // 数据类型定义
 interface DailyStudyReport {
@@ -632,7 +633,7 @@ const hasEfficiencyTrendData = computed(() => {
 });
 
 const chartSegments = computed(() => {
-  const segments = [];
+  const segments: Array<{ style: { background: string } }> = [];
   let startAngle = 0;
   const colors = [
     chartColors.vocabulary,
@@ -669,6 +670,7 @@ const chartSegments = computed(() => {
   return segments;
 });
 
+
 const legendItems = computed(() => {
   const items = [
     { label: '词汇', value: reportData.value.moduleStudyTime.vocabulary, color: chartColors.vocabulary },
@@ -685,71 +687,114 @@ const displayAchievements = computed(() => {
 });
 
 const trendPoints = computed(() => {
-  if (trendData.value.length === 0) return [];
+  if (!trendData.value || trendData.value.length === 0) return [];
 
-  const maxTime = Math.max(...trendData.value.map(d => d.studyTime), 1);
+  const studyTimes = trendData.value.map(d => d.studyTime || 0);
+  const maxTime = Math.max(...studyTimes, 1);
+  const minTime = Math.min(...studyTimes);
+  const range = maxTime - minTime || 1; // 避免除零
+  const maxIndex = trendData.value.length - 1;
 
-  return trendData.value.map((d, i) => ({
-    x: (i / (trendData.value.length - 1)) * 100,
-    y: 60 - (d.studyTime / maxTime) * 50,
-  }));
+  return trendData.value.map((d, i) => {
+    const x = maxIndex === 0 ? 50 : (i / maxIndex) * 100;
+    // 将数据映射到 10-55 的 y 坐标范围（留出上下边距）
+    const normalizedValue = range > 0 ? ((d.studyTime || 0) - minTime) / range : 0.5;
+    const y = 55 - (normalizedValue * 45); // 10-55 范围
+    return { x, y, value: d.studyTime || 0 };
+  });
 });
 
 const trendLinePoints = computed(() => {
+  if (!trendPoints.value || trendPoints.value.length === 0) return '';
   return trendPoints.value.map(p => `${p.x},${p.y}`).join(' ');
 });
 
 const areaPoints = computed(() => {
-  if (trendPoints.value.length === 0) return '';
+  if (!trendPoints.value || trendPoints.value.length === 0) return '';
   const points = trendPoints.value.map(p => `${p.x},${p.y}`);
   // 添加底部点以形成封闭区域
   return `${points[0]} ${points.join(' ')} ${trendPoints.value[trendPoints.value.length - 1].x},60 ${trendPoints.value[0].x},60`;
 });
 
 const trendLabels = computed(() => {
-  return trendData.value.map((d, i) => ({
-    x: (i / (trendData.value.length - 1)) * 100,
-    text: new Date(d.date).getDate() + '日',
-  }));
+  if (!trendData.value || trendData.value.length === 0) return [];
+  const maxIndex = trendData.value.length - 1;
+  // 根据数据点数量决定显示间隔，最多显示 7 个标签
+  const displayCount = Math.min(7, trendData.value.length);
+  const step = Math.ceil(trendData.value.length / displayCount);
+  
+  return trendData.value
+    .filter((_, i) => i % step === 0)
+    .map((d, i) => ({
+      x: maxIndex === 0 ? 50 : (trendData.value.indexOf(d) / maxIndex) * 100,
+      text: new Date(d.date).getDate() + '日',
+    }));
 });
 
 const efficiencyTrendPoints = computed(() => {
-  if (efficiencyTrendData.value.length === 0) return [];
+  if (!efficiencyTrendData.value || efficiencyTrendData.value.length === 0) return [];
 
-  const maxEfficiency = Math.max(...efficiencyTrendData.value.map(d => d.wordsPerMinute), 1);
+  const efficiencies = efficiencyTrendData.value.map(d => d.wordsPerMinute || 0);
+  const maxEfficiency = Math.max(...efficiencies, 1);
+  const minEfficiency = Math.min(...efficiencies);
+  const range = maxEfficiency - minEfficiency || 1; // 避免除零
+  const maxIndex = efficiencyTrendData.value.length - 1;
 
-  return efficiencyTrendData.value.map((d, i) => ({
-    x: (i / (efficiencyTrendData.value.length - 1)) * 100,
-    y: 60 - (d.wordsPerMinute / maxEfficiency) * 50,
-  }));
+  return efficiencyTrendData.value.map((d, i) => {
+    const x = maxIndex === 0 ? 50 : (i / maxIndex) * 100;
+    // 将数据映射到 10-55 的 y 坐标范围（留出上下边距）
+    const normalizedValue = range > 0 ? ((d.wordsPerMinute || 0) - minEfficiency) / range : 0.5;
+    const y = 55 - (normalizedValue * 45); // 10-55 范围
+    return { x, y, value: d.wordsPerMinute || 0 };
+  });
 });
 
 const efficiencyTrendLinePoints = computed(() => {
+  if (!efficiencyTrendPoints.value || efficiencyTrendPoints.value.length === 0) return '';
   return efficiencyTrendPoints.value.map(p => `${p.x},${p.y}`).join(' ');
 });
 
 const efficiencyAreaPoints = computed(() => {
-  if (efficiencyTrendPoints.value.length === 0) return '';
+  if (!efficiencyTrendPoints.value || efficiencyTrendPoints.value.length === 0) return '';
   const points = efficiencyTrendPoints.value.map(p => `${p.x},${p.y}`);
   // 添加底部点以形成封闭区域
   return `${points[0]} ${points.join(' ')} ${efficiencyTrendPoints.value[efficiencyTrendPoints.value.length - 1].x},60 ${efficiencyTrendPoints.value[0].x},60`;
 });
 
 const efficiencyTrendLabels = computed(() => {
-  return efficiencyTrendData.value.map((d, i) => ({
-    x: (i / (efficiencyTrendData.value.length - 1)) * 100,
-    text: new Date(d.date).getDate() + '日',
-  }));
+  if (!efficiencyTrendData.value || efficiencyTrendData.value.length === 0) return [];
+  const maxIndex = efficiencyTrendData.value.length - 1;
+  // 根据数据点数量决定显示间隔，最多显示 7 个标签
+  const displayCount = Math.min(7, efficiencyTrendData.value.length);
+  const step = Math.ceil(efficiencyTrendData.value.length / displayCount);
+  
+  return efficiencyTrendData.value
+    .filter((_, i) => i % step === 0)
+    .map((d, i) => ({
+      x: maxIndex === 0 ? 50 : (efficiencyTrendData.value.indexOf(d) / maxIndex) * 100,
+      text: new Date(d.date).getDate() + '日',
+    }));
 });
 
 // 方法
-const formatDate = (date: Date | string): string => {
+const formatDate = (date: Date | string | undefined): string => {
+  if (!date) return '';
   const d = typeof date === 'string' ? new Date(date) : date;
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
   return `${year}年${month}月${day}日`;
 };
+
+// 格式化日期为API所需的格式 (YYYY-MM-DD)
+const formatDateForApi = (date: Date | string): string => {
+  const d = typeof date === 'string' ? new Date(date) : date;
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 
 const formatTime = (minutes: number): string => {
   if (minutes < 60) {
@@ -769,40 +814,41 @@ const changeDate = (days: number): void => {
 
 const loadDailyReport = async (): Promise<void> => {
   try {
-    // 这里应该调用实际的API
-    // const response = await api.getDailyStudyReport(formatDate(selectedDate.value));
-    // reportData.value = response.data;
-
-    // 模拟数据
-    reportData.value = {
-      date: formatDate(selectedDate.value),
-      totalStudyTime: 45,
-      moduleStudyTime: {
-        vocabulary: 20,
-        listening: 10,
-        spelling: 10,
-        aiPractice: 5,
-      },
-      wordsLearned: {
-        newWords: 20,
-        reviewWords: 10,
-      },
-      practiceStats: {
-        spellingAccuracy: 85,
-        listeningCompletion: 90,
-        aiPracticeCount: 5,
-      },
-      achievements: {
-        continuousDays: 7,
-        totalDays: 30,
-        unlockedAchievements: ['first_week', 'word_master'],
-      },
-      efficiency: {
-        wordsPerMinute: 0.67,
-        masteryRate: 0.75,
-        masterySpeed: 0.0167,
-      },
-    };
+    const response = await api.getDailyStudyReport(formatDateForApi(selectedDate.value));
+    if (response.data?.code === 200 && response.data.data) {
+      reportData.value = response.data.data;
+    } else {
+      // 如果没有数据，使用默认值
+      reportData.value = {
+        date: formatDate(selectedDate.value),
+        totalStudyTime: 0,
+        moduleStudyTime: {
+          vocabulary: 0,
+          listening: 0,
+          spelling: 0,
+          aiPractice: 0,
+        },
+        wordsLearned: {
+          newWords: 0,
+          reviewWords: 0,
+        },
+        practiceStats: {
+          spellingAccuracy: 0,
+          listeningCompletion: 0,
+          aiPracticeCount: 0,
+        },
+        achievements: {
+          continuousDays: 0,
+          totalDays: 0,
+          unlockedAchievements: [],
+        },
+        efficiency: {
+          wordsPerMinute: 0,
+          masteryRate: 0,
+          masterySpeed: 0,
+        },
+      };
+    }
   } catch (error) {
     console.error('加载每日报告失败:', error);
   }
@@ -810,88 +856,93 @@ const loadDailyReport = async (): Promise<void> => {
 
 const loadTrendData = async (): Promise<void> => {
   try {
-    // 这里应该调用实际的API
-    // const response = await api.getStudyProgressTrend(startDate, endDate);
-    // trendData.value = response.data;
-
-    // 模拟数据
     const endDate = new Date();
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - trendPeriod.value + 1);
 
-    trendData.value = Array.from({ length: trendPeriod.value }, (_, i) => {
-      const date = new Date(startDate);
-      date.setDate(date.getDate() + i);
-      return {
-        date: date.toISOString().split('T')[0],
-        studyTime: Math.floor(Math.random() * 60) + 20,
-        wordsCount: Math.floor(Math.random() * 30) + 10,
-      };
-    });
+    const startDateStr = formatDateForApi(startDate);
+    const endDateStr = formatDateForApi(endDate);
+    console.log('[趋势图表] 加载学习进度趋势:', startDateStr, '至', endDateStr);
+    
+    const response = await api.getStudyProgressTrend(startDateStr, endDateStr);
+    console.log('[趋势图表] 学习进度趋势响应:', response.data);
+    
+    if (response.data?.code === 200 && response.data.data) {
+      trendData.value = response.data.data || [];
+      console.log('[趋势图表] 学习进度趋势数据:', trendData.value.length, '条记录');
+      if (trendData.value.length > 0) {
+        console.log('[趋势图表] 第一条数据:', trendData.value[0]);
+        console.log('[趋势图表] 最后一条数据:', trendData.value[trendData.value.length - 1]);
+      }
+    } else {
+      console.warn('[趋势图表] 无学习进度趋势数据');
+      trendData.value = [];
+    }
 
     // 同时加载效率趋势数据
     await loadEfficiencyTrendData();
   } catch (error) {
-    console.error('加载趋势数据失败:', error);
+    console.error('[趋势图表] 加载趋势数据失败:', error);
+    trendData.value = [];
+    efficiencyTrendData.value = [];
   }
 };
 
 const loadEfficiencyTrendData = async (): Promise<void> => {
   try {
-    // 这里应该调用实际的API
-    // const response = await api.getEfficiencyTrend(startDate, endDate);
-    // efficiencyTrendData.value = response.data;
-
-    // 模拟数据
     const endDate = new Date();
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - trendPeriod.value + 1);
 
-    efficiencyTrendData.value = Array.from({ length: trendPeriod.value }, (_, i) => {
-      const date = new Date(startDate);
-      date.setDate(date.getDate() + i);
-      const studyTime = Math.floor(Math.random() * 60) + 20;
-      const wordsCount = Math.floor(Math.random() * 30) + 10;
-      const masteryRate = Math.random() * 0.3 + 0.6; // 0.6-0.9之间
-
-      return {
-        date: date.toISOString().split('T')[0],
-        studyTime: studyTime,
-        wordsCount: wordsCount,
-        wordsPerMinute: parseFloat((wordsCount / studyTime).toFixed(2)),
-        masteryRate: masteryRate,
-        masterySpeed: parseFloat((masteryRate / (studyTime / 60)).toFixed(3)),
-      };
-    });
+    const startDateStr = formatDateForApi(startDate);
+    const endDateStr = formatDateForApi(endDate);
+    console.log('[趋势图表] 加载学习效率趋势:', startDateStr, '至', endDateStr);
+    
+    const response = await api.getEfficiencyTrend(startDateStr, endDateStr);
+    console.log('[趋势图表] 学习效率趋势响应:', response.data);
+    
+    if (response.data?.code === 200 && response.data.data) {
+      efficiencyTrendData.value = response.data.data || [];
+      console.log('[趋势图表] 学习效率趋势数据:', efficiencyTrendData.value.length, '条记录');
+      if (efficiencyTrendData.value.length > 0) {
+        console.log('[趋势图表] 第一条数据:', efficiencyTrendData.value[0]);
+        console.log('[趋势图表] 最后一条数据:', efficiencyTrendData.value[efficiencyTrendData.value.length - 1]);
+      }
+    } else {
+      console.warn('[趋势图表] 无学习效率趋势数据');
+      efficiencyTrendData.value = [];
+    }
   } catch (error) {
-    console.error('加载效率趋势数据失败:', error);
+    console.error('[趋势图表] 加载效率趋势数据失败:', error);
+    efficiencyTrendData.value = [];
   }
 };
 
 const loadHistoricalComparison = async (): Promise<void> => {
   try {
-    // 这里应该调用实际的API
-    // const response = await api.getHistoricalComparison();
-    // historicalComparison.value = response.data;
+    const response = await api.getHistoricalComparison();
 
-    // 模拟数据
-    historicalComparison.value = {
-      lastWeek: {
-        wordsPerMinute: 0.58,
-        masteryRate: 0.68,
-        masterySpeed: 0.014,
-      },
-      lastMonth: {
-        wordsPerMinute: 0.52,
-        masteryRate: 0.62,
-        masterySpeed: 0.012,
-      },
-      allTime: {
-        wordsPerMinute: 0.55,
-        masteryRate: 0.65,
-        masterySpeed: 0.013,
-      },
-    };
+    if (response.data?.code === 200 && response.data.data) {
+      historicalComparison.value = response.data.data;
+    } else {
+      historicalComparison.value = {
+        lastWeek: {
+          wordsPerMinute: 0,
+          masteryRate: 0,
+          masterySpeed: 0,
+        },
+        lastMonth: {
+          wordsPerMinute: 0,
+          masteryRate: 0,
+          masterySpeed: 0,
+        },
+        allTime: {
+          wordsPerMinute: 0,
+          masteryRate: 0,
+          masterySpeed: 0,
+        },
+      };
+    }
   } catch (error) {
     console.error('加载历史对比数据失败:', error);
   }
@@ -911,73 +962,13 @@ const getComparisonArrow = (current: number, historical: number): string => {
 
 const loadAchievements = async (): Promise<void> => {
   try {
-    // 这里应该调用实际的API
-    // const response = await api.getAchievements();
-    // achievements.value = response.data;
+    const response = await api.getAchievements();
 
-    // 模拟数据
-    achievements.value = [
-      {
-        id: 'first_week',
-        name: '初学者',
-        description: '连续学习7天',
-        icon: '🌱',
-        unlocked: true,
-        unlockedDate: new Date().toISOString().split('T')[0],
-      },
-      {
-        id: 'word_master',
-        name: '单词达人',
-        description: '累计学习1000个单词',
-        icon: '📚',
-        unlocked: true,
-        unlockedDate: new Date().toISOString().split('T')[0],
-      },
-      {
-        id: 'perfect_spelling',
-        name: '拼写大师',
-        description: '拼写练习正确率达到95%',
-        icon: '✏️',
-        unlocked: false,
-        progress: {
-          current: 85,
-          target: 95,
-        },
-      },
-      {
-        id: 'listening_expert',
-        name: '听力专家',
-        description: '听力练习完成度达到100%',
-        icon: '🎧',
-        unlocked: false,
-        progress: {
-          current: 90,
-          target: 100,
-        },
-      },
-      {
-        id: 'ai_friend',
-        name: 'AI伙伴',
-        description: '完成50次AI对话练习',
-        icon: '🤖',
-        unlocked: false,
-        progress: {
-          current: 30,
-          target: 50,
-        },
-      },
-      {
-        id: 'streak_master',
-        name: '连续学习达人',
-        description: '连续学习30天',
-        icon: '🔥',
-        unlocked: false,
-        progress: {
-          current: 7,
-          target: 30,
-        },
-      },
-    ];
+    if (response.data?.code === 200 && response.data.data) {
+      achievements.value = response.data.data;
+    } else {
+      achievements.value = [];
+    }
   } catch (error) {
     console.error('加载成就数据失败:', error);
   }
@@ -985,29 +976,13 @@ const loadAchievements = async (): Promise<void> => {
 
 const loadSuggestions = async (): Promise<void> => {
   try {
-    // 这里应该调用实际的API
-    // const response = await api.getSuggestions();
-    // suggestions.value = response.data;
+    const response = await api.getStudySuggestions();
 
-    // 模拟数据
-    suggestions.value = [
-      {
-        id: 'spelling_practice',
-        type: 'spelling',
-        icon: '✏️',
-        title: '加强拼写练习',
-        description: '您的拼写正确率为85%，建议多加练习以提高准确率',
-        actionUrl: '/spelling',
-      },
-      {
-        id: 'vocabulary_review',
-        type: 'vocabulary',
-        icon: '📚',
-        title: '复习已学单词',
-        description: '您有10个单词需要复习，建议今天完成复习',
-        actionUrl: '/review',
-      },
-    ];
+    if (response.data?.code === 200 && response.data.data) {
+      suggestions.value = response.data.data.suggestions || [];
+    } else {
+      suggestions.value = [];
+    }
   } catch (error) {
     console.error('加载学习建议失败:', error);
   }

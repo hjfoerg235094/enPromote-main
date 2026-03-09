@@ -57,10 +57,14 @@
         <svg class="chart-svg" :viewBox="viewBox" preserveAspectRatio="none">
           <!-- 渐变定义 -->
           <defs>
-            <linearGradient v-for="option in activeFilterOptions" :id="`${option.key}Gradient`" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" :stop-color="option.color" stop-opacity="0.3"/>
-              <stop offset="100%" :stop-color="option.color" stop-opacity="0"/>
+            <linearGradient v-for="option in activeFilterOptions" :id="`${option.key}Gradient`" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" :stop-color="option.color" stop-opacity="0.4"/>
+              <stop offset="100%" :stop-color="option.color" stop-opacity="0.05"/>
             </linearGradient>
+            <!-- 添加阴影滤镜 -->
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+            </filter>
           </defs>
 
           <!-- 网格线 -->
@@ -73,36 +77,48 @@
 
           <!-- 趋势线和区域 -->
           <g v-for="option in activeFilterOptions" :key="option.key">
-            <polygon
-              :points="getAreaPoints(option.key)"
+            <path
+              :d="getAreaPath(option.key)"
               :fill="`url(#${option.key}Gradient)`"
+              class="trend-area"
             />
-            <polyline
-              :points="getLinePoints(option.key)"
+            <path
+              :d="getSmoothPath(option.key)"
               fill="none"
               :stroke="option.color"
-              stroke-width="2"
+              stroke-width="2.5"
               stroke-linecap="round"
               stroke-linejoin="round"
               class="trend-line"
+              filter="url(#shadow)"
               @click="showDetail(option.key, $event)"
             />
           </g>
 
           <!-- 数据点 -->
           <g v-for="(point, index) in filteredData" :key="`point-${index}`">
-            <circle
-              v-for="option in activeFilterOptions"
-              :key="option.key"
-              :cx="point.x"
-              :cy="point[option.key]"
-              r="3"
-              :fill="option.color"
-              stroke="white"
-              stroke-width="1.5"
-              class="data-point"
-              @click.stop="showPointDetail(option.key, index, $event)"
-            />
+            <g v-for="option in activeFilterOptions" :key="option.key">
+              <!-- 外圈光晕 -->
+              <circle
+                :cx="point.x"
+                :cy="point[option.key]"
+                r="6"
+                :fill="option.color"
+                fill-opacity="0.2"
+                class="data-point-glow"
+              />
+              <!-- 主点 -->
+              <circle
+                :cx="point.x"
+                :cy="point[option.key]"
+                r="4"
+                :fill="option.color"
+                stroke="white"
+                stroke-width="2"
+                class="data-point"
+                @click.stop="showPointDetail(option.key, index, $event)"
+              />
+            </g>
           </g>
         </svg>
 
@@ -201,15 +217,16 @@ const activeFilterOptions = computed(() =>
 );
 
 const filteredData = computed(() => {
-  if (!hasData.value) return [];
+  if (!hasData.value || props.data.length === 0) return [];
 
+  const maxIndex = props.data.length - 1;
   const data = props.data.map((d, i) => ({
     ...d,
-    x: (i / (props.data.length - 1)) * 100,
-    overallScore: 60 - (d.overallScore / 100) * 50,
-    memoryScore: 60 - (d.memoryScore / 100) * 50,
-    understandingScore: 60 - (d.understandingScore / 100) * 50,
-    applicationScore: 60 - (d.applicationScore / 100) * 50
+    x: maxIndex === 0 ? 50 : (i / maxIndex) * 100,
+    overallScore: 60 - ((d.overallScore || 0) / 100) * 50,
+    memoryScore: 60 - ((d.memoryScore || 0) / 100) * 50,
+    understandingScore: 60 - ((d.understandingScore || 0) / 100) * 50,
+    applicationScore: 60 - ((d.applicationScore || 0) / 100) * 50
   }));
 
   // 应用缩放和平移
@@ -233,12 +250,13 @@ const viewBox = computed(() => {
 });
 
 const xLabels = computed(() => {
-  if (!hasData.value) return [];
+  if (!hasData.value || props.data.length === 0) return [];
 
   const step = Math.ceil(props.data.length / 10); // 最多显示10个标签
+  const maxIndex = props.data.length - 1;
   return props.data
     .map((d, i) => ({
-      x: (i / (props.data.length - 1)) * 100,
+      x: maxIndex === 0 ? 50 : (i / maxIndex) * 100,
       text: new Date(d.date).getDate() + '日'
     }))
     .filter((_, i) => i % step === 0);
@@ -246,16 +264,92 @@ const xLabels = computed(() => {
 
 // 方法
 const getLinePoints = (key: string): string => {
+  if (!filteredData.value || filteredData.value.length === 0) return '';
   return filteredData.value
     .map(d => `${d.x},${d[key]}`)
     .join(' ');
 };
 
+// 生成平滑曲线路径(使用贝塞尔曲线)
+const getSmoothPath = (key: string): string => {
+  if (!filteredData.value || filteredData.value.length === 0) return '';
+
+  const points = filteredData.value.map(d => ({ x: d.x, y: d[key] }));
+
+  if (points.length < 2) return '';
+
+  // 只有两个点时直接返回直线
+  if (points.length === 2) {
+    return `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`;
+  }
+
+  // 使用Catmull-Rom样条曲线生成平滑曲线
+  let path = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[Math.max(0, i - 1)];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[Math.min(points.length - 1, i + 2)];
+
+    // 计算控制点
+    const cp1x = p1.x + (p2.x - p0.x) / 6;
+    const cp1y = p1.y + (p2.y - p0.y) / 6;
+    const cp2x = p2.x - (p3.x - p1.x) / 6;
+    const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+    path += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+  }
+
+  return path;
+};
+
 const getAreaPoints = (key: string): string => {
-  if (filteredData.value.length === 0) return '';
+  if (!filteredData.value || filteredData.value.length === 0) return '';
   const points = filteredData.value.map(d => `${d.x},${d[key]}`);
   // 添加底部点以形成封闭区域
   return `${points[0]} ${points.join(' ')} ${filteredData.value[filteredData.value.length - 1].x},60 ${filteredData.value[0].x},60`;
+};
+
+// 生成平滑区域填充路径
+const getAreaPath = (key: string): string => {
+  if (!filteredData.value || filteredData.value.length === 0) return '';
+
+  const points = filteredData.value.map(d => ({ x: d.x, y: d[key] }));
+
+  if (points.length < 2) return '';
+
+  // 只有两个点时直接返回直线区域
+  if (points.length === 2) {
+    const first = points[0];
+    const last = points[1];
+    return `M ${first.x} ${first.y} L ${last.x} ${last.y} L ${last.x} 60 L ${first.x} 60 Z`;
+  }
+
+  // 使用Catmull-Rom样条曲线生成平滑曲线
+  let path = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[Math.max(0, i - 1)];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[Math.min(points.length - 1, i + 2)];
+
+    // 计算控制点
+    const cp1x = p1.x + (p2.x - p0.x) / 6;
+    const cp1y = p1.y + (p2.y - p0.y) / 6;
+    const cp2x = p2.x - (p3.x - p1.x) / 6;
+    const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+    path += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+  }
+
+  // 添加底部点以形成封闭区域
+  const lastPoint = points[points.length - 1];
+  const firstPoint = points[0];
+  path += ` L ${lastPoint.x} 60 L ${firstPoint.x} 60 Z`;
+
+  return path;
 };
 
 const getDimensionName = (key: string): string => {
@@ -616,20 +710,40 @@ watch(selectedPeriod, () => {
 
 .trend-line {
   cursor: pointer;
-  transition: stroke-width 0.2s;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .trend-line:hover {
-  stroke-width: 3;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.trend-area {
+  transition: opacity 0.3s ease;
+}
+
+.trend-area:hover {
+  opacity: 0.8;
+}
+
+.data-point-glow {
+  transition: r 0.3s ease, fill-opacity 0.3s ease;
 }
 
 .data-point {
   cursor: pointer;
-  transition: r 0.2s;
+  transition: all 0.3s ease;
 }
 
 .data-point:hover {
-  r: 5;
+  r: 6;
+  stroke-width: 2.5;
+}
+
+.data-point-glow:hover {
+  r: 8;
+  fill-opacity: 0.3;
 }
 
 /* 图例 */

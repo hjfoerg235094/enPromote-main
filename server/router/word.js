@@ -300,9 +300,9 @@ router.get('/getWordAudio', async (req, res) => {
         return res.json({ code: 400, message: '请输入单词' });
     }
     try {
-        // 直接返回有道词典的音频URL
+        // 直接返回有道词典的音频URL，使用HTTPS协议
         const voiceType = 2; // 美式发音
-        const youDaoUrl = `http://dict.youdao.com/dictvoice?audio=${word}&type=${voiceType}`;
+        const youDaoUrl = `https://dict.youdao.com/dictvoice?audio=${word}&type=${voiceType}`;
         res.json({
             code: 200,
             data: youDaoUrl

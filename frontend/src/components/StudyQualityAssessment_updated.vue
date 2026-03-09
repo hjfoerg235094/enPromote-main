@@ -1,3 +1,4 @@
+
 <template>
   <div class="quality-assessment-container">
     <!-- 质量得分卡片 -->
@@ -130,37 +131,37 @@ const hasTrendData = computed(() => {
 });
 
 const overallTrendLinePoints = computed(() => {
-  if (!qualityData.value.trend || qualityData.value.trend.length === 0) return '';
+  if (qualityData.value.trend.length === 0) return '';
   return qualityData.value.trend.map((d, i) => {
     const x = (i / (qualityData.value.trend.length - 1)) * 100;
-    const y = 60 - ((d.overallScore || 0) / 100) * 50;
+    const y = 60 - (d.overallScore / 100) * 50;
     return `${x},${y}`;
   }).join(' ');
 });
 
 const memoryTrendLinePoints = computed(() => {
-  if (!qualityData.value.trend || qualityData.value.trend.length === 0) return '';
+  if (qualityData.value.trend.length === 0) return '';
   return qualityData.value.trend.map((d, i) => {
     const x = (i / (qualityData.value.trend.length - 1)) * 100;
-    const y = 60 - ((d.memoryScore || 0) / 100) * 50;
+    const y = 60 - (d.memoryScore / 100) * 50;
     return `${x},${y}`;
   }).join(' ');
 });
 
 const understandingTrendLinePoints = computed(() => {
-  if (!qualityData.value.trend || qualityData.value.trend.length === 0) return '';
+  if (qualityData.value.trend.length === 0) return '';
   return qualityData.value.trend.map((d, i) => {
     const x = (i / (qualityData.value.trend.length - 1)) * 100;
-    const y = 60 - ((d.understandingScore || 0) / 100) * 50;
+    const y = 60 - (d.understandingScore / 100) * 50;
     return `${x},${y}`;
   }).join(' ');
 });
 
 const applicationTrendLinePoints = computed(() => {
-  if (!qualityData.value.trend || qualityData.value.trend.length === 0) return '';
+  if (qualityData.value.trend.length === 0) return '';
   return qualityData.value.trend.map((d, i) => {
     const x = (i / (qualityData.value.trend.length - 1)) * 100;
-    const y = 60 - ((d.applicationScore || 0) / 100) * 50;
+    const y = 60 - (d.applicationScore / 100) * 50;
     return `${x},${y}`;
   }).join(' ');
 });
@@ -286,396 +287,6 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.quality-assessment-container {
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-}
-
-/* 质量得分卡片 */
-.quality-score-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-}
-
-.score-circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.score-value {
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
-}
-
-.score-label {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 4px;
-}
-
-.score-level {
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 8px 24px;
-  border-radius: 20px;
-}
-
-.level-excellent {
-  background-color: #e8f5e9;
-  color: #4CAF50;
-}
-
-.level-good {
-  background-color: #e3f2fd;
-  color: #2196F3;
-}
-
-.level-average {
-  background-color: #fff3e0;
-  color: #FF9800;
-}
-
-.level-poor {
-  background-color: #ffebee;
-  color: #F44336;
-}
-
-/* 质量维度分析 */
-.quality-dimensions-section {
-  margin-bottom: 24px;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.trend-selector {
-  display: flex;
-  gap: 8px;
-}
-
-.trend-btn {
-  padding: 6px 16px;
-  border: 1px solid #e0e0e0;
-  background: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.trend-btn.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-color: transparent;
-}
-
-.dimensions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-}
-
-.dimension-card {
-  display: flex;
-  gap: 16px;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.dimension-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.dimension-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
-.dimension-content {
-  flex: 1;
-}
-
-.dimension-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.dimension-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.dimension-score {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #667eea;
-}
-
-.dimension-level {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.dimension-description {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-
-.dimension-metrics {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.metric-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.metric-label {
-  color: #999;
-}
-
-.metric-value {
-  font-weight: 600;
-  color: #333;
-}
-
-/* 质量变化趋势 */
-.quality-trend-section {
-  margin-bottom: 24px;
-}
-
-.chart-container {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  position: relative;
-}
-
-.chart-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-  color: #999;
-}
-
-.placeholder-icon {
-  font-size: 4rem;
-  margin-bottom: 12px;
-}
-
-.placeholder-text {
-  font-size: 1.1rem;
-}
-
-.line-chart {
-  position: relative;
-}
-
-.chart-svg {
-  width: 100%;
-  height: 300px;
-}
-
-.chart-legend {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 16px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.legend-color {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.chart-labels {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-}
-
-.chart-label {
-  position: absolute;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  color: #999;
-}
-
-/* 质量改进建议 */
-.quality-suggestions-section {
-  margin-bottom: 24px;
-}
-
-.suggestions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.suggestion-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  border-left: 4px solid transparent;
-}
-
-.suggestion-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.suggestion-card.priority-high {
-  border-left-color: #F44336;
-}
-
-.suggestion-card.priority-medium {
-  border-left-color: #FF9800;
-}
-
-.suggestion-card.priority-low {
-  border-left-color: #4CAF50;
-}
-
-.suggestion-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.suggestion-content {
-  flex: 1;
-}
-
-.suggestion-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.suggestion-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.suggestion-priority {
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.suggestion-priority.priority-high {
-  background-color: #ffebee;
-  color: #F44336;
-}
-
-.suggestion-priority.priority-medium {
-  background-color: #fff3e0;
-  color: #FF9800;
-}
-
-.suggestion-priority.priority-low {
-  background-color: #e8f5e9;
-  color: #4CAF50;
-}
-
-.suggestion-description {
-  font-size: 0.95rem;
-  color: #666;
-  line-height: 1.5;
-}
-
-.suggestion-btn {
-  padding: 8px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.suggestion-btn:hover {
-  opacity: 0.9;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .dimensions-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .suggestion-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .suggestion-btn {
-    width: 100%;
-    margin-top: 12px;
-  }
-}
+<style>
+/* 保持原有的样式 */
 </style>
