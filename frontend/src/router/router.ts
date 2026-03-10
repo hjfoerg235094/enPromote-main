@@ -120,6 +120,13 @@ const router = createRouter({
             meta: { requiresAuth: true }
         },
         {
+            path: '/friends',
+            name: 'Friends',
+            component: () => import('../views/Friends.vue'),
+            meta: { requiresAuth: true }
+        },
+
+        {
             path: '/chapter/:storyId/:chapterId',
             name: 'ChapterView',
             component: () => import('../views/ChapterView_new.vue'),

@@ -28,6 +28,21 @@
                 </div>
             </div>
 
+            <!-- 好友管理入口 -->
+            <div class="friends-section">
+                <div class="friends-card">
+                    <div class="friends-header">
+                        <h3>好友管理</h3>
+                        <router-link to="/friends" class="view-all-link">管理好友 →</router-link>
+                    </div>
+                    <div class="friends-preview">
+                        <div class="friends-icon">👥</div>
+                        <p>添加好友，一起学习进步</p>
+                        <router-link to="/friends" class="btn-primary">立即添加</router-link>
+                    </div>
+                </div>
+            </div>
+
             <!-- 收藏单词区域 -->
             <div class="favorite-section">
                 <div class="favorite-header">
@@ -355,6 +370,66 @@ onMounted(() => {
     font-weight: bold;
     color: #333;
     margin: 0;
+}
+
+/* 好友管理入口样式 */
+.friends-section {
+    margin-bottom: 20px;
+}
+
+.friends-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.friends-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.friends-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.friends-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.friends-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.friends-preview p {
+    margin: 0 0 20px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.friends-preview .btn-primary {
+    padding: 10px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.friends-preview .btn-primary:hover {
+    background: #45a049;
 }
 
 .favorite-section {

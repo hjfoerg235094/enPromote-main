@@ -26,6 +26,8 @@ const storyRouter = require('./router/story_new');
 const storyProgressRouter = require('./router/storyProgress');
 const listeningRouter = require('./router/listening');
 const studyRecordRouter = require('./router/studyRecord');
+const friendsRouter = require('./router/friends');
+const settingsRouter = require('./router/settings');
 
 const app = express();
 
@@ -105,6 +107,8 @@ app.use('/api/story', storyRouter);
 app.use('/api/story', storyProgressRouter);
 app.use('/api/listening', listeningRouter);
 app.use('/api/study-record', studyRecordRouter);
+app.use('/api/friends', friendsRouter);
+app.use('/api/settings', settingsRouter);
 
 // 404处理
 app.use((req, res) => {
@@ -177,3 +181,4 @@ process.on('unhandledRejection', (reason, promise) => {
         promise: promise
     });
 });
+ 
