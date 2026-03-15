@@ -198,8 +198,8 @@ const averageScore = computed(() => {
 
 const hasNextChapter = computed(() => {
   if (!chapter.value) return false;
-  // 增加默认章节数到10，避免第三章完成后直接显示剧情完成
-  return chapterId.value < (chapter.value.totalChapters || 10);
+  // 使用实际的章节数量
+  return chapterId.value < chapter.value.totalChapters;
 });
 
 onMounted(async () => {

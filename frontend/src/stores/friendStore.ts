@@ -8,6 +8,11 @@ export const useFriendStore = defineStore('friend', () => {
   const loading = ref(false)
   const searchResults = ref([])
   const searchLoading = ref(false)
+  
+  // 缓存相关
+  const cacheTime = 5 * 60 * 1000 // 5分钟缓存
+  const lastFetchTime = ref(0)
+  const lastRequestsFetchTime = ref(0)
 
   // 计算属性：是否有待处理的好友请求
   const hasPendingRequests = computed(() => {
@@ -22,12 +27,22 @@ export const useFriendStore = defineStore('friend', () => {
   /**
    * 获取好友列表
    */
-  const fetchFriends = async (params?: { page?: number, limit?: number, sort?: string }) => {
+  const fetchFriends = async (params?: { page?: number, limit?: number, sort?: string }, forceRefresh = false) => {
+    // 如果有缓存且未过期，直接返回
+    const now = Date.now()
+    if (!forceRefresh && now - lastFetchTime.value < cacheTime && friends.value.length > 0) {
+      return friends.value
+    }
+
     loading.value = true
     try {
       const res = await friendApi.getFriends(params)
+      console.log('获取好友列表响应:', res)
       if (res.data.code === 200) {
+        console.log('好友列表数据:', res.data.data)
         friends.value = res.data.data.list
+        console.log('friends.value:', friends.value)
+        lastFetchTime.value = now
         return res.data.data
       }
     } catch (error) {
@@ -41,11 +56,18 @@ export const useFriendStore = defineStore('friend', () => {
   /**
    * 获取好友请求列表
    */
-  const fetchRequests = async () => {
+  const fetchRequests = async (forceRefresh = false) => {
+    // 如果有缓存且未过期，直接返回
+    const now = Date.now()
+    if (!forceRefresh && now - lastRequestsFetchTime.value < cacheTime) {
+      return requests.value
+    }
+
     try {
       const res = await friendApi.getFriendRequests()
       if (res.data.code === 200) {
         requests.value = res.data.data
+        lastRequestsFetchTime.value = now
       }
     } catch (error) {
       console.error('获取好友请求列表失败:', error)
@@ -98,8 +120,8 @@ export const useFriendStore = defineStore('friend', () => {
       if (res.data.code === 200) {
         // 从请求列表中移除
         requests.value = requests.value.filter(r => r.id !== requestId)
-        // 刷新好友列表
-        await fetchFriends()
+        // 强制刷新好友列表
+        await fetchFriends(undefined, true)
         return { success: true, message: res.data.message }
       }
       return { success: false, message: res.data.message }

@@ -12944,3 +12944,849 @@
 2026-03-10 16:47:05 [INFO]: MongoDB session store 初始化成功
 2026-03-10 16:47:05 [INFO]: 服务器启动成功
 2026-03-10 16:47:05 [INFO]: 数据库连接成功
+2026-03-10 16:54:07 [INFO]: MongoDB session store 初始化成功
+2026-03-10 16:54:07 [INFO]: 服务器启动成功
+2026-03-10 16:54:07 [INFO]: 数据库连接成功
+2026-03-10 16:55:44 [INFO]: User Action
+2026-03-10 16:56:01 [INFO]: User Action
+2026-03-10 16:56:02 [INFO]: User Action
+2026-03-10 16:56:02 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-10 16:56:09 [INFO]: User Action
+2026-03-10 16:56:14 [INFO]: User Action
+2026-03-10 16:56:19 [INFO]: 用户 lrw 密码已迁移为 bcrypt 哈希
+2026-03-10 16:56:19 [INFO]: User Action
+2026-03-10 16:56:19 [INFO]: 用户登录成功: lrw
+2026-03-10 16:56:19 [INFO]: User Action
+2026-03-10 16:56:19 [INFO]: User Action
+2026-03-10 16:56:22 [INFO]: User Action
+2026-03-10 16:56:53 [INFO]: User Action
+2026-03-10 16:56:53 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-10 16:56:58 [INFO]: User Action
+2026-03-10 16:56:58 [INFO]: 用户登录成功: admin
+2026-03-10 16:56:59 [INFO]: User Action
+2026-03-10 16:56:59 [INFO]: User Action
+2026-03-10 16:57:00 [INFO]: User Action
+2026-03-10 16:57:27 [INFO]: User Action
+2026-03-10 16:57:31 [INFO]: User Action
+2026-03-10 16:57:52 [INFO]: User Action
+2026-03-10 16:58:03 [INFO]: User Action
+2026-03-10 16:58:03 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-10 16:58:10 [INFO]: User Action
+2026-03-10 16:58:10 [INFO]: 用户登录成功: lrw
+2026-03-10 16:58:10 [INFO]: User Action
+2026-03-10 16:58:10 [INFO]: User Action
+2026-03-10 16:58:11 [INFO]: User Action
+2026-03-10 16:58:52 [INFO]: User Action
+2026-03-10 16:59:02 [INFO]: User Action
+2026-03-10 16:59:09 [INFO]: User Action
+2026-03-10 16:59:12 [INFO]: User Action
+2026-03-10 16:59:20 [INFO]: User Action
+2026-03-10 16:59:22 [INFO]: User Action
+2026-03-10 16:59:52 [INFO]: User Action
+2026-03-10 16:59:56 [INFO]: User Action
+2026-03-10 17:00:00 [INFO]: User Action
+2026-03-10 17:00:00 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-10 17:00:04 [INFO]: User Action
+2026-03-10 17:00:04 [INFO]: 用户登录成功: admin
+2026-03-10 17:00:05 [INFO]: User Action
+2026-03-10 17:00:05 [INFO]: User Action
+2026-03-10 17:00:06 [INFO]: User Action
+2026-03-10 17:00:11 [INFO]: User Action
+2026-03-10 17:00:14 [INFO]: User Action
+2026-03-10 17:00:33 [INFO]: User Action
+2026-03-10 17:00:36 [INFO]: User Action
+2026-03-10 17:00:38 [INFO]: User Action
+2026-03-10 17:00:41 [INFO]: User Action
+2026-03-10 17:00:44 [INFO]: User Action
+2026-03-10 17:00:52 [INFO]: User Action
+2026-03-10 17:02:32 [INFO]: User Action
+2026-03-10 20:38:54 [INFO]: User Action
+2026-03-10 20:38:54 [INFO]: User Action
+2026-03-10 21:09:05 [INFO]: User Action
+2026-03-10 21:09:05 [INFO]: User Action
+2026-03-10 21:09:11 [INFO]: User Action
+2026-03-10 21:09:18 [INFO]: User Action
+2026-03-10 21:09:29 [INFO]: User Action
+2026-03-10 21:09:30 [INFO]: User Action
+2026-03-10 21:09:31 [INFO]: User Action
+2026-03-10 21:09:32 [INFO]: User Action
+2026-03-10 21:09:39 [INFO]: User Action
+2026-03-10 21:09:45 [INFO]: User Action
+2026-03-11 13:39:10 [INFO]: MongoDB session store 初始化成功
+2026-03-11 13:39:10 [INFO]: 服务器启动成功
+2026-03-11 13:39:10 [INFO]: 数据库连接成功
+2026-03-11 13:39:19 [INFO]: User Action
+2026-03-11 13:39:19 [INFO]: 用户登录成功: admin
+2026-03-11 13:39:19 [INFO]: User Action
+2026-03-11 13:39:20 [INFO]: User Action
+2026-03-11 13:39:22 [INFO]: User Action
+2026-03-11 13:39:36 [INFO]: User Action
+2026-03-11 13:39:42 [INFO]: User Action
+2026-03-11 13:39:42 [INFO]: User Action
+2026-03-11 13:39:46 [INFO]: User Action
+2026-03-11 13:39:47 [INFO]: User Action
+2026-03-11 13:39:49 [INFO]: User Action
+2026-03-11 13:40:37 [INFO]: User Action
+2026-03-11 13:40:38 [INFO]: User Action
+2026-03-11 13:40:39 [INFO]: User Action
+2026-03-11 13:40:40 [INFO]: User Action
+2026-03-11 13:41:30 [INFO]: User Action
+2026-03-11 13:42:48 [INFO]: User Action
+2026-03-11 13:48:26 [INFO]: User Action
+2026-03-11 13:48:27 [INFO]: User Action
+2026-03-11 13:48:30 [INFO]: User Action
+2026-03-11 13:48:33 [INFO]: User Action
+2026-03-11 13:48:35 [INFO]: User Action
+2026-03-11 13:48:39 [INFO]: User Action
+2026-03-11 13:48:42 [INFO]: User Action
+2026-03-11 13:59:09 [INFO]: MongoDB session store 初始化成功
+2026-03-11 13:59:09 [INFO]: 服务器启动成功
+2026-03-11 13:59:09 [INFO]: 数据库连接成功
+2026-03-11 13:59:11 [INFO]: User Action
+2026-03-11 13:59:11 [INFO]: User Action
+2026-03-11 13:59:11 [INFO]: User Action
+2026-03-11 14:08:37 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:08:37 [INFO]: 服务器启动成功
+2026-03-11 14:08:37 [INFO]: 数据库连接成功
+2026-03-11 14:08:40 [INFO]: User Action
+2026-03-11 14:11:24 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:11:24 [INFO]: 服务器启动成功
+2026-03-11 14:11:24 [INFO]: 数据库连接成功
+2026-03-11 14:11:43 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:11:43 [INFO]: 服务器启动成功
+2026-03-11 14:11:43 [INFO]: 数据库连接成功
+2026-03-11 14:13:00 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:13:00 [INFO]: 服务器启动成功
+2026-03-11 14:13:00 [INFO]: 数据库连接成功
+2026-03-11 14:13:48 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:13:48 [INFO]: 服务器启动成功
+2026-03-11 14:13:48 [INFO]: 数据库连接成功
+2026-03-11 14:14:07 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:14:07 [INFO]: 服务器启动成功
+2026-03-11 14:14:07 [INFO]: 数据库连接成功
+2026-03-11 14:19:47 [INFO]: User Action
+2026-03-11 14:21:03 [INFO]: User Action
+2026-03-11 14:21:07 [INFO]: User Action
+2026-03-11 14:21:08 [INFO]: User Action
+2026-03-11 14:21:19 [INFO]: User Action
+2026-03-11 14:21:22 [INFO]: User Action
+2026-03-11 14:22:07 [INFO]: User Action
+2026-03-11 14:22:12 [INFO]: User Action
+2026-03-11 14:22:15 [INFO]: User Action
+2026-03-11 14:22:15 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-11 14:22:20 [INFO]: User Action
+2026-03-11 14:22:20 [INFO]: 用户登录成功: lrw
+2026-03-11 14:22:20 [INFO]: User Action
+2026-03-11 14:22:21 [INFO]: User Action
+2026-03-11 14:22:22 [INFO]: User Action
+2026-03-11 14:22:28 [INFO]: User Action
+2026-03-11 14:22:42 [INFO]: User Action
+2026-03-11 14:22:46 [INFO]: User Action
+2026-03-11 14:22:50 [INFO]: User Action
+2026-03-11 14:22:55 [INFO]: User Action
+2026-03-11 14:22:57 [INFO]: User Action
+2026-03-11 14:23:09 [INFO]: User Action
+2026-03-11 14:23:10 [INFO]: User Action
+2026-03-11 14:23:15 [INFO]: User Action
+2026-03-11 14:24:51 [INFO]: User Action
+2026-03-11 14:24:51 [INFO]: User Action
+2026-03-11 14:24:55 [INFO]: User Action
+2026-03-11 14:31:42 [INFO]: User Action
+2026-03-11 14:31:45 [INFO]: User Action
+2026-03-11 14:31:46 [INFO]: User Action
+2026-03-11 14:31:47 [INFO]: User Action
+2026-03-11 14:31:48 [INFO]: User Action
+2026-03-11 14:31:59 [INFO]: User Action
+2026-03-11 14:31:59 [INFO]: User Action
+2026-03-11 14:32:00 [INFO]: User Action
+2026-03-11 14:32:03 [INFO]: User Action
+2026-03-11 14:32:04 [INFO]: User Action
+2026-03-11 14:32:09 [INFO]: User Action
+2026-03-11 14:32:17 [INFO]: User Action
+2026-03-11 14:32:53 [INFO]: User Action
+2026-03-11 14:32:55 [INFO]: User Action
+2026-03-11 14:32:59 [INFO]: User Action
+2026-03-11 14:33:02 [INFO]: User Action
+2026-03-11 14:33:02 [INFO]: User Action
+2026-03-11 14:33:08 [INFO]: User Action
+2026-03-11 14:33:10 [INFO]: User Action
+2026-03-11 14:33:18 [INFO]: User Action
+2026-03-11 14:36:30 [INFO]: User Action
+2026-03-11 14:36:31 [INFO]: User Action
+2026-03-11 14:36:38 [INFO]: User Action
+2026-03-11 14:39:21 [INFO]: User Action
+2026-03-11 14:39:25 [INFO]: User Action
+2026-03-11 14:41:23 [INFO]: User Action
+2026-03-11 14:41:24 [INFO]: User Action
+2026-03-11 14:41:42 [INFO]: User Action
+2026-03-11 14:42:24 [INFO]: User Action
+2026-03-11 14:42:44 [INFO]: User Action
+2026-03-11 14:42:58 [INFO]: User Action
+2026-03-11 14:42:58 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-11 14:43:05 [INFO]: User Action
+2026-03-11 14:43:05 [INFO]: 用户登录成功: admin
+2026-03-11 14:43:05 [INFO]: User Action
+2026-03-11 14:43:06 [INFO]: User Action
+2026-03-11 14:43:07 [INFO]: User Action
+2026-03-11 14:43:10 [INFO]: User Action
+2026-03-11 14:43:15 [INFO]: User Action
+2026-03-11 14:43:35 [INFO]: User Action
+2026-03-11 14:43:41 [INFO]: User Action
+2026-03-11 14:43:44 [INFO]: User Action
+2026-03-11 14:43:55 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:43:55 [INFO]: 服务器启动成功
+2026-03-11 14:43:55 [INFO]: 数据库连接成功
+2026-03-11 14:46:10 [INFO]: User Action
+2026-03-11 14:46:16 [INFO]: User Action
+2026-03-11 14:47:19 [INFO]: User Action
+2026-03-11 14:47:22 [INFO]: User Action
+2026-03-11 14:47:23 [INFO]: User Action
+2026-03-11 14:47:25 [INFO]: User Action
+2026-03-11 14:47:35 [INFO]: User Action
+2026-03-11 14:47:58 [INFO]: User Action
+2026-03-11 14:50:49 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:50:49 [INFO]: 服务器启动成功
+2026-03-11 14:50:49 [INFO]: 数据库连接成功
+2026-03-11 14:51:26 [INFO]: MongoDB session store 初始化成功
+2026-03-11 14:51:26 [INFO]: 服务器启动成功
+2026-03-11 14:51:26 [INFO]: 数据库连接成功
+2026-03-11 14:51:40 [INFO]: User Action
+2026-03-11 14:51:41 [INFO]: User Action
+2026-03-11 14:51:50 [INFO]: User Action
+2026-03-11 14:51:56 [INFO]: User Action
+2026-03-11 14:53:06 [INFO]: User Action
+2026-03-11 14:55:58 [INFO]: User Action
+2026-03-11 14:55:58 [INFO]: User Action
+2026-03-11 14:56:03 [INFO]: User Action
+2026-03-11 14:56:03 [INFO]: User Action
+2026-03-11 14:56:04 [INFO]: User Action
+2026-03-11 14:56:04 [INFO]: User Action
+2026-03-11 14:56:06 [INFO]: User Action
+2026-03-11 14:56:12 [INFO]: User Action
+2026-03-11 14:56:20 [INFO]: User Action
+2026-03-11 14:57:03 [INFO]: User Action
+2026-03-11 14:58:51 [INFO]: User Action
+2026-03-11 14:58:54 [INFO]: User Action
+2026-03-11 14:59:02 [INFO]: User Action
+2026-03-11 14:59:03 [INFO]: User Action
+2026-03-11 14:59:03 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-11 14:59:07 [INFO]: User Action
+2026-03-11 14:59:07 [INFO]: 用户登录成功: lrw
+2026-03-11 14:59:08 [INFO]: User Action
+2026-03-11 14:59:08 [INFO]: User Action
+2026-03-11 14:59:09 [INFO]: User Action
+2026-03-11 14:59:13 [INFO]: User Action
+2026-03-11 14:59:17 [INFO]: User Action
+2026-03-11 14:59:21 [INFO]: User Action
+2026-03-11 15:05:09 [INFO]: User Action
+2026-03-11 15:05:09 [INFO]: User Action
+2026-03-11 15:05:11 [INFO]: User Action
+2026-03-11 15:05:11 [INFO]: User Action
+2026-03-11 15:10:16 [INFO]: User Action
+2026-03-11 15:10:16 [INFO]: User Action
+2026-03-11 15:12:38 [INFO]: User Action
+2026-03-11 15:12:38 [INFO]: User Action
+2026-03-11 15:12:39 [INFO]: User Action
+2026-03-11 15:12:50 [INFO]: User Action
+2026-03-11 15:12:50 [INFO]: 用户登录成功: admin
+2026-03-11 15:12:51 [INFO]: User Action
+2026-03-11 15:12:51 [INFO]: User Action
+2026-03-11 15:12:52 [INFO]: User Action
+2026-03-11 15:13:03 [INFO]: User Action
+2026-03-11 15:13:03 [INFO]: 用户登录成功: lrw
+2026-03-11 15:13:03 [INFO]: User Action
+2026-03-11 15:13:03 [INFO]: User Action
+2026-03-11 15:13:04 [INFO]: User Action
+2026-03-11 15:13:13 [INFO]: MongoDB session store 初始化成功
+2026-03-11 15:13:13 [INFO]: 服务器启动成功
+2026-03-11 15:13:13 [INFO]: 数据库连接成功
+2026-03-11 15:13:33 [INFO]: MongoDB session store 初始化成功
+2026-03-11 15:13:33 [INFO]: 服务器启动成功
+2026-03-11 15:13:33 [INFO]: 数据库连接成功
+2026-03-11 15:13:33 [INFO]: User Action
+2026-03-11 15:13:34 [INFO]: User Action
+2026-03-11 15:13:40 [INFO]: User Action
+2026-03-11 15:13:40 [INFO]: 用户登录成功: admin
+2026-03-11 15:13:40 [INFO]: User Action
+2026-03-11 15:13:40 [INFO]: User Action
+2026-03-11 15:13:41 [INFO]: User Action
+2026-03-12 10:41:31 [INFO]: User Action
+2026-03-12 10:41:31 [INFO]: User Action
+2026-03-12 10:41:32 [INFO]: User Action
+2026-03-12 10:41:41 [INFO]: User Action
+2026-03-12 10:41:41 [INFO]: 用户登录成功: admin
+2026-03-12 10:41:41 [INFO]: User Action
+2026-03-12 10:41:41 [INFO]: User Action
+2026-03-12 10:41:42 [INFO]: User Action
+2026-03-12 10:42:00 [INFO]: User Action
+2026-03-12 10:42:00 [INFO]: 用户登录成功: admin
+2026-03-12 10:42:00 [INFO]: User Action
+2026-03-12 10:42:00 [INFO]: User Action
+2026-03-12 10:42:01 [INFO]: User Action
+2026-03-12 10:43:50 [INFO]: User Action
+2026-03-12 10:43:50 [INFO]: 用户登录成功: lrw
+2026-03-12 10:43:50 [INFO]: User Action
+2026-03-12 10:43:50 [INFO]: User Action
+2026-03-12 10:43:51 [INFO]: User Action
+2026-03-12 10:44:02 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-12 10:44:15 [INFO]: MongoDB session store 初始化成功
+2026-03-12 10:44:15 [INFO]: 服务器启动成功
+2026-03-12 10:44:15 [INFO]: 数据库连接成功
+2026-03-12 10:44:17 [INFO]: User Action
+2026-03-12 10:44:17 [INFO]: User Action
+2026-03-12 10:44:18 [INFO]: User Action
+2026-03-12 10:44:25 [INFO]: User Action
+2026-03-12 10:44:25 [INFO]: 用户登录成功: admin
+2026-03-12 10:44:25 [INFO]: User Action
+2026-03-12 10:44:25 [INFO]: User Action
+2026-03-12 10:44:26 [INFO]: User Action
+2026-03-12 10:45:38 [INFO]: MongoDB session store 初始化成功
+2026-03-12 10:45:38 [INFO]: 服务器启动成功
+2026-03-12 10:45:38 [INFO]: 数据库连接成功
+2026-03-12 10:46:16 [INFO]: User Action
+2026-03-12 10:46:16 [INFO]: 用户登录成功: lrw
+2026-03-12 10:46:16 [INFO]: User Action
+2026-03-12 10:46:17 [INFO]: User Action
+2026-03-12 10:46:19 [INFO]: User Action
+2026-03-12 10:46:22 [INFO]: User Action
+2026-03-12 11:43:14 [INFO]: User Action
+2026-03-12 11:43:14 [INFO]: User Action
+2026-03-12 11:43:21 [INFO]: User Action
+2026-03-12 11:43:26 [INFO]: User Action
+2026-03-12 11:45:15 [INFO]: User Action
+2026-03-12 11:45:18 [INFO]: User Action
+2026-03-12 11:45:21 [INFO]: User Action
+2026-03-12 11:45:24 [INFO]: User Action
+2026-03-12 11:45:26 [INFO]: User Action
+2026-03-12 11:45:33 [INFO]: User Action
+2026-03-12 11:45:37 [INFO]: User Action
+2026-03-12 11:45:37 [INFO]: User Action
+2026-03-12 11:45:38 [INFO]: User Action
+2026-03-12 11:47:16 [INFO]: User Action
+2026-03-12 11:47:17 [INFO]: User Action
+2026-03-12 11:47:18 [INFO]: User Action
+2026-03-12 11:47:24 [INFO]: User Action
+2026-03-12 11:47:24 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-12 11:47:31 [INFO]: User Action
+2026-03-12 11:47:31 [INFO]: 用户登录成功: admin
+2026-03-12 11:47:32 [INFO]: User Action
+2026-03-12 11:47:32 [INFO]: User Action
+2026-03-12 11:47:39 [INFO]: User Action
+2026-03-12 11:47:41 [INFO]: User Action
+2026-03-12 11:47:41 [INFO]: User Action
+2026-03-12 11:47:43 [INFO]: User Action
+2026-03-12 11:47:52 [INFO]: User Action
+2026-03-12 11:47:54 [INFO]: User Action
+2026-03-12 11:47:56 [INFO]: User Action
+2026-03-12 11:47:58 [INFO]: User Action
+2026-03-12 11:50:55 [INFO]: User Action
+2026-03-12 11:50:55 [INFO]: User Action
+2026-03-12 11:51:03 [INFO]: User Action
+2026-03-12 11:51:12 [INFO]: User Action
+2026-03-12 11:52:23 [INFO]: MongoDB session store 初始化成功
+2026-03-12 11:52:23 [INFO]: 服务器启动成功
+2026-03-12 11:52:23 [INFO]: 数据库连接成功
+2026-03-12 11:52:30 [INFO]: User Action
+2026-03-12 11:52:30 [INFO]: User Action
+2026-03-12 11:52:37 [INFO]: User Action
+2026-03-12 11:56:10 [INFO]: User Action
+2026-03-12 11:56:11 [INFO]: User Action
+2026-03-12 11:56:11 [INFO]: User Action
+2026-03-12 11:56:12 [INFO]: User Action
+2026-03-12 11:56:12 [INFO]: User Action
+2026-03-12 11:57:22 [INFO]: User Action
+2026-03-12 11:57:24 [INFO]: User Action
+2026-03-12 11:57:24 [INFO]: User Action
+2026-03-12 11:57:26 [INFO]: User Action
+2026-03-12 11:57:29 [INFO]: User Action
+2026-03-12 11:57:52 [INFO]: User Action
+2026-03-12 11:57:52 [INFO]: User Action
+2026-03-12 11:58:36 [INFO]: MongoDB session store 初始化成功
+2026-03-12 11:58:36 [INFO]: 服务器启动成功
+2026-03-12 11:58:36 [INFO]: 数据库连接成功
+2026-03-12 11:58:36 [INFO]: User Action
+2026-03-12 11:58:36 [INFO]: User Action
+2026-03-12 11:58:44 [INFO]: User Action
+2026-03-12 11:58:44 [INFO]: 用户登录成功: admin
+2026-03-12 11:58:45 [INFO]: User Action
+2026-03-12 11:58:45 [INFO]: User Action
+2026-03-12 11:58:46 [INFO]: User Action
+2026-03-12 11:58:49 [INFO]: User Action
+2026-03-12 11:59:02 [INFO]: User Action
+2026-03-12 13:26:45 [INFO]: MongoDB session store 初始化成功
+2026-03-12 13:26:45 [INFO]: 服务器启动成功
+2026-03-12 13:26:45 [INFO]: 数据库连接成功
+2026-03-12 13:26:48 [INFO]: User Action
+2026-03-12 13:26:48 [INFO]: User Action
+2026-03-12 13:26:51 [INFO]: User Action
+2026-03-12 13:45:30 [INFO]: User Action
+2026-03-12 13:45:30 [INFO]: User Action
+2026-03-12 13:45:33 [INFO]: User Action
+2026-03-12 19:43:59 [INFO]: User Action
+2026-03-12 19:43:59 [INFO]: User Action
+2026-03-12 19:43:59 [INFO]: User Action
+2026-03-12 19:44:02 [INFO]: User Action
+2026-03-12 19:44:08 [INFO]: User Action
+2026-03-12 19:44:08 [INFO]: User Action
+2026-03-12 19:44:08 [INFO]: User Action
+2026-03-14 11:03:38 [INFO]: MongoDB session store 初始化成功
+2026-03-14 11:03:38 [INFO]: 服务器启动成功
+2026-03-14 11:03:38 [INFO]: 数据库连接成功
+2026-03-14 11:03:39 [INFO]: User Action
+2026-03-14 11:03:39 [INFO]: User Action
+2026-03-14 11:03:41 [INFO]: User Action
+2026-03-14 11:03:44 [INFO]: User Action
+2026-03-14 11:03:44 [INFO]: User Action
+2026-03-14 11:03:45 [INFO]: User Action
+2026-03-14 11:03:46 [INFO]: User Action
+2026-03-14 11:03:46 [INFO]: User Action
+2026-03-14 11:28:01 [INFO]: User Action
+2026-03-14 11:28:01 [INFO]: User Action
+2026-03-14 11:28:18 [INFO]: User Action
+2026-03-14 11:28:18 [INFO]: User Action
+2026-03-14 11:28:20 [INFO]: User Action
+2026-03-14 11:31:17 [INFO]: User Action
+2026-03-14 11:31:18 [INFO]: User Action
+2026-03-14 11:31:29 [INFO]: User Action
+2026-03-14 11:31:32 [INFO]: User Action
+2026-03-14 11:31:34 [INFO]: User Action
+2026-03-14 11:31:35 [INFO]: User Action
+2026-03-14 11:31:42 [INFO]: User Action
+2026-03-14 11:31:43 [INFO]: User Action
+2026-03-14 11:31:44 [INFO]: User Action
+2026-03-14 11:31:45 [INFO]: User Action
+2026-03-14 11:32:05 [INFO]: User Action
+2026-03-14 11:32:05 [INFO]: User Action
+2026-03-14 11:32:07 [INFO]: User Action
+2026-03-14 11:32:07 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: A, 单词数: 10, AI提供商: aliyun
+2026-03-14 11:32:29 [INFO]: AI生成的题目: {
+  "multiple_choice": [
+    {
+      "question": "A guest is asking the receptionist about the hotel's special dish. Which word would best describe this dish?",
+      "options": [
+        {"key": "A", "content": "cuisine"},
+        {"key": "B", "content": "entree"},
+        {"key": "C": "reservation"},
+        {"key": "D", "content": "housekeeping"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Entree refers to the main course of a meal, which is commonly used to describe a special dish in a restaurant or hotel.",
+      "relatedWords": ["entree", "cuisine"]
+    },
+    {
+      "question": "The guest wants to check in but forgot to make a reservation. Which staff member should they ask?",
+      "options": [
+        {"key": "A", "content": "valet"},
+        {"key": "B", "content": "bartender"},
+        {"key": "C", "content": "doorman"},
+        {"key": "D", "content": "reservation"}
+      ],
+      "correctAnswer": "D",
+      "explanation": "The term 'reservation' refers to the process of booking a room, so the guest should ask someone who handles reservations.",
+      "relatedWords": ["reservation", "doorman"]
+    }
+  ],
+  "fill_in_blank": [
+    {
+      "context": "Guest: Excuse me, could I get a new __1__? I think the old one is dirty. Housekeeper: Of course, I'll bring one right away. Guest: Also, I noticed the __2__ is missing. Could you check that?",
+      "blanks": [
+        {
+          "position": "1",
+          "answer": "tablecloth",
+          "options": ["shampoo", "tablecloth", "cutlery", "valet"],
+          "explanation": "A tablecloth is a piece of fabric used to cover a table, and the guest is asking for a new one."
+        },
+        {
+          "position": "2",
+          "answer": "cutlery",
+          "options": ["cutlery", "housekeeping", "bartender", "entree"],
+          "explanation": "Cutlery refers to the utensils used for eating, such as forks and knives, which the guest is missing."
+        }
+      ]
+    }
+  ],
+  "scenario_dialogue": {
+    "dialogue": "Guest: Good afternoon, I'd like to check in. Do you have a reservation? Receptionist: Yes, I see your name on the list. Please sign here. Guest: Thank you. By the way, is there a place to eat nearby? Receptionist: Yes, the hotel has a restaurant with a great cuisine. Guest: That sounds good. Can I also get a massage in the spa? Receptionist: Of course, we offer that service. Just ask the front desk.",
+    "question": "What does the receptionist mention about the hotel's restaurant?",
+    "options": [
+      {"key": "A", "content": "It has a great cuisine."},
+      {"key": "B", "content": "It serves only local dishes."},
+      {"key": "C", "content": "It has a special entree."},
+      {"key": "D", "content": "It is closed for renovation."}
+    ],
+    "correctAnswer": "A",
+    "explanation": "The receptionist says, 'the hotel has a restaurant with a great cuisine,' which matches option A.",
+    "relatedWords": ["cuisine", "reservation", "spa"]
+  },
+  "listening_comprehension": [
+    {
+      "content": "Guest: Hello, I just arrived at the hotel. I made a reservation online, but I can't find the confirmation. Receptionist: Let me check. Yes, we have your reservation. Please come with me to the front desk. Guest: Oh, and I need a room with a view. Receptionist: We have a few available. Which floor would you prefer? Guest: The 10th floor, please.",
+      "questions": [
+        {
+          "question": "What does the guest mention about their arrival?",
+          "options": [
+            {"key": "A", "content": "They have a reservation."},
+            {"key": "B", "content": "They need a room with a view."},
+            {"key": "C", "content": "They want to check out early."},
+            {"key": "D", "content": "They forgot their key."}
+          ],
+          "correctAnswer": "A",
+          "explanation": "The guest says, 'I made a reservation online,' which confirms they have one."
+        },
+        {
+          "question": "What does the receptionist offer the guest?",
+          "options": [
+            {"key": "A", "content": "A massage."},
+            {"key": "B", "content": "A room with a view."},
+            {"key": "C", "content": "A new tablecloth."},
+            {"key": "D", "content": "A new cutlery set."}
+          ],
+          "correctAnswer": "B",
+          "explanation": "The guest asks for a room with a view, and the receptionist confirms availability."
+        }
+      ],
+      "relatedWords": ["reservation", "view", "receptionist"]
+    }
+  ],
+  "cloze_test": [
+    {
+      "content": "The guest asked the __1__ to help with their luggage. The __2__ was very friendly and offered to assist. After checking in, the guest went to their room and found that the __3__ was clean. They also noticed that the __4__ was missing. The guest then called the __5__ to request a new one.",
+      "blanks": [
+        {
+          "position": "1",
+          "answer": "valet",
+          "options": ["valet", "bartender", "doorman", "housekeeping"],
+          "explanation": "A valet helps guests with their luggage, so this is the correct choice."
+        },
+        {
+          "position": "2",
+          "answer": "doorman",
+          "options": ["doorman", "entree", "shampoo", "cutlery"],
+          "explanation": "A doorman is typically the first person a guest meets, so this fits the context."
+        },
+        {
+          "position": "3",
+          "answer": "tablecloth",
+          "options": ["tablecloth", "reservation", "cuisine", "shampoo"],
+          "explanation": "A tablecloth is something found in a hotel room, so this is the correct choice."
+        },
+        {
+          "position": "4",
+          "answer": "cutlery",
+          "options": ["cutlery", "entree", "shampoo", "bartender"],
+          "explanation": "Cutlery refers to utensils, which are often found on a dining table."
+        },
+        {
+          "position": "5",
+          "answer": "housekeeping",
+          "options": ["housekeeping", "valet", "doorman", "bartender"],
+          "explanation": "Housekeeping is responsible for maintaining the cleanliness of the room."
+        }
+      ],
+      "relatedWords": ["valet", "doorman", "tablecloth", "cutlery", "housekeeping"]
+    }
+  ],
+  "translation": [
+    {
+      "english": "The guest asked the valet to bring their luggage to the room.",
+      "chinese": "客人让行李员把行李带到房间。",
+      "tips": "In this sentence, 'valet' refers to a hotel employee who helps with luggage, and 'bring' is used to indicate the action of moving something.",
+      "relatedWords": ["valet", "luggage"]
+    }
+  ],
+  "writing": [
+    {
+      "task": "Write a short message to the housekeeping department asking for a new set of cutlery in your room.",
+      "requirements": "Use at least three of the words from the list: cuisine, entree, reservation, bartender, tablecloth, shampoo, cutlery, doorman, valet, housekeeping.",
+      "gradingCriteria": "Clarity, grammar, vocabulary usage, and relevance to the hotel context.",
+      "sampleAnswer": "Dear Housekeeping, I would like to request a new set of cutlery in my room. I noticed that the current one is missing some pieces. Also, I would like to thank the valet for his excellent service. Best regards, John",
+      "relatedWords": ["cutlery", "valet", "housekeeping"]
+    }
+  ],
+  "true_false": [
+    {
+      "statement": "The doorman is responsible for checking in guests.",
+      "correctAnswer": "false",
+      "explanation": "The doorman is usually the first person a guest meets but is not responsible for checking in. That is the role of the receptionist or front desk staff.",
+      "relatedWords": ["doorman", "reservation"]
+    },
+    {
+      "statement": "A reservation is a booking for a hotel room.",
+      "correctAnswer": "true",
+      "explanation": "A reservation is an agreement to book a hotel room in advance, which is a common practice in the hospitality industry.",
+      "relatedWords": ["reservation", "hotel"]
+    }
+  ]
+}
+2026-03-14 11:32:29 [WARN]: JSON解析失败（第1次尝试）: Expected ',' or '}' after property value in JSON at position 286 (line 8 column 20)
+2026-03-14 11:32:30 [WARN]: JSON解析失败（第2次尝试）: Expected ',' or '}' after property value in JSON at position 286 (line 8 column 20)
+2026-03-14 11:32:31 [WARN]: JSON解析失败（第3次尝试）: Expected ',' or '}' after property value in JSON at position 286 (line 8 column 20)
+2026-03-14 11:32:31 [ERROR]: JSON解析彻底失败，原始内容: {
+  "multiple_choice": [
+    {
+      "question": "A guest is asking the receptionist about the hotel's special dish. Which word would best describe this dish?",
+      "options": [
+        {"key": "A", "content": "cuisine"},
+        {"key": "B", "content": "entree"},
+        {"key": "C": "reservation"},
+        {"key": "D", "content": "housekeeping"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Entree refers to the main course of a meal, which is commonly used to describe a special ...
+2026-03-14 11:32:35 [INFO]: User Action
+2026-03-14 11:32:35 [INFO]: User Action
+2026-03-14 11:32:40 [INFO]: User Action
+2026-03-14 11:32:47 [INFO]: User Action
+2026-03-14 11:33:06 [INFO]: User Action
+2026-03-14 11:33:17 [INFO]: User Action
+2026-03-14 11:33:36 [INFO]: User Action
+2026-03-14 11:33:38 [INFO]: User Action
+2026-03-14 11:33:46 [INFO]: User Action
+2026-03-14 11:33:47 [INFO]: User Action
+2026-03-14 11:33:47 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-14 11:33:52 [INFO]: User Action
+2026-03-14 11:33:52 [INFO]: 用户登录成功: lrw
+2026-03-14 11:33:52 [INFO]: User Action
+2026-03-14 11:33:52 [INFO]: User Action
+2026-03-14 11:33:53 [INFO]: User Action
+2026-03-14 11:33:59 [INFO]: User Action
+2026-03-14 11:33:59 [INFO]: User Action
+2026-03-14 11:35:24 [INFO]: User Action
+2026-03-14 11:38:13 [INFO]: User Action
+2026-03-14 11:39:43 [INFO]: User Action
+2026-03-14 11:42:07 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-14 11:42:20 [INFO]: MongoDB session store 初始化成功
+2026-03-14 11:42:20 [INFO]: 服务器启动成功
+2026-03-14 11:42:20 [INFO]: 数据库连接成功
+2026-03-14 11:42:20 [INFO]: User Action
+2026-03-14 11:42:20 [INFO]: User Action
+2026-03-14 11:42:22 [INFO]: User Action
+2026-03-14 11:42:33 [INFO]: User Action
+2026-03-14 11:42:33 [INFO]: User Action
+2026-03-14 11:42:46 [INFO]: User Action
+2026-03-14 11:42:46 [INFO]: User Action
+2026-03-14 11:44:19 [INFO]: User Action
+2026-03-14 11:44:26 [INFO]: User Action
+2026-03-14 11:44:31 [INFO]: User Action
+2026-03-14 11:45:57 [INFO]: User Action
+2026-03-14 11:45:57 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-14 11:46:05 [INFO]: User Action
+2026-03-14 11:46:05 [INFO]: 用户登录成功: admin
+2026-03-14 11:46:06 [INFO]: User Action
+2026-03-14 11:46:06 [INFO]: User Action
+2026-03-14 11:46:07 [INFO]: User Action
+2026-03-14 11:46:24 [INFO]: User Action
+2026-03-14 11:46:28 [INFO]: User Action
+2026-03-14 11:46:28 [INFO]: User Action
+2026-03-14 11:46:28 [INFO]: User Action
+2026-03-14 11:47:08 [INFO]: User Action
+2026-03-14 11:47:08 [INFO]: User Action
+2026-03-14 11:47:10 [INFO]: User Action
+2026-03-14 11:47:10 [INFO]: User Action
+2026-03-14 11:47:12 [INFO]: User Action
+2026-03-14 11:48:53 [INFO]: User Action
+2026-03-14 11:48:54 [INFO]: User Action
+2026-03-14 11:48:54 [INFO]: User Action
+2026-03-14 11:48:55 [INFO]: User Action
+2026-03-14 11:48:55 [INFO]: User Action
+2026-03-14 11:52:33 [INFO]: User Action
+2026-03-14 11:52:33 [INFO]: User Action
+2026-03-14 11:52:44 [INFO]: User Action
+2026-03-14 11:54:00 [INFO]: User Action
+2026-03-14 11:54:00 [INFO]: User Action
+2026-03-14 11:57:01 [INFO]: User Action
+2026-03-14 11:58:08 [INFO]: User Action
+2026-03-14 11:58:08 [INFO]: User Action
+2026-03-14 11:59:32 [INFO]: User Action
+2026-03-14 11:59:34 [INFO]: User Action
+2026-03-14 11:59:34 [INFO]: User Action
+2026-03-14 11:59:45 [INFO]: User Action
+2026-03-14 12:40:59 [INFO]: User Action
+2026-03-14 12:41:45 [INFO]: User Action
+2026-03-14 12:41:45 [INFO]: User Action
+2026-03-14 12:41:48 [INFO]: User Action
+2026-03-14 12:53:38 [INFO]: User Action
+2026-03-14 12:55:06 [INFO]: User Action
+2026-03-14 12:55:06 [INFO]: User Action
+2026-03-14 13:00:44 [INFO]: User Action
+2026-03-14 13:00:44 [INFO]: User Action
+2026-03-14 13:00:46 [INFO]: User Action
+2026-03-14 13:28:00 [INFO]: User Action
+2026-03-14 13:28:00 [INFO]: User Action
+2026-03-14 13:29:31 [INFO]: User Action
+2026-03-14 13:29:31 [INFO]: User Action
+2026-03-14 13:29:32 [INFO]: User Action
+2026-03-14 13:29:32 [INFO]: User Action
+2026-03-14 13:29:33 [INFO]: User Action
+2026-03-14 13:29:45 [INFO]: User Action
+2026-03-14 13:29:49 [INFO]: User Action
+2026-03-14 13:29:56 [INFO]: User Action
+2026-03-14 13:30:01 [INFO]: User Action
+2026-03-14 13:30:02 [INFO]: User Action
+2026-03-14 13:30:02 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-14 13:30:08 [INFO]: User Action
+2026-03-14 13:30:08 [INFO]: 用户登录成功: lrw
+2026-03-14 13:30:08 [INFO]: User Action
+2026-03-14 13:30:08 [INFO]: User Action
+2026-03-14 13:30:09 [INFO]: User Action
+2026-03-14 13:30:18 [INFO]: User Action
+2026-03-14 13:30:28 [INFO]: User Action
+2026-03-14 13:30:30 [INFO]: User Action
+2026-03-14 13:30:30 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-14 13:30:38 [INFO]: User Action
+2026-03-14 13:30:38 [INFO]: 用户登录成功: admin
+2026-03-14 13:30:38 [INFO]: User Action
+2026-03-14 13:30:39 [INFO]: User Action
+2026-03-14 13:30:40 [INFO]: User Action
+2026-03-14 13:30:47 [INFO]: User Action
+2026-03-14 13:30:55 [INFO]: User Action
+2026-03-14 13:32:22 [INFO]: User Action
+2026-03-14 13:32:26 [INFO]: User Action
+2026-03-14 13:32:44 [INFO]: User Action
+2026-03-14 13:32:47 [INFO]: User Action
+2026-03-14 13:32:52 [INFO]: User Action
+2026-03-14 13:32:53 [INFO]: User Action
+2026-03-14 13:32:54 [INFO]: User Action
+2026-03-14 13:32:55 [INFO]: User Action
+2026-03-14 13:34:36 [INFO]: User Action
+2026-03-14 13:34:39 [INFO]: User Action
+2026-03-14 13:37:02 [INFO]: User Action
+2026-03-14 13:43:14 [INFO]: User Action
+2026-03-14 13:43:16 [INFO]: User Action
+2026-03-14 13:43:16 [INFO]: User Action
+2026-03-14 13:43:38 [INFO]: User Action
+2026-03-14 13:43:38 [INFO]: User Action
+2026-03-14 13:44:56 [INFO]: User Action
+2026-03-14 13:45:58 [INFO]: MongoDB session store 初始化成功
+2026-03-14 13:45:58 [INFO]: 服务器启动成功
+2026-03-14 13:45:58 [INFO]: 数据库连接成功
+2026-03-14 13:46:02 [INFO]: MongoDB session store 初始化成功
+2026-03-14 13:46:02 [INFO]: 服务器启动成功
+2026-03-14 13:46:02 [INFO]: 数据库连接成功
+2026-03-14 13:46:36 [INFO]: User Action
+2026-03-14 13:46:36 [INFO]: User Action
+2026-03-14 13:52:54 [INFO]: MongoDB session store 初始化成功
+2026-03-14 13:52:54 [INFO]: 服务器启动成功
+2026-03-14 13:52:54 [INFO]: 数据库连接成功
+2026-03-14 13:53:59 [INFO]: MongoDB session store 初始化成功
+2026-03-14 13:53:59 [INFO]: 服务器启动成功
+2026-03-14 13:53:59 [INFO]: 数据库连接成功
+2026-03-14 13:54:10 [INFO]: MongoDB session store 初始化成功
+2026-03-14 13:54:10 [INFO]: 服务器启动成功
+2026-03-14 13:54:10 [INFO]: 数据库连接成功
+2026-03-14 13:54:19 [INFO]: MongoDB session store 初始化成功
+2026-03-14 13:54:19 [INFO]: 服务器启动成功
+2026-03-14 13:54:19 [INFO]: 数据库连接成功
+2026-03-14 13:58:20 [INFO]: User Action
+2026-03-14 13:58:20 [INFO]: User Action
+2026-03-14 16:25:20 [INFO]: User Action
+2026-03-14 16:35:07 [INFO]: User Action
+2026-03-14 16:38:24 [INFO]: User Action
+2026-03-14 16:38:24 [INFO]: User Action
+2026-03-14 16:45:47 [INFO]: MongoDB session store 初始化成功
+2026-03-14 16:45:47 [INFO]: 服务器启动成功
+2026-03-14 16:45:47 [INFO]: 数据库连接成功
+2026-03-14 16:45:50 [INFO]: User Action
+2026-03-14 16:45:50 [INFO]: User Action
+2026-03-14 16:45:50 [INFO]: User Action
+2026-03-14 16:45:52 [INFO]: User Action
+2026-03-14 16:46:37 [INFO]: User Action
+2026-03-14 16:46:54 [INFO]: User Action
+2026-03-14 16:46:59 [INFO]: User Action
+2026-03-14 16:47:17 [INFO]: User Action
+2026-03-14 16:47:17 [INFO]: User Action
+2026-03-14 16:47:19 [INFO]: User Action
+2026-03-14 16:47:19 [INFO]: User Action
+2026-03-14 16:47:21 [INFO]: User Action
+2026-03-14 16:47:31 [INFO]: User Action
+2026-03-14 16:47:32 [INFO]: User Action
+2026-03-14 16:47:33 [INFO]: User Action
+2026-03-14 16:48:57 [INFO]: User Action
+2026-03-14 16:48:58 [INFO]: User Action
+2026-03-14 16:49:00 [INFO]: User Action
+2026-03-14 16:49:04 [INFO]: User Action
+2026-03-14 16:54:12 [INFO]: MongoDB session store 初始化成功
+2026-03-14 16:54:12 [INFO]: 服务器启动成功
+2026-03-14 16:54:12 [INFO]: 数据库连接成功
+2026-03-14 16:54:54 [INFO]: MongoDB session store 初始化成功
+2026-03-14 16:54:54 [INFO]: 服务器启动成功
+2026-03-14 16:54:54 [INFO]: 数据库连接成功
+2026-03-14 17:41:11 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-14 18:16:45 [INFO]: MongoDB session store 初始化成功
+2026-03-14 18:16:45 [INFO]: 服务器启动成功
+2026-03-14 18:16:45 [INFO]: 数据库连接成功
+2026-03-14 18:16:45 [INFO]: User Action
+2026-03-14 18:16:46 [INFO]: User Action
+2026-03-14 18:17:08 [INFO]: User Action
+2026-03-14 19:05:37 [INFO]: User Action
+2026-03-14 19:05:38 [INFO]: User Action
+2026-03-14 19:05:38 [INFO]: User Action
+2026-03-14 19:05:39 [INFO]: User Action
+2026-03-15 15:57:06 [INFO]: MongoDB session store 初始化成功
+2026-03-15 15:57:06 [INFO]: 服务器启动成功
+2026-03-15 15:57:36 [ERROR]: 未处理的Promise拒绝
+2026-03-15 15:57:36 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-03-15 15:57:36 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-03-15 15:57:36 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-03-15 15:57:36 [ERROR]: MongoServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at Topology.selectServer (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:321:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async Topology._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:200:28)
+    at async Topology.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\sdam\topology.js:152:13)
+    at async topologyConnect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:233:17)
+    at async MongoClient._connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:246:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:171:13)
+    at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
+2026-03-15 16:06:51 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-15 16:06:54 [INFO]: MongoDB session store 初始化成功
+2026-03-15 16:06:54 [INFO]: 服务器启动成功
+2026-03-15 16:06:58 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-15 16:20:24 [INFO]: MongoDB session store 初始化成功
+2026-03-15 16:20:24 [INFO]: 服务器启动成功
+2026-03-15 16:20:24 [INFO]: 数据库连接成功
+2026-03-15 16:21:30 [INFO]: User Action
+2026-03-15 16:21:36 [INFO]: User Action
+2026-03-15 16:21:36 [INFO]: 用户登录成功: admin
+2026-03-15 16:21:36 [INFO]: User Action
+2026-03-15 16:21:37 [INFO]: User Action
+2026-03-15 16:21:40 [INFO]: User Action
+2026-03-15 16:35:09 [INFO]: MongoDB session store 初始化成功
+2026-03-15 16:35:09 [INFO]: 服务器启动成功
+2026-03-15 16:35:39 [ERROR]: 未处理的Promise拒绝
+2026-03-15 16:35:39 [ERROR]: 未处理的Promise拒绝
+2026-03-15 16:39:01 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-15 16:39:05 [INFO]: MongoDB session store 初始化成功
+2026-03-15 16:39:05 [INFO]: 服务器启动成功
+2026-03-15 16:39:05 [INFO]: 数据库连接成功

@@ -27,6 +27,7 @@ const storyProgressRouter = require('./router/storyProgress');
 const listeningRouter = require('./router/listening');
 const studyRecordRouter = require('./router/studyRecord');
 const friendsRouter = require('./router/friends');
+const friendsCompareRouter = require('./router/friends_compare');
 const settingsRouter = require('./router/settings');
 const chatRouter = require('./router/chat');
 
@@ -109,6 +110,7 @@ app.use('/api/story', storyProgressRouter);
 app.use('/api/listening', listeningRouter);
 app.use('/api/study-record', studyRecordRouter);
 app.use('/api/friends', friendsRouter);
+app.use('/api/friends', friendsCompareRouter);
 app.use('/api/settings', settingsRouter);
 app.use('/api/chat', chatRouter);
 
@@ -183,4 +185,3 @@ process.on('unhandledRejection', (reason, promise) => {
         promise: promise
     });
 });
- 

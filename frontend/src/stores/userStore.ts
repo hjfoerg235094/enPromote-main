@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { getUserInfo as fetchUserInfo } from '@/api/auth'
 
 interface UserInfo {
+  _id:string
   username: string
   creatTime: string
   cet4: {
@@ -64,7 +65,10 @@ async function getUserInfo(forceRefresh = false) {
     const res = await fetchUserInfo()
 
     if (res.data && res.data.code === 200) {
-      user.value = res.data as UserInfo
+      // 后端返回的用户信息直接在res.data中，而不是res.data.data中
+      // 从res.data中提取用户信息字段
+      const { code, message, ...userData } = res.data
+      user.value = userData as UserInfo
       return user.value
     } else {
       error.value = res.data?.message || '获取用户信息失败'

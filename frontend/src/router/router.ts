@@ -125,18 +125,30 @@ const router = createRouter({
             component: () => import('../views/Friends.vue'),
             meta: { requiresAuth: true }
         },
+        {
+            path: '/chat',
+            name: 'Chat',
+            component: () => import('../views/Chat.vue'),
+            meta: { requiresAuth: true }
+        },
 
         {
             path: '/chapter/:storyId/:chapterId',
             name: 'ChapterView',
             component: () => import('../views/ChapterView_new.vue'),
             meta: { requiresAuth: true }
+        },
+        {
+            path: '/chapter5',
+            name: 'Chapter5',
+            component: () => import('../views/Chapter5.vue'),
+            meta: { requiresAuth: true }
         }
     ]
 })
 
 // 全局前置路由守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     // 如果路由需要认证
     if (to.meta.requiresAuth) {
         // 检查是否在登录/注册页面
@@ -145,9 +157,23 @@ router.beforeEach((to, from, next) => {
             return;
         }
 
-        // 这里可以添加更复杂的认证逻辑
-        // 例如检查 localStorage 中的 token 或 session
-        // 由于后端使用 session 认证，这里只做基本的路径检查
+        // 检查用户是否已登录
+        const { isLoggedIn, getUserInfo } = await import('@/stores/userStore');
+        if (!isLoggedIn.value) {
+            // 如果用户未登录，尝试获取用户信息
+            try {
+                await getUserInfo();
+                // 如果获取后仍未登录，重定向到登录页
+                if (!isLoggedIn.value) {
+                    next('/login');
+                    return;
+                }
+            } catch (error) {
+                console.error('获取用户信息失败:', error);
+                next('/login');
+                return;
+            }
+        }
         next();
     } else {
         next();

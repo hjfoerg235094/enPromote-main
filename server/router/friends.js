@@ -322,56 +322,91 @@ router.get('/list', async (req, res) => {
         const limit = parseInt(req.query.limit) || 20;
         const sort = req.query.sort || '-updateTime';
 
-        // 查询好友关系
-        const friendships = await Friendship.find({
-            userId: userid,
-            status: 'accepted'
-        })
-        .sort(sort)
-        .skip((page - 1) * limit)
-        .limit(limit);
+        // 使用聚合查询一次性获取所有数据
+        const pipeline = [
+            // 匹配当前用户的好友关系
+            {
+                $match: {
+                    userId: userid,
+                    status: 'accepted'
+                }
+            },
+            // 排序
+            {
+                $sort: {
+                    updateTime: -1
+                }
+            },
+            // 分页
+            {
+                $facet: {
+                    data: [
+                        { $skip: (page - 1) * limit },
+                        { $limit: limit },
+                        // 将String类型的friendId转换为ObjectId
+                        {
+                            $addFields: {
+                                friendObjectId: { $toObjectId: '$friendId' }
+                            }
+                        },
+                        // 关联用户信息
+                        {
+                            $lookup: {
+                                from: 'users',
+                                localField: 'friendObjectId',
+                                foreignField: '_id',
+                                as: 'user'
+                            }
+                        },
+                        // 关联用户设置
+                        {
+                            $lookup: {
+                                from: 'usersettings',
+                                localField: 'friendId',
+                                foreignField: 'userId',
+                                as: 'settings'
+                            }
+                        },
+                        // 展开数组
+                        { $unwind: '$user' },
+                        { 
+                            $unwind: {
+                                path: '$settings',
+                                preserveNullAndEmptyArrays: true
+                            }
+                        },
+                        // 投影字段
+                        {
+                            $project: {
+                                id: '$user._id',
+                                username: '$user.username',
+                                remark: '$remark',
+                                joinDate: '$user.createTime',
+                                showOnlineStatus: {
+                                    $ifNull: ['$settings.privacy.showOnlineStatus', true]
+                                }
+                            }
+                        }
+                    ],
+                    // 获取总数
+                    total: [
+                        {
+                            $count: 'count'
+                        }
+                    ]
+                }
+            }
+        ];
 
-        const friendIds = friendships.map(f => f.friendId);
-
-        // 获取好友详细信息
-        const friends = await User.find({
-            _id: { $in: friendIds }
-        }).select('_id username createTime');
-
-        // 获取好友设置
-        const settings = await UserSettings.find({
-            userId: { $in: friendIds }
-        });
-
-        const settingsMap = new Map(
-            settings.map(s => [s.userId.toString(), s])
-        );
-
-        // 组装返回数据
-        const result = friends.map(user => {
-            const friendship = friendships.find(f => f.friendId.toString() === user._id.toString());
-            const userSettings = settingsMap.get(user._id.toString());
-
-            return {
-                id: user._id,
-                username: user.username,
-                remark: friendship?.remark || '',
-                joinDate: user.createTime,
-                showOnlineStatus: userSettings?.privacy?.showOnlineStatus ?? true
-            };
-        });
-
-        // 获取总数
-        const total = await Friendship.countDocuments({
-            userId: userid,
-            status: 'accepted'
-        });
+        const [result] = await Friendship.aggregate(pipeline);
+        const list = result.data || [];
+        const total = result.total[0]?.count || 0;
 
         res.json({
             code: 200,
             message: 'success',
             data: {
-                list: result,
+                list,
                 pagination: {
                     page,
                     limit,

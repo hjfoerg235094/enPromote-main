@@ -24,6 +24,7 @@
 <script setup>
 import { ref } from 'vue';
 import { login } from '@/api/auth';
+import { getUserInfo } from '@/stores/userStore';
 const username = ref('');
 const password = ref('');
 function clickLogin(e) {
@@ -33,10 +34,11 @@ function clickLogin(e) {
         password: password.value
     }
     // api请求
-    login(data).then(res => {
+    login(data).then(async res => {
         console.log(res);
         if (res.data.code === 200) {
-            // 登录成功
+            // 登录成功，获取用户信息
+            await getUserInfo(true);
             window.location.href = '/'
         } else {
             // 登录失败

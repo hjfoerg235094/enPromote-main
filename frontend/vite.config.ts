@@ -16,6 +16,7 @@ export default defineConfig({
     },
   },
   server: {
+    hmr: false, // 禁用HMR以避免WebSocket连接问题
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,

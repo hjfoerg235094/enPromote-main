@@ -154,6 +154,7 @@ router.get('/info', async (req, res) => {
         return res.json({
             code: 200,
             message: '获取用户信息成功',
+            _id: user._id,
             username: user.username,
             creatTime: user.createTime,
             cet4: user.cet4,

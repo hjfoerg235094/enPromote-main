@@ -80,6 +80,14 @@ function getChapterConfig(chapterId: string): ChapterConfig | null {
             scene: 'restaurant',
             vocabularyFile: 'B.json',
             aiPromptKey: 'B'
+        },
+        E: {
+            id: 'E',
+            name: '撤离场景',
+            description: '学习在火车站购买车票、填写车票信息、听取广播通知等相关英语',
+            scene: 'train_station',
+            vocabularyFile: 'E.json',
+            aiPromptKey: 'E'
         }
     };
     
@@ -88,7 +96,7 @@ function getChapterConfig(chapterId: string): ChapterConfig | null {
 
 // 验证章节ID是否有效
 function isValidChapter(chapterId: string): boolean {
-    return ['A', 'B'].includes(chapterId);
+    return ['A', 'B', 'E'].includes(chapterId);
 }
 
 export {
