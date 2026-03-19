@@ -5,7 +5,7 @@ const Friendship = require('../modules/Friendship');
 const UserSettings = require('../modules/UserSettings');
 const StudyRecord = require('../modules/StudyRecord');
 const UserWord = require('../modules/UserWord');
-const StoryProgressManager = require('../modules/StoryProgress');
+const { StoryProgressManager } = require('../modules/StoryProgress');
 const { logger, logApiError, logUserAction } = require('../utils/logger');
 
 /**
@@ -45,7 +45,7 @@ router.get('/compare/:friendId', async (req, res) => {
         ]);
 
         // 检查好友是否允许查看学习进度
-        if (friendSettings && friendSettings.privacy.showProgressToFriends === false) {
+        if (friendSettings && friendSettings.privacy && friendSettings.privacy.showProgressToFriends === false) {
             return res.json({
                 code: 403,
                 message: '该好友不允许查看学习进度'
@@ -94,13 +94,13 @@ router.get('/compare/:friendId', async (req, res) => {
 
         // 获取剧情进度对比
         const [userStoryProgress, friendStoryProgress] = await Promise.all([
-            StoryProgressManager.getAllUserProgress(userid),
-            StoryProgressManager.getAllUserProgress(friendId)
+            StoryProgressManager.getAllUserProgress(userid).catch(() => []),
+            StoryProgressManager.getAllUserProgress(friendId).catch(() => [])
         ]);
 
         // 计算连续学习天数对比
-        const userStreakDays = user.cet4.streakDays || 0;
-        const friendStreakDays = friend.cet4.streakDays || 0;
+        const userStreakDays = user.cet4?.streakDays || 0;
+        const friendStreakDays = friend.cet4?.streakDays || 0;
         const streakDifference = userStreakDays - friendStreakDays;
 
         // 组装对比数据

@@ -18,6 +18,15 @@ interface ChangeInfoData {
     planReviweWords?: number;
     question_completed?: boolean;
     ai_choose_completed?: boolean;
+    avatar?: string;
+}
+
+interface UploadAvatarResponse {
+    code: number;
+    message: string;
+    data: {
+        avatar: string;
+    };
 }
 
 // 实际的API响应结构（扁平结构）
@@ -31,6 +40,7 @@ interface ApiResponse<T = any> {
 interface UserInfoApiResponse extends ApiResponse {
     username: string;
     creatTime: string;
+    avatar: string;
     cet4: {
         position: string;
         lastStudyTime: string;
@@ -73,6 +83,7 @@ interface AxiosApiResponse<T = any> {
 interface UserInfo {
     username: string;
     creatTime: string;
+    avatar: string;
     cet4: {
         position: string;
         lastStudyTime: string;
@@ -134,9 +145,19 @@ function changeInfo(data: ChangeInfoData): Promise<AxiosApiResponse> {
     return request.post('/auth/changeinfo', data);
 }
 
+function uploadAvatar(file: File): Promise<AxiosApiResponse<UploadAvatarResponse>> {
+    const formData = new FormData();
+    formData.append('avatar', file);
+    return request.post('/auth/upload-avatar', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+}
+
 function switchChapter(chapter: string): Promise<AxiosApiResponse> {
     return request.post('/auth/switch-chapter', { chapter });
 }
 
-export { login, register, logout, getUserInfo, changeInfo, switchChapter };
+export { login, register, logout, getUserInfo, changeInfo, uploadAvatar, switchChapter };
 export type { LoginData, RegisterData, ChangeInfoData, ApiResponse, AxiosApiResponse, UserInfo, UserInfoApiResponse };

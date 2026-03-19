@@ -27,6 +27,7 @@ const storyProgressRouter = require('./router/storyProgress');
 const listeningRouter = require('./router/listening');
 const studyRecordRouter = require('./router/studyRecord');
 const friendsRouter = require('./router/friends');
+const friendsCompareRouter = require('./router/friends_compare');
 const settingsRouter = require('./router/settings');
 const chatRouter = require('./router/chat');
 
@@ -63,6 +64,27 @@ logger.info('MongoDB session store 初始化成功');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// 静态文件服务
+const publicPath = path.resolve(__dirname, '../public');
+console.log('静态文件目录:', publicPath);
+
+// 确保avatars目录存在
+const avatarsPath = path.join(publicPath, 'avatars');
+if (!fs.existsSync(avatarsPath)) {
+    console.log('创建avatars目录:', avatarsPath);
+    fs.mkdirSync(avatarsPath, { recursive: true });
+}
+
+// 配置静态文件服务，设置正确的缓存头
+app.use('/avatars', express.static(avatarsPath, {
+    maxAge: '1d', // 缓存1天
+    etag: true,
+    lastModified: true
+}));
+
+// 其他静态文件
+app.use(express.static(publicPath));
+
 // 认证中间件
 function requireAuth(req, res, next) {
     // 白名单路由
@@ -88,6 +110,18 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
+// 测试静态文件服务
+app.get('/test-static', (req, res) => {
+    const testPath = path.join(publicPath, 'avatars');
+    const files = fs.existsSync(testPath) ? fs.readdirSync(testPath) : [];
+    res.json({
+        publicPath,
+        avatarsPath: testPath,
+        files,
+        exists: fs.existsSync(testPath)
+    });
+});
+
 // 先注册认证路由（不需要认证）
 app.use('/api/auth', authRouter);
 
@@ -109,6 +143,7 @@ app.use('/api/story', storyProgressRouter);
 app.use('/api/listening', listeningRouter);
 app.use('/api/study-record', studyRecordRouter);
 app.use('/api/friends', friendsRouter);
+app.use('/api/friends', friendsCompareRouter);
 app.use('/api/settings', settingsRouter);
 app.use('/api/chat', chatRouter);
 

@@ -95,3 +95,14 @@ export const setFriendRemark = (friendId: string, remark: string) => {
     data: { friendId, remark }
   })
 }
+
+/**
+ * 获取好友词汇量排行榜
+ */
+export const getFriendRanking = (type: 'totalWords' | 'todayWords' | 'streakDays' = 'totalWords') => {
+  return request({
+    url: '/friends/ranking',
+    method: 'get',
+    params: { type }
+  })
+}

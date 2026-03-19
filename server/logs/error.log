@@ -1185,3 +1185,29 @@
     at async MongoClient.connect (C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\node_modules\mongodb\lib\mongo_client.js:360:16)
 2026-03-15 16:35:39 [ERROR]: 未处理的Promise拒绝
 2026-03-15 16:35:39 [ERROR]: 未处理的Promise拒绝
+2026-03-15 23:24:38 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:38 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:39 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:39 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:44 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:44 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:45 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:45 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-17 00:12:19 [ERROR]: 未处理的Promise拒绝
+2026-03-17 00:12:19 [ERROR]: 未处理的Promise拒绝

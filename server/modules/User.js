@@ -9,6 +9,10 @@ let userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+        default: 'https://api.dicebear.com/7.x/avataaars/svg?seed=default'
+    },
     cet4: {
         position: {
             type: String,

@@ -17,8 +17,20 @@
       </div>
     </div>
 
+    <!-- 页面标签切换 -->
+    <div class="page-tabs">
+      <button
+        v-for="tab in tabs"
+        :key="tab.value"
+        :class="['tab-button', { active: currentTab === tab.value }]"
+        @click="switchTab(tab.value)"
+      >
+        {{ tab.label }}
+      </button>
+    </div>
+
     <!-- 搜索和筛选栏 -->
-    <div class="search-filter-bar">
+    <div v-if="currentTab === 'friends'" class="search-filter-bar">
       <div class="search-box">
         <input
           v-model="searchQuery"
@@ -56,7 +68,7 @@
     </div>
 
     <!-- 好友列表 -->
-    <div class="friends-section">
+    <div v-if="currentTab === 'friends'" class="friends-section">
       <div v-if="friendStore.loading" class="loading">
         <div class="loading-spinner"></div>
         <p>加载中...</p>
@@ -78,7 +90,7 @@
             <input type="checkbox" :checked="selectedFriends.includes(friend.id)" @click.stop="toggleSelection(friend.id)" />
           </div>
           <div class="friend-avatar">
-            <img :src="getAvatarUrl(friend.id)" :alt="friend.username" />
+            <img :src="getAvatarUrl(friend.avatar)" :alt="friend.username" />
             <span class="status-indicator" :class="friend.showOnlineStatus ? 'online' : 'offline'"></span>
           </div>
           <div class="friend-info">
@@ -87,6 +99,9 @@
             <p class="join-date">加入时间: {{ formatDate(friend.joinDate) }}</p>
           </div>
           <div class="friend-actions">
+            <button class="btn-icon" @click.stop="viewProgress(friend.id)" title="查看进度">
+              <span>📊</span>
+            </button>
             <button class="btn-icon" @click.stop="startChat(friend)" title="开始聊天">
               <span>💬</span>
             </button>
@@ -102,6 +117,11 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- 排行榜 -->
+    <div v-if="currentTab === 'ranking'" class="ranking-section">
+      <FriendRanking />
     </div>
 
     <!-- 添加好友弹窗 -->
@@ -134,7 +154,7 @@
               class="search-result-item"
             >
               <div class="user-info">
-                <img :src="getAvatarUrl(user.id)" :alt="user.username" />
+                <img :src="getAvatarUrl(user.avatar)" :alt="user.username" />
                 <div>
                   <h4>{{ user.username }}</h4>
                   <p>加入时间: {{ formatDate(user.joinDate) }}</p>
@@ -172,7 +192,7 @@
               class="request-item"
             >
               <div class="request-info">
-                <img :src="getAvatarUrl(request.fromUserId)" :alt="request.username" />
+                <img :src="getAvatarUrl(request.avatar)" :alt="request.username" />
                 <div>
                   <h4>{{ request.username }}</h4>
                   <p v-if="request.message">"{{ request.message }}"</p>
@@ -230,6 +250,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useFriendStore } from '@/stores/friendStore'
 import { useRouter } from 'vue-router'
+import FriendRanking from '@/components/FriendRanking.vue'
 
 // 防抖函数
 function debounce(fn, delay) {
@@ -245,6 +266,13 @@ function debounce(fn, delay) {
 const router = useRouter()
 const friendStore = useFriendStore()
 
+// 标签页配置
+const tabs = [
+  { label: '好友列表', value: 'friends' },
+  { label: '排行榜', value: 'ranking' }
+]
+const currentTab = ref('friends')
+
 const showAddFriendModal = ref(false)
 const showRequestsModal = ref(false)
 const showRemarkModal = ref(false)
@@ -256,6 +284,11 @@ const currentFriend = ref(null)
 const selectedFriends = ref([])
 const filterStatus = ref('all')
 const sortBy = ref('recent')
+
+// 切换标签页
+const switchTab = (tabValue) => {
+  currentTab.value = tabValue
+}
 
 const { requests, loading, hasPendingRequests, searchLoading } = friendStore
 
@@ -310,8 +343,20 @@ const filteredFriends = computed(() => {
 })
 
 // 获取头像URL
-const getAvatarUrl = (userId) => {
-  return '/default-avatar.png'
+const getAvatarUrl = (avatarPath) => {
+  if (!avatarPath || avatarPath === '/default-avatar.png') {
+    // 使用在线默认头像
+    return 'https://api.dicebear.com/7.x/avataaars/svg?seed=default'
+  }
+  // 如果是完整URL，直接使用
+  if (avatarPath.startsWith('http')) {
+    return avatarPath
+  }
+  // 确保路径以/avatars开头
+  if (!avatarPath.startsWith('/avatars/')) {
+    return '/avatars/' + avatarPath.replace(/^\/+/, '')
+  }
+  return avatarPath
 }
 
 // 格式化日期
@@ -446,6 +491,11 @@ const handleReject = async (requestId) => {
 
 // 查看好友资料
 const viewProfile = (friendId) => {
+  router.push(`/profile/${friendId}`)
+}
+
+// 查看好友进度
+const viewProgress = (friendId) => {
   router.push(`/profile/${friendId}`)
 }
 
@@ -714,7 +764,8 @@ onMounted(async () => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  min-width: 450px;
 }
 
 .friend-card::before {

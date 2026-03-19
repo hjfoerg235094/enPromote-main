@@ -10,6 +10,9 @@
       <p class="join-date">加入时间: {{ formatDate(friend.joinDate) }}</p>
     </div>
     <div class="friend-actions">
+      <button class="btn-icon" @click="$emit('view-progress', friend.id)" title="查看进度">
+        <span>📊</span>
+      </button>
       <button class="btn-icon" @click="$emit('view-profile', friend.id)" title="查看资料">
         <span>👤</span>
       </button>
@@ -33,7 +36,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['view-profile', 'edit-remark', 'delete'])
+const emit = defineEmits(['view-progress', 'view-profile', 'edit-remark', 'delete'])
 
 // 计算显示名称（优先显示备注）
 const displayName = computed(() => {

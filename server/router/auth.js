@@ -1,8 +1,45 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 const User = require('../modules/User');
 const { logger, logApiError, logUserAction } = require('../utils/logger');
 const router = express.Router();
+
+// 配置头像上传
+const avatarStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const uploadDir = path.join(__dirname, '../../public/avatars');
+        console.log('上传目录:', uploadDir);
+        if (!fs.existsSync(uploadDir)) {
+            console.log('创建上传目录:', uploadDir);
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const avatarUpload = multer({
+    storage: avatarStorage,
+    limits: {
+        fileSize: 2 * 1024 * 1024 // 限制2MB
+    },
+    fileFilter: function (req, file, cb) {
+        const allowedTypes = /jpeg|jpg|png|gif/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = allowedTypes.test(file.mimetype);
+        if (extname && mimetype) {
+            return cb(null, true);
+        } else {
+            cb(new Error('只允许上传jpeg、jpg、png或gif格式的图片'));
+        }
+    }
+});
 
 const SALT_ROUNDS = 10;
 
@@ -114,6 +151,55 @@ router.post('/logout', (req, res) => {
     }
 });
 
+// 上传头像
+router.post('/upload-avatar', avatarUpload.single('avatar'), async (req, res) => {
+    try {
+        const { userid } = req.session;
+        if (!userid) {
+            return res.json({ code: 401, message: '请先登录' });
+        }
+
+        if (!req.file) {
+            return res.json({ code: 400, message: '请选择要上传的图片' });
+        }
+
+        const avatarPath = '/avatars/' + req.file.filename;
+
+        // 更新用户头像
+        const user = await User.findById(userid);
+        if (!user) {
+            return res.json({ code: 404, message: '用户不存在' });
+        }
+
+        // 如果用户已有头像且不是默认头像，则删除旧头像
+        if (user.avatar && !user.avatar.startsWith('http')) {
+            const oldAvatarPath = path.join(__dirname, '../../public', user.avatar);
+            if (fs.existsSync(oldAvatarPath)) {
+                fs.unlinkSync(oldAvatarPath);
+                logger.info(`删除旧头像: ${oldAvatarPath}`);
+            }
+        }
+
+        user.avatar = avatarPath;
+        await user.save();
+
+        logUserAction(req, 'UPLOAD_AVATAR', { userId: userid, avatarPath });
+        logger.info(`用户 ${userid} 上传头像成功: ${avatarPath}`);
+
+        res.json({
+            code: 200,
+            message: '头像上传成功',
+            data: {
+                avatar: avatarPath
+            }
+        });
+    } catch (error) {
+        logger.error('上传头像失败:', error);
+        logApiError(req, error, 500);
+        res.json({ code: 500, message: '上传头像失败' });
+    }
+});
+
 router.get('/info', async (req, res) => {
     try {
         // 确保 session 存在
@@ -157,6 +243,7 @@ router.get('/info', async (req, res) => {
             _id: user._id,
             username: user.username,
             creatTime: user.createTime,
+            avatar: user.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=default',
             cet4: user.cet4,
             todayWords: todayWords,
             streakDays: streakDays,

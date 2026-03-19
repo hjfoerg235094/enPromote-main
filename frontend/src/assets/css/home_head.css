@@ -270,6 +270,73 @@ section {
     border-top: 1px solid #555;
 }
 
+/* 用户信息区域 */
+.user-info-section {
+    padding: 30px 5%;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.user-info-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.user-avatar-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-details {
+    flex: 1;
+}
+
+.user-greeting {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.user-tip {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.profile-link:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(5px);
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .hero {
@@ -295,5 +362,31 @@ section {
     .main-nav ul {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .user-info-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .user-avatar-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-greeting {
+        font-size: 1.2rem;
+    }
+
+    .profile-link {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
     }
 }

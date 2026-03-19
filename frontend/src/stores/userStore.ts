@@ -5,6 +5,7 @@ interface UserInfo {
   _id:string
   username: string
   creatTime: string
+  avatar: string
   cet4: {
     position: string
     lastStudyTime: string
@@ -45,6 +46,23 @@ const isLoggedIn = computed(() => !!user.value)
 
 // 计算属性：用户名
 const username = computed(() => user.value?.username || '')
+
+// 计算属性：头像URL
+const avatarUrl = computed(() => {
+  if (!user.value?.avatar || user.value.avatar === '/default-avatar.png') {
+    // 使用在线默认头像
+    return 'https://api.dicebear.com/7.x/avataaars/svg?seed=default'
+  }
+  // 如果是完整URL，直接使用
+  if (user.value.avatar.startsWith('http')) {
+    return user.value.avatar
+  }
+  // 确保路径以/avatars开头
+  if (!user.value.avatar.startsWith('/avatars/')) {
+    return '/avatars/' + user.value.avatar.replace(/^\/+/, '')
+  }
+  return user.value.avatar
+})
 
 // 获取用户信息
 async function getUserInfo(forceRefresh = false) {
@@ -107,6 +125,7 @@ export {
   error,
   isLoggedIn,
   username,
+  avatarUrl,
   getUserInfo,
   clearUserInfo,
   updateUserInfo

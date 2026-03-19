@@ -267,6 +267,23 @@
         </div>
       </section>
 
+      <!-- 用户信息区域 -->
+      <section class="user-info-section" v-if="storeUsername">
+        <div class="user-info-card">
+          <div class="user-avatar-wrapper">
+            <img :src="avatarUrl" alt="用户头像" class="user-avatar" />
+          </div>
+          <div class="user-details">
+            <h3 class="user-greeting">欢迎回来，{{ storeUsername }}</h3>
+            <p class="user-tip">继续你的英语学习之旅</p>
+          </div>
+          <router-link to="/profile" class="profile-link">
+            <span>个人中心</span>
+            <span>→</span>
+          </router-link>
+        </div>
+      </section>
+
       <!-- 学习提醒卡片组 -->
       <section class="learning-cards" v-if="storeUsername">
         <!-- 每日签到卡片 -->
@@ -385,7 +402,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getUserInfo, username as storeUsername, clearUserInfo } from '@/stores/userStore';
+import { getUserInfo, username as storeUsername, avatarUrl, clearUserInfo } from '@/stores/userStore';
 import { getCheckInStatus } from '@/api/checkin';
 import { getReviewWords } from '@/api/word';
 import { useRouter } from 'vue-router';

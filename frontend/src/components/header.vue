@@ -42,12 +42,12 @@ import '@/assets/css/home_head.css'
 import '@/assets/css/header.css'
 import { ref, computed } from 'vue'
 import { logout } from '@/api/auth'
-import { getUserInfo, isLoggedIn, username as storeUsername, clearUserInfo } from '@/stores/userStore'
+import { getUserInfo, isLoggedIn, username as storeUsername, clearUserInfo, avatarUrl } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 import { onClickOutside } from '@vueuse/core'
 
 const router = useRouter()
-const userAvatar = ref('/default-avatar.png') // 默认头像
+const userAvatar = avatarUrl // 使用store中的头像URL
 const showDropdown = ref(false)
 const dropdownRef = ref(null) // 用于点击外部检测的ref
 

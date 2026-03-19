@@ -27,7 +27,7 @@ router.get('/search', async (req, res) => {
         const users = await User.find({
             username: { $regex: username, $options: 'i' },
             _id: { $ne: userid }
-        }).select('_id username createTime').limit(10);
+        }).select('_id username avatar createTime').limit(10);
 
         // 获取用户设置，过滤不允许添加好友的用户
         const userIds = users.map(u => u._id.toString());
@@ -59,6 +59,7 @@ router.get('/search', async (req, res) => {
         const result = filteredUsers.map(user => ({
             id: user._id,
             username: user.username,
+            avatar: user.avatar,
             isFriend: friendIds.has(user._id.toString()),
             joinDate: user.createTime
         }));
@@ -380,6 +381,7 @@ router.get('/list', async (req, res) => {
                             $project: {
                                 id: '$user._id',
                                 username: '$user.username',
+                                avatar: '$user.avatar',
                                 remark: '$remark',
                                 joinDate: '$user.createTime',
                                 showOnlineStatus: {
@@ -445,7 +447,7 @@ router.get('/requests', async (req, res) => {
         const fromUserIds = requests.map(r => r.fromUserId);
         const users = await User.find({
             _id: { $in: fromUserIds }
-        }).select('_id username createTime');
+        }).select('_id username avatar createTime');
 
         const userMap = new Map(
             users.map(u => [u._id.toString(), u])
@@ -456,6 +458,7 @@ router.get('/requests', async (req, res) => {
             id: request._id,
             fromUserId: request.fromUserId,
             username: userMap.get(request.fromUserId)?.username || '未知用户',
+            avatar: userMap.get(request.fromUserId)?.avatar,
             message: request.message,
             createTime: request.createTime
         }));
@@ -719,6 +722,101 @@ router.put('/settings', async (req, res) => {
         res.json({
             code: 500,
             message: '更新用户设置失败'
+        });
+    }
+});
+
+/**
+ * 获取好友词汇量排行榜
+ * GET /api/friends/ranking
+ */
+router.get('/ranking', async (req, res) => {
+    try {
+        const { userid } = req.session;
+        const { type = 'totalWords' } = req.query;
+
+        // 获取当前用户的所有好友ID
+        const friendships = await Friendship.find({
+            userId: userid,
+            status: 'accepted'
+        });
+
+        const friendIds = friendships.map(f => f.friendId);
+
+        // 添加当前用户自己到排行榜
+        friendIds.push(userid);
+
+        // 获取所有好友的设置，过滤掉不参与排行榜的用户
+        const settings = await UserSettings.find({
+            userId: { $in: friendIds }
+        });
+
+        const settingsMap = new Map();
+        settings.forEach(s => {
+            settingsMap.set(s.userId.toString(), s);
+        });
+
+        // 过滤出参与排行榜的用户ID
+        const rankingUserIds = friendIds.filter(id => {
+            const userSettings = settingsMap.get(id.toString());
+            // 如果没有设置或showInRanking为true，则参与排行榜
+            return !userSettings || userSettings.privacy.showInRanking !== false;
+        });
+
+        // 获取参与排行榜的用户信息
+        const users = await User.find({
+            _id: { $in: rankingUserIds }
+        }).select('_id username avatar totalWords cet4');
+
+        // 根据不同类型排序
+        let sortField = 'totalWords';
+        if (type === 'todayWords') {
+            sortField = 'cet4.todayStudiedWords';
+        } else if (type === 'streakDays') {
+            sortField = 'cet4.streakDays';
+        }
+
+        // 排序用户
+        const sortedUsers = users.sort((a, b) => {
+            let aValue, bValue;
+
+            if (type === 'todayWords') {
+                aValue = a.cet4?.todayStudiedWords || 0;
+                bValue = b.cet4?.todayStudiedWords || 0;
+            } else if (type === 'streakDays') {
+                aValue = a.cet4?.streakDays || 0;
+                bValue = b.cet4?.streakDays || 0;
+            } else {
+                aValue = a.totalWords || 0;
+                bValue = b.totalWords || 0;
+            }
+
+            return bValue - aValue; // 降序排列
+        });
+
+        // 添加排名
+        const ranking = sortedUsers.map((user, index) => ({
+            rank: index + 1,
+            id: user._id,
+            username: user.username,
+            avatar: user.avatar,
+            totalWords: user.totalWords || 0,
+            todayWords: user.cet4?.todayStudiedWords || 0,
+            streakDays: user.cet4?.streakDays || 0,
+            isCurrentUser: user._id.toString() === userid
+        }));
+
+        res.json({
+            code: 200,
+            message: 'success',
+            data: ranking
+        });
+    } catch (error) {
+        logger.error('获取排行榜失败:', error);
+        logApiError(req, error, 500);
+        res.json({
+            code: 500,
+            message: '获取排行榜失败'
         });
     }
 });

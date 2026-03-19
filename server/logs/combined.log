@@ -13793,3 +13793,529 @@
 2026-03-15 17:15:36 [INFO]: MongoDB session store 初始化成功
 2026-03-15 17:15:36 [INFO]: 服务器启动成功
 2026-03-15 17:15:36 [INFO]: 数据库连接成功
+2026-03-15 23:03:38 [INFO]: MongoDB session store 初始化成功
+2026-03-15 23:03:38 [INFO]: 服务器启动成功
+2026-03-15 23:03:38 [INFO]: 数据库连接成功
+2026-03-15 23:03:59 [INFO]: User Action
+2026-03-15 23:03:59 [INFO]: User Action
+2026-03-15 23:04:04 [INFO]: User Action
+2026-03-15 23:07:30 [INFO]: User Action
+2026-03-15 23:23:25 [INFO]: User Action
+2026-03-15 23:23:25 [INFO]: User Action
+2026-03-15 23:23:27 [INFO]: User Action
+2026-03-15 23:23:32 [WARN]: 404 Not Found: GET /api/api/friends/compare/6954906dcfd61592d2e46f10
+2026-03-15 23:23:51 [INFO]: User Action
+2026-03-15 23:23:54 [WARN]: 404 Not Found: GET /api/api/friends/compare/6954906dcfd61592d2e46f10
+2026-03-15 23:24:29 [INFO]: MongoDB session store 初始化成功
+2026-03-15 23:24:29 [INFO]: 服务器启动成功
+2026-03-15 23:24:29 [INFO]: 数据库连接成功
+2026-03-15 23:24:38 [INFO]: User Action
+2026-03-15 23:24:38 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:38 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:39 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:39 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:44 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:44 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:45 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:24:45 [ERROR]: TypeError: StoryProgressManager.getAllUserProgress is not a function
+    at C:\Users\a\Desktop\新建文件夹 (3)\enPromote-main\server\router\friends_compare.js:97:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-03-15 23:25:37 [INFO]: MongoDB session store 初始化成功
+2026-03-15 23:25:37 [INFO]: 服务器启动成功
+2026-03-15 23:25:37 [INFO]: 数据库连接成功
+2026-03-15 23:25:53 [INFO]: MongoDB session store 初始化成功
+2026-03-15 23:25:53 [INFO]: 服务器启动成功
+2026-03-15 23:25:53 [INFO]: 数据库连接成功
+2026-03-15 23:26:05 [INFO]: MongoDB session store 初始化成功
+2026-03-15 23:26:05 [INFO]: 服务器启动成功
+2026-03-15 23:26:05 [INFO]: 数据库连接成功
+2026-03-15 23:26:24 [INFO]: MongoDB session store 初始化成功
+2026-03-15 23:26:24 [INFO]: 服务器启动成功
+2026-03-15 23:26:24 [INFO]: 数据库连接成功
+2026-03-15 23:27:07 [INFO]: User Action
+2026-03-15 23:27:07 [INFO]: User Action
+2026-03-15 23:27:26 [INFO]: User Action
+2026-03-15 23:27:27 [INFO]: User Action
+2026-03-16 11:12:38 [INFO]: User Action
+2026-03-16 11:12:38 [INFO]: User Action
+2026-03-16 11:15:39 [INFO]: MongoDB session store 初始化成功
+2026-03-16 11:15:39 [INFO]: 服务器启动成功
+2026-03-16 11:15:39 [INFO]: 数据库连接成功
+2026-03-16 11:16:11 [INFO]: User Action
+2026-03-16 11:16:11 [INFO]: User Action
+2026-03-16 11:16:20 [INFO]: User Action
+2026-03-16 11:29:17 [INFO]: User Action
+2026-03-16 11:29:34 [INFO]: User Action
+2026-03-16 11:29:35 [INFO]: User Action
+2026-03-16 11:29:37 [INFO]: User Action
+2026-03-16 11:29:45 [INFO]: User Action
+2026-03-16 11:29:52 [INFO]: User Action
+2026-03-16 11:30:03 [INFO]: User Action
+2026-03-16 11:30:10 [INFO]: User Action
+2026-03-16 11:30:24 [INFO]: User Action
+2026-03-16 11:30:30 [INFO]: User Action
+2026-03-16 11:30:32 [INFO]: User Action
+2026-03-16 11:30:43 [INFO]: User Action
+2026-03-16 11:30:43 [INFO]: User Action
+2026-03-16 11:30:47 [INFO]: User Action
+2026-03-16 11:30:50 [INFO]: User Action
+2026-03-16 11:30:52 [INFO]: User Action
+2026-03-16 11:30:55 [INFO]: User Action
+2026-03-16 11:30:55 [INFO]: User Action
+2026-03-16 11:31:07 [INFO]: User Action
+2026-03-16 11:31:10 [INFO]: User Action
+2026-03-16 11:31:13 [INFO]: User Action
+2026-03-16 13:50:48 [INFO]: MongoDB session store 初始化成功
+2026-03-16 13:50:48 [INFO]: 服务器启动成功
+2026-03-16 13:50:48 [INFO]: 数据库连接成功
+2026-03-16 13:50:54 [INFO]: User Action
+2026-03-16 13:50:54 [INFO]: 用户登录成功: admin
+2026-03-16 13:50:54 [INFO]: User Action
+2026-03-16 13:50:54 [INFO]: User Action
+2026-03-16 13:50:56 [INFO]: User Action
+2026-03-16 13:53:06 [INFO]: User Action
+2026-03-16 13:53:06 [INFO]: User Action
+2026-03-16 13:53:09 [INFO]: User Action
+2026-03-16 15:27:16 [INFO]: User Action
+2026-03-16 15:27:16 [INFO]: 用户登录成功: admin
+2026-03-16 15:27:17 [INFO]: User Action
+2026-03-16 15:27:17 [INFO]: User Action
+2026-03-16 18:12:42 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:12:42 [INFO]: 服务器启动成功
+2026-03-16 18:12:42 [INFO]: 数据库连接成功
+2026-03-16 18:13:34 [INFO]: User Action
+2026-03-16 18:13:34 [INFO]: User Action
+2026-03-16 18:13:39 [INFO]: User Action
+2026-03-16 18:13:44 [INFO]: User Action
+2026-03-16 18:14:03 [INFO]: User Action
+2026-03-16 18:16:14 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:16:14 [INFO]: 服务器启动成功
+2026-03-16 18:16:14 [INFO]: 数据库连接成功
+2026-03-16 18:25:40 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:25:40 [INFO]: 服务器启动成功
+2026-03-16 18:25:40 [INFO]: 数据库连接成功
+2026-03-16 18:25:44 [INFO]: User Action
+2026-03-16 18:25:44 [INFO]: User Action
+2026-03-16 18:25:53 [INFO]: User Action
+2026-03-16 18:26:05 [INFO]: User Action
+2026-03-16 18:26:05 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773656765867-864867745.png
+2026-03-16 18:26:13 [INFO]: User Action
+2026-03-16 18:26:13 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773656773204-972864314.png
+2026-03-16 18:27:06 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:27:06 [INFO]: 服务器启动成功
+2026-03-16 18:27:06 [INFO]: 数据库连接成功
+2026-03-16 18:28:36 [INFO]: User Action
+2026-03-16 18:28:36 [INFO]: User Action
+2026-03-16 18:28:36 [INFO]: User Action
+2026-03-16 18:28:42 [INFO]: User Action
+2026-03-16 18:28:42 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773656922402-900859317.png
+2026-03-16 18:28:45 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-16 18:28:49 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:28:49 [INFO]: 服务器启动成功
+2026-03-16 18:28:49 [INFO]: 数据库连接成功
+2026-03-16 18:28:55 [INFO]: User Action
+2026-03-16 18:28:55 [INFO]: User Action
+2026-03-16 18:28:55 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:28:55 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:28:55 [INFO]: User Action
+2026-03-16 18:28:58 [INFO]: User Action
+2026-03-16 18:28:58 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:28:58 [INFO]: User Action
+2026-03-16 18:29:03 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:29:03 [INFO]: User Action
+2026-03-16 18:29:11 [INFO]: User Action
+2026-03-16 18:29:15 [INFO]: User Action
+2026-03-16 18:29:15 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:29:18 [INFO]: User Action
+2026-03-16 18:31:23 [INFO]: User Action
+2026-03-16 18:31:23 [INFO]: User Action
+2026-03-16 18:31:23 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:31:23 [INFO]: User Action
+2026-03-16 18:31:25 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:31:25 [INFO]: User Action
+2026-03-16 18:31:29 [INFO]: User Action
+2026-03-16 18:32:48 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:32:48 [INFO]: 服务器启动成功
+2026-03-16 18:32:48 [INFO]: 数据库连接成功
+2026-03-16 18:32:55 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:32:55 [INFO]: 服务器启动成功
+2026-03-16 18:32:55 [INFO]: 数据库连接成功
+2026-03-16 18:32:58 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:32:58 [INFO]: 服务器启动成功
+2026-03-16 18:32:58 [INFO]: 数据库连接成功
+2026-03-16 18:33:09 [INFO]: User Action
+2026-03-16 18:33:09 [INFO]: User Action
+2026-03-16 18:33:09 [INFO]: User Action
+2026-03-16 18:33:09 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:33:12 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:33:12 [INFO]: User Action
+2026-03-16 18:33:28 [INFO]: User Action
+2026-03-16 18:33:28 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773657208446-606383817.png
+2026-03-16 18:33:32 [INFO]: User Action
+2026-03-16 18:34:49 [INFO]: User Action
+2026-03-16 18:34:50 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:34:50 [INFO]: User Action
+2026-03-16 18:34:51 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:34:51 [INFO]: User Action
+2026-03-16 18:34:56 [INFO]: User Action
+2026-03-16 18:34:56 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773657296328-4048669.png
+2026-03-16 18:34:59 [INFO]: User Action
+2026-03-16 18:35:01 [INFO]: User Action
+2026-03-16 18:35:01 [INFO]: User Action
+2026-03-16 18:35:01 [INFO]: User Action
+2026-03-16 18:35:01 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:35:58 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:35:58 [INFO]: 服务器启动成功
+2026-03-16 18:35:58 [INFO]: 数据库连接成功
+2026-03-16 18:36:05 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:36:05 [INFO]: 服务器启动成功
+2026-03-16 18:36:05 [INFO]: 数据库连接成功
+2026-03-16 18:36:36 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:36:36 [INFO]: 服务器启动成功
+2026-03-16 18:36:36 [INFO]: 数据库连接成功
+2026-03-16 18:36:39 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:36:40 [INFO]: 服务器启动成功
+2026-03-16 18:36:40 [INFO]: 数据库连接成功
+2026-03-16 18:38:30 [INFO]: User Action
+2026-03-16 18:38:30 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:38:30 [INFO]: User Action
+2026-03-16 18:38:33 [INFO]: User Action
+2026-03-16 18:38:33 [INFO]: User Action
+2026-03-16 18:38:33 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:38:33 [INFO]: User Action
+2026-03-16 18:40:29 [INFO]: User Action
+2026-03-16 18:40:29 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:40:29 [INFO]: User Action
+2026-03-16 18:40:33 [INFO]: User Action
+2026-03-16 18:40:33 [INFO]: User Action
+2026-03-16 18:40:33 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:40:34 [INFO]: User Action
+2026-03-16 18:40:36 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:40:36 [INFO]: User Action
+2026-03-16 18:40:38 [INFO]: User Action
+2026-03-16 18:40:38 [INFO]: User Action
+2026-03-16 18:40:38 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:40:38 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:40:38 [INFO]: User Action
+2026-03-16 18:43:37 [INFO]: User Action
+2026-03-16 18:44:00 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-16 18:44:14 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:44:14 [INFO]: 服务器启动成功
+2026-03-16 18:44:14 [INFO]: 数据库连接成功
+2026-03-16 18:44:20 [INFO]: User Action
+2026-03-16 18:44:20 [INFO]: User Action
+2026-03-16 18:44:20 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:44:20 [INFO]: User Action
+2026-03-16 18:45:25 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:45:25 [INFO]: 服务器启动成功
+2026-03-16 18:45:25 [INFO]: 数据库连接成功
+2026-03-16 18:47:07 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:47:07 [INFO]: 服务器启动成功
+2026-03-16 18:47:07 [INFO]: 数据库连接成功
+2026-03-16 18:47:28 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:47:28 [INFO]: 服务器启动成功
+2026-03-16 18:47:28 [INFO]: 数据库连接成功
+2026-03-16 18:47:57 [INFO]: User Action
+2026-03-16 18:47:57 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:47:57 [INFO]: User Action
+2026-03-16 18:48:01 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:48:01 [INFO]: User Action
+2026-03-16 18:48:03 [INFO]: User Action
+2026-03-16 18:48:03 [INFO]: User Action
+2026-03-16 18:48:04 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:48:04 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:48:04 [INFO]: User Action
+2026-03-16 18:48:09 [INFO]: User Action
+2026-03-16 18:49:39 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:49:44 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:50:27 [INFO]: User Action
+2026-03-16 18:50:27 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:50:34 [INFO]: User Action
+2026-03-16 18:51:53 [INFO]: User Action
+2026-03-16 18:51:53 [INFO]: User Action
+2026-03-16 18:51:53 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:51:53 [INFO]: User Action
+2026-03-16 18:52:43 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-16 18:53:07 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:53:07 [INFO]: 服务器启动成功
+2026-03-16 18:53:07 [INFO]: 数据库连接成功
+2026-03-16 18:53:09 [INFO]: User Action
+2026-03-16 18:53:09 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:53:09 [INFO]: User Action
+2026-03-16 18:53:11 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:53:11 [INFO]: User Action
+2026-03-16 18:57:07 [WARN]: 404 Not Found: GET /avatars/177736577296328-4048c69d.png
+2026-03-16 18:57:08 [WARN]: 404 Not Found: GET /favicon.ico
+2026-03-16 18:57:12 [WARN]: 404 Not Found: GET /avatars/177736577296328-4048c69d.png
+2026-03-16 18:58:34 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:58:34 [INFO]: 服务器启动成功
+2026-03-16 18:58:34 [INFO]: 数据库连接成功
+2026-03-16 18:58:44 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:58:44 [INFO]: 服务器启动成功
+2026-03-16 18:58:44 [INFO]: 数据库连接成功
+2026-03-16 18:58:49 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:58:49 [INFO]: 服务器启动成功
+2026-03-16 18:58:49 [INFO]: 数据库连接成功
+2026-03-16 18:58:56 [INFO]: User Action
+2026-03-16 18:58:59 [INFO]: User Action
+2026-03-16 18:58:59 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:58:59 [INFO]: User Action
+2026-03-16 18:59:10 [INFO]: User Action
+2026-03-16 18:59:10 [INFO]: User Action
+2026-03-16 18:59:10 [INFO]: User Action
+2026-03-16 18:59:10 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:59:10 [INFO]: User Action
+2026-03-16 18:59:10 [INFO]: User Action
+2026-03-16 18:59:10 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:59:10 [INFO]: User Action
+2026-03-16 18:59:12 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-16 18:59:12 [INFO]: User Action
+2026-03-16 18:59:18 [INFO]: MongoDB session store 初始化成功
+2026-03-16 18:59:18 [INFO]: 服务器启动成功
+2026-03-16 18:59:18 [INFO]: 数据库连接成功
+2026-03-17 00:11:49 [INFO]: MongoDB session store 初始化成功
+2026-03-17 00:11:49 [INFO]: 服务器启动成功
+2026-03-17 00:12:19 [ERROR]: 未处理的Promise拒绝
+2026-03-17 00:12:19 [ERROR]: 未处理的Promise拒绝
+2026-03-17 00:14:37 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-17 00:14:41 [INFO]: MongoDB session store 初始化成功
+2026-03-17 00:14:41 [INFO]: 服务器启动成功
+2026-03-17 00:14:41 [INFO]: 数据库连接成功
+2026-03-17 00:14:48 [INFO]: User Action
+2026-03-17 00:14:48 [INFO]: User Action
+2026-03-17 00:14:48 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 00:14:48 [INFO]: User Action
+2026-03-17 00:14:50 [INFO]: User Action
+2026-03-17 00:14:50 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 00:14:51 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 00:14:51 [INFO]: User Action
+2026-03-17 00:25:06 [INFO]: User Action
+2026-03-17 00:25:06 [INFO]: User Action
+2026-03-17 00:25:06 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 00:25:07 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 00:25:07 [INFO]: User Action
+2026-03-17 10:11:46 [INFO]: User Action
+2026-03-17 10:11:46 [INFO]: User Action
+2026-03-17 10:11:46 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 10:11:46 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-17 10:11:46 [INFO]: User Action
+2026-03-17 10:26:30 [INFO]: MongoDB session store 初始化成功
+2026-03-17 10:26:30 [INFO]: 服务器启动成功
+2026-03-17 10:26:30 [INFO]: 数据库连接成功
+2026-03-18 11:15:13 [INFO]: MongoDB session store 初始化成功
+2026-03-18 11:15:13 [INFO]: 服务器启动成功
+2026-03-18 11:15:13 [INFO]: 数据库连接成功
+2026-03-18 11:15:31 [INFO]: User Action
+2026-03-18 11:15:31 [INFO]: 用户登录成功: admin
+2026-03-18 11:15:32 [INFO]: User Action
+2026-03-18 11:15:32 [INFO]: User Action
+2026-03-18 11:15:32 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-18 11:15:32 [INFO]: User Action
+2026-03-18 11:15:35 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-18 11:15:35 [INFO]: User Action
+2026-03-18 11:41:03 [INFO]: User Action
+2026-03-18 11:41:03 [INFO]: User Action
+2026-03-18 11:41:03 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-18 13:54:43 [INFO]: User Action
+2026-03-18 13:54:43 [INFO]: User Action
+2026-03-18 13:54:43 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-18 13:54:50 [INFO]: User Action
+2026-03-18 13:54:55 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-18 13:54:55 [INFO]: User Action
+2026-03-18 13:54:57 [INFO]: User Action
+2026-03-18 13:54:59 [INFO]: User Action
+2026-03-18 13:55:01 [INFO]: User Action
+2026-03-18 13:55:07 [INFO]: User Action
+2026-03-18 13:55:08 [INFO]: User Action
+2026-03-18 13:55:10 [INFO]: User Action
+2026-03-18 15:26:09 [INFO]: User Action
+2026-03-18 15:26:09 [INFO]: User Action
+2026-03-18 15:26:09 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 11:12:02 [INFO]: MongoDB session store 初始化成功
+2026-03-19 11:12:02 [INFO]: 服务器启动成功
+2026-03-19 11:12:02 [INFO]: 数据库连接成功
+2026-03-19 12:07:07 [INFO]: User Action
+2026-03-19 12:07:07 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 12:07:07 [INFO]: User Action
+2026-03-19 12:07:13 [INFO]: User Action
+2026-03-19 12:07:16 [INFO]: User Action
+2026-03-19 12:07:16 [INFO]: User Action
+2026-03-19 12:07:16 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 12:07:17 [INFO]: User Action
+2026-03-19 12:07:20 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 12:07:21 [INFO]: User Action
+2026-03-19 12:07:23 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 12:07:28 [INFO]: User Action
+2026-03-19 12:07:28 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 12:07:29 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 12:07:30 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 13:00:36 [INFO]: User Action
+2026-03-19 13:00:36 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 13:52:11 [INFO]: User Action
+2026-03-19 13:52:11 [INFO]: User Action
+2026-03-19 13:52:11 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 15:32:18 [INFO]: MongoDB session store 初始化成功
+2026-03-19 15:32:18 [INFO]: 服务器启动成功
+2026-03-19 15:32:18 [INFO]: 数据库连接成功
+2026-03-19 15:32:24 [INFO]: User Action
+2026-03-19 15:32:24 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 15:32:24 [INFO]: User Action
+2026-03-19 15:32:26 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 15:32:26 [INFO]: User Action
+2026-03-19 15:32:28 [INFO]: User Action
+2026-03-19 15:53:24 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 15:54:13 [INFO]: User Action
+2026-03-19 15:54:13 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 15:54:13 [INFO]: User Action
+2026-03-19 15:57:41 [INFO]: MongoDB session store 初始化成功
+2026-03-19 15:57:41 [INFO]: 服务器启动成功
+2026-03-19 15:57:41 [INFO]: 数据库连接成功
+2026-03-19 15:58:31 [INFO]: MongoDB session store 初始化成功
+2026-03-19 15:58:31 [INFO]: 服务器启动成功
+2026-03-19 15:58:31 [INFO]: 数据库连接成功
+2026-03-19 16:00:40 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-19 16:00:46 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:00:46 [INFO]: 服务器启动成功
+2026-03-19 16:00:46 [INFO]: 数据库连接成功
+2026-03-19 16:01:04 [INFO]: User Action
+2026-03-19 16:01:04 [INFO]: User Action
+2026-03-19 16:01:04 [INFO]: User Action
+2026-03-19 16:01:06 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:01:07 [INFO]: User Action
+2026-03-19 16:01:09 [INFO]: User Action
+2026-03-19 16:01:55 [INFO]: User Action
+2026-03-19 16:01:57 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:01:57 [INFO]: User Action
+2026-03-19 16:02:36 [INFO]: User Action
+2026-03-19 16:02:36 [INFO]: User Action
+2026-03-19 16:02:36 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:02:36 [INFO]: User Action
+2026-03-19 16:02:46 [INFO]: User Action
+2026-03-19 16:02:48 [INFO]: User Action
+2026-03-19 16:02:48 [INFO]: User Action
+2026-03-19 16:02:52 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:02:52 [INFO]: User Action
+2026-03-19 16:02:57 [INFO]: User Action
+2026-03-19 16:02:58 [INFO]: User Action
+2026-03-19 16:02:58 [INFO]: User Action
+2026-03-19 16:03:05 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:03:05 [INFO]: User Action
+2026-03-19 16:04:38 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-19 16:05:41 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:05:41 [INFO]: 服务器启动成功
+2026-03-19 16:05:41 [INFO]: 数据库连接成功
+2026-03-19 16:05:44 [INFO]: User Action
+2026-03-19 16:05:44 [INFO]: User Action
+2026-03-19 16:05:44 [INFO]: User Action
+2026-03-19 16:06:09 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:06:09 [INFO]: User Action
+2026-03-19 16:06:14 [INFO]: 删除旧头像: E:\DeskTop\毕设项目\enPromote-main\public\avatars\1773657296328-4048669.png
+2026-03-19 16:06:14 [INFO]: User Action
+2026-03-19 16:06:14 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773907574905-792223395.png
+2026-03-19 16:06:19 [INFO]: User Action
+2026-03-19 16:06:19 [INFO]: User Action
+2026-03-19 16:06:20 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:06:20 [INFO]: User Action
+2026-03-19 16:06:23 [INFO]: User Action
+2026-03-19 16:06:25 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:06:25 [INFO]: User Action
+2026-03-19 16:07:43 [INFO]: User Action
+2026-03-19 16:07:43 [INFO]: User Action
+2026-03-19 16:07:43 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:07:43 [INFO]: User Action
+2026-03-19 16:07:49 [INFO]: 删除旧头像: E:\DeskTop\毕设项目\enPromote-main\public\avatars\1773907574905-792223395.png
+2026-03-19 16:07:49 [INFO]: User Action
+2026-03-19 16:07:49 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773907669388-562906472.png
+2026-03-19 16:07:53 [INFO]: 删除旧头像: E:\DeskTop\毕设项目\enPromote-main\public\avatars\1773907669388-562906472.png
+2026-03-19 16:07:53 [INFO]: User Action
+2026-03-19 16:07:53 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773907673351-565112089.png
+2026-03-19 16:08:02 [INFO]: 删除旧头像: E:\DeskTop\毕设项目\enPromote-main\public\avatars\1773907673351-565112089.png
+2026-03-19 16:08:02 [INFO]: User Action
+2026-03-19 16:08:02 [INFO]: 用户 69538fa1c08d8a94d0399ac9 上传头像成功: /avatars/1773907682372-615736796.png
+2026-03-19 16:08:05 [INFO]: User Action
+2026-03-19 16:08:06 [INFO]: User Action
+2026-03-19 16:08:06 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:08:06 [INFO]: User Action
+2026-03-19 16:08:07 [INFO]: User Action
+2026-03-19 16:08:08 [INFO]: User Action
+2026-03-19 16:08:10 [INFO]: User Action
+2026-03-19 16:35:30 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:35:30 [INFO]: 服务器启动成功
+2026-03-19 16:35:30 [INFO]: 数据库连接成功
+2026-03-19 16:42:28 [INFO]: User Action
+2026-03-19 16:42:28 [INFO]: User Action
+2026-03-19 16:42:29 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:42:29 [INFO]: User Action
+2026-03-19 16:42:38 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:42:38 [INFO]: User Action
+2026-03-19 16:42:46 [INFO]: User Action
+2026-03-19 16:42:47 [INFO]: User Action
+2026-03-19 16:42:49 [INFO]: User Action
+2026-03-19 16:42:49 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:44:48 [INFO]: User Action
+2026-03-19 16:44:49 [INFO]: User Action
+2026-03-19 16:44:51 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:44:51 [INFO]: User Action
+2026-03-19 16:47:00 [INFO]: User Action
+2026-03-19 16:47:00 [INFO]: User Action
+2026-03-19 16:47:00 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:00 [INFO]: User Action
+2026-03-19 16:47:02 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:12 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:15 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:16 [INFO]: User Action
+2026-03-19 16:47:17 [INFO]: User Action
+2026-03-19 16:47:17 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-19 16:47:31 [INFO]: User Action
+2026-03-19 16:47:31 [INFO]: 用户登录成功: lrw
+2026-03-19 16:47:31 [INFO]: User Action
+2026-03-19 16:47:32 [INFO]: User Action
+2026-03-19 16:47:33 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:33 [INFO]: User Action
+2026-03-19 16:47:39 [INFO]: User Action
+2026-03-19 16:47:39 [INFO]: 用户 6954906dcfd61592d2e46f10 上传头像成功: /avatars/1773910059486-205971529.png
+2026-03-19 16:47:42 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:45 [INFO]: User Action
+2026-03-19 16:47:45 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:49 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:47:50 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:04 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:05 [INFO]: User Action
+2026-03-19 16:48:09 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:09 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:28 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:28 [INFO]: User Action
+2026-03-19 16:48:31 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:31 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:34 [INFO]: User Action
+2026-03-19 16:48:34 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-19 16:48:36 [INFO]: User Action
+2026-03-19 16:48:36 [INFO]: 用户登录成功: admin
+2026-03-19 16:48:36 [INFO]: User Action
+2026-03-19 16:48:37 [INFO]: User Action
+2026-03-19 16:48:38 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:48:38 [INFO]: User Action
+2026-03-19 16:48:42 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:50:31 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:50:31 [INFO]: 服务器启动成功
+2026-03-19 16:50:31 [INFO]: 数据库连接成功
+2026-03-19 16:52:14 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:52:14 [INFO]: 服务器启动成功
+2026-03-19 16:52:14 [INFO]: 数据库连接成功
+2026-03-19 16:53:16 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:53:16 [INFO]: 服务器启动成功
+2026-03-19 16:53:16 [INFO]: 数据库连接成功

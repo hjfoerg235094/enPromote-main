@@ -3,7 +3,20 @@
     <div class="profile-container">
         <div class="profile-header">
             <div class="avatar-section">
-                <img :src="userAvatar" alt="用户头像" class="avatar-large" />
+                <div class="avatar-wrapper">
+                    <img :src="userAvatar" alt="用户头像" class="avatar-large" />
+                    <div class="avatar-upload-overlay" @click="triggerFileInput">
+                        <span class="upload-icon">📷</span>
+                        <span class="upload-text">更换头像</span>
+                    </div>
+                    <input 
+                        type="file" 
+                        ref="fileInput" 
+                        @change="handleAvatarChange" 
+                        accept="image/jpeg,image/jpg,image/png,image/gif" 
+                        style="display: none"
+                    />
+                </div>
                 <div class="user-info">
                     <h2>{{ userInfo.username }}</h2>
                     <p class="join-date">加入时间: {{ formatDate(userInfo.creatTime) }}</p>
@@ -124,8 +137,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getUserInfo, changeInfo } from '@/api/auth'
+import { getUserInfo, changeInfo, uploadAvatar } from '@/api/auth'
 import { getFavoriteWords, removeFavoriteWord } from '@/api/favoriteWords'
+import { updateUserInfo } from '@/stores/userStore'
 
 // 响应式数据
 const userInfo = ref({})
@@ -134,6 +148,25 @@ const loading = ref(false)
 const message = ref('')
 const messageType = ref('success')
 const favoriteWords = ref([])
+const fileInput = ref(null)
+const avatarUploading = ref(false)
+
+// 获取完整头像URL
+const getAvatarUrl = (avatarPath) => {
+    if (!avatarPath || avatarPath === '/default-avatar.png') {
+        // 使用在线默认头像
+        return 'https://api.dicebear.com/7.x/avataaars/svg?seed=default'
+    }
+    // 如果是完整URL，直接使用
+    if (avatarPath.startsWith('http')) {
+        return avatarPath
+    }
+    // 确保路径以/avatars开头
+    if (!avatarPath.startsWith('/avatars/')) {
+        return '/avatars/' + avatarPath.replace(/^\/+/, '')
+    }
+    return avatarPath
+}
 
 // 编辑表单
 const editForm = ref({
@@ -152,6 +185,11 @@ const fetchUserInfo = async () => {
         const res = await getUserInfo()
         if (res.data.code === 200) {
             userInfo.value = res.data
+            
+            // 更新用户头像
+            if (res.data.avatar) {
+                userAvatar.value = getAvatarUrl(res.data.avatar)
+            }
 
             // 初始化编辑表单
             console.log(res.data);
@@ -296,6 +334,55 @@ const getStatusText = (status) => {
         'know': '已掌握'
     }
     return statusMap[status] || status
+}
+
+// 触发文件选择
+const triggerFileInput = () => {
+    if (fileInput.value) {
+        fileInput.value.click()
+    }
+}
+
+// 处理头像上传
+const handleAvatarChange = async (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    // 验证文件类型
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+    if (!allowedTypes.includes(file.type)) {
+        showMessage('只支持上传JPEG、JPG、PNG或GIF格式的图片', 'error')
+        return
+    }
+
+    // 验证文件大小（2MB）
+    if (file.size > 2 * 1024 * 1024) {
+        showMessage('图片大小不能超过2MB', 'error')
+        return
+    }
+
+    avatarUploading.value = true
+    try {
+        const res = await uploadAvatar(file)
+        if (res.data.code === 200) {
+            const newAvatar = getAvatarUrl(res.data.data.avatar)
+            userAvatar.value = newAvatar
+            // 更新全局用户信息
+            updateUserInfo({ avatar: res.data.data.avatar })
+            showMessage('头像上传成功', 'success')
+        } else {
+            showMessage(res.data.message || '头像上传失败', 'error')
+        }
+    } catch (error) {
+        console.error('上传头像失败:', error)
+        showMessage('上传头像失败，请稍后重试', 'error')
+    } finally {
+        avatarUploading.value = false
+        // 清空文件输入
+        if (fileInput.value) {
+            fileInput.value.value = ''
+        }
+    }
 }
 
 // 组件挂载时获取用户信息和收藏单词
