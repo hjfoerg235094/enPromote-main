@@ -13,6 +13,8 @@ const { logger, accessLogStream, logApiError } = require('./utils/logger');
 const { router: getwordRouter } = require('./router/third_part/getword');
 const authRouter = require('./router/auth');
 const wordRouter = require('./router/word_updated');
+const vocabularyRouter = require('./router/vocabulary');
+const vocabularyLearningRouter = require('./router/vocabularyLearning');
 const flashcardStatsRouter = require('./router/flashcardStats');
 const commendWordsRouter = require('./router/commendWords');
 const logsRouter = require('./router/logs');
@@ -129,6 +131,8 @@ app.use('/api/auth', authRouter);
 app.use('/api', requireAuth);
 
 app.use('/api/word', getwordRouter, wordRouter);
+app.use('/api/vocabulary', vocabularyRouter);
+app.use('/api/vocabulary-learning', vocabularyLearningRouter);
 app.use('/api/flashcard', flashcardStatsRouter);
 app.use('/api/commendWords', commendWordsRouter);
 app.use('/logs', logsRouter);

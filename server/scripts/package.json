@@ -1,0 +1,25 @@
+
+{
+  "name": "vocabulary-manager",
+  "version": "1.0.0",
+  "description": "词汇库管理工具",
+  "main": "vocabularyManager.js",
+  "scripts": {
+    "normalize": "node vocabularyManager.js normalize",
+    "analyze": "node vocabularyManager.js analyze",
+    "optimize": "node vocabularyManager.js optimize",
+    "import": "node vocabularyManager.js import",
+    "export": "node vocabularyManager.js export",
+    "examples": "node vocabularyExamples.js"
+  },
+  "keywords": [
+    "vocabulary",
+    "management",
+    "database"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
+}

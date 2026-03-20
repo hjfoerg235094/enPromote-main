@@ -14319,3 +14319,928 @@
 2026-03-19 16:53:16 [INFO]: MongoDB session store 初始化成功
 2026-03-19 16:53:16 [INFO]: 服务器启动成功
 2026-03-19 16:53:16 [INFO]: 数据库连接成功
+2026-03-19 16:54:10 [INFO]: MongoDB session store 初始化成功
+2026-03-19 16:54:10 [INFO]: 服务器启动成功
+2026-03-19 16:54:10 [INFO]: 数据库连接成功
+2026-03-19 16:54:48 [INFO]: User Action
+2026-03-19 16:54:48 [INFO]: User Action
+2026-03-19 16:54:53 [INFO]: User Action
+2026-03-19 16:54:53 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-03-19 16:55:02 [INFO]: User Action
+2026-03-19 16:55:02 [INFO]: 用户登录成功: lrw
+2026-03-19 16:55:03 [INFO]: User Action
+2026-03-19 16:55:03 [INFO]: User Action
+2026-03-19 16:55:05 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-19 16:55:05 [INFO]: User Action
+2026-03-19 16:55:18 [INFO]: User Action
+2026-03-19 16:55:18 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-03-19 16:55:24 [INFO]: User Action
+2026-03-19 16:55:24 [INFO]: 用户登录成功: admin
+2026-03-19 16:55:24 [INFO]: User Action
+2026-03-19 16:55:25 [INFO]: User Action
+2026-03-19 16:58:08 [INFO]: User Action
+2026-03-19 16:58:08 [INFO]: User Action
+2026-03-19 17:14:00 [INFO]: MongoDB session store 初始化成功
+2026-03-19 17:14:00 [INFO]: 服务器启动成功
+2026-03-19 17:14:00 [INFO]: 数据库连接成功
+2026-03-20 18:21:14 [INFO]: MongoDB session store 初始化成功
+2026-03-20 18:21:14 [INFO]: 服务器启动成功
+2026-03-20 18:21:14 [INFO]: 数据库连接成功
+2026-03-20 19:05:31 [INFO]: User Action
+2026-03-20 19:05:31 [INFO]: User Action
+2026-03-20 19:05:34 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-20 19:05:34 [INFO]: User Action
+2026-03-20 19:05:39 [INFO]: User Action
+2026-03-20 19:05:39 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-20 19:05:44 [INFO]: User Action
+2026-03-20 19:05:44 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-20 19:05:45 [INFO]: User Action
+2026-03-20 19:05:45 [INFO]: User Action
+2026-03-20 19:05:45 [INFO]: User Action
+2026-03-20 19:05:45 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-20 19:06:18 [INFO]: User Action
+2026-03-20 19:06:22 [INFO]: User Action
+2026-03-20 19:06:26 [INFO]: User Action
+2026-03-20 19:06:28 [INFO]: User Action
+2026-03-20 19:06:31 [INFO]: User Action
+2026-03-20 19:06:34 [INFO]: User Action
+2026-03-20 19:12:32 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:12:32 [INFO]: 服务器启动成功
+2026-03-20 19:12:32 [INFO]: 数据库连接成功
+2026-03-20 19:13:13 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:13:13 [INFO]: 服务器启动成功
+2026-03-20 19:13:13 [INFO]: 数据库连接成功
+2026-03-20 19:13:37 [INFO]: User Action
+2026-03-20 19:13:37 [INFO]: User Action
+2026-03-20 19:13:39 [INFO]: User Action
+2026-03-20 19:13:42 [INFO]: User Action
+2026-03-20 19:13:46 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:13:46 [INFO]: 服务器启动成功
+2026-03-20 19:13:46 [INFO]: 数据库连接成功
+2026-03-20 19:13:47 [INFO]: User Action
+2026-03-20 19:13:47 [INFO]: User Action
+2026-03-20 19:13:47 [INFO]: User Action
+2026-03-20 19:13:51 [INFO]: User Action
+2026-03-20 19:13:53 [INFO]: User Action
+2026-03-20 19:13:53 [INFO]: User Action
+2026-03-20 19:14:00 [INFO]: User Action
+2026-03-20 19:14:00 [INFO]: User Action
+2026-03-20 19:14:02 [INFO]: User Action
+2026-03-20 19:14:02 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: A, 单词数: 10, AI提供商: aliyun
+2026-03-20 19:14:10 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:14:10 [INFO]: 服务器启动成功
+2026-03-20 19:14:10 [INFO]: 数据库连接成功
+2026-03-20 19:14:12 [INFO]: User Action
+2026-03-20 19:14:12 [INFO]: User Action
+2026-03-20 19:14:58 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:14:58 [INFO]: 服务器启动成功
+2026-03-20 19:14:58 [INFO]: 数据库连接成功
+2026-03-20 19:15:02 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:15:02 [INFO]: 服务器启动成功
+2026-03-20 19:15:02 [INFO]: 数据库连接成功
+2026-03-20 19:15:44 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:15:44 [INFO]: 服务器启动成功
+2026-03-20 19:15:44 [INFO]: 数据库连接成功
+2026-03-20 19:16:14 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:16:14 [INFO]: 服务器启动成功
+2026-03-20 19:16:14 [INFO]: 数据库连接成功
+2026-03-20 19:16:54 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:16:54 [INFO]: 服务器启动成功
+2026-03-20 19:16:54 [INFO]: 数据库连接成功
+2026-03-20 19:17:48 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:17:48 [INFO]: 服务器启动成功
+2026-03-20 19:17:48 [INFO]: 数据库连接成功
+2026-03-20 19:17:54 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:17:54 [INFO]: 服务器启动成功
+2026-03-20 19:17:54 [INFO]: 数据库连接成功
+2026-03-20 19:19:18 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:19:18 [INFO]: 服务器启动成功
+2026-03-20 19:19:18 [INFO]: 数据库连接成功
+2026-03-20 19:20:16 [INFO]: User Action
+2026-03-20 19:20:16 [INFO]: User Action
+2026-03-20 19:20:16 [INFO]: User Action
+2026-03-20 19:20:17 [INFO]: User Action
+2026-03-20 19:20:23 [INFO]: User Action
+2026-03-20 19:20:23 [INFO]: User Action
+2026-03-20 19:20:24 [INFO]: User Action
+2026-03-20 19:20:25 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: A, 单词数: 10, AI提供商: aliyun
+2026-03-20 19:20:46 [INFO]: AI生成的题目: {
+  "multiple_choice": [
+    {
+      "question": "A guest is asking the receptionist about the hotel's special dish. Which word would best describe this dish?",
+      "options": [
+        {"key": "A", "content": "cuisine"},
+        {"key": "B", "content": "entree"},
+        {"key": "C", "content": "reservation"},
+        {"key": "D", "content": "valet"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "The word 'entree' refers to the main course of a meal, which is what the guest is asking about.",
+      "relatedWords": ["entree", "cuisine"]
+    },
+    {
+      "question": "The guest asked the __________ to bring a towel to the room. Which word fits best in the blank?",
+      "options": [
+        {"key": "A", "content": "bartender"},
+        {"key": "B", "content": "doorman"},
+        {"key": "C", "content": "housekeeping"},
+        {"key": "D", "content": "cutlery"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Housekeeping is responsible for providing towels and other room supplies to guests.",
+      "relatedWords": ["housekeeping", "tablecloth"]
+    }
+  ],
+  "fill_in_blank": [
+    {
+      "context": "Guest: Hi, I want to make a __1__ for two people tonight. Do you have any tables available? Receptionist: Yes, we have a table near the window. We also have a __2__ that you can choose from.",
+      "blanks": [
+        {
+          "position": "1",
+          "answer": "reservation",
+          "options": ["reservation", "entree", "shampoo", "valet"],
+          "explanation": "A 'reservation' is a booking for a table at a restaurant."
+        },
+        {
+          "position": "2",
+          "answer": "cuisine",
+          "options": ["cuisine", "cutlery", "doorman", "bartender"],
+          "explanation": "The 'cuisine' refers to the type of food or style of cooking offered by the restaurant."
+        }
+      ]
+    }
+  ],
+  "scenario_dialogue": {
+    "dialogue": "Guest: Hello, I just checked in. Can you tell me more about the hotel's dining options? Receptionist: Of course! We have a restaurant that offers a variety of international __1__. The menu includes a delicious __2__ like grilled salmon. Guest: That sounds great. Do you have a __3__ who can help with drink orders? Receptionist: Yes, our bartender is very knowledgeable. Guest: Thanks for the information.",
+    "question": "What is the main purpose of the guest's conversation with the receptionist?",
+    "options": [
+      {"key": "A", "content": "To book a room"},
+      {"key": "B", "content": "To ask about dining options"},
+      {"key": "C", "content": "To request a valet"},
+      {"key": "D", "content": "To complain about the room"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "The guest is asking about the hotel's dining options, including the cuisine and entree, and the bartender's role.",
+    "relatedWords": ["cuisine", "entree", "bartender"]
+  },
+  "listening_comprehension": [
+    {
+      "content": "A guest is speaking with a hotel staff member. The guest says, 'I need to check out early tomorrow. Can you help me with that?' The staff member replies, 'Sure, we can arrange for a valet to take your luggage to the car. Also, our housekeeping team will make sure your room is clean before you leave.'",
+      "questions": [
+        {
+          "question": "What does the guest need to do before leaving?",
+          "options": [
+            {"key": "A", "content": "Book a table"},
+            {"key": "B", "content": "Check out early"},
+            {"key": "C", "content": "Request a shampoo"},
+            {"key": "D", "content": "Order an entree"}
+          ],
+          "correctAnswer": "B",
+          "explanation": "The guest explicitly says they want to check out early."
+        },
+        {
+          "question": "Who is responsible for cleaning the guest's room before departure?",
+          "options": [
+            {"key": "A", "content": "Bartender"},
+            {"key": "B", "content": "Valet"},
+            {"key": "C", "content": "Housekeeping"},
+            {"key": "D", "content": "Doorman"}
+          ],
+          "correctAnswer": "C",
+          "explanation": "The staff member mentions the housekeeping team will clean the room."
+        }
+      ],
+      "relatedWords": ["valet", "housekeeping", "check out"]
+    }
+  ],
+  "cloze_test": [
+    {
+      "content": "The guest asked the __1__ about the hotel's __2__. He also wanted to know if there was a __3__ available for his luggage. The receptionist said, 'We have a __4__ who can help with that. Also, our __5__ will ensure your room is clean.'",
+      "blanks": [
+        {
+          "position": "1",
+          "answer": "receptionist",
+          "options": ["receptionist", "shampoo", "cutlery", "entree"],
+          "explanation": "The guest is asking the receptionist for information about the hotel."
+        },
+        {
+          "position": "2",
+          "answer": "cuisine",
+          "options": ["cuisine", "reservation", "tablecloth", "doorman"],
+          "explanation": "The guest is asking about the hotel's food options, which is referred to as cuisine."
+        },
+        {
+          "position": "3",
+          "answer": "valet",
+          "options": ["valet", "bartender", "housekeeping", "shampoo"],
+          "explanation": "A 'valet' is someone who helps with luggage."
+        },
+        {
+          "position": "4",
+          "answer": "valet",
+          "options": ["valet", "bartender", "housekeeping", "shampoo"],
+          "explanation": "The same 'valet' is mentioned again for helping with luggage."
+        },
+        {
+          "position": "5",
+          "answer": "housekeeping",
+          "options": ["housekeeping", "cutlery", "entree", "doorman"],
+          "explanation": "The 'housekeeping' team is responsible for cleaning the room."
+        }
+      ],
+      "relatedWords": ["cuisine", "valet", "housekeeping"]
+    }
+  ],
+  "translation": [
+    {
+      "english": "The hotel's housekeeping team ensures that all rooms are clean and well-maintained.",
+      "chinese": "酒店的客房服务团队确保所有房间都干净整洁。",
+      "tips": "In this sentence, 'housekeeping' refers to the staff responsible for cleaning and maintaining hotel rooms. 'Ensures' means to make sure something happens.",
+      "relatedWords": ["housekeeping", "clean"]
+    }
+  ],
+  "writing": [
+    {
+      "task": "Write a short paragraph describing your experience at a hotel. Include at least three of the vocabulary words from this lesson.",
+      "requirements": "Use proper grammar and sentence structure. Include at least three of the following words: cuisine, entree, reservation, bartender, tablecloth, shampoo, cutlery, doorman, valet, housekeeping.",
+      "gradingCriteria": "Content (40%), Vocabulary (30%), Grammar (30%)",
+      "sampleAnswer": "I made a reservation at a nice hotel. When I arrived, the doorman greeted me and the valet helped with my luggage. The room had a clean tablecloth and fresh shampoo. The bartender served a delicious entree, and the housekeeping team was very professional.",
+      "relatedWords": ["reservation", "valet", "entree"]
+    }
+  ],
+  "true_false": [
+    {
+      "statement": "The housekeeping team is responsible for cleaning the hotel rooms.",
+      "correctAnswer": "true",
+      "explanation": "Housekeeping is the department that ensures rooms are clean and well-maintained.",
+      "relatedWords": ["housekeeping", "clean"]
+    },
+    {
+      "statement": "A 'cutlery' is a type of drink served in a restaurant.",
+      "correctAnswer": "false",
+      "explanation": "Cutlery refers to the tools used for eating, such as knives and forks, not a type of drink.",
+      "relatedWords": ["cutlery", "bartender"]
+    }
+  ]
+}
+2026-03-20 19:20:46 [INFO]: JSON解析成功，尝试次数: 1
+2026-03-20 19:20:46 [WARN]: 跳过重复的填空题: Guest: Hi, I want to make a __1__ for two people t...
+2026-03-20 19:20:46 [INFO]: 成功保存 15 道题目到数据库
+2026-03-20 19:20:46 [INFO]: User Action
+2026-03-20 19:20:46 [INFO]: User Action
+2026-03-20 19:21:35 [INFO]: User Action
+2026-03-20 19:21:35 [INFO]: User Action
+2026-03-20 19:23:22 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-20 19:24:41 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:24:41 [INFO]: 服务器启动成功
+2026-03-20 19:24:41 [INFO]: 数据库连接成功
+2026-03-20 19:25:43 [INFO]: User Action
+2026-03-20 19:25:43 [INFO]: User Action
+2026-03-20 19:25:44 [INFO]: User Action
+2026-03-20 19:25:44 [INFO]: User Action
+2026-03-20 19:25:44 [INFO]: User Action
+2026-03-20 19:25:44 [INFO]: User Action
+2026-03-20 19:25:46 [INFO]: User Action
+2026-03-20 19:25:47 [INFO]: User Action
+2026-03-20 19:25:48 [INFO]: User Action
+2026-03-20 19:25:48 [INFO]: User Action
+2026-03-20 19:25:49 [INFO]: User Action
+2026-03-20 19:25:57 [INFO]: User Action
+2026-03-20 19:25:57 [INFO]: User Action
+2026-03-20 19:25:58 [INFO]: User Action
+2026-03-20 19:25:59 [INFO]: User Action
+2026-03-20 19:26:01 [INFO]: User Action
+2026-03-20 19:26:03 [INFO]: User Action
+2026-03-20 19:26:04 [INFO]: User Action
+2026-03-20 19:26:04 [INFO]: User Action
+2026-03-20 19:26:35 [INFO]: User Action
+2026-03-20 19:26:35 [INFO]: User Action
+2026-03-20 19:26:38 [INFO]: User Action
+2026-03-20 19:26:47 [INFO]: User Action
+2026-03-20 19:26:48 [INFO]: User Action
+2026-03-20 19:26:49 [INFO]: User Action
+2026-03-20 19:26:49 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: A, 单词数: 10, AI提供商: aliyun
+2026-03-20 19:27:00 [INFO]: User Action
+2026-03-20 19:27:01 [INFO]: User Action
+2026-03-20 19:27:01 [INFO]: User Action
+2026-03-20 19:27:02 [INFO]: User Action
+2026-03-20 19:27:04 [INFO]: User Action
+2026-03-20 19:27:05 [INFO]: User Action
+2026-03-20 19:27:06 [INFO]: User Action
+2026-03-20 19:27:06 [INFO]: User Action
+2026-03-20 19:27:07 [INFO]: User Action
+2026-03-20 19:27:08 [INFO]: User Action
+2026-03-20 19:27:13 [INFO]: AI生成的题目: {
+  "multiple_choice": [
+    {
+      "question": "If a guest wants to order a special dish at the restaurant, which staff member should they ask?",
+      "options": [
+        {"key": "A", "content": "The doorman"},
+        {"key": "B", "content": "The bartender"},
+        {"key": "C", "content": "The housekeeping staff"},
+        {"key": "D", "content": "The waiter"}
+      ],
+      "correctAnswer": "D",
+      "explanation": "The waiter is responsible for taking orders and serving food in the restaurant. The doorman and housekeeping staff are not involved in the dining process, and the bartender serves drinks, not meals.",
+      "relatedWords": ["waiter", "restaurant"]
+    },
+    {
+      "question": "What is the purpose of a tablecloth in a restaurant?",
+      "options": [
+        {"key": "A", "content": "To store cutlery"},
+        {"key": "B", "content": "To protect the table surface"},
+        {"key": "C", "content": "To serve as a menu"},
+        {"key": "D", "content": "To clean the floor"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "A tablecloth is used to cover the table and protect it from spills and stains. It also enhances the appearance of the dining area.",
+      "relatedWords": ["tablecloth", "restaurant"]
+    }
+  ],
+  "fill_in_blank": [
+    {
+      "context": "Guest: Hi, I would like to make a ___1___ for a table for two at 7 PM. Receptionist: Of course, sir. Do you have a preferred ___2___? Guest: Yes, we want a window view. Receptionist: That’s available. Please wait a moment.",
+      "blanks": [
+        {
+          "position": "1",
+          "answer": "reservation",
+          "options": ["reservation", "entree", "shampoo", "cutlery"],
+          "explanation": "A reservation is a booking for a table at a restaurant."
+        },
+        {
+          "position": "2",
+          "answer": "tablecloth",
+          "options": ["tablecloth", "valet", "housekeeping", "bartender"],
+          "explanation": "The guest is asking about the type of table they want, which includes the tablecloth."
+        }
+      ]
+    }
+  ],
+  "scenario_dialogue": {
+    "dialogue": "Guest: Hello, I need to check out. Receptionist: Of course, sir. May I have your room number? Guest: Room 205. Receptionist: Thank you. We have your bill ready. Would you like to pay by credit card or cash? Guest: Credit card, please. Receptionist: Here is your receipt. Also, your room key is with us. Guest: Thank you. I also need to ask about the valet service. Receptionist: Sure, we have a valet who can park your car. Guest: Great, I’ll take that.",
+    "question": "What service is the guest asking about at the end of the conversation?",
+    "options": [
+      {"key": "A", "content": "Housekeeping"},
+      {"key": "B", "content": "Valet"},
+      {"key": "C", "content": "Bartender"},
+      {"key": "D", "content": "Shampoo"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "The guest asks about the valet service, which is a parking service provided by the hotel.",
+    "relatedWords": ["valet", "receptionist", "check out"]
+  },
+  "listening_comprehension": [
+    {
+      "content": "A guest is speaking to a hotel employee. Guest: I want to book a table for dinner. Employee: When would you like to come? Guest: Tomorrow at 7 PM. Employee: Do you have any special requests? Guest: Yes, I’d like a table by the window. Employee: That’s available. What would you like to order? Guest: I want the entree. Employee: Of course, we have that on the menu.",
+      "questions": [
+        {
+          "question": "What does the guest want to do?",
+          "options": [
+            {"key": "A", "content": "Check in"},
+            {"key": "B", "content": "Book a table"},
+            {"key": "C", "content": "Get a shampoo"},
+            {"key": "D", "content": "Talk to the bartender"}
+          ],
+          "correctAnswer": "B",
+          "explanation": "The guest says, 'I want to book a table for dinner.'"
+        },
+        {
+          "question": "What does the guest ask for after the table is reserved?",
+          "options": [
+            {"key": "A", "content": "A window view"},
+            {"key": "B", "content": "A valet"},
+            {"key": "C", "content": "An entree"},
+            {"key": "D", "content": "A housekeeping service"}
+          ],
+          "correctAnswer": "C",
+          "explanation": "The guest says, 'I want the entree.'"
+        }
+      ],
+      "relatedWords": ["reservation", "entree", "table"]
+    }
+  ],
+  "cloze_test": [
+    {
+      "content": "At the hotel, the ___1___ is responsible for welcoming guests. The ___2___ provides service in the restaurant, and the ___3___ ensures that the rooms are clean. If you need help with your luggage, the ___4___ can assist you. The ___5___ is in charge of the bar.",
+      "blanks": [
+        {
+          "position": "1",
+          "answer": "doorman",
+          "options": ["doorman", "shampoo", "cutlery", "housekeeping"],
+          "explanation": "The doorman is the first person guests meet when they arrive at the hotel."
+        },
+        {
+          "position": "2",
+          "answer": "waiter",
+          "options": ["waiter", "valet", "bartender", "housekeeping"],
+          "explanation": "The waiter serves food and drinks in the restaurant."
+        },
+        {
+          "position": "3",
+          "answer": "housekeeping",
+          "options": ["housekeeping", "entree", "tablecloth", "cutlery"],
+          "explanation": "Housekeeping is responsible for cleaning the hotel rooms."
+        },
+        {
+          "position": "4",
+          "answer": "valet",
+          "options": ["valet", "bartender", "shampoo", "cutlery"],
+          "explanation": "The valet helps guests park their cars."
+        },
+        {
+          "position": "5",
+          "answer": "bartender",
+          "options": ["bartender", "doorman", "entree", "shampoo"],
+          "explanation": "The bartender serves drinks at the bar."
+        }
+      ],
+      "relatedWords": ["doorman", "waiter", "housekeeping", "valet", "bartender"]
+    }
+  ],
+  "translation": [
+    {
+      "english": "The guest asked the bartender for a glass of wine.",
+      "chinese": "客人向酒保要了一杯葡萄酒。",
+      "tips": "In this sentence, 'bartender' refers to the person who serves drinks, and 'glass of wine' is a common way to express a drink in English.",
+      "relatedWords": ["bartender", "wine"]
+    }
+  ],
+  "writing": [
+    {
+      "task": "Write a short paragraph describing your experience at a hotel. Use at least three of the given vocabulary words.",
+      "requirements": "Use correct grammar and vocabulary. Write in a clear and organized way. Use at least three of the following words: cuisine, entree, reservation, bartender, tablecloth, shampoo, cutlery, doorman, valet, housekeeping.",
+      "gradingCriteria": "Content (40%), Grammar (30%), Vocabulary (30%)",
+      "sampleAnswer": "I had a great experience at the hotel. The doorman greeted me warmly, and the valet helped me park my car. The room was clean, and the housekeeping staff did a great job. I made a reservation for dinner and enjoyed the delicious cuisine. The waiter brought the entree, and the tablecloth looked very elegant. The bartender served me a drink, and I used the shampoo in the bathroom.",
+      "relatedWords": ["doorman", "valet", "housekeeping", "reservation", "cuisine", "entree", "tablecloth", "bartender", "shampoo"]
+    }
+  ],
+  "true_false": [
+    {
+      "statement": "The valet is responsible for cleaning the hotel rooms.",
+      "correctAnswer": "false",
+      "explanation": "The valet is responsible for parking guests' cars, not cleaning the rooms. Housekeeping is the staff that cleans the rooms.",
+      "relatedWords": ["valet", "housekeeping"]
+    },
+    {
+      "statement": "A guest can ask the bartender for a glass of water.",
+      "correctAnswer": "true",
+      "explanation": "The bartender serves drinks, including water, at the bar.",
+      "relatedWords": ["bartender", "water"]
+    }
+  ]
+}
+2026-03-20 19:27:13 [INFO]: JSON解析成功，尝试次数: 1
+2026-03-20 19:27:13 [WARN]: 跳过重复的选择题: What is the purpose of a tablecloth in a restauran...
+2026-03-20 19:27:13 [WARN]: 跳过重复的填空题: Guest: Hi, I would like to make a ___1___ for a ta...
+2026-03-20 19:27:13 [WARN]: 跳过重复的写作题: Write a short paragraph describing your experience...
+2026-03-20 19:27:13 [INFO]: 成功保存 13 道题目到数据库
+2026-03-20 19:27:14 [INFO]: User Action
+2026-03-20 19:27:15 [INFO]: User Action
+2026-03-20 19:27:16 [INFO]: User Action
+2026-03-20 19:27:17 [INFO]: User Action
+2026-03-20 19:27:34 [INFO]: User Action
+2026-03-20 19:27:34 [INFO]: User Action
+2026-03-20 19:27:36 [INFO]: User Action
+2026-03-20 19:27:42 [INFO]: User Action
+2026-03-20 19:27:43 [INFO]: User Action
+2026-03-20 19:27:44 [INFO]: User Action
+2026-03-20 19:27:44 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: B, 单词数: 10, AI提供商: aliyun
+2026-03-20 19:27:45 [INFO]: User Action
+2026-03-20 19:28:05 [INFO]: AI生成的题目: {
+  "multiple_choice": [
+    {
+      "question": "When you arrive at the restaurant, the person who greets you and helps you find a seat is called a(n) ______.",
+      "options": [
+        {"key": "A", "content": "bartender"},
+        {"key": "B", "content": "valet"},
+        {"key": "C", "content": "doorman"},
+        {"key": "D", "content": "tablecloth"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "The doorman is the person who greets guests and helps them find a seat in a restaurant. A bartender serves drinks, a valet parks cars, and a tablecloth is an item on the table.",
+      "relatedWords": ["doorman", "tablecloth"]
+    },
+    {
+      "question": "If you want to order a main dish, you would ask for the ______.",
+      "options": [
+        {"key": "A", "content": "cuisine"},
+        {"key": "B", "content": "entree"},
+        {"key": "C", "content": "cutlery"},
+        {"key": "D", "content": "shampoo"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "The entree is the main dish of a meal. Cuisine refers to a type of food, cutlery refers to utensils, and shampoo is unrelated to a restaurant.",
+      "relatedWords": ["entree", "cuisine"]
+    }
+  ],
+  "fill_in_blank": [
+    {
+      "context": "Customer: Hi, I’d like to make a ______ for two people at 7 PM. Waiter: Of course, we have a table available. Please wait a moment while I check the ______. Customer: Thank you. I also want to know if the restaurant has a special ______ tonight. Waiter: Yes, we are serving a new ______ from the Italian kitchen.",
+      "blanks": [
+        {
+          "position": "1st blank (before 'for two people')",
+          "answer": "reservation",
+          "options": ["reservation", "shampoo", "cutlery", "housekeeping"],
+          "explanation": "The first blank should be 'reservation', as it refers to booking a table in advance."
+        },
+        {
+          "position": "2nd blank (after 'check the')",
+          "answer": "tablecloth",
+          "options": ["tablecloth", "bartender", "valet", "housekeeping"],
+          "explanation": "The second blank should be 'tablecloth', as it refers to the item on the table."
+        }
+      ]
+    }
+  ],
+  "scenario_dialogue": {
+    "dialogue": "Customer: Excuse me, could you help me find a table? Waiter: Of course, we have a table near the window. Would you like to sit there? Customer: Yes, that’s perfect. Waiter: Great. Let me bring you the menu. Customer: Thank you. Waiter: Here you go. Do you need a moment to decide? Customer: Yes, please. Waiter: Of course. I’ll be back shortly.",
+    "question": "What does the waiter do after the customer agrees to sit at the window?",
+    "options": [
+      {"key": "A", "content": "He asks for a reservation"},
+      {"key": "B", "content": "He brings the menu"},
+      {"key": "C", "content": "He checks the tablecloth"},
+      {"key": "D", "content": "He asks for a cutlery"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "After the customer agrees to sit at the window, the waiter brings the menu. The other options are not mentioned in the dialogue.",
+    "relatedWords": ["tablecloth", "menu", "reservation"]
+  },
+  "listening_comprehension": [
+    {
+      "content": "A customer arrives at the restaurant and asks the doorman for a table. The doorman checks the reservation list and finds a table for two. He then leads the customer to the table and asks if they need a drink. The customer orders a glass of wine. The bartender brings the wine and asks if they need anything else.",
+      "questions": [
+        {
+          "question": "Who checks the reservation list for the customer?",
+          "options": [
+            {"key": "A", "content": "The bartender"},
+            {"key": "B", "content": "The valet"},
+            {"key": "C", "content": "The doorman"},
+            {"key": "D", "content": "The housekeeping"}
+          ],
+          "correctAnswer": "C",
+          "explanation": "The doorman checks the reservation list for the customer."
+        },
+        {
+          "question": "What does the bartender bring to the customer?",
+          "options": [
+            {"key": "A", "content": "A tablecloth"},
+            {"key": "B", "content": "A glass of wine"},
+            {"key": "C", "content": "A shampoo"},
+            {"key": "D", "content": "A cutlery"}
+          ],
+          "correctAnswer": "B",
+          "explanation": "The bartender brings a glass of wine to the customer."
+        }
+      ],
+      "relatedWords": ["reservation", "doorman", "bartender"]
+    }
+  ],
+  "cloze_test": [
+    {
+      "content": "At the restaurant, the ______ helps you find a seat. The ______ is clean and colorful. You can order your favorite ______ from the menu. The ______ serves drinks, and the ______ keeps the rooms tidy.",
+      "blanks": [
+        {
+          "position": "1st blank",
+          "answer": "doorman",
+          "options": ["doorman", "shampoo", "cutlery", "housekeeping"],
+          "explanation": "The first blank should be 'doorman', as they help guests find a seat."
+        },
+        {
+          "position": "2nd blank",
+          "answer": "tablecloth",
+          "options": ["tablecloth", "entree", "cuisine", "bartender"],
+          "explanation": "The second blank should be 'tablecloth', as it refers to the item on the table."
+        },
+        {
+          "position": "3rd blank",
+          "answer": "entree",
+          "options": ["entree", "shampoo", "cutlery", "valet"],
+          "explanation": "The third blank should be 'entree', as it refers to the main dish."
+        },
+        {
+          "position": "4th blank",
+          "answer": "bartender",
+          "options": ["bartender", "valet", "housekeeping", "reservation"],
+          "explanation": "The fourth blank should be 'bartender', as they serve drinks."
+        },
+        {
+          "position": "5th blank",
+          "answer": "housekeeping",
+          "options": ["housekeeping", "cuisine", "cutlery", "shampoo"],
+          "explanation": "The fifth blank should be 'housekeeping', as they keep the rooms clean."
+        }
+      ],
+      "relatedWords": ["doorman", "tablecloth", "entree", "bartender", "housekeeping"]
+    }
+  ],
+  "translation": [
+    {
+      "english": "The doorman asked if we had a reservation.",
+      "chinese": "招待员问我们有没有预订。",
+      "tips": "In this sentence, 'doorman' refers to the person who greets guests, and 'reservation' means a booking. The structure is straightforward: subject + verb + object.",
+      "relatedWords": ["doorman", "reservation"]
+    }
+  ],
+  "writing": [
+    {
+      "task": "Write a short paragraph describing your experience at a restaurant. Use at least three of the vocabulary words from the list.",
+      "requirements": "Your paragraph should be 50-80 words. Use correct grammar and vocabulary. Include at least three of the given words.",
+      "gradingCriteria": "Content (40%), Vocabulary (30%), Grammar (30%)",
+      "sampleAnswer": "I visited a restaurant with my friend. The doorman greeted us and led us to a table with a clean tablecloth. We ordered our entrees and the bartender brought us drinks. The service was excellent.",
+      "relatedWords": ["doorman", "tablecloth", "entree", "bartender"]
+    }
+  ],
+  "true_false": [
+    {
+      "statement": "The valet is responsible for checking reservations at the restaurant.",
+      "correctAnswer": "false",
+      "explanation": "The valet is responsible for parking cars, not checking reservations. The doorman checks reservations.",
+      "relatedWords": ["valet", "doorman"]
+    },
+    {
+      "statement": "The housekeeping staff keeps the restaurant clean and organized.",
+      "correctAnswer": "true",
+      "explanation": "Housekeeping staff is responsible for maintaining cleanliness and organization in a restaurant.",
+      "relatedWords": ["housekeeping"]
+    }
+  ]
+}
+2026-03-20 19:28:05 [INFO]: JSON解析成功，尝试次数: 1
+2026-03-20 19:28:05 [WARN]: 跳过重复的填空题: Customer: Hi, I’d like to make a ______ for two pe...
+2026-03-20 19:28:05 [INFO]: 成功保存 15 道题目到数据库
+2026-03-20 19:28:10 [INFO]: User Action
+2026-03-20 19:28:11 [INFO]: User Action
+2026-03-20 19:31:33 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-20 19:32:35 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:32:35 [INFO]: 服务器启动成功
+2026-03-20 19:32:35 [INFO]: 数据库连接成功
+2026-03-20 19:37:51 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-20 19:38:36 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:38:36 [INFO]: 服务器启动成功
+2026-03-20 19:38:36 [INFO]: 数据库连接成功
+2026-03-20 19:38:42 [INFO]: User Action
+2026-03-20 19:38:42 [INFO]: User Action
+2026-03-20 19:38:42 [INFO]: User Action
+2026-03-20 19:38:43 [INFO]: User Action
+2026-03-20 19:38:46 [INFO]: User Action
+2026-03-20 19:38:46 [INFO]: User Action
+2026-03-20 19:38:46 [INFO]: User Action
+2026-03-20 19:38:47 [INFO]: User Action
+2026-03-20 19:38:53 [INFO]: User Action
+2026-03-20 19:38:53 [INFO]: User Action
+2026-03-20 19:38:56 [INFO]: User Action
+2026-03-20 19:38:56 [INFO]: User Action
+2026-03-20 19:38:58 [INFO]: User Action
+2026-03-20 19:39:02 [INFO]: User Action
+2026-03-20 19:39:03 [INFO]: User Action
+2026-03-20 19:39:04 [INFO]: User Action
+2026-03-20 19:39:04 [INFO]: User Action
+2026-03-20 19:39:10 [INFO]: User Action
+2026-03-20 19:39:10 [INFO]: User Action
+2026-03-20 19:39:12 [INFO]: User Action
+2026-03-20 19:39:12 [INFO]: User Action
+2026-03-20 19:39:15 [INFO]: User Action
+2026-03-20 19:39:18 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-03-20 19:39:18 [INFO]: User Action
+2026-03-20 19:41:24 [INFO]: User Action
+2026-03-20 19:41:25 [INFO]: User Action
+2026-03-20 19:41:26 [INFO]: User Action
+2026-03-20 19:41:26 [INFO]: User Action
+2026-03-20 19:41:27 [INFO]: User Action
+2026-03-20 19:41:45 [INFO]: User Action
+2026-03-20 19:41:45 [INFO]: User Action
+2026-03-20 19:41:45 [INFO]: User Action
+2026-03-20 19:41:47 [INFO]: User Action
+2026-03-20 19:42:09 [INFO]: User Action
+2026-03-20 19:42:09 [INFO]: User Action
+2026-03-20 19:42:11 [INFO]: User Action
+2026-03-20 19:42:11 [INFO]: User Action
+2026-03-20 19:42:15 [INFO]: User Action
+2026-03-20 19:43:46 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:43:46 [INFO]: 服务器启动成功
+2026-03-20 19:43:46 [INFO]: 数据库连接成功
+2026-03-20 19:43:51 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:43:51 [INFO]: 服务器启动成功
+2026-03-20 19:43:51 [INFO]: 数据库连接成功
+2026-03-20 19:44:02 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:44:02 [INFO]: 服务器启动成功
+2026-03-20 19:44:02 [INFO]: 数据库连接成功
+2026-03-20 19:44:08 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:44:08 [INFO]: 服务器启动成功
+2026-03-20 19:44:08 [INFO]: 数据库连接成功
+2026-03-20 19:44:16 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:44:16 [INFO]: 服务器启动成功
+2026-03-20 19:44:16 [INFO]: 数据库连接成功
+2026-03-20 19:45:11 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:45:11 [INFO]: 服务器启动成功
+2026-03-20 19:45:11 [INFO]: 数据库连接成功
+2026-03-20 19:45:56 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-03-20 19:46:02 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:46:02 [INFO]: 服务器启动成功
+2026-03-20 19:46:02 [INFO]: 数据库连接成功
+2026-03-20 19:46:17 [INFO]: User Action
+2026-03-20 19:46:17 [INFO]: User Action
+2026-03-20 19:46:19 [INFO]: User Action
+2026-03-20 19:46:23 [INFO]: User Action
+2026-03-20 19:46:24 [INFO]: User Action
+2026-03-20 19:46:25 [INFO]: User Action
+2026-03-20 19:46:26 [INFO]: User Action
+2026-03-20 19:46:28 [INFO]: User Action
+2026-03-20 19:46:40 [INFO]: User Action
+2026-03-20 19:46:41 [INFO]: User Action
+2026-03-20 19:46:42 [INFO]: User Action
+2026-03-20 19:46:42 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: A, 单词数: 10, AI提供商: aliyun
+2026-03-20 19:47:08 [INFO]: AI生成的题目: {
+  "multiple_choice": [
+    {
+      "question": "A guest is asking the receptionist about the hotel's special dish. Which word would best describe this dish?",
+      "options": [
+        {"key": "A", "content": "cuisine"},
+        {"key": "B", "content": "entree"},
+        {"key": "C", "content": "reservation"},
+        {"key": "D", "content": "valet"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "The word 'entree' refers to the main course of a meal, which is what the guest is asking about.",
+      "relatedWords": ["entree", "cuisine"]
+    },
+    {
+      "question": "The hotel manager is talking to the housekeeping staff about the condition of the rooms. Which word best describes the service that ensures clean and tidy rooms?",
+      "options": [
+        {"key": "A", "content": "housekeeping"},
+        {"key": "B", "content": "bartender"},
+        {"key": "C", "content": "doorman"},
+        {"key": "D", "content": "cutlery"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Housekeeping is the department responsible for maintaining the cleanliness and tidiness of hotel rooms.",
+      "relatedWords": ["housekeeping", "reservation"]
+    }
+  ],
+  "fill_in_blank": [
+    {
+      "context": "Guest: Good evening, I’d like to make a ______ for two at 7 PM. Receptionist: Of course, we have a table available. Would you like a view of the city or a private room? Guest: A private room, please. Receptionist: Perfect, we’ll reserve a table with a clean ______ and fresh flowers.",
+      "blanks": [
+        {
+          "position": "1st blank (before 'for two at 7 PM')",
+          "answer": "reservation",
+          "options": ["reservation", "shampoo", "cutlery", "valet"],
+          "explanation": "The word 'reservation' fits the context of making a booking for dinner."
+        },
+        {
+          "position": "2nd blank (after 'table with a clean')",
+          "answer": "tablecloth",
+          "options": ["tablecloth", "entree", "bartender", "doorman"],
+          "explanation": "A 'tablecloth' is a common item found on a dining table."
+        }
+      ]
+    }
+  ],
+  "scenario_dialogue": {
+    "dialogue": "Guest: Excuse me, I just checked in and I need to know where the restaurant is. Doorman: It's on the first floor, next to the lobby. Guest: Thanks. Oh, and I need to get my luggage to my room. Valet: I can help with that. Just follow me. Guest: Great, I also need to ask about the breakfast options. Housekeeping: Breakfast is served from 7 to 10 AM, and the menu includes a variety of entrees.",
+    "question": "What does the housekeeping staff mention about breakfast?",
+    "options": [
+      {"key": "A", "content": "It's only available at 6 AM."},
+      {"key": "B", "content": "It includes a variety of entrees."},
+      {"key": "C", "content": "It's free for all guests."},
+      {"key": "D", "content": "It's only served in the lobby."}
+    ],
+    "correctAnswer": "B",
+    "explanation": "The housekeeping staff says the breakfast menu includes a variety of entrees.",
+    "relatedWords": ["entree", "housekeeping", "valet"]
+  },
+  "listening_comprehension": [
+    {
+      "content": "A guest is speaking with the front desk. Guest: I made a reservation for two, but I can't find the confirmation number. Receptionist: No problem, I can check your reservation. Guest: Thank you. Also, I need to know if the restaurant has a good cuisine. Receptionist: Yes, we have a wide range of international dishes.",
+      "questions": [
+        {
+          "question": "What did the guest ask the receptionist to do?",
+          "options": [
+            {"key": "A", "content": "Check their reservation."},
+            {"key": "B", "content": "Provide a tablecloth."},
+            {"key": "C", "content": "Order an entree."},
+            {"key": "D", "content": "Find a valet."}
+          ],
+          "correctAnswer": "A",
+          "explanation": "The guest asked the receptionist to check their reservation."
+        },
+        {
+          "question": "What did the receptionist say about the restaurant?",
+          "options": [
+            {"key": "A", "content": "It has a small menu."},
+            {"key": "B", "content": "It has a good cuisine."},
+            {"key": "C", "content": "It is closed at night."},
+            {"key": "D", "content": "It only serves local dishes."}
+          ],
+          "correctAnswer": "B",
+          "explanation": "The receptionist said the restaurant has a wide range of international dishes, which means it has a good cuisine."
+        }
+      ],
+      "relatedWords": ["reservation", "cuisine", "entree"]
+    }
+  ],
+  "cloze_test": [
+    {
+      "content": "The hotel has a friendly ______ who greets guests at the entrance. The ______ is responsible for managing the rooms and ensuring they are clean and comfortable. The restaurant offers a wide variety of ______, and the ______ provides drinks and service to guests. The ______ also helps guests with their luggage.",
+      "blanks": [
+        {
+          "position": "1st blank (after 'has a friendly')",
+          "answer": "doorman",
+          "options": ["doorman", "cutlery", "shampoo", "valet"],
+          "explanation": "A 'doorman' is someone who greets guests at the entrance."
+        },
+        {
+          "position": "2nd blank (after 'is responsible for managing the rooms')",
+          "answer": "housekeeping",
+          "options": ["housekeeping", "entree", "bartender", "reservation"],
+          "explanation": "Housekeeping is responsible for keeping rooms clean."
+        },
+        {
+          "position": "3rd blank (after 'variety of')",
+          "answer": "cuisine",
+          "options": ["cuisine", "tablecloth", "shampoo", "cutlery"],
+          "explanation": "Cuisine refers to the type of food offered."
+        },
+        {
+          "position": "4th blank (after 'provides drinks and service')",
+          "answer": "bartender",
+          "options": ["bartender", "valet", "reservation", "entree"],
+          "explanation": "A bartender serves drinks to guests."
+        },
+        {
+          "position": "5th blank (after 'also helps guests with their luggage')",
+          "answer": "valet",
+          "options": ["valet", "cutlery", "shampoo", "doorman"],
+          "explanation": "A valet helps guests with their luggage."
+        }
+      ],
+      "relatedWords": ["doorman", "housekeeping", "cuisine", "bartender", "valet"]
+    }
+  ],
+  "translation": [
+    {
+      "english": "The hotel has a comfortable room with a clean tablecloth and a nice shampoo.",
+      "chinese": "这家酒店有一个舒适的房间，配有干净的桌布和不错的洗发水。",
+      "tips": "In this sentence, 'tablecloth' refers to a cloth placed on a table, and 'shampoo' is a product used for washing hair.",
+      "relatedWords": ["tablecloth", "shampoo"]
+    }
+  ],
+  "writing": [
+    {
+      "task": "Write a short paragraph describing your experience at a hotel. Include at least three of the given words: cuisine, entree, reservation.",
+      "requirements": "Use correct grammar and vocabulary. Write 50-80 words.",
+      "gradingCriteria": "Content (40%), Grammar (30%), Vocabulary (30%)",
+      "sampleAnswer": "I made a reservation for a weekend stay at a beautiful hotel. The cuisine was amazing, and the entree was very tasty. I also enjoyed the clean room and friendly service.",
+      "relatedWords": ["reservation", "cuisine", "entree"]
+    }
+  ],
+  "true_false": [
+    {
+      "statement": "The valet is responsible for serving drinks at the hotel bar.",
+      "correctAnswer": "false",
+      "explanation": "The valet helps guests with their luggage, while the bartender serves drinks.",
+      "relatedWords": ["valet", "bartender"]
+    },
+    {
+      "statement": "The housekeeping staff ensures that the rooms are clean and tidy.",
+      "correctAnswer": "true",
+      "explanation": "Housekeeping is the department that keeps the rooms clean and tidy.",
+      "relatedWords": ["housekeeping", "reservation"]
+    }
+  ]
+}
+2026-03-20 19:47:08 [INFO]: JSON解析成功，尝试次数: 1
+2026-03-20 19:47:08 [WARN]: 跳过重复的选择题: A guest is asking the receptionist about the hotel...
+2026-03-20 19:47:08 [WARN]: 跳过重复的填空题: Guest: Good evening, I’d like to make a ______ for...
+2026-03-20 19:47:08 [WARN]: 跳过重复的判断题: The valet is responsible for serving drinks at the...
+2026-03-20 19:47:08 [INFO]: 成功保存 13 道题目到数据库
+2026-03-20 19:47:08 [INFO]: User Action
+2026-03-20 19:47:08 [INFO]: User Action
+2026-03-20 19:47:50 [INFO]: User Action
+2026-03-20 19:47:50 [INFO]: User Action
+2026-03-20 19:47:52 [INFO]: User Action
+2026-03-20 19:47:53 [INFO]: User Action
+2026-03-20 19:47:53 [INFO]: User Action
+2026-03-20 19:47:54 [INFO]: User Action
+2026-03-20 19:47:55 [INFO]: User Action
+2026-03-20 19:48:14 [INFO]: User Action
+2026-03-20 19:48:14 [INFO]: User Action
+2026-03-20 19:48:16 [INFO]: User Action
+2026-03-20 19:48:17 [INFO]: User Action
+2026-03-20 19:48:20 [INFO]: User Action
+2026-03-20 19:54:32 [INFO]: User Action
+2026-03-20 19:54:35 [INFO]: User Action
+2026-03-20 19:54:36 [INFO]: User Action
+2026-03-20 19:54:36 [INFO]: User Action
+2026-03-20 19:54:37 [INFO]: User Action
+2026-03-20 19:54:37 [INFO]: User Action
+2026-03-20 19:54:38 [INFO]: User Action
+2026-03-20 19:54:40 [INFO]: User Action
+2026-03-20 19:54:40 [INFO]: User Action
+2026-03-20 19:54:41 [INFO]: User Action
+2026-03-20 19:54:42 [INFO]: User Action
+2026-03-20 19:54:52 [INFO]: User Action
+2026-03-20 19:54:52 [INFO]: User Action
+2026-03-20 19:55:08 [INFO]: MongoDB session store 初始化成功
+2026-03-20 19:55:08 [INFO]: 服务器启动成功
+2026-03-20 19:55:08 [INFO]: 数据库连接成功
