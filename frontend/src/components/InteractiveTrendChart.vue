@@ -13,7 +13,7 @@
         </button>
       </div>
       <div class="chart-actions">
-        <button class="action-btn" @click="toggleFilterPanel" title="数据筛选">
+        <button class="action-btn" @click="toggleFilter" title="数据筛选">
           <span class="btn-icon">🔍</span>
         </button>
         <button class="action-btn" @click="resetChart" title="重置图表">
@@ -101,7 +101,7 @@
               <!-- 外圈光晕 -->
               <circle
                 :cx="point.x"
-                :cy="point[option.key]"
+                :cy="(point as any)[option.key]"
                 r="6"
                 :fill="option.color"
                 fill-opacity="0.2"
@@ -110,7 +110,7 @@
               <!-- 主点 -->
               <circle
                 :cx="point.x"
-                :cy="point[option.key]"
+                :cy="(point as any)[option.key]"
                 r="4"
                 :fill="option.color"
                 stroke="white"
@@ -127,7 +127,7 @@
           <div v-for="option in filterOptions" :key="option.key" 
                class="legend-item" 
                :class="{ active: option.selected }"
-               @click="toggleFilter(option.key)">
+               @click="toggleFilterOption(option.key)">
             <div class="legend-color" :style="{ backgroundColor: option.color }"></div>
             <div class="legend-label">{{ option.label }}</div>
           </div>
@@ -263,18 +263,11 @@ const xLabels = computed(() => {
 });
 
 // 方法
-const getLinePoints = (key: string): string => {
-  if (!filteredData.value || filteredData.value.length === 0) return '';
-  return filteredData.value
-    .map(d => `${d.x},${d[key]}`)
-    .join(' ');
-};
-
 // 生成平滑曲线路径(使用贝塞尔曲线)
 const getSmoothPath = (key: string): string => {
   if (!filteredData.value || filteredData.value.length === 0) return '';
 
-  const points = filteredData.value.map(d => ({ x: d.x, y: d[key] }));
+  const points = filteredData.value.map(d => ({ x: d.x, y: (d as any)[key] }));
 
   if (points.length < 2) return '';
 
@@ -304,18 +297,11 @@ const getSmoothPath = (key: string): string => {
   return path;
 };
 
-const getAreaPoints = (key: string): string => {
-  if (!filteredData.value || filteredData.value.length === 0) return '';
-  const points = filteredData.value.map(d => `${d.x},${d[key]}`);
-  // 添加底部点以形成封闭区域
-  return `${points[0]} ${points.join(' ')} ${filteredData.value[filteredData.value.length - 1].x},60 ${filteredData.value[0].x},60`;
-};
-
 // 生成平滑区域填充路径
 const getAreaPath = (key: string): string => {
   if (!filteredData.value || filteredData.value.length === 0) return '';
 
-  const points = filteredData.value.map(d => ({ x: d.x, y: d[key] }));
+  const points = filteredData.value.map(d => ({ x: d.x, y: (d as any)[key] }));
 
   if (points.length < 2) return '';
 
@@ -362,7 +348,7 @@ const getDimensionName = (key: string): string => {
   return names[key] || key;
 };
 
-const toggleFilter = (key: string): void => {
+const toggleFilterOption = (key: string): void => {
   const option = filterOptions.value.find(o => o.key === key);
   if (option) {
     option.selected = !option.selected;
@@ -393,8 +379,9 @@ const showDetail = (key: string, event: MouseEvent): void => {
 const showPointDetail = (key: string, index: number, event: MouseEvent): void => {
   const data = props.data[index];
   const rect = (event.target as HTMLElement).getBoundingClientRect();
+  const dimensionName = getDimensionName(key);
   detailData.value = {
-    title: `${new Date(data.date).toLocaleDateString()} 详情`,
+    title: `${new Date(data.date).toLocaleDateString()} - ${dimensionName}`,
     values: {
       '综合得分': data.overallScore.toFixed(1),
       '记忆': data.memoryScore.toFixed(1),
@@ -410,15 +397,15 @@ const showPointDetail = (key: string, index: number, event: MouseEvent): void =>
 };
 
 const calculateAverage = (key: string): number => {
-  return props.data.reduce((sum, d) => sum + d[key], 0) / props.data.length;
+  return props.data.reduce((sum, d) => sum + (d as any)[key], 0) / props.data.length;
 };
 
 const calculateMax = (key: string): number => {
-  return Math.max(...props.data.map(d => d[key]));
+  return Math.max(...props.data.map(d => (d as any)[key]));
 };
 
 const calculateMin = (key: string): number => {
-  return Math.min(...props.data.map(d => d[key]));
+  return Math.min(...props.data.map(d => (d as any)[key]));
 };
 
 // 缩放功能
@@ -464,6 +451,11 @@ const handleDrag = (event: MouseEvent): void => {
 
 const endDrag = (): void => {
   isDragging.value = false;
+};
+
+// 切换筛选面板
+const toggleFilter = (): void => {
+  showFilterPanel.value = !showFilterPanel.value;
 };
 
 // 重置图表

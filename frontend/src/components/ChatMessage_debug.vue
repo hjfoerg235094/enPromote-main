@@ -64,7 +64,12 @@ const avatarUrl = computed(() => {
   if (isOwnMessage.value) {
     return (user.value as any)?.avatar || '/default-avatar.png'
   }
-  return '/default-avatar.png'
+  // 对于好友消息，使用好友的头像
+  const fromUserId = props.message.fromUserId
+  if (typeof fromUserId === 'object' && fromUserId !== null) {
+    return (fromUserId as any)?.avatar || '/default-avatar.png'
+  }
+  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${fromUserId}`
 })
 
 // 格式化时间

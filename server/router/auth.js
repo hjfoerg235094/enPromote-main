@@ -84,8 +84,10 @@ router.post('/login', async (req, res) => {
                 req.session = {};
             }
 
+            // 直接更新会话信息
             req.session.userid = user._id;
             req.session.isLogin = true;
+            req.session.username = username;
 
             logUserAction(req, 'LOGIN_SUCCESS', { username, userId: user._id });
             logger.info(`用户登录成功: ${username}`);
@@ -237,6 +239,14 @@ router.get('/info', async (req, res) => {
             await user.save();
         }
 
+        // 将 Mongoose Map 转换为普通对象
+        const chaptersObj = {};
+        if (user.chapters) {
+            user.chapters.forEach((value, key) => {
+                chaptersObj[key] = value;
+            });
+        }
+
         return res.json({
             code: 200,
             message: '获取用户信息成功',
@@ -253,7 +263,7 @@ router.get('/info', async (req, res) => {
             question_completed: user.question_completed,
             ai_choose_completed: user.ai_choose_completed,
             // 新增多章节支持
-            chapters: Object.fromEntries(user.chapters),
+            chapters: chaptersObj,
             currentChapter: user.currentChapter
         });
     } catch (error) {

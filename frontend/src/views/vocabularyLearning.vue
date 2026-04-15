@@ -107,6 +107,13 @@
             <div class="meaning-content">
               <p class="meaning-text">{{ currentMeaning }}</p>
             </div>
+
+            <!-- 发音练习组件 -->
+            <OralPractice
+              v-if="currentWord && currentWord !== '加载中...' && currentWord !== '本组单词学习完成'"
+              :text="currentWord"
+              category="word"
+            />
           </div>
         </div>
       </div>
@@ -134,6 +141,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import StudyProgressModal from '@/components/StudyProgressModal.vue';
+import OralPractice from '@/components/OralPractice.vue';
+import axios from 'axios';
 import {
   getLearningProgress,
   getLearningWords,
@@ -339,6 +348,24 @@ const nextWord = async () => {
       if (res.data.code === 200) {
         // 更新学习进度
         await loadProgress();
+
+        // 计算学习时长（分钟）
+        const endTime = new Date();
+        const studyTimeMinutes = Math.floor((endTime - studyStartTime.value) / (1000 * 60));
+
+        // 记录学习时长到每日报告
+        try {
+          await axios.post('/api/report/record', {
+            module: currentMode.value === 'practice' ? 'vocabulary' : 'vocabulary',
+            studyTime: studyTimeMinutes,
+            newWords: currentMode.value === 'practice' ? words.value.length : 0,
+            reviewWords: currentMode.value === 'review' ? words.value.length : 0,
+            startTime: studyStartTime.value,
+            endTime: endTime
+          });
+        } catch (error) {
+          console.error('记录学习时长失败:', error);
+        }
 
         // 显示学习进度弹窗
         progressModalMode.value = 'completed';
@@ -735,7 +762,7 @@ onMounted(async () => {
 }
 
 .meaning-section {
-  padding-top: 20px;
+  padding: 20px 0 0 0;
   border-top: 1px solid #f0f0f0;
 }
 

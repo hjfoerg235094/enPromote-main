@@ -11,7 +11,9 @@ class StudyRecordService {
    */
   async recordStudyActivity(userId, module, data) {
     try {
-      const today = new Date();
+      // 使用学习开始时间来确定记录的日期
+      const studyDate = data.startTime ? new Date(data.startTime) : new Date();
+      const today = new Date(studyDate);
       today.setHours(0, 0, 0, 0);
 
       // 查找或创建当天的学习记录

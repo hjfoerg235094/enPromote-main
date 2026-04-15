@@ -64,7 +64,7 @@ interface RankingUser {
   isCurrentUser: boolean
 }
 
-const tabs = [
+const tabs: { label: string; value: 'totalWords' | 'todayWords' | 'streakDays' }[] = [
   { label: '总词汇量', value: 'totalWords' },
   { label: '今日学习', value: 'todayWords' },
   { label: '连续天数', value: 'streakDays' }

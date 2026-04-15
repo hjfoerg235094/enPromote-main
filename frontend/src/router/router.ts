@@ -149,6 +149,12 @@ const router = createRouter({
             name: 'Chapter5',
             component: () => import('../views/Chapter5.vue'),
             meta: { requiresAuth: true }
+        },
+        {
+            path: '/oral',
+            name: 'OralEvaluation',
+            component: () => import('../views/oral.vue'),
+            meta: { requiresAuth: true }
         }
     ]
 })

@@ -24,6 +24,10 @@
               <span class="btn-icon">💬</span>
               自由AI对话
             </button>
+            <button class="btn-secondary-outline" @click="goToOralEvaluation">
+              <span class="btn-icon">🎤</span>
+              口语评测
+            </button>
             <button class="btn-secondary-outline" @click="showAiPreview = true">
               <span class="btn-icon">👁️</span>
               功能预览
@@ -462,6 +466,11 @@ function goToChapters() {
 function goToFreeChat() {
   // 进入自由AI对话
   router.push('/aiChatExer');
+}
+
+function goToOralEvaluation() {
+  // 进入口语评测
+  router.push('/oral');
 }
 
 // 选择AI老师并进入对话

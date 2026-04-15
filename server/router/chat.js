@@ -33,13 +33,15 @@ router.get('/messages/:friendId', async (req, res) => {
             });
         }
 
-        // 获取聊天记录
+        // 获取聊天记录，并关联发送者信息
         const messages = await ChatMessage.find({
             $or: [
                 { fromUserId: userid, toUserId: friendId },
                 { fromUserId: friendId, toUserId: userid }
             ]
         })
+        .populate('fromUserId', 'username avatar')
+        .populate('toUserId', 'username avatar')
         .sort('-createdAt')
         .skip((page - 1) * limit)
         .limit(limit);

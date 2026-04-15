@@ -36,6 +36,20 @@
           </button>
         </div>
 
+        <!-- 调试信息 -->
+        <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px;">
+          <div>currentWord: {{ currentWord }}</div>
+          <div>currentWord.word: {{ currentWord?.word }}</div>
+          <div>OralPractice 显示条件: {{ currentWord && currentWord.word }}</div>
+        </div>
+
+        <!-- 发音练习组件 -->
+        <OralPractice
+          v-if="currentWord && currentWord.word"
+          :text="currentWord.word"
+          category="word"
+        />
+
         <div class="meaning-section" v-if="showMeaning">
           <div class="meaning-content">
             <p class="meaning-text">{{ currentWord.meaning }}</p>
@@ -111,6 +125,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { getReviewWords, updateWordPriority, getWordAudio } from '@/api/word'
 import { getReviewStats } from '@/api/reviewPlan'
+import OralPractice from '@/components/OralPractice.vue'
 
 const router = useRouter()
 
@@ -422,7 +437,7 @@ const finishReview = () => {
 .meaning-section {
   background: #f8f9fa;
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
   margin-top: 1rem;
   border: 2px solid #e9ecef;
 }

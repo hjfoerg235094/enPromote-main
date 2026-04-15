@@ -821,4 +821,133 @@ router.get('/ranking', async (req, res) => {
     }
 });
 
+/**
+ * 获取好友学习进度对比
+ * GET /api/friends/compare/:friendId
+ */
+router.get('/compare/:friendId', async (req, res) => {
+    try {
+        const { userid } = req.session;
+        const { friendId } = req.params;
+
+        if (!friendId) {
+            return res.json({
+                code: 400,
+                message: '好友ID不能为空'
+            });
+        }
+
+        // 验证好友关系
+        const friendship = await Friendship.findOne({
+            userId: userid,
+            friendId: friendId,
+            status: 'accepted'
+        });
+
+        if (!friendship) {
+            return res.json({
+                code: 403,
+                message: '不是好友关系，无法查看对比数据'
+            });
+        }
+
+        // 获取当前用户和好友的信息
+        const [currentUser, friendUser] = await Promise.all([
+            User.findById(userid).select('totalWords cet4 studyHistory username avatar createTime'),
+            User.findById(friendId).select('totalWords cet4 studyHistory username avatar createTime')
+        ]);
+
+        if (!currentUser || !friendUser) {
+            return res.json({
+                code: 404,
+                message: '用户不存在'
+            });
+        }
+
+        // 计算最近30天的学习时长（假设每个单词学习2分钟）
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+        const calculateStudyTime = (studyHistory) => {
+            return studyHistory
+                .filter(record => new Date(record.date) >= thirtyDaysAgo)
+                .reduce((total, record) => total + record.words * 2, 0); // 每个单词2分钟
+        };
+
+        const userStudyMinutes = calculateStudyTime(currentUser.studyHistory || []);
+        const friendStudyMinutes = calculateStudyTime(friendUser.studyHistory || []);
+
+        // 计算学习时长差异
+        const studyTimeDiff = {
+            minutes: Math.abs(userStudyMinutes - friendStudyMinutes),
+            hours: Math.abs(userStudyMinutes - friendStudyMinutes) / 60,
+            isAhead: userStudyMinutes >= friendStudyMinutes
+        };
+
+        // 计算单词掌握量差异
+        const userTotalWords = currentUser.totalWords || 0;
+        const friendTotalWords = friendUser.totalWords || 0;
+        const wordMasteryDiff = {
+            words: Math.abs(userTotalWords - friendTotalWords),
+            isAhead: userTotalWords >= friendTotalWords
+        };
+
+        // 计算连续学习天数差异
+        const userStreakDays = currentUser.cet4?.streakDays || 0;
+        const friendStreakDays = friendUser.cet4?.streakDays || 0;
+        const streakDaysDiff = {
+            days: Math.abs(userStreakDays - friendStreakDays),
+            isAhead: userStreakDays >= friendStreakDays
+        };
+
+        res.json({
+            code: 200,
+            message: 'success',
+            data: {
+                friendInfo: {
+                    username: friendUser.username,
+                    avatar: friendUser.avatar,
+                    joinDate: friendUser.createTime
+                },
+                studyTime: {
+                    user: {
+                        totalMinutes: userStudyMinutes,
+                        totalHours: userStudyMinutes / 60
+                    },
+                    friend: {
+                        totalMinutes: friendStudyMinutes,
+                        totalHours: friendStudyMinutes / 60
+                    },
+                    difference: studyTimeDiff
+                },
+                wordMastery: {
+                    user: {
+                        totalWords: userTotalWords
+                    },
+                    friend: {
+                        totalWords: friendTotalWords
+                    },
+                    difference: wordMasteryDiff
+                },
+                streakDays: {
+                    user: userStreakDays,
+                    friend: friendStreakDays,
+                    difference: streakDaysDiff
+                },
+                storyProgress: {
+                    user: { stories: [] },
+                    friend: { stories: [] }
+                }
+            }
+        });
+    } catch (error) {
+        logger.error('获取好友学习进度对比失败:', error);
+        logApiError(req, error, 500);
+        res.json({
+            code: 500,
+            message: '获取好友学习进度对比失败'
+        });
+    }
+});
+
 module.exports = router;

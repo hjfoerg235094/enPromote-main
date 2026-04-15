@@ -152,7 +152,8 @@ const getMetricName = (key: string): string => {
   return names[key] || key;
 };
 
-const formatMetricValue = (key: string, value: number): string => {
+const formatMetricValue = (key: string, value: number | undefined): string => {
+  if (value === undefined) return '-';
   if (key === 'accuracy' || key === 'retention' || key === 'comprehension' || key === 'usage') {
     return `${value.toFixed(1)}%`;
   }

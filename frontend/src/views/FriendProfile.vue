@@ -34,24 +34,24 @@
           <div class="comparison-content">
             <div class="comparison-item">
               <div class="comparison-label">我</div>
-              <div class="comparison-value">{{ comparison.studyTime.user.totalHours }} 小时</div>
+              <div class="comparison-value">{{ comparison.studyTime.user.totalHours.toFixed(1) }} 小时</div>
               <div class="comparison-bar">
                 <div class="bar-fill user" :style="{ width: getPercentage(comparison.studyTime.user.totalMinutes, comparison.studyTime.friend.totalMinutes) + '%' }"></div>
               </div>
             </div>
             <div class="comparison-item">
               <div class="comparison-label">{{ friendInfo.remark || friendInfo.username }}</div>
-              <div class="comparison-value">{{ comparison.studyTime.friend.totalHours }} 小时</div>
+              <div class="comparison-value">{{ comparison.studyTime.friend.totalHours.toFixed(1) }} 小时</div>
               <div class="comparison-bar">
                 <div class="bar-fill friend" :style="{ width: getPercentage(comparison.studyTime.friend.totalMinutes, comparison.studyTime.user.totalMinutes) + '%' }"></div>
               </div>
             </div>
             <div class="comparison-diff">
               <span v-if="comparison.studyTime.difference.isAhead" class="diff-positive">
-                ⬆️ 你领先 {{ comparison.studyTime.difference.hours }} 小时
+                ⬆️ 你领先 {{ comparison.studyTime.difference.hours.toFixed(1) }} 小时
               </span>
               <span v-else class="diff-negative">
-                ⬇️ 你落后 {{ Math.abs(comparison.studyTime.difference.hours) }} 小时
+                ⬇️ 你落后 {{ Math.abs(comparison.studyTime.difference.hours).toFixed(1) }} 小时
               </span>
             </div>
           </div>
@@ -159,7 +159,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getFriendCompare } from '@/api/friendCompare'
-import { getUserInfo } from '@/api/auth'
+
 
 const route = useRoute()
 const router = useRouter()
@@ -202,20 +202,17 @@ const fetchFriendData = async () => {
     const compareRes = await getFriendCompare(friendId)
     if (compareRes.data.code === 200) {
       comparison.value = compareRes.data.data
+      // 设置好友信息
+      friendInfo.value = {
+        username: compareRes.data.data.friendInfo.username,
+        joinDate: compareRes.data.data.friendInfo.joinDate,
+        remark: ''
+      }
+      // 设置好友头像
+      friendAvatar.value = compareRes.data.data.friendInfo.avatar
     } else {
       error.value = compareRes.data.message || '获取好友进度失败'
       return
-    }
-
-    // 获取当前用户信息
-    const userRes = await getUserInfo()
-    if (userRes.data.code === 200) {
-      // 这里可以添加获取好友基本信息的逻辑
-      friendInfo.value = {
-        username: '好友用户名', // 实际应该从API获取
-        joinDate: new Date(),
-        remark: ''
-      }
     }
 
   } catch (err) {

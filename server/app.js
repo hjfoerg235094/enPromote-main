@@ -29,11 +29,23 @@ const storyProgressRouter = require('./router/storyProgress');
 const listeningRouter = require('./router/listening');
 const studyRecordRouter = require('./router/studyRecord');
 const friendsRouter = require('./router/friends');
-const friendsCompareRouter = require('./router/friends_compare');
 const settingsRouter = require('./router/settings');
 const chatRouter = require('./router/chat');
+const oralRouter = require('./router/oral');
 
 const app = express();
+
+// CORS配置
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
 
 // 数据库连接
 db(() => {
@@ -44,18 +56,20 @@ db(() => {
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 
-// 会话配置 - 直接使用 MongoDB 作为 session 存储
+// 会话配置 - 使用 MongoDB 作为 session 存储
 app.use(session({
     name: 'sid',
     secret: process.env.SESSION_SECRET || 'your-super-secret-key',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URL || 'mongodb://localhost:27017/session'
+        mongoUrl: process.env.MONGO_URL || 'mongodb://localhost:27017/session',
+        collectionName: 'sessions',
+        ttl: 86400 // 24小时过期
     }),
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
-        secure: false,
+        maxAge: 86400000, // 24小时
+        secure: process.env.NODE_ENV === 'production', // 生产环境使用 HTTPS
         httpOnly: true,
         sameSite: 'lax'
     }
@@ -147,9 +161,9 @@ app.use('/api/story', storyProgressRouter);
 app.use('/api/listening', listeningRouter);
 app.use('/api/study-record', studyRecordRouter);
 app.use('/api/friends', friendsRouter);
-app.use('/api/friends', friendsCompareRouter);
 app.use('/api/settings', settingsRouter);
 app.use('/api/chat', chatRouter);
+app.use('/api/oral', oralRouter);
 
 // 404处理
 app.use((req, res) => {

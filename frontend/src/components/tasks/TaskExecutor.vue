@@ -40,6 +40,16 @@
       @complete="handleTaskComplete"
       @cancel="$emit('cancel')"
     />
+
+    <!-- 口语评测任务 -->
+    <OralTask
+      v-else-if="task.type === 'oral'"
+      :task="task"
+      :story-id="storyId"
+      :chapter-id="chapterId"
+      @complete="handleTaskComplete"
+      @cancel="$emit('cancel')"
+    />
   </div>
 </template>
 
@@ -49,6 +59,7 @@ import DialogueTask from './DialogueTask.vue';
 import SpellingTask from './SpellingTask.vue';
 import ListeningTask from './ListeningTask.vue';
 import ReadingTask from './ReadingTask.vue';
+import OralTask from './OralTask.vue';
 
 const props = defineProps<{
   task: any;

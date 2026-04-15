@@ -10,7 +10,7 @@ class VocabularyService {
         this.vocabularyCache = new Map(); // 词汇缓存
         this.cacheExpiry = new Map(); // 缓存过期时间
         this.CACHE_DURATION = 24 * 60 * 60 * 1000; // 缓存24小时
-        this.vocabularyDir = path.join(__dirname, '..', 'vocabulary');
+        this.vocabularyDir = path.join(__dirname, '..', 'word');
     }
 
     /**

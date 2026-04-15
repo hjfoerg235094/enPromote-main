@@ -29,6 +29,7 @@ const username = ref('');
 const password = ref('');
 function clickLogin(e) {
     e.preventDefault();
+    
     const data = {
         username: username.value,
         password: password.value
@@ -38,14 +39,19 @@ function clickLogin(e) {
         console.log(res);
         if (res.data.code === 200) {
             // 登录成功，获取用户信息
-            await getUserInfo(true);
-            window.location.href = '/'
+            const userInfo = await getUserInfo(true);
+            if (userInfo) {
+                window.location.href = '/'
+            } else {
+                alert('获取用户信息失败，请重试')
+            }
         } else {
             // 登录失败
             alert(res.data.message)
         }
     }).catch(err => {
         console.log(err);
+        alert('登录失败，请检查网络连接')
     });
 }
 </script>

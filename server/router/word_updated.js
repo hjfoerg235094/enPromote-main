@@ -275,7 +275,7 @@ router.get('/getWordList', async (req, res) => {
         let vocabularyPath;
         let vocabulary;
 
-        vocabularyPath = path.join(__dirname, '..', 'vocabulary', 'CET-4.json');
+        vocabularyPath = path.join(__dirname, '..', 'word', 'CET-4.json');
         console.log(vocabularyPath)
         if (!fs.existsSync(vocabularyPath)) {
             return res.json({
@@ -393,6 +393,21 @@ router.post('/updateWordProgress', async (req, res) => {
                 code: 404,
                 message: '用户不存在'
             });
+        }
+
+        // 更新CET-4词汇表位置
+        if (studyWords > 0) {
+            const currentPosition = user.cet4.position || 'A:0';
+            const parts = currentPosition.split(':');
+            const chapter = parts[0];
+            let index = parseInt(parts[1]) || 0;
+            
+            // 增加索引
+            index += studyWords;
+            
+            // 更新位置
+            user.cet4.position = `${chapter}:${index}`;
+            user.cet4.lastStudyTime = new Date();
         }
 
         // 更新今日学习单词数
