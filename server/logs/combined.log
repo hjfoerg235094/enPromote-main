@@ -19806,3 +19806,72 @@
 2026-04-17 13:24:03 [INFO]: MongoDB session store 初始化成功
 2026-04-17 13:24:03 [INFO]: 服务器启动成功
 2026-04-17 13:24:03 [INFO]: 数据库连接成功
+2026-04-17 13:24:09 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:24:09 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:24:09 [INFO]: 服务器启动成功
+2026-04-17 13:24:09 [INFO]: 数据库连接成功
+2026-04-17 13:25:23 [INFO]: User Action
+2026-04-17 13:25:23 [INFO]: User Action
+2026-04-17 13:25:26 [INFO]: User Action
+2026-04-17 13:25:26 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-04-17 13:25:27 [INFO]: User Action
+2026-04-17 13:25:27 [INFO]: 用户登录成功: admin
+2026-04-17 13:25:27 [INFO]: User Action
+2026-04-17 13:25:28 [INFO]: User Action
+2026-04-17 13:25:28 [INFO]: User Action
+2026-04-17 13:25:28 [INFO]: User Action
+2026-04-17 13:25:40 [INFO]: User Action
+2026-04-17 13:25:40 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-04-17 13:25:46 [INFO]: User Action
+2026-04-17 13:25:46 [INFO]: 用户登录成功: lrw
+2026-04-17 13:25:46 [INFO]: User Action
+2026-04-17 13:25:46 [INFO]: User Action
+2026-04-17 13:25:47 [INFO]: User Action
+2026-04-17 13:25:48 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 13:25:48 [INFO]: User Action
+2026-04-17 13:25:58 [INFO]: User Action
+2026-04-17 13:25:58 [INFO]: User Action
+2026-04-17 13:26:01 [INFO]: User Action
+2026-04-17 13:26:01 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 13:26:08 [INFO]: User Action
+2026-04-17 13:26:08 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 13:26:09 [INFO]: User Action
+2026-04-17 13:26:18 [INFO]: User Action
+2026-04-17 13:26:18 [INFO]: 用户退出登录: 6954906dcfd61592d2e46f10
+2026-04-17 13:26:20 [INFO]: User Action
+2026-04-17 13:26:20 [INFO]: 用户登录成功: admin
+2026-04-17 13:26:20 [INFO]: User Action
+2026-04-17 13:26:20 [INFO]: User Action
+2026-04-17 13:26:20 [INFO]: User Action
+2026-04-17 14:02:51 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 14:02:51 [INFO]: MongoDB session store 初始化成功
+2026-04-17 14:02:51 [INFO]: 服务器启动成功
+2026-04-17 14:02:51 [INFO]: 数据库连接成功
+2026-04-17 14:03:01 [INFO]: User Action
+2026-04-17 14:03:01 [INFO]: User Action
+2026-04-17 14:04:47 [INFO]: User Action
+2026-04-17 14:04:47 [INFO]: 用户退出登录: 69538fa1c08d8a94d0399ac9
+2026-04-17 14:04:49 [INFO]: User Action
+2026-04-17 14:04:49 [INFO]: 用户登录成功: admin
+2026-04-17 14:04:49 [INFO]: User Action
+2026-04-17 14:04:50 [INFO]: User Action
+2026-04-17 14:04:50 [INFO]: User Action
+2026-04-17 14:04:52 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 14:04:52 [INFO]: User Action
+2026-04-17 14:05:02 [INFO]: User Action
+2026-04-17 14:07:29 [INFO]: User Action
+2026-04-17 14:07:35 [INFO]: 收到评测请求
+2026-04-17 14:07:36 [INFO]: 模拟科大讯飞评测 - 文本: "aaa", 类型: sentence, 等级: senior
+2026-04-17 14:07:52 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 14:08:17 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 14:08:17 [INFO]: MongoDB session store 初始化成功
+2026-04-17 14:08:17 [INFO]: 服务器启动成功
+2026-04-17 14:08:17 [INFO]: 数据库连接成功
+2026-04-17 14:08:22 [INFO]: User Action
+2026-04-17 14:08:22 [INFO]: User Action
+2026-04-17 14:08:22 [INFO]: User Action
+2026-04-17 14:08:31 [INFO]: 收到评测请求
+2026-04-17 14:08:32 [INFO]: 模拟科大讯飞评测 - 文本: "aaaa", 类型: sentence, 等级: senior
+2026-04-17 14:09:09 [INFO]: User Action
+2026-04-17 14:09:09 [INFO]: User Action
+2026-04-17 14:30:14 [INFO]: 收到SIGINT信号，正在关闭服务器...

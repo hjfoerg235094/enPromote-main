@@ -72,9 +72,16 @@ export interface ApiResponse<T> {
 export const evaluatePronunciation = async (
   params: OralEvaluationRequest
 ): Promise<ApiResponse<OralEvaluationResult>> => {
-  // MediaRecorder 输出往往不是 raw PCM，而讯飞后端配置 aue=raw，
-  // 所以这里先转成 16kHz/16-bit/mono 的 Int16 little-endian bytes。
-  const pcmAudio = await blobToPCM16kMono(params.audio);
+  // 检查音频是否已经是 PCM 格式
+  let pcmAudio = params.audio;
+
+  // 只有当音频不是 PCM 格式时才进行转换
+  // 录音时已经生成了正确的 PCM 格式音频 (audio/l16)
+  if (params.audio.type !== 'audio/l16' && !params.audio.name.endsWith('.pcm')) {
+    // MediaRecorder 输出往往不是 raw PCM，而讯飞后端配置 aue=raw，
+    // 所以这里先转成 16kHz/16-bit/mono 的 Int16 little-endian bytes。
+    pcmAudio = await blobToPCM16kMono(params.audio);
+  }
 
   const formData = new FormData();
   formData.append('audio', pcmAudio, 'recording.pcm');
