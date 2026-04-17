@@ -1,8 +1,8 @@
-
 const crypto = require('crypto');
 const WebSocket = require('ws');
-const xunfeiConfig = require('../config/xunfei');
+const xunfeiConfig = require('../config/xunfei.js');
 const { logger } = require('../utils/logger');
+const { appId } = require('./mockXunfeiIseService');
 
 /**
  * 科大讯飞口语评测服务
@@ -15,7 +15,7 @@ class XunfeiIseService {
   generateAuthUrl() {
     const { apiKey, apiSecret } = xunfeiConfig;
     const host = "ise-api.xfyun.cn";
-    const path = "/v2/open-ise";
+    const path = "/v2/ise";
     const date = new Date().toUTCString();
 
     const signatureOrigin = `host: ${host}\ndate: ${date}\nGET ${path} HTTP/1.1`;
@@ -65,7 +65,7 @@ class XunfeiIseService {
 
       ws.on('open', () => {
         logger.info('科大讯飞口语评测连接成功');
-
+        
         // 验证音频数据
         if (!audioData || audioData.length === 0) {
           logger.error('音频数据为空');
@@ -99,6 +99,7 @@ class XunfeiIseService {
             app_id: xunfeiConfig.appId,
           },
           business: {
+            cmd: "ssb", //评测指令
             language: 'en_us',
             category: businessCategory,
             auf: 'audio/L16;rate=16000',
@@ -128,7 +129,13 @@ class XunfeiIseService {
           if (remaining <= 0) {
             // 无音频也要发送结束帧
             const endFrame = {
-              data: { status: 2, data: '' },
+              common:{
+                app_id: xunfeiConfig.appId,
+              },
+              business: {
+                cmd: "ssb"
+              },
+              data: { status: 2},
             };
             ws.send(JSON.stringify(endFrame));
             return;
@@ -146,19 +153,16 @@ class XunfeiIseService {
           const isFirst = frameIndex === 0;
           const isLast = offset >= buf.length;
 
-          // 设置数据状态：0=首帧，1=中间帧，2=结束帧
-          let dataStatus;
-          if (isFirst && isLast) {
-            dataStatus = 2; // 只有一帧，既是首帧也是结束帧
-          } else if (isFirst) {
-            dataStatus = 0; // 首帧
-          } else if (isLast) {
-            dataStatus = 2; // 结束帧
-          } else {
-            dataStatus = 1; // 中间帧
-          }
+          //音频帧永远 status = 1
+          const dataStatus = 1;
 
           const auwFrame = {
+            common:{
+              app_id: xunfeiConfig.appId,
+            },
+            business: {
+              cmd: "ssb"
+            },
             data: {
               status: dataStatus,
               data: chunk.toString('base64'),

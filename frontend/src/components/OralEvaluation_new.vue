@@ -212,37 +212,28 @@
 import { ref, onUnmounted } from 'vue';
 import { evaluatePronunciation, type OralEvaluationResult } from '../api/oral';
 
-// 评测配置
 const evaluationConfig = ref({
   category: 'sentence' as const,
   level: 'senior' as const
 });
 
-// 限制最长录音时长，避免超出后端上传限制
 const MAX_RECORD_SECONDS = 30;
-
-// 评测文本
 const evaluationText = ref('');
-
-// 录音状态
 const isRecording = ref(false);
 const isEvaluating = ref(false);
 const recordingTime = ref(0);
 const audioBlob = ref<Blob | null>(null);
 const audioUrl = ref<string>('');
-
-// 评测结果
 const evaluationResult = ref<OralEvaluationResult | null>(null);
-
-// 错误信息
 const errorMessage = ref('');
 
-// 录音相关变量
-let mediaRecorder: MediaRecorder | null = null;
-let audioChunks: BlobPart[] = [];
+let audioContext: AudioContext | null = null;
+let source: MediaStreamAudioSourceNode | null = null;
+let processor: ScriptProcessorNode | null = null;
+let pcmData: Int16Array[] = [];
 let recordingTimer: number | null = null;
+let mediaStream: MediaStream | null = null;
 
-// 切换录音状态
 const toggleRecording = async () => {
   if (isRecording.value) {
     stopRecording();
@@ -251,84 +242,79 @@ const toggleRecording = async () => {
   }
 };
 
-// 开始录音
+// ✅ 正确录音：16k 16bit mono PCM 裸数据
 const startRecording = async () => {
   try {
-    // 清理之前的录音
-    if (audioUrl.value) {
-      URL.revokeObjectURL(audioUrl.value);
-      audioUrl.value = '';
-    }
-    audioChunks = [];
+    if (audioUrl.value) URL.revokeObjectURL(audioUrl.value);
+    pcmData = [];
+    audioBlob.value = null;
+    audioUrl.value = '';
     evaluationResult.value = null;
     errorMessage.value = '';
 
-    // 获取麦克风权限
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    audioContext = new AudioContext({ sampleRate: 16000 });
+    source = audioContext.createMediaStreamSource(mediaStream);
+    processor = audioContext.createScriptProcessor(4096, 1, 1);
 
-    // 创建 MediaRecorder
-    mediaRecorder = new MediaRecorder(stream);
-
-    // 处理录音数据
-    mediaRecorder.ondataavailable = (event) => {
-      if (event.data.size > 0) {
-        audioChunks.push(event.data);
+    processor.onaudioprocess = (e) => {
+      const channelData = e.inputBuffer.getChannelData(0);
+      const int16Data = new Int16Array(channelData.length);
+      for (let i = 0; i < channelData.length; i++) {
+        const s = Math.max(-1, Math.min(1, channelData[i]));
+        int16Data[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
       }
+      pcmData.push(int16Data);
     };
 
-    // 录音停止处理
-    mediaRecorder.onstop = () => {
-      audioBlob.value = new Blob(audioChunks, { type: 'audio/wav' });
-      audioUrl.value = URL.createObjectURL(audioBlob.value);
-
-      // 停止所有音频轨道
-      stream.getTracks().forEach(track => track.stop());
-    };
-
-    // 开始录音
-    mediaRecorder.start();
+    source.connect(processor);
+    processor.connect(audioContext.destination);
     isRecording.value = true;
 
-    // 开始计时
     recordingTime.value = 0;
     recordingTimer = window.setInterval(() => {
       recordingTime.value++;
-
-      // 到点自动停止，触发 onstop -> 生成音频 blob
-      if (recordingTime.value >= MAX_RECORD_SECONDS) {
-        stopRecording();
-      }
+      if (recordingTime.value >= MAX_RECORD_SECONDS) stopRecording();
     }, 1000);
-
-  } catch (error) {
-    console.error('录音失败:', error);
-    errorMessage.value = '无法访问麦克风，请检查权限设置';
+  } catch (err) {
+    console.error('录音失败', err);
+    errorMessage.value = '麦克风权限异常';
   }
 };
 
-// 停止录音
 const stopRecording = () => {
-  if (mediaRecorder && isRecording.value) {
-    mediaRecorder.stop();
-    isRecording.value = false;
+  if (!isRecording.value) return;
 
-    // 停止计时
-    if (recordingTimer) {
-      clearInterval(recordingTimer);
-      recordingTimer = null;
-    }
+  isRecording.value = false;
+  if (recordingTimer) clearInterval(recordingTimer);
+
+  if (processor) {
+    processor.disconnect();
+    processor = null;
   }
+  if (source) source.disconnect();
+  if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+  if (audioContext) audioContext.close();
+
+  // 合并 PCM
+  const totalLen = pcmData.reduce((sum, arr) => sum + arr.length, 0);
+  const result = new Int16Array(totalLen);
+  let offset = 0;
+  for (const arr of pcmData) {
+    result.set(arr, offset);
+    offset += arr.length;
+  }
+
+  const uint8 = new Uint8Array(result.buffer);
+  audioBlob.value = new Blob([uint8], { type: 'audio/l16' });
+  audioUrl.value = URL.createObjectURL(audioBlob.value);
 };
 
-// 播放录音
 const playRecording = () => {
-  if (audioUrl.value) {
-    const audio = new Audio(audioUrl.value);
-    audio.play();
-  }
+  if (audioUrl.value) new Audio(audioUrl.value).play();
 };
 
-// 提交评测
+// ✅ 提交评测（上传 PCM）
 const submitEvaluation = async () => {
   if (!audioBlob.value) {
     errorMessage.value = '请先录制音频';
@@ -339,34 +325,29 @@ const submitEvaluation = async () => {
     isEvaluating.value = true;
     errorMessage.value = '';
 
-    const formData = new FormData();
-    formData.append('audio', audioBlob.value, 'recording.wav');
-    formData.append('text', evaluationText.value);
-    formData.append('category', evaluationConfig.value.category);
-    formData.append('level', evaluationConfig.value.level);
-
+    // 直接使用evaluatePronunciation函数，它会自动处理音频格式转换
     const response = await evaluatePronunciation({
-      audio: new File([audioBlob.value], 'recording.wav', { type: 'audio/wav' }),
+      audio: audioBlob.value,
       text: evaluationText.value,
       category: evaluationConfig.value.category,
       level: evaluationConfig.value.level
     });
 
-    if (response.success && response.data) {
-      evaluationResult.value = response.data;
+    // 由于request.ts返回的是完整的response对象，需要访问response.data来获取实际数据
+    const data = response.data;
+    if (data && data.success && data.data) {
+      evaluationResult.value = data.data;
     } else {
-      errorMessage.value = response.message || '评测失败，请重试';
+      errorMessage.value = data?.message || '评测失败';
     }
-
   } catch (error) {
-    console.error('评测失败:', error);
-    errorMessage.value = '评测失败，请重试';
+    console.error('评测失败', error);
+    errorMessage.value = '评测请求失败: ' + (error as Error).message;
   } finally {
     isEvaluating.value = false;
   }
 };
 
-// 获取分数等级样式
 const getScoreClass = (score: number) => {
   if (score >= 90) return 'excellent';
   if (score >= 80) return 'good';
@@ -374,7 +355,6 @@ const getScoreClass = (score: number) => {
   return 'poor';
 };
 
-// 获取单词分数等级样式
 const getWordScoreClass = (score: number) => {
   if (score >= 90) return 'excellent';
   if (score >= 80) return 'good';
@@ -382,49 +362,25 @@ const getWordScoreClass = (score: number) => {
   return 'poor';
 };
 
-// 获取改进建议
 const getImprovementSuggestions = () => {
   if (!evaluationResult.value) return [];
-
   const suggestions: string[] = [];
   const { dimensions, advice } = evaluationResult.value;
 
-  // 根据各维度评分生成建议
-  if (dimensions.accuracy < 80) {
-    suggestions.push(advice.accuracy);
-  }
-  if (dimensions.fluency < 80) {
-    suggestions.push(advice.fluency);
-  }
-  if (dimensions.integrity < 80) {
-    suggestions.push(advice.integrity);
-  }
-  if (dimensions.pronunciation < 80) {
-    suggestions.push(advice.pronunciation);
-  }
-  if (dimensions.speed && dimensions.speed < 80) {
-    suggestions.push(advice.speed || '');
-  }
-  if (dimensions.intonation && dimensions.intonation < 80) {
-    suggestions.push(advice.intonation || '');
-  }
+  if (dimensions.accuracy < 80) suggestions.push(advice.accuracy);
+  if (dimensions.fluency < 80) suggestions.push(advice.fluency);
+  if (dimensions.integrity < 80) suggestions.push(advice.integrity);
+  if (dimensions.pronunciation < 80) suggestions.push(advice.pronunciation);
+  if (dimensions.speed && dimensions.speed < 80 && advice.speed) suggestions.push(advice.speed);
+  if (dimensions.intonation && dimensions.intonation < 80 && advice.intonation) suggestions.push(advice.intonation);
 
-  // 如果所有维度都很好，给出鼓励
-  if (suggestions.length === 0) {
-    suggestions.push('你的发音非常标准！继续保持！');
-  }
-
-  return suggestions;
+  return suggestions.length ? suggestions : ['发音很棒，继续保持！'];
 };
 
-// 清理资源
 onUnmounted(() => {
-  if (recordingTimer) {
-    clearInterval(recordingTimer);
-  }
-  if (audioUrl.value) {
-    URL.revokeObjectURL(audioUrl.value);
-  }
+  if (recordingTimer) clearInterval(recordingTimer);
+  if (audioUrl.value) URL.revokeObjectURL(audioUrl.value);
+  if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
 });
 </script>
 
