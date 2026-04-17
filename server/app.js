@@ -71,7 +71,7 @@ app.use(session({
         maxAge: 86400000, // 24小时
         secure: process.env.NODE_ENV === 'production', // 生产环境使用 HTTPS
         httpOnly: true,
-        sameSite: 'lax'
+        sameSite: 'lax' // 使用lax以支持同站请求
     }
 }));
 logger.info('MongoDB session store 初始化成功');

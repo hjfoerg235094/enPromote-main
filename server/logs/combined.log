@@ -18421,3 +18421,1388 @@
 2026-04-15 13:41:25 [INFO]: User Action
 2026-04-15 13:41:31 [INFO]: User Action
 2026-04-15 13:41:31 [INFO]: User Action
+2026-04-16 09:24:50 [INFO]: MongoDB session store 初始化成功
+2026-04-16 09:24:50 [INFO]: 服务器启动成功
+2026-04-16 09:24:50 [INFO]: 数据库连接成功
+2026-04-16 09:24:55 [INFO]: User Action
+2026-04-16 09:24:55 [INFO]: User Action
+2026-04-16 09:24:55 [INFO]: User Action
+2026-04-16 09:25:14 [INFO]: User Action
+2026-04-16 09:25:17 [INFO]: User Action
+2026-04-16 09:25:17 [INFO]: User Action
+2026-04-16 09:25:19 [INFO]: User Action
+2026-04-16 09:25:21 [INFO]: User Action
+2026-04-16 09:25:24 [INFO]: User Action
+2026-04-16 09:26:44 [INFO]: User Action
+2026-04-16 09:27:40 [INFO]: User Action
+2026-04-16 09:27:42 [INFO]: User Action
+2026-04-16 09:27:44 [INFO]: User Action
+2026-04-16 09:31:27 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-16 09:31:27 [INFO]: User Action
+2026-04-16 09:31:29 [INFO]: User Action
+2026-04-16 09:31:30 [INFO]: User Action
+2026-04-16 09:31:31 [INFO]: User Action
+2026-04-16 09:31:40 [INFO]: User Action
+2026-04-16 09:54:23 [INFO]: User Action
+2026-04-16 09:54:24 [INFO]: User Action
+2026-04-16 09:54:25 [INFO]: User Action
+2026-04-16 09:54:25 [INFO]: User Action
+2026-04-16 09:54:34 [INFO]: User Action
+2026-04-16 09:54:34 [INFO]: User Action
+2026-04-16 09:55:18 [INFO]: User Action
+2026-04-16 09:56:36 [INFO]: User Action
+2026-04-16 09:56:37 [INFO]: User Action
+2026-04-16 09:56:37 [INFO]: User Action
+2026-04-16 09:56:37 [INFO]: User Action
+2026-04-16 09:56:38 [INFO]: User Action
+2026-04-16 09:56:39 [INFO]: User Action
+2026-04-16 09:56:40 [INFO]: User Action
+2026-04-16 09:57:12 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-16 09:57:13 [INFO]: User Action
+2026-04-16 09:57:55 [INFO]: MongoDB session store 初始化成功
+2026-04-16 09:57:55 [INFO]: 服务器启动成功
+2026-04-16 09:58:27 [INFO]: MongoDB session store 初始化成功
+2026-04-16 09:58:27 [INFO]: 服务器启动成功
+2026-04-16 09:58:27 [INFO]: 数据库连接成功
+2026-04-16 09:58:30 [INFO]: User Action
+2026-04-16 09:58:30 [INFO]: User Action
+2026-04-16 09:58:30 [INFO]: User Action
+2026-04-16 09:58:50 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 09:58:50 [INFO]: 音频数据长度: 82560 bytes
+2026-04-16 09:58:50 [INFO]: 发送参数帧:
+2026-04-16 09:58:50 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 09:58:51 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 09:58:51 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 09:59:23 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 09:59:26 [INFO]: MongoDB session store 初始化成功
+2026-04-16 09:59:26 [INFO]: 服务器启动成功
+2026-04-16 09:59:26 [INFO]: 数据库连接成功
+2026-04-16 09:59:45 [INFO]: User Action
+2026-04-16 09:59:48 [INFO]: User Action
+2026-04-16 09:59:51 [INFO]: User Action
+2026-04-16 09:59:52 [INFO]: User Action
+2026-04-16 09:59:53 [INFO]: User Action
+2026-04-16 09:59:53 [INFO]: User Action
+2026-04-16 09:59:54 [INFO]: User Action
+2026-04-16 10:00:11 [INFO]: User Action
+2026-04-16 10:00:11 [INFO]: User Action
+2026-04-16 10:00:13 [INFO]: User Action
+2026-04-16 10:00:13 [INFO]: 生成第四关题目 - 用户: 69538fa1c08d8a94d0399ac9, 章节: A, 单词数: 10, AI提供商: aliyun
+2026-04-16 10:00:39 [INFO]: AI生成的题目: {
+  "multiple_choice": [
+    {
+      "question": "During a dinner at the hotel, the guest asked the waitress to bring more ______ because the food was too spicy. Which word best fits the context?",
+      "options": [
+        {"key": "A", "content": "apparatus"},
+        {"key": "B", "content": "napkin"},
+        {"key": "C", "content": "maincourse"},
+        {"key": "D", "content": "tip"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "A napkin is used to wipe one's mouth or hands, and it can also be used to clean up spills or excess food. In this context, the guest might need a napkin to manage the spicy food.",
+      "relatedWords": ["napkin", "spicy"]
+    },
+    {
+      "question": "The hotel manager had a serious ______ with the chef about the quality of the cuisine. Which word fits best?",
+      "options": [
+        {"key": "A", "content": "affair"},
+        {"key": "B", "content": "ankle"},
+        {"key": "C", "content": "utensils"},
+        {"key": "D", "content": "anchor"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "An 'affair' refers to an event or situation, often a serious one. In this context, the manager and chef had a serious event or discussion about the cuisine.",
+      "relatedWords": ["affair", "cuisine"]
+    }
+  ],
+  "fill_in_blank": [
+    {
+      "context": "Waitress: Good evening, sir. How can I assist you? Guest: I would like to order the special ______. Waitress: Of course, it's a delicious choice. Would you like any ______ with your meal? Guest: Yes, I prefer a soft one.",
+      "blanks": [
+        {
+          "position": "First blank: the special ______",
+          "answer": "maincourse",
+          "options": ["maincourse", "tip", "anchor", "utensils"],
+          "explanation": "The 'main course' is the primary dish of a meal, which fits the context of ordering a special dish."
+        },
+        {
+          "position": "Second blank: any ______ with your meal",
+          "answer": "napkin",
+          "options": ["napkin", "apparatus", "ankle", "affair"],
+          "explanation": "A napkin is used during meals, so it makes sense to ask if the guest wants one."
+        }
+      ]
+    }
+  ],
+  "scenario_dialogue": {
+    "dialogue": "Guest: Excuse me, I just received my meal, but I noticed that the utensils are not complete. Waitress: I'm sorry to hear that. Let me check. Oh, you're right, there's no fork. I'll bring one right away. Guest: Thank you. Also, I wanted to ask about the cuisine here. Waitress: The cuisine is a mix of local and international dishes. We have a special menu for our guests. Guest: That sounds great. I'll try the main course. Waitress: Excellent choice!",
+    "question": "What did the guest ask the waitress to bring?",
+    "options": [
+      {"key": "A", "content": "a tip"},
+      {"key": "B", "content": "a napkin"},
+      {"key": "C", "content": "a fork"},
+      {"key": "D", "content": "a maincourse"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "The guest mentioned that the utensils were not complete and specifically asked for a fork, which is a type of utensil.",
+    "relatedWords": ["utensils", "maincourse", "cuisine"]
+  },
+  "listening_comprehension": [
+    {
+      "content": "At the hotel, a guest asked the waitress for a napkin after eating. The waitress then asked if he needed any more utensils. The guest said no, but he wanted to know about the cuisine. The waitress explained that the cuisine was a mix of local and international dishes. The guest then decided to try the main course.",
+      "questions": [
+        {
+          "question": "What did the guest ask for after eating?",
+          "options": [
+            {"key": "A", "content": "a tip"},
+            {"key": "B", "content": "a napkin"},
+            {"key": "C", "content": "a maincourse"},
+            {"key": "D", "content": "an anchor"}
+          ],
+          "correctAnswer": "B",
+          "explanation": "The guest asked for a napkin after eating, which is a common request in a restaurant setting."
+        },
+        {
+          "question": "What did the guest want to know about the cuisine?",
+          "options": [
+            {"key": "A", "content": "the price"},
+            {"key": "B", "content": "the ingredients"},
+            {"key": "C", "content": "the variety"},
+            {"key": "D", "content": "the location"}
+          ],
+          "correctAnswer": "C",
+          "explanation": "The guest asked about the cuisine, and the waitress explained that it was a mix of local and international dishes, referring to its variety."
+        }
+      ],
+      "relatedWords": ["napkin", "cuisine", "maincourse"]
+    }
+  ],
+  "cloze_test": [
+    {
+      "content": "At the hotel, the guest asked for a ______ after finishing his meal. The waitress brought a ______ and asked if he needed any more ______. The guest said no, but he wanted to know about the ______. The waitress explained that the cuisine was a mix of local and international dishes.",
+      "blanks": [
+        {
+          "position": "First blank: a ______ after finishing his meal",
+          "answer": "napkin",
+          "options": ["napkin", "tip", "anchor", "apparatus"],
+          "explanation": "A napkin is commonly used after eating to wipe one's mouth."
+        },
+        {
+          "position": "Second blank: a ______",
+          "answer": "utensils",
+          "options": ["utensils", "affair", "ankle", "maincourse"],
+          "explanation": "Utensils are the tools used for eating, so it makes sense for the waitress to ask if the guest needed more."
+        },
+        {
+          "position": "Third blank: any more ______",
+          "answer": "utensils",
+          "options": ["utensils", "affair", "ankle", "maincourse"],
+          "explanation": "Utensils are the tools used for eating, so it makes sense for the waitress to ask if the guest needed more."
+        },
+        {
+          "position": "Fourth blank: the ______",
+          "answer": "cuisine",
+          "options": ["cuisine", "apparatus", "ankle", "tip"],
+          "explanation": "The guest asked about the cuisine, which refers to the food served at the hotel."
+        },
+        {
+          "position": "Fifth blank: the ______ was a mix of local and international dishes",
+          "answer": "cuisine",
+          "options": ["cuisine", "apparatus", "ankle", "tip"],
+          "explanation": "The cuisine refers to the food served at the hotel."
+        }
+      ],
+      "relatedWords": ["napkin", "utensils", "cuisine", "maincourse"]
+    }
+  ],
+  "translation": [
+    {
+      "english": "The guest asked the waitress for a napkin after the main course.",
+      "chinese": "客人在主菜后向服务员要了一块餐巾。",
+      "tips": "In this sentence, 'main course' refers to the main dish of a meal, and 'napkin' is a piece of cloth used to wipe one's mouth. Translating these terms accurately is important for clarity.",
+      "relatedWords": ["maincourse", "napkin"]
+    }
+  ],
+  "writing": [
+    {
+      "task": "Write a short paragraph about your experience at a hotel restaurant. Make sure to include at least three of the given words: 'maincourse', 'cuisine', 'utensils'.",
+      "requirements": "Your paragraph should be 50-80 words. Use clear and simple language.",
+      "gradingCriteria": "Content (40%), Vocabulary (30%), Grammar (30%).",
+      "sampleAnswer": "I had a great experience at the hotel restaurant. The main course was delicious, and the cuisine was very diverse. The utensils were clean and well-organized. I enjoyed my meal a lot.",
+      "relatedWords": ["maincourse", "cuisine", "utensils"]
+    }
+  ],
+  "true_false": [
+    {
+      "statement": "The guest asked the waitress for a tip after the meal.",
+      "correctAnswer": "false",
+      "explanation": "The guest did not ask for a tip. Instead, he asked for a napkin and inquired about the cuisine.",
+      "relatedWords": ["tip", "napkin", "cuisine"]
+    },
+    {
+      "statement": "The waitress explained that the cuisine was a mix of local and international dishes.",
+      "correctAnswer": "true",
+      "explanation": "This is directly stated in the dialogue. The waitress confirmed that the cuisine included both local and international options.",
+      "relatedWords": ["cuisine", "international", "local"]
+    }
+  ]
+}
+2026-04-16 10:00:39 [INFO]: JSON解析成功，尝试次数: 1
+2026-04-16 10:00:39 [WARN]: 跳过重复的填空题: Waitress: Good evening, sir. How can I assist you?...
+2026-04-16 10:00:40 [INFO]: 成功保存 15 道题目到数据库
+2026-04-16 10:00:40 [INFO]: User Action
+2026-04-16 10:00:40 [INFO]: User Action
+2026-04-16 10:01:11 [INFO]: User Action
+2026-04-16 10:01:11 [INFO]: User Action
+2026-04-16 10:01:14 [INFO]: User Action
+2026-04-16 10:01:49 [INFO]: User Action
+2026-04-16 10:01:49 [INFO]: User Action
+2026-04-16 10:02:57 [INFO]: User Action
+2026-04-16 10:02:58 [INFO]: User Action
+2026-04-16 10:04:16 [INFO]: User Action
+2026-04-16 10:04:17 [INFO]: User Action
+2026-04-16 10:04:21 [INFO]: User Action
+2026-04-16 10:04:21 [INFO]: User Action
+2026-04-16 10:05:26 [INFO]: User Action
+2026-04-16 14:07:13 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:07:13 [INFO]: 服务器启动成功
+2026-04-16 14:07:13 [INFO]: 数据库连接成功
+2026-04-16 14:08:10 [INFO]: User Action
+2026-04-16 14:08:10 [INFO]: 用户登录成功: admin
+2026-04-16 14:08:24 [INFO]: User Action
+2026-04-16 14:08:24 [INFO]: 用户登录成功: admin
+2026-04-16 14:08:44 [INFO]: User Action
+2026-04-16 14:08:44 [INFO]: User Action
+2026-04-16 14:08:46 [INFO]: User Action
+2026-04-16 14:08:48 [INFO]: User Action
+2026-04-16 14:08:50 [INFO]: User Action
+2026-04-16 14:08:54 [INFO]: User Action
+2026-04-16 14:09:15 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:09:15 [INFO]: 音频数据长度: 84480 bytes
+2026-04-16 14:09:15 [INFO]: 发送参数帧:
+2026-04-16 14:09:15 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:09:15 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:09:16 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:11:01 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 14:13:50 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:13:50 [INFO]: 服务器启动成功
+2026-04-16 14:13:50 [INFO]: 数据库连接成功
+2026-04-16 14:14:06 [INFO]: User Action
+2026-04-16 14:14:11 [INFO]: User Action
+2026-04-16 14:14:12 [INFO]: User Action
+2026-04-16 14:14:53 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:14:53 [INFO]: 音频数据长度: 963840 bytes
+2026-04-16 14:14:53 [INFO]: 发送参数帧:
+2026-04-16 14:14:53 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:14:53 [INFO]: 发送音频帧 1: status=1, chunkSize=1280
+2026-04-16 14:14:53 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:14:54 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:32:40 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 14:41:05 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:41:05 [INFO]: 服务器启动成功
+2026-04-16 14:41:05 [INFO]: 数据库连接成功
+2026-04-16 14:41:09 [INFO]: User Action
+2026-04-16 14:41:09 [INFO]: User Action
+2026-04-16 14:41:24 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:41:24 [INFO]: 音频数据长度: 88320 bytes
+2026-04-16 14:41:24 [INFO]: 发送参数帧:
+2026-04-16 14:41:24 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:41:24 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:41:25 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:41:46 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 14:41:49 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:41:49 [INFO]: 服务器启动成功
+2026-04-16 14:41:49 [INFO]: 数据库连接成功
+2026-04-16 14:41:51 [INFO]: User Action
+2026-04-16 14:41:51 [INFO]: User Action
+2026-04-16 14:42:03 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:42:03 [INFO]: 音频数据长度: 53760 bytes
+2026-04-16 14:42:03 [INFO]: 发送参数帧:
+2026-04-16 14:42:03 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:42:04 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:42:04 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:45:02 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:45:02 [INFO]: 服务器启动成功
+2026-04-16 14:45:02 [INFO]: 数据库连接成功
+2026-04-16 14:45:15 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:45:15 [INFO]: 服务器启动成功
+2026-04-16 14:45:15 [INFO]: 数据库连接成功
+2026-04-16 14:45:32 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:45:32 [INFO]: 服务器启动成功
+2026-04-16 14:45:32 [INFO]: 数据库连接成功
+2026-04-16 14:45:58 [INFO]: User Action
+2026-04-16 14:45:58 [INFO]: User Action
+2026-04-16 14:46:21 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:46:21 [INFO]: 音频数据长度: 153600 bytes
+2026-04-16 14:46:21 [INFO]: 发送参数帧:
+2026-04-16 14:46:21 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:46:21 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-16 14:46:21 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:203:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:47:46 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:47:46 [INFO]: 服务器启动成功
+2026-04-16 14:47:46 [INFO]: 数据库连接成功
+2026-04-16 14:48:31 [INFO]: User Action
+2026-04-16 14:48:31 [INFO]: User Action
+2026-04-16 14:49:26 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:49:26 [INFO]: 服务器启动成功
+2026-04-16 14:49:26 [INFO]: 数据库连接成功
+2026-04-16 14:49:35 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:49:35 [INFO]: 服务器启动成功
+2026-04-16 14:49:35 [INFO]: 数据库连接成功
+2026-04-16 14:49:44 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:49:44 [INFO]: 服务器启动成功
+2026-04-16 14:49:44 [INFO]: 数据库连接成功
+2026-04-16 14:53:56 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 14:53:59 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:53:59 [INFO]: 服务器启动成功
+2026-04-16 14:53:59 [INFO]: 数据库连接成功
+2026-04-16 14:54:22 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:54:22 [INFO]: 音频数据长度: 119040 bytes
+2026-04-16 14:54:22 [INFO]: 发送参数帧:
+2026-04-16 14:54:22 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:54:22 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:54:23 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:201:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:57:34 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:57:34 [INFO]: 服务器启动成功
+2026-04-16 14:57:34 [INFO]: 数据库连接成功
+2026-04-16 14:57:52 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:57:52 [INFO]: 服务器启动成功
+2026-04-16 14:57:52 [INFO]: 数据库连接成功
+2026-04-16 14:58:13 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:58:13 [INFO]: 服务器启动成功
+2026-04-16 14:58:13 [INFO]: 数据库连接成功
+2026-04-16 14:58:21 [INFO]: MongoDB session store 初始化成功
+2026-04-16 14:58:21 [INFO]: 服务器启动成功
+2026-04-16 14:58:21 [INFO]: 数据库连接成功
+2026-04-16 14:58:37 [INFO]: User Action
+2026-04-16 14:58:37 [INFO]: User Action
+2026-04-16 14:58:51 [INFO]: 科大讯飞口语评测连接成功
+2026-04-16 14:58:51 [INFO]: 音频数据长度: 71040 bytes
+2026-04-16 14:58:51 [INFO]: 发送参数帧:
+2026-04-16 14:58:51 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-16 14:58:51 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-16 14:58:52 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:203:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:59:04 [INFO]: User Action
+2026-04-16 14:59:19 [INFO]: User Action
+2026-04-16 14:59:19 [INFO]: User Action
+2026-04-16 14:59:27 [INFO]: User Action
+2026-04-16 15:13:11 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:13:11 [INFO]: 服务器启动成功
+2026-04-16 15:13:11 [INFO]: 数据库连接成功
+2026-04-16 15:13:26 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:13:26 [INFO]: 服务器启动成功
+2026-04-16 15:13:26 [INFO]: 数据库连接成功
+2026-04-16 15:13:31 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:13:31 [INFO]: 服务器启动成功
+2026-04-16 15:13:31 [INFO]: 数据库连接成功
+2026-04-16 15:17:47 [INFO]: User Action
+2026-04-16 15:17:47 [INFO]: User Action
+2026-04-16 15:17:48 [INFO]: User Action
+2026-04-16 15:17:48 [INFO]: User Action
+2026-04-16 15:18:01 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:18:01 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:19:38 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:19:38 [INFO]: 服务器启动成功
+2026-04-16 15:19:38 [INFO]: 数据库连接成功
+2026-04-16 15:19:44 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:19:44 [INFO]: 服务器启动成功
+2026-04-16 15:19:44 [INFO]: 数据库连接成功
+2026-04-16 15:19:53 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:19:53 [INFO]: 服务器启动成功
+2026-04-16 15:19:53 [INFO]: 数据库连接成功
+2026-04-16 15:20:04 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 15:20:08 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:20:08 [INFO]: 服务器启动成功
+2026-04-16 15:20:08 [INFO]: 数据库连接成功
+2026-04-16 15:20:23 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:20:23 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:24:28 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 15:24:31 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:24:31 [INFO]: 服务器启动成功
+2026-04-16 15:24:31 [INFO]: 数据库连接成功
+2026-04-16 15:24:34 [INFO]: User Action
+2026-04-16 15:24:34 [INFO]: User Action
+2026-04-16 15:24:44 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:24:44 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:30:06 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:30:06 [INFO]: 服务器启动成功
+2026-04-16 15:30:06 [INFO]: 数据库连接成功
+2026-04-16 15:30:38 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:30:38 [INFO]: 服务器启动成功
+2026-04-16 15:30:38 [INFO]: 数据库连接成功
+2026-04-16 15:31:35 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:31:35 [INFO]: 服务器启动成功
+2026-04-16 15:31:35 [INFO]: 数据库连接成功
+2026-04-16 15:34:04 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:34:04 [INFO]: 服务器启动成功
+2026-04-16 15:34:04 [INFO]: 数据库连接成功
+2026-04-16 15:39:22 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:39:22 [INFO]: 服务器启动成功
+2026-04-16 15:39:22 [INFO]: 数据库连接成功
+2026-04-16 15:41:54 [INFO]: User Action
+2026-04-16 15:41:54 [INFO]: User Action
+2026-04-16 15:41:54 [INFO]: User Action
+2026-04-16 15:41:56 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-16 15:41:56 [INFO]: User Action
+2026-04-16 15:42:08 [INFO]: User Action
+2026-04-16 15:42:18 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:42:18 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:45:22 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 15:45:25 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:45:25 [INFO]: 服务器启动成功
+2026-04-16 15:45:25 [INFO]: 数据库连接成功
+2026-04-16 15:45:32 [INFO]: User Action
+2026-04-16 15:45:32 [INFO]: User Action
+2026-04-16 15:45:32 [INFO]: User Action
+2026-04-16 15:45:33 [INFO]: User Action
+2026-04-16 15:45:46 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:45:46 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:48:13 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:48:13 [INFO]: 服务器启动成功
+2026-04-16 15:48:13 [INFO]: 数据库连接成功
+2026-04-16 15:49:30 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:49:30 [INFO]: 服务器启动成功
+2026-04-16 15:49:30 [INFO]: 数据库连接成功
+2026-04-16 15:49:35 [INFO]: MongoDB session store 初始化成功
+2026-04-16 15:49:35 [INFO]: 服务器启动成功
+2026-04-16 15:49:35 [INFO]: 数据库连接成功
+2026-04-16 16:12:29 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:12:29 [INFO]: 服务器启动成功
+2026-04-16 16:12:29 [INFO]: 数据库连接成功
+2026-04-16 16:12:33 [INFO]: User Action
+2026-04-16 16:12:33 [INFO]: User Action
+2026-04-16 16:12:33 [INFO]: User Action
+2026-04-16 16:12:34 [INFO]: User Action
+2026-04-16 16:12:48 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:12:48 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:13:43 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:13:43 [INFO]: 服务器启动成功
+2026-04-16 16:13:43 [INFO]: 数据库连接成功
+2026-04-16 16:15:32 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:15:32 [INFO]: 服务器启动成功
+2026-04-16 16:15:32 [INFO]: 数据库连接成功
+2026-04-16 16:21:01 [INFO]: User Action
+2026-04-16 16:21:01 [INFO]: User Action
+2026-04-16 16:21:11 [INFO]: 使用endpoint:
+2026-04-16 16:21:11 [INFO]: 解析结果 - host:
+2026-04-16 16:21:11 [INFO]: 生成的鉴权URL:
+2026-04-16 16:21:12 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:21:12 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:21:27 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:21:27 [INFO]: 服务器启动成功
+2026-04-16 16:21:27 [INFO]: 数据库连接成功
+2026-04-16 16:35:12 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:35:12 [INFO]: 服务器启动成功
+2026-04-16 16:35:12 [INFO]: 数据库连接成功
+2026-04-16 16:35:15 [INFO]: User Action
+2026-04-16 16:35:15 [INFO]: User Action
+2026-04-16 16:35:16 [INFO]: User Action
+2026-04-16 16:35:26 [INFO]: 音频数据长度: 55680 bytes
+2026-04-16 16:35:27 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:35:27 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:38:30 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 16:38:34 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:38:34 [INFO]: 服务器启动成功
+2026-04-16 16:38:34 [INFO]: 数据库连接成功
+2026-04-16 16:38:41 [INFO]: User Action
+2026-04-16 16:38:41 [INFO]: User Action
+2026-04-16 16:38:50 [INFO]: 音频数据长度: 65280 bytes
+2026-04-16 16:38:50 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:38:50 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:41:11 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:41:11 [INFO]: 服务器启动成功
+2026-04-16 16:41:11 [INFO]: 数据库连接成功
+2026-04-16 16:41:53 [INFO]: User Action
+2026-04-16 16:41:53 [INFO]: User Action
+2026-04-16 16:41:59 [INFO]: 音频数据长度: 26880 bytes
+2026-04-16 16:41:59 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:41:59 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:43:09 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:43:09 [INFO]: 服务器启动成功
+2026-04-16 16:43:09 [INFO]: 数据库连接成功
+2026-04-16 16:43:18 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:43:18 [INFO]: 服务器启动成功
+2026-04-16 16:43:18 [INFO]: 数据库连接成功
+2026-04-16 16:43:59 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:43:59 [INFO]: 服务器启动成功
+2026-04-16 16:43:59 [INFO]: 数据库连接成功
+2026-04-16 16:44:50 [INFO]: User Action
+2026-04-16 16:44:50 [INFO]: User Action
+2026-04-16 16:45:00 [INFO]: 音频数据长度: 32640 bytes
+2026-04-16 16:45:00 [INFO]: 百度API配置检查:
+2026-04-16 16:45:00 [INFO]: - API Key:
+2026-04-16 16:45:00 [INFO]: - Secret Key:
+2026-04-16 16:45:00 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:45:00 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:48:43 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 16:48:47 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:48:47 [INFO]: 服务器启动成功
+2026-04-16 16:48:47 [INFO]: 数据库连接成功
+2026-04-16 16:48:52 [INFO]: User Action
+2026-04-16 16:48:52 [INFO]: User Action
+2026-04-16 16:48:59 [INFO]: 音频数据长度: 36480 bytes
+2026-04-16 16:48:59 [INFO]: 百度API配置检查:
+2026-04-16 16:48:59 [INFO]: - API Key:
+2026-04-16 16:48:59 [INFO]: - Secret Key:
+2026-04-16 16:48:59 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:48:59 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:51:41 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 16:51:44 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:51:44 [INFO]: 服务器启动成功
+2026-04-16 16:51:45 [INFO]: 数据库连接成功
+2026-04-16 16:51:48 [INFO]: User Action
+2026-04-16 16:51:48 [INFO]: User Action
+2026-04-16 16:51:56 [INFO]: 音频数据长度: 48000 bytes
+2026-04-16 16:51:56 [INFO]: 百度API配置检查:
+2026-04-16 16:51:56 [INFO]: - API Key:
+2026-04-16 16:51:56 [INFO]: - Secret Key:
+2026-04-16 16:51:56 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:51:56 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:54:34 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-16 16:54:38 [INFO]: MongoDB session store 初始化成功
+2026-04-16 16:54:38 [INFO]: 服务器启动成功
+2026-04-16 16:54:38 [INFO]: 数据库连接成功
+2026-04-16 16:54:42 [INFO]: User Action
+2026-04-16 16:54:42 [INFO]: User Action
+2026-04-16 16:54:52 [INFO]: 音频数据长度: 65280 bytes
+2026-04-16 16:54:52 [INFO]: 百度API配置检查:
+2026-04-16 16:54:52 [INFO]: - API Key:
+2026-04-16 16:54:52 [INFO]: - Secret Key:
+2026-04-16 16:54:52 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:54:52 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 17:00:43 [INFO]: MongoDB session store 初始化成功
+2026-04-16 17:00:43 [INFO]: 服务器启动成功
+2026-04-16 17:00:43 [INFO]: 数据库连接成功
+2026-04-17 08:19:12 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:19:12 [INFO]: 服务器启动成功
+2026-04-17 08:19:42 [ERROR]: 未处理的Promise拒绝
+2026-04-17 08:19:42 [ERROR]: 未处理的Promise拒绝
+2026-04-17 08:21:37 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 08:21:41 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:21:41 [INFO]: 服务器启动成功
+2026-04-17 08:21:41 [INFO]: 数据库连接成功
+2026-04-17 08:21:47 [INFO]: User Action
+2026-04-17 08:21:47 [INFO]: User Action
+2026-04-17 08:21:48 [INFO]: User Action
+2026-04-17 08:21:57 [INFO]: User Action
+2026-04-17 08:22:00 [INFO]: User Action
+2026-04-17 08:22:00 [INFO]: User Action
+2026-04-17 08:22:01 [INFO]: User Action
+2026-04-17 08:22:02 [INFO]: User Action
+2026-04-17 08:22:04 [INFO]: User Action
+2026-04-17 08:22:06 [INFO]: User Action
+2026-04-17 08:22:12 [INFO]: User Action
+2026-04-17 08:22:17 [INFO]: User Action
+2026-04-17 08:22:22 [INFO]: User Action
+2026-04-17 08:22:25 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 08:22:25 [INFO]: User Action
+2026-04-17 08:25:39 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 08:25:42 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:25:42 [INFO]: 服务器启动成功
+2026-04-17 08:25:42 [INFO]: 数据库连接成功
+2026-04-17 08:25:51 [INFO]: User Action
+2026-04-17 08:25:51 [INFO]: User Action
+2026-04-17 08:25:51 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 08:25:51 [INFO]: User Action
+2026-04-17 08:25:53 [INFO]: User Action
+2026-04-17 08:26:04 [INFO]: 音频数据长度: 51840 bytes
+2026-04-17 08:26:04 [INFO]: 百度API配置检查:
+2026-04-17 08:26:04 [INFO]: - API Key:
+2026-04-17 08:26:04 [INFO]: - Secret Key:
+2026-04-17 08:26:04 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:26:04 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:27:34 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:27:34 [INFO]: 服务器启动成功
+2026-04-17 08:27:34 [INFO]: 数据库连接成功
+2026-04-17 08:27:52 [INFO]: 口语评测服务模式: 真实API模式
+2026-04-17 08:27:52 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:27:52 [INFO]: 服务器启动成功
+2026-04-17 08:27:52 [INFO]: 数据库连接成功
+2026-04-17 08:33:11 [INFO]: User Action
+2026-04-17 08:33:11 [INFO]: User Action
+2026-04-17 08:33:22 [INFO]: 音频数据长度: 53760 bytes
+2026-04-17 08:33:22 [INFO]: 百度API配置检查:
+2026-04-17 08:33:22 [INFO]: - API Key:
+2026-04-17 08:33:22 [INFO]: - Secret Key:
+2026-04-17 08:33:22 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:22 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:27 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 08:33:30 [INFO]: 口语评测服务模式: 真实API模式
+2026-04-17 08:33:30 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:33:30 [INFO]: 服务器启动成功
+2026-04-17 08:33:30 [INFO]: 数据库连接成功
+2026-04-17 08:33:37 [INFO]: User Action
+2026-04-17 08:33:37 [INFO]: User Action
+2026-04-17 08:33:46 [INFO]: 音频数据长度: 84480 bytes
+2026-04-17 08:33:46 [INFO]: 百度API配置检查:
+2026-04-17 08:33:46 [INFO]: - API Key:
+2026-04-17 08:33:46 [INFO]: - Secret Key:
+2026-04-17 08:33:46 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:46 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:35:46 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 08:35:50 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 08:35:50 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:35:50 [INFO]: 服务器启动成功
+2026-04-17 08:35:50 [INFO]: 数据库连接成功
+2026-04-17 08:35:54 [INFO]: User Action
+2026-04-17 08:35:54 [INFO]: User Action
+2026-04-17 08:36:03 [INFO]: 模拟评测 - 文本: "associate", 类型: word, 等级: college
+2026-04-17 08:36:13 [INFO]: 模拟评测 - 文本: "associate", 类型: word, 等级: college
+2026-04-17 08:37:30 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 08:37:30 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:37:30 [INFO]: 服务器启动成功
+2026-04-17 08:37:30 [INFO]: 数据库连接成功
+2026-04-17 08:38:14 [INFO]: User Action
+2026-04-17 08:38:14 [INFO]: User Action
+2026-04-17 08:38:26 [INFO]: 模拟评测 - 文本: "associate", 类型: word, 等级: college
+2026-04-17 08:43:45 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 08:43:45 [INFO]: MongoDB session store 初始化成功
+2026-04-17 08:43:45 [INFO]: 服务器启动成功
+2026-04-17 08:43:45 [INFO]: 数据库连接成功
+2026-04-17 08:44:09 [INFO]: User Action
+2026-04-17 08:44:09 [INFO]: User Action
+2026-04-17 08:44:20 [INFO]: 模拟评测 - 文本: "associate", 类型: word, 等级: college
+2026-04-17 09:47:21 [INFO]: User Action
+2026-04-17 09:47:21 [INFO]: User Action
+2026-04-17 09:47:21 [INFO]: User Action
+2026-04-17 09:47:36 [INFO]: 模拟评测 - 文本: "associate
+", 类型: word, 等级: college
+2026-04-17 09:59:02 [INFO]: User Action
+2026-04-17 09:59:03 [INFO]: User Action
+2026-04-17 09:59:54 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 09:59:54 [INFO]: MongoDB session store 初始化成功
+2026-04-17 09:59:54 [INFO]: 服务器启动成功
+2026-04-17 09:59:54 [INFO]: 数据库连接成功
+2026-04-17 10:00:42 [INFO]: User Action
+2026-04-17 10:00:42 [INFO]: User Action
+2026-04-17 10:01:39 [INFO]: User Action
+2026-04-17 10:01:55 [INFO]: User Action
+2026-04-17 10:01:56 [INFO]: User Action
+2026-04-17 10:02:46 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 10:02:47 [INFO]: MongoDB session store 初始化成功
+2026-04-17 10:02:47 [INFO]: 服务器启动成功
+2026-04-17 10:02:47 [INFO]: 数据库连接成功
+2026-04-17 10:03:12 [INFO]: User Action
+2026-04-17 10:03:23 [INFO]: 收到评测请求
+2026-04-17 10:03:23 [WARN]: 未上传音频文件
+2026-04-17 11:03:12 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 11:03:12 [INFO]: MongoDB session store 初始化成功
+2026-04-17 11:03:12 [INFO]: 服务器启动成功
+2026-04-17 11:03:12 [INFO]: 数据库连接成功
+2026-04-17 11:03:17 [INFO]: User Action
+2026-04-17 11:03:17 [INFO]: User Action
+2026-04-17 11:03:34 [INFO]: 收到评测请求
+2026-04-17 11:03:34 [WARN]: 未上传音频文件
+2026-04-17 11:03:53 [INFO]: 收到评测请求
+2026-04-17 11:03:53 [WARN]: 未上传音频文件
+2026-04-17 11:05:31 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 11:17:33 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 11:17:33 [INFO]: MongoDB session store 初始化成功
+2026-04-17 11:17:33 [INFO]: 服务器启动成功
+2026-04-17 11:17:33 [INFO]: 数据库连接成功
+2026-04-17 11:17:35 [INFO]: User Action
+2026-04-17 11:17:35 [INFO]: User Action
+2026-04-17 11:17:35 [INFO]: User Action
+2026-04-17 11:17:50 [INFO]: 收到评测请求
+2026-04-17 11:17:50 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 11:17:50 [INFO]: 音频数据长度: 69120 bytes
+2026-04-17 11:17:50 [INFO]: 发送参数帧:
+2026-04-17 11:17:50 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 11:17:50 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:17:51 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:22:15 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 11:22:18 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 11:22:18 [INFO]: MongoDB session store 初始化成功
+2026-04-17 11:22:18 [INFO]: 服务器启动成功
+2026-04-17 11:22:18 [INFO]: 数据库连接成功
+2026-04-17 11:22:27 [INFO]: 收到评测请求
+2026-04-17 11:22:27 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 11:22:27 [INFO]: 音频数据长度: 96000 bytes
+2026-04-17 11:22:27 [INFO]: 发送参数帧:
+2026-04-17 11:22:27 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 11:22:28 [INFO]: 发送音频帧 1: status=1, chunkSize=1280
+2026-04-17 11:22:28 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:22:28 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:30:15 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 11:30:22 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 11:30:22 [INFO]: MongoDB session store 初始化成功
+2026-04-17 11:30:22 [INFO]: 服务器启动成功
+2026-04-17 11:30:22 [INFO]: 数据库连接成功
+2026-04-17 11:30:40 [INFO]: User Action
+2026-04-17 11:30:40 [INFO]: User Action
+2026-04-17 11:30:49 [INFO]: 收到评测请求
+2026-04-17 11:30:49 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 11:30:49 [INFO]: 音频数据长度: 57600 bytes
+2026-04-17 11:30:49 [INFO]: 发送参数帧:
+2026-04-17 11:30:49 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 11:30:49 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:30:50 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:34:02 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 11:34:05 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 11:34:05 [INFO]: MongoDB session store 初始化成功
+2026-04-17 11:34:05 [INFO]: 服务器启动成功
+2026-04-17 11:34:05 [INFO]: 数据库连接成功
+2026-04-17 11:34:11 [INFO]: User Action
+2026-04-17 11:34:22 [INFO]: 收到评测请求
+2026-04-17 11:34:22 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 11:34:22 [INFO]: 音频数据长度: 72960 bytes
+2026-04-17 11:34:22 [INFO]: 发送参数帧:
+2026-04-17 11:34:22 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 11:34:22 [INFO]: 发送音频帧 1: status=1, chunkSize=1280
+2026-04-17 11:34:22 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:34:22 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:36:30 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 11:36:33 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 11:36:33 [INFO]: MongoDB session store 初始化成功
+2026-04-17 11:36:33 [INFO]: 服务器启动成功
+2026-04-17 11:36:33 [INFO]: 数据库连接成功
+2026-04-17 11:36:38 [INFO]: User Action
+2026-04-17 11:36:47 [INFO]: 收到评测请求
+2026-04-17 11:36:47 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 11:36:47 [INFO]: 音频数据长度: 72960 bytes
+2026-04-17 11:36:47 [INFO]: 发送参数帧:
+2026-04-17 11:36:47 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 11:36:47 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:36:48 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:51:06 [INFO]: User Action
+2026-04-17 11:51:06 [INFO]: User Action
+2026-04-17 12:23:56 [INFO]: User Action
+2026-04-17 12:41:11 [INFO]: User Action
+2026-04-17 12:41:11 [INFO]: User Action
+2026-04-17 12:41:26 [INFO]: 收到评测请求
+2026-04-17 12:41:26 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 12:41:26 [INFO]: 音频数据长度: 63360 bytes
+2026-04-17 12:41:26 [INFO]: 发送参数帧:
+2026-04-17 12:41:26 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 12:41:26 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 12:41:27 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:43:09 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 12:43:09 [INFO]: MongoDB session store 初始化成功
+2026-04-17 12:43:09 [INFO]: 服务器启动成功
+2026-04-17 12:43:09 [INFO]: 数据库连接成功
+2026-04-17 12:45:06 [INFO]: User Action
+2026-04-17 12:45:16 [INFO]: 收到评测请求
+2026-04-17 12:45:16 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 12:45:16 [INFO]: 音频数据长度: 55680 bytes
+2026-04-17 12:45:16 [INFO]: 发送参数帧:
+2026-04-17 12:45:16 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 12:45:16 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 12:45:17 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:50:25 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 12:50:25 [INFO]: MongoDB session store 初始化成功
+2026-04-17 12:50:25 [INFO]: 服务器启动成功
+2026-04-17 12:50:25 [INFO]: 数据库连接成功
+2026-04-17 12:50:33 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 12:50:33 [INFO]: MongoDB session store 初始化成功
+2026-04-17 12:50:33 [INFO]: 服务器启动成功
+2026-04-17 12:50:33 [INFO]: 数据库连接成功
+2026-04-17 12:50:38 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 12:50:38 [INFO]: MongoDB session store 初始化成功
+2026-04-17 12:50:38 [INFO]: 服务器启动成功
+2026-04-17 12:50:38 [INFO]: 数据库连接成功
+2026-04-17 12:50:49 [INFO]: User Action
+2026-04-17 12:50:49 [INFO]: User Action
+2026-04-17 12:51:00 [INFO]: 收到评测请求
+2026-04-17 12:51:00 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 12:51:00 [INFO]: 音频数据长度: 55680 bytes
+2026-04-17 12:51:00 [INFO]: 发送参数帧:
+2026-04-17 12:51:00 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 12:51:00 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-17 12:51:00 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:202:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:53:16 [WARN]: 404 Not Found: GET /api/oral/evaluate
+2026-04-17 12:53:21 [WARN]: 404 Not Found: GET /api/oral/evaluate
+2026-04-17 12:57:36 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 12:57:40 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 12:57:40 [INFO]: MongoDB session store 初始化成功
+2026-04-17 12:57:40 [INFO]: 服务器启动成功
+2026-04-17 12:57:40 [INFO]: 数据库连接成功
+2026-04-17 12:57:47 [INFO]: User Action
+2026-04-17 12:57:47 [INFO]: User Action
+2026-04-17 12:57:50 [INFO]: User Action
+2026-04-17 12:58:00 [INFO]: 收到评测请求
+2026-04-17 12:58:01 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 12:58:01 [INFO]: 音频数据长度: 72960 bytes
+2026-04-17 12:58:01 [INFO]: 发送参数帧:
+2026-04-17 12:58:01 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 12:58:01 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-17 12:58:01 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:202:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:59:35 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 12:59:38 [INFO]: 口语评测服务模式: 真实API模式(科大讯飞)
+2026-04-17 12:59:38 [INFO]: MongoDB session store 初始化成功
+2026-04-17 12:59:38 [INFO]: 服务器启动成功
+2026-04-17 12:59:38 [INFO]: 数据库连接成功
+2026-04-17 13:01:02 [INFO]: User Action
+2026-04-17 13:01:02 [INFO]: User Action
+2026-04-17 13:01:13 [INFO]: 收到评测请求
+2026-04-17 13:01:13 [INFO]: 科大讯飞口语评测连接成功
+2026-04-17 13:01:13 [INFO]: 音频数据长度: 80640 bytes
+2026-04-17 13:01:13 [INFO]: 发送参数帧:
+2026-04-17 13:01:13 [INFO]: 发送音频帧 0: status=0, chunkSize=1280
+2026-04-17 13:01:13 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-17 13:01:13 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:202:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 13:01:29 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 13:04:00 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:04:00 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:04:00 [INFO]: 服务器启动成功
+2026-04-17 13:04:00 [INFO]: 数据库连接成功
+2026-04-17 13:04:08 [INFO]: User Action
+2026-04-17 13:04:08 [INFO]: User Action
+2026-04-17 13:04:19 [INFO]: 收到评测请求
+2026-04-17 13:04:20 [INFO]: 模拟科大讯飞评测 - 文本: "associate", 类型: word, 等级: college
+2026-04-17 13:04:33 [INFO]: User Action
+2026-04-17 13:04:33 [INFO]: User Action
+2026-04-17 13:04:46 [INFO]: 收到评测请求
+2026-04-17 13:04:48 [INFO]: 模拟科大讯飞评测 - 文本: "associate", 类型: word, 等级: college
+2026-04-17 13:06:56 [INFO]: User Action
+2026-04-17 13:06:56 [INFO]: User Action
+2026-04-17 13:07:08 [INFO]: 收到评测请求
+2026-04-17 13:07:09 [INFO]: 模拟科大讯飞评测 - 文本: "easy", 类型: word, 等级: primary
+2026-04-17 13:08:07 [INFO]: User Action
+2026-04-17 13:08:07 [INFO]: User Action
+2026-04-17 13:10:30 [INFO]: 收到评测请求
+2026-04-17 13:10:31 [INFO]: 模拟科大讯飞评测 - 文本: "easy", 类型: word, 等级: college
+2026-04-17 13:11:55 [INFO]: User Action
+2026-04-17 13:11:55 [INFO]: User Action
+2026-04-17 13:12:01 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 13:12:20 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:12:20 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:12:20 [INFO]: 服务器启动成功
+2026-04-17 13:12:20 [INFO]: 数据库连接成功
+2026-04-17 13:12:25 [INFO]: User Action
+2026-04-17 13:12:25 [INFO]: 用户登录成功: admin
+2026-04-17 13:12:28 [INFO]: 收到SIGINT信号，正在关闭服务器...
+2026-04-17 13:16:50 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:16:50 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:16:50 [INFO]: 服务器启动成功
+2026-04-17 13:16:50 [INFO]: 数据库连接成功
+2026-04-17 13:17:04 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:17:04 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:17:04 [INFO]: 服务器启动成功
+2026-04-17 13:17:04 [INFO]: 数据库连接成功
+2026-04-17 13:17:08 [INFO]: User Action
+2026-04-17 13:17:08 [INFO]: User Action
+2026-04-17 13:17:10 [INFO]: User Action
+2026-04-17 13:17:10 [INFO]: 用户登录成功: admin
+2026-04-17 13:17:25 [INFO]: User Action
+2026-04-17 13:17:25 [INFO]: 用户登录成功: admin
+2026-04-17 13:17:36 [INFO]: User Action
+2026-04-17 13:17:36 [INFO]: User Action
+2026-04-17 13:17:37 [INFO]: User Action
+2026-04-17 13:17:49 [INFO]: User Action
+2026-04-17 13:17:50 [INFO]: User Action
+2026-04-17 13:17:51 [INFO]: User Action
+2026-04-17 13:17:51 [INFO]: 用户登录成功: admin
+2026-04-17 13:19:50 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:19:50 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:19:50 [INFO]: 服务器启动成功
+2026-04-17 13:19:50 [INFO]: 数据库连接成功
+2026-04-17 13:20:01 [INFO]: User Action
+2026-04-17 13:20:01 [INFO]: User Action
+2026-04-17 13:20:02 [INFO]: User Action
+2026-04-17 13:20:04 [INFO]: User Action
+2026-04-17 13:20:04 [INFO]: 用户登录成功: admin
+2026-04-17 13:20:34 [INFO]: User Action
+2026-04-17 13:20:34 [INFO]: 用户登录成功: admin
+2026-04-17 13:20:48 [INFO]: User Action
+2026-04-17 13:20:48 [INFO]: 用户登录成功: lrw
+2026-04-17 13:21:32 [INFO]: User Action
+2026-04-17 13:21:32 [INFO]: 用户登录成功: admin
+2026-04-17 13:21:44 [INFO]: User Action
+2026-04-17 13:21:44 [INFO]: User Action
+2026-04-17 13:21:46 [WARN]: 404 Not Found: GET /default-avatar.png
+2026-04-17 13:21:46 [INFO]: User Action
+2026-04-17 13:21:50 [INFO]: User Action
+2026-04-17 13:22:54 [INFO]: User Action
+2026-04-17 13:22:54 [INFO]: User Action
+2026-04-17 13:23:54 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:23:54 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:23:54 [INFO]: 服务器启动成功
+2026-04-17 13:23:54 [INFO]: 数据库连接成功
+2026-04-17 13:24:03 [INFO]: 口语评测服务模式: 模拟模式
+2026-04-17 13:24:03 [INFO]: MongoDB session store 初始化成功
+2026-04-17 13:24:03 [INFO]: 服务器启动成功
+2026-04-17 13:24:03 [INFO]: 数据库连接成功

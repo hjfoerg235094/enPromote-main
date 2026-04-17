@@ -1809,3 +1809,559 @@
     at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
     at afterWrite (node:internal/streams/writable:710:5)
     at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 09:58:51 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 09:58:51 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:09:15 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:09:16 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:14:53 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:14:54 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:41:24 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:41:25 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:42:04 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:42:04 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:200:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:46:21 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-16 14:46:21 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:203:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:54:22 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-16 14:54:23 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:201:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 14:58:51 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-16 14:58:52 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:203:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-16 15:18:01 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:18:01 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:20:23 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:20:23 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:24:44 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:24:44 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:42:18 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:42:18 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:45:46 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 15:45:46 [ERROR]: Error: Unexpected server response: 403
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:12:48 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:12:48 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:21:12 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:21:12 [ERROR]: Error: Unexpected server response: 404
+    at ClientRequest.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:918:7)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:772:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:122:17)
+    at TLSSocket.socketOnData (node:_http_client:614:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-04-16 16:35:27 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:35:27 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:38:50 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:38:50 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:41:59 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:41:59 [ERROR]: Error: unknown client id
+    at IncomingMessage.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:46:22)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-04-16 16:45:00 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:45:00 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:48:59 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:48:59 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:51:56 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:51:56 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:54:52 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-16 16:54:52 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:19:42 [ERROR]: 未处理的Promise拒绝
+2026-04-17 08:19:42 [ERROR]: 未处理的Promise拒绝
+2026-04-17 08:26:04 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:26:04 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:61:42
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:22 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:22 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:46 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 08:33:46 [ERROR]: Error: 百度API密钥未配置，请在config/baidu.js中设置正确的API Key和Secret Key
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:36:16
+    at new Promise (<anonymous>)
+    at BaiduIseService.getAccessToken (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:27:12)
+    at BaiduIseService.evaluate (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\baiduIseService.js:93:38)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\router\oral.js:68:37
+    at Layer.handleRequest (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\router\lib\route.js:157:13)
+    at done (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:47:7)
+    at indicateDone (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:51:68)
+    at Multipart.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\multer\lib\make-middleware.js:168:7)
+2026-04-17 11:17:50 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:17:51 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:22:28 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:22:28 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:30:49 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:30:50 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:34:22 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:34:22 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 11:36:47 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 11:36:48 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:41:26 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 12:41:27 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:45:16 [ERROR]: 评测失败: code=30002, message=Param [cmd] needed
+2026-04-17 12:45:17 [ERROR]: Error: 评测失败: code=30002, message=Param [cmd] needed
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:199:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:51:00 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-17 12:51:00 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:202:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 12:58:01 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-17 12:58:01 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:202:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+2026-04-17 13:01:13 [ERROR]: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+2026-04-17 13:01:13 [ERROR]: Error: 评测失败: code=10163, message=param validate error:'$.cmd' unknown field; 
+    at WebSocket.<anonymous> (E:\DeskTop\毕设项目\enPromote-main测试版\server\services\xunfeiIseService.js:202:21)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\websocket.js:1225:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:596:14)
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\receiver.js:530:12
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:309:9
+    at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)

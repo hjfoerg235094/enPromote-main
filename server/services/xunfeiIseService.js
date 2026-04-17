@@ -1,4 +1,3 @@
-
 const crypto = require('crypto');
 const WebSocket = require('ws');
 const xunfeiConfig = require('../config/xunfei');
@@ -94,6 +93,7 @@ class XunfeiIseService {
                 ? 'topic'
                 : 'read_sentence';
 
+        // 按照科大讯飞ISE V2协议，参数帧应该包含common和business字段
         const ssbFrame = {
           common: {
             app_id: xunfeiConfig.appId,
@@ -104,10 +104,7 @@ class XunfeiIseService {
             auf: 'audio/L16;rate=16000',
             aue: 'raw',
             text: text || '',
-          },
-          data: {
-            status: 0,
-          },
+          }
         };
 
         logger.info('发送参数帧:', JSON.stringify(ssbFrame));

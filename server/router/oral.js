@@ -3,7 +3,14 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const xunfeiIseService = require('../services/xunfeiIseService');
+const mockXunfeiIseService = require('../services/mockXunfeiIseService');
 const { logger } = require('../utils/logger');
+
+// 根据环境变量决定使用真实API还是模拟服务
+const USE_MOCK_ISE = process.env.USE_MOCK_ISE === 'true';
+const iseService = USE_MOCK_ISE ? mockXunfeiIseService : xunfeiIseService;
+
+logger.info(`口语评测服务模式: ${USE_MOCK_ISE ? '模拟模式' : '真实API模式(科大讯飞)'}`);
 
 // 配置音频文件上传
 const storage = multer.memoryStorage();
@@ -13,8 +20,12 @@ const upload = multer({
     fileSize: 10 * 1024 * 1024 // 限制10MB
   },
   fileFilter: (req, file, cb) => {
-    // 只允许音频文件
-    if (file.mimetype.startsWith('audio/')) {
+    // 只允许音频文件，包括PCM格式
+    if (file.mimetype.startsWith('audio/') || 
+        file.mimetype === 'application/octet-stream' ||
+        file.originalname.endsWith('.pcm') ||
+        file.originalname.endsWith('.wav') ||
+        file.originalname.endsWith('.webm')) {
       cb(null, true);
     } else {
       cb(new Error('只允许上传音频文件'));
@@ -42,8 +53,20 @@ router.post('/evaluate', upload.single('audio'), async (req, res) => {
   try {
     const { text, category = 'sentence', level = 'senior' } = req.body;
 
+    // 添加详细日志
+    logger.info('收到评测请求', {
+      hasFile: !!req.file,
+      fileName: req.file?.originalname,
+      fileSize: req.file?.size,
+      mimetype: req.file?.mimetype,
+      text,
+      category,
+      level
+    });
+
     // 参数验证
     if (!req.file) {
+      logger.warn('未上传音频文件');
       return res.status(400).json({
         success: false,
         message: '请上传音频文件'
@@ -51,6 +74,7 @@ router.post('/evaluate', upload.single('audio'), async (req, res) => {
     }
 
     if (!text) {
+      logger.warn('未提供待评测文本');
       return res.status(400).json({
         success: false,
         message: '请提供待评测文本'
@@ -58,7 +82,7 @@ router.post('/evaluate', upload.single('audio'), async (req, res) => {
     }
 
     // 执行评测
-    const result = await xunfeiIseService.evaluate(
+    const result = await iseService.evaluate(
       {
         text,
         category,
@@ -68,7 +92,7 @@ router.post('/evaluate', upload.single('audio'), async (req, res) => {
     );
 
     // 生成评测建议
-    const advice = xunfeiIseService.generateAdvice(result);
+    const advice = iseService.generateAdvice(result);
 
     // 返回结果
     res.json({
@@ -132,7 +156,7 @@ router.post('/batch-evaluate', upload.single('audio'), async (req, res) => {
     // 执行批量评测
     const results = await Promise.all(
       texts.map(text =>
-        xunfeiIseService.evaluate(
+        iseService.evaluate(
           {
             text,
             category,
@@ -146,7 +170,7 @@ router.post('/batch-evaluate', upload.single('audio'), async (req, res) => {
     // 为每个结果生成建议
     const resultsWithAdvice = results.map(result => ({
       ...result,
-      advice: xunfeiIseService.generateAdvice(result)
+      advice: iseService.generateAdvice(result)
     }));
 
     // 返回结果

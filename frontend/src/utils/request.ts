@@ -5,9 +5,8 @@ const request: AxiosInstance = axios.create({
     baseURL: '/api', // 所有请求自动添加/api前缀
     timeout: 15000, // 增加超时时间到15秒，给后端调用第三方API留出足够时间
     withCredentials: true, // 确保发送凭证（cookies）
-    headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-    },
+    // 不设置默认的Content-Type，让axios根据请求体自动设置
+    // 对于FormData，axios会自动设置正确的Content-Type（包含boundary）
 });
 
 // 请求拦截器

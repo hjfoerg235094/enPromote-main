@@ -86,11 +86,7 @@ export const evaluatePronunciation = async (
     formData.append('level', params.level);
   }
 
-  return request.post('/oral/evaluate', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  return request.post('/oral/evaluate', formData);
 };
 
 /**
@@ -116,11 +112,7 @@ export const batchEvaluatePronunciation = async (
     formData.append('level', params.level);
   }
 
-  return request.post('/oral/batch-evaluate', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  return request.post('/oral/batch-evaluate', formData);
 };
 
 /**

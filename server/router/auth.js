@@ -204,6 +204,11 @@ router.post('/upload-avatar', avatarUpload.single('avatar'), async (req, res) =>
 
 router.get('/info', async (req, res) => {
     try {
+        // 禁用缓存，确保每次请求都返回完整数据
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+
         // 确保 session 存在
         if (!req.session) {
             return res.status(401).json({ code: 401, message: '未登录', redirect: '/login' });

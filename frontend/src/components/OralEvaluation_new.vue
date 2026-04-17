@@ -339,14 +339,8 @@ const submitEvaluation = async () => {
     isEvaluating.value = true;
     errorMessage.value = '';
 
-    const formData = new FormData();
-    formData.append('audio', audioBlob.value, 'recording.wav');
-    formData.append('text', evaluationText.value);
-    formData.append('category', evaluationConfig.value.category);
-    formData.append('level', evaluationConfig.value.level);
-
     const response = await evaluatePronunciation({
-      audio: new File([audioBlob.value], 'recording.wav', { type: 'audio/wav' }),
+      audio: new File([audioBlob.value], 'recording.webm', { type: 'audio/webm' }),
       text: evaluationText.value,
       category: evaluationConfig.value.category,
       level: evaluationConfig.value.level
@@ -358,10 +352,24 @@ const submitEvaluation = async () => {
       errorMessage.value = response.message || '评测失败，请重试';
     }
 
-  } catch (error) {
-    console.error('评测失败:', error);
+} catch (error) {
+  console.error('评测失败:', error);
+  // 显示更详细的错误信息
+  if (error instanceof Error) {
+    errorMessage.value = `评测失败: ${error.message}`;
+  } else if (error && typeof error === 'object' && 'response' in error) {
+    const err = error as { response?: { data?: { message?: string }; status: number } };
+    if (err.response) {
+      errorMessage.value = err.response.data?.message || `评测失败: ${err.response.status}`;
+    } else {
+      errorMessage.value = '评测失败，请重试';
+    }
+  } else {
     errorMessage.value = '评测失败，请重试';
-  } finally {
+  }
+}
+
+ finally {
     isEvaluating.value = false;
   }
 };
