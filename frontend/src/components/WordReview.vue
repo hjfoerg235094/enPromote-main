@@ -21,7 +21,7 @@
     <div class="word-card-container">
       <div class="word-card" v-if="currentWord">
         <div class="word-main">
-          <h2 class="word-text">{{ currentWord.word }}</h2>
+          <h2 class="word-text" @click="toggleMeaning" :class="{ clickable: true }">{{ currentWord.word }}</h2>
           <div class="phonetic" v-if="currentWord.phonetic_symbol">
             [{{ currentWord.phonetic_symbol }}]
           </div>
@@ -36,25 +36,41 @@
           </button>
         </div>
 
-        <!-- 调试信息 -->
-        <div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-size: 12px;">
-          <div>currentWord: {{ currentWord }}</div>
-          <div>currentWord.word: {{ currentWord?.word }}</div>
-          <div>OralPractice 显示条件: {{ currentWord && currentWord.word }}</div>
+        <div class="meaning-section" v-if="showMeaning">
+          <div class="meaning-content">
+              <p class="meaning-text">
+                {{ currentWord?.meaning || '⚠️ 暂无该单词的释义数据' }}
+              </p>
+          </div>
+        </div>
+
+        <div class="meaning-section" v-if="showMeaning">
+          <div class="meaning-content">
+            <div class="example-section">
+              <div class="example-header">
+                <h4 class="example-title">例句</h4>
+                <button class="generate-example-btn" @click="generateExample" :disabled="isGeneratingExample">
+                  {{ isGeneratingExample ? '生成中...' : '生成例句' }}
+                </button>
+              </div>
+              <div class="example-list" v-if="currentWord && currentWord.example">
+                <div class="example-item">
+                  <p class="example-text">{{ currentWord.example }}</p>
+                </div>
+              </div>
+              <p class="no-example" v-else>暂无例句，点击"生成例句"按钮生成</p>
+            </div>
+          </div>
         </div>
 
         <!-- 发音练习组件 -->
         <OralPractice
+          ref="oralPracticeRef"
           v-if="currentWord && currentWord.word"
           :text="currentWord.word"
           category="word"
         />
 
-        <div class="meaning-section" v-if="showMeaning">
-          <div class="meaning-content">
-            <p class="meaning-text">{{ currentWord.meaning }}</p>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -125,6 +141,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { getReviewWords, updateWordPriority, getWordAudio } from '@/api/word'
 import { getReviewStats } from '@/api/reviewPlan'
+import { generateWordExample } from '@/api/wordExample'
 import OralPractice from '@/components/OralPractice.vue'
 
 const router = useRouter()
@@ -142,6 +159,8 @@ const statusCounts = ref({
   know: 0,
   mastered: 0
 })
+const isGeneratingExample = ref(false) // 添加生成例句的加载状态
+const oralPracticeRef = ref(null) // 口语练习组件的引用
 
 // 计算属性
 const progressPercentage = computed(() => {
@@ -157,6 +176,12 @@ const currentWord = computed(() => {
 watch(currentWord, async (newWord) => {
   if (newWord && newWord.word) {
     showMeaning.value = false
+
+    // 重置口语评测状态
+    if (oralPracticeRef.value && oralPracticeRef.value.resetEvaluation) {
+      oralPracticeRef.value.resetEvaluation();
+    }
+
     // 自动播放单词音频
     try {
       const result = await getWordAudio({ word: newWord.word });
@@ -181,8 +206,12 @@ onMounted(async () => {
 const loadReviewWords = async () => {
   try {
     const response = await getReviewWords()
+    console.log('[loadReviewWords] 后端返回的完整响应:', response)
+    console.log('[loadReviewWords] 后端返回的数据:', response.data)
     if (response.data && response.data.code === 200) {
       reviewWords.value = response.data.data.words
+      console.log('[loadReviewWords] 单词列表:', reviewWords.value)
+      console.log('[loadReviewWords] 第一个单词:', reviewWords.value[0])
       if (reviewWords.value.length === 0) {
         // 没有需要复习的单词
         showCompletionModal.value = true
@@ -224,6 +253,26 @@ const playAudio = async () => {
 // 切换释义显示
 const toggleMeaning = () => {
   showMeaning.value = !showMeaning.value
+}
+
+// 生成单词例句
+const generateExample = async () => {
+  if (!currentWord.value || !currentWord.value.wordId) return
+
+  isGeneratingExample.value = true
+  try {
+    const response = await generateWordExample(currentWord.value.wordId)
+    if (response.data && response.data.code === 200) {
+      // 更新当前单词的例句
+      if (currentWord.value) {
+        currentWord.value.example = response.data.data.example
+      }
+    }
+  } catch (error) {
+    console.error('生成例句失败:', error)
+  } finally {
+    isGeneratingExample.value = false
+  }
 }
 
 // 处理单词状态更新
@@ -388,6 +437,15 @@ const finishReview = () => {
   margin-bottom: 0.5rem;
 }
 
+.word-text.clickable {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.word-text.clickable:hover {
+  color: #667eea;
+}
+
 .phonetic {
   font-size: 1.1rem;
   color: #666;
@@ -446,6 +504,81 @@ const finishReview = () => {
   font-size: 1.1rem;
   color: #333;
   line-height: 1.6;
+  margin: 0;
+}
+
+.example-section {
+  margin-top: 1rem;
+}
+
+.example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.example-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0;
+}
+
+.generate-example-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.generate-example-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.generate-example-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.example-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.example-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.example-text {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+  font-style: italic;
+}
+
+.example-translation {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.no-example {
+  font-size: 0.95rem;
+  color: #999;
+  text-align: center;
+  padding: 1rem;
   margin: 0;
 }
 

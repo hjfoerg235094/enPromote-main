@@ -2365,3 +2365,53 @@
     at E:\DeskTop\毕设项目\enPromote-main测试版\server\node_modules\ws\lib\permessage-deflate.js:392:7
     at afterWrite (node:internal/streams/writable:710:5)
     at onwrite (node:internal/streams/writable:688:7)
+2026-04-23 17:20:24 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 17:20:27 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 17:20:28 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 17:20:28 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 17:20:30 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 19:23:34 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 19:23:36 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 19:23:36 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 19:23:37 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19
+2026-04-23 19:31:09 [ERROR]: Error: API请求失败: 404 Not Found
+    at generateExampleSentence (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:116:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateAndSaveExample (E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\ai\aliyunExampleGenerator_new.js:202:25)
+    at async E:\DeskTop\毕设项目和资料\enPromote-main测试版\server\router\word_updated_new.js:421:19

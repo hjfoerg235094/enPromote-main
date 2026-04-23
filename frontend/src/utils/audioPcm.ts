@@ -15,7 +15,7 @@ export async function blobToPCM16kMono(input: Blob): Promise<Blob> {
   console.log(`[audioPcm] 输入音频大小: ${input.size} bytes, 类型: ${input.type}`);
 
   // 1) 解码输入音频（MediaRecorder 常见输出 webm/opus 等）
-  const audioCtx = new AudioContextCtor({ sampleRate: 16000 });
+  const audioCtx = new AudioContextCtor();
   try {
     let arrayBuffer = await input.arrayBuffer();
     console.log(`[audioPcm] ArrayBuffer大小: ${arrayBuffer.byteLength} bytes`);

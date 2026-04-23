@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        // 认证相关路由
         {
             path: '/login',
             name: 'Login',
@@ -12,18 +13,155 @@ const router = createRouter({
             name: 'Register',
             component: () => import('../views/register.vue'),
         },
+
+        // 首页
         {
             path: '/',
             name: 'Home',
             component: () => import('../views/home.vue'),
         },
-        // 特殊访问路由 - 保留原有功能但不在主导航中显示
+
+        // 三大核心学习路径
+        {
+            path: '/daily-study',
+            name: 'DailyStudy',
+            component: () => import('../views/DailyStudy.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/adventure-story',
+            name: 'AdventureStory',
+            component: () => import('../views/AdventureStory.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/review-ai-chat',
+            name: 'ReviewAIChat',
+            component: () => import('../views/ReviewAIChat.vue'),
+            meta: { requiresAuth: true }
+        },
+
+        // 个人中心
+        {
+            path: '/profile',
+            name: 'Profile',
+            component: () => import('../views/profile.vue'),
+            meta: { requiresAuth: true }
+        },
+
+        // 剧情模式路由
+        {
+            path: '/story',
+            name: 'StoryMode',
+            component: () => import('../views/StoryMode_new.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/story/:storyId',
+            name: 'StoryDetail',
+            component: () => import('../views/StoryMode_new.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/chapter/:storyId/:chapterId',
+            name: 'ChapterView',
+            component: () => import('../views/ChapterView_new.vue'),
+            meta: { requiresAuth: true }
+        },
+
+        // 闯关模式路由
+        {
+            path: '/chapters',
+            name: 'ChapterSelection',
+            component: () => import('../views/ChapterSelection.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/adventure',
+            name: 'Adventure',
+            component: () => import('../views/adventure.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/adventure-map',
+            name: 'AdventureMap',
+            component: () => import('../views/AdventureMap.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+
+        // 学习功能路由（从今日学习路径进入）
+        {
+            path: '/checkin',
+            name: 'CheckIn',
+            component: () => import('../views/checkin.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+        {
+            path: '/wordReview',
+            name: 'WordReview',
+            component: () => import('../views/wordReview.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+        {
+            path: '/flashCardReview',
+            name: 'FlashCardReview',
+            component: () => import('../views/flashCardReview.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+        {
+            path: '/reviewPlan',
+            name: 'ReviewPlan',
+            component: () => import('../views/reviewPlan.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+        {
+            path: '/favoriteWords',
+            name: 'FavoriteWords',
+            component: () => import('../views/favoriteWords.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+
+        // 复盘/AI对话功能路由（从复盘/AI对话路径进入）
+        {
+            path: '/daily-report',
+            name: 'DailyReport',
+            component: () => import('../views/dailyReport.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
         {
             path: '/aiChatExer',
             name: 'aiChat',
             component: () => import('../views/aiChatExer.vue'),
             meta: { requiresAuth: true, hidden: true }
         },
+        {
+            path: '/oral',
+            name: 'OralEvaluation',
+            component: () => import('../views/oral.vue'),
+            meta: { requiresAuth: true, hidden: true }
+        },
+
+        // 社交功能路由
+        {
+            path: '/friends',
+            name: 'Friends',
+            component: () => import('../views/Friends.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/profile/:userId',
+            name: 'FriendProfile',
+            component: () => import('../views/FriendProfile.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/chat',
+            name: 'Chat',
+            component: () => import('../views/Chat.vue'),
+            meta: { requiresAuth: true }
+        },
+
+        // 临时/测试路由（后续可删除）
         {
             path: '/vocabulary-legacy',
             name: 'VocabularyLegacy',
@@ -47,114 +185,10 @@ const router = createRouter({
             component: () => import('../views/text.vue'),
         },
         {
-            path: '/profile',
-            name: 'Profile',
-            component: () => import('../views/profile.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/chapters',
-            name: 'ChapterSelection',
-            component: () => import('../views/ChapterSelection.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/adventure',
-            name: 'Adventure',
-            component: () => import('../views/adventure.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/adventure-map',
-            name: 'AdventureMap',
-            component: () => import('../views/AdventureMap.vue'),
-            meta: { requiresAuth: true, hidden: true }
-        },
-        {
-            path: '/checkin',
-            name: 'CheckIn',
-            component: () => import('../views/checkin.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/reviewPlan',
-            name: 'ReviewPlan',
-            component: () => import('../views/reviewPlan.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/wordReview',
-            name: 'WordReview',
-            component: () => import('../views/wordReview.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/flashCardReview',
-            name: 'FlashCardReview',
-            component: () => import('../views/flashCardReview.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/favoriteWords',
-            name: 'FavoriteWords',
-            component: () => import('../views/favoriteWords.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/daily-report',
-            name: 'DailyReport',
-            component: () => import('../views/dailyReport.vue'),
-            meta: { requiresAuth: true }
-        },
-        // 剧情模式路由
-        {
-            path: '/story',
-            name: 'StoryMode',
-            component: () => import('../views/StoryMode_new.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/story/:storyId',
-            name: 'StoryDetail',
-            component: () => import('../views/StoryMode_new.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/friends',
-            name: 'Friends',
-            component: () => import('../views/Friends.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/profile/:userId',
-            name: 'FriendProfile',
-            component: () => import('../views/FriendProfile.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/chat',
-            name: 'Chat',
-            component: () => import('../views/Chat.vue'),
-            meta: { requiresAuth: true }
-        },
-
-        {
-            path: '/chapter/:storyId/:chapterId',
-            name: 'ChapterView',
-            component: () => import('../views/ChapterView_new.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
             path: '/chapter5',
             name: 'Chapter5',
             component: () => import('../views/Chapter5.vue'),
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/oral',
-            name: 'OralEvaluation',
-            component: () => import('../views/oral.vue'),
-            meta: { requiresAuth: true }
+            meta: { requiresAuth: true, hidden: true }
         }
     ]
 })

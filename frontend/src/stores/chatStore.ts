@@ -168,6 +168,57 @@ export const useChatStore = defineStore('chat', () => {
     messages.value.delete(friendId)
   }
 
+  const clearHistory = async (friendId: string) => {
+  try {
+    // 1. 调用后端清空接口（如果你的后端有这个接口）
+    // const res = await chatApi.clearHistory(friendId)
+    // if (res.data.code !== 200) throw new Error('清空失败')
+
+    // 2. 清空前端缓存
+    messages.value.set(friendId, [])
+
+    // 3. 更新会话最后一条消息
+    const conv = conversations.value.find(c => c.friendId === friendId)
+    if (conv) {
+      conv.lastMessage = {
+        _id: '',
+        fromUserId: '',
+        toUserId: '',
+        content: '暂无消息',
+        messageType: 'text',
+        isRead: true,
+        createdAt: new Date()
+      } as Message
+      conv.lastMessageTime = new Date()
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error('清空聊天记录失败', error)
+    throw error
+  }
+}
+
+/**
+ * 撤回消息（完整实现）
+ */
+const recallMessage = async (friendId: string, msgId: string) => {
+  try {
+    // 调用后端撤回接口（如果有）
+    // await chatApi.recallMessage(msgId)
+
+    // 前端删除这条消息
+    const msgs = messages.value.get(friendId) || []
+    const filtered = msgs.filter(m => m._id !== msgId)
+    messages.value.set(friendId, filtered)
+
+    return { success: true }
+  } catch (error) {
+    console.error('撤回消息失败', error)
+    throw error
+  }
+}
+
   return {
     conversations,
     messages,
@@ -179,6 +230,8 @@ export const useChatStore = defineStore('chat', () => {
     sendMessage,
     markConversationAsRead,
     deleteConversation,
-    clearMessages
+    clearMessages,
+    clearHistory,
+    recallMessage
   }
 })

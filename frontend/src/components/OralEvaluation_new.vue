@@ -212,6 +212,14 @@
 import { ref, onUnmounted } from 'vue';
 import { evaluatePronunciation, type OralEvaluationResult } from '../api/oral';
 
+// 定义 API 响应结构
+interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message?: string;
+}
+
+
 const evaluationConfig = ref({
   category: 'sentence' as const,
   level: 'senior' as const
@@ -325,7 +333,6 @@ const submitEvaluation = async () => {
     isEvaluating.value = true;
     errorMessage.value = '';
 
-    // 直接使用evaluatePronunciation函数，它会自动处理音频格式转换
     const response = await evaluatePronunciation({
       audio: audioBlob.value,
       text: evaluationText.value,
@@ -333,12 +340,12 @@ const submitEvaluation = async () => {
       level: evaluationConfig.value.level
     });
 
-    // 由于request.ts返回的是完整的response对象，需要访问response.data来获取实际数据
-    const data = response.data;
-    if (data && data.success && data.data) {
-      evaluationResult.value = data.data;
+    // 使用 ApiResponse 类型来正确处理响应
+    const apiResponse = response.data as unknown as ApiResponse<OralEvaluationResult>;
+    if (apiResponse.success && apiResponse.data) {
+      evaluationResult.value = apiResponse.data;
     } else {
-      errorMessage.value = data?.message || '评测失败';
+      errorMessage.value = apiResponse.message || '评测失败';
     }
   } catch (error) {
     console.error('评测失败', error);

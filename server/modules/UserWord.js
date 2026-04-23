@@ -41,6 +41,11 @@ let userWordSchema = new mongoose.Schema({
     isFavorite: {
         type: Boolean,
         default: false
+    },
+    source: {
+        type: String,
+        default: 'vocabulary', // 默认来源是词汇练习，其他可能的值：story(情景模式)
+        enum: ['vocabulary', 'story']
     }
 });
 userWordSchema.index({ userId: 1, wordId: 1 }, { unique: true });

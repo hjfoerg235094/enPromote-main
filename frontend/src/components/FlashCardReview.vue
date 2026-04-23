@@ -34,7 +34,7 @@
                 {{ currentWord.phonetic_symbol }}
               </div>
             </div>
-            <div class="hint">点击翻转</div>
+            <div class="hint">点击查看词义</div>
           </div>
           <div class="flashcard-back">
             <div class="meaning-content">
@@ -42,13 +42,16 @@
               <div class="example" v-if="currentWord.example">
                 <strong>例句:</strong> {{ currentWord.example }}
               </div>
+              <div class="example" v-else>
+                <strong>例句:</strong> 暂无例句
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="controls" v-if="currentWord && !isFlipped">
+    <div class="controls" v-if="currentWord && isFlipped">
       <button class="btn btn-primary" @click="markAsKnown">
         <span>认识</span>
       </button>
@@ -107,7 +110,7 @@
     <div v-if="!currentWord && !showSummary" class="empty-state">
       <div class="empty-icon">📚</div>
       <h3>暂无单词</h3>
-      <p>当前没有需要复习的单词</p>
+      <p>当前没有需要复习的收藏单词</p>
       <button class="btn btn-primary" @click="loadReviewWords">刷新</button>
     </div>
   </div>
@@ -238,6 +241,11 @@ const loadReviewWords = async () => {
     const response = await getReviewWords()
     if (response.data.code === 200) {
       words.value = response.data.data.words
+      console.log('获取到的复习单词:', words.value)
+      // 检查第一个单词是否有例句
+      if (words.value.length > 0) {
+        console.log('第一个单词:', words.value[0].word, '例句:', words.value[0].example)
+      }
       currentIndex.value = 0
       isFlipped.value = false
       showSummary.value = false

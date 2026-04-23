@@ -12,7 +12,7 @@ const { logger, accessLogStream, logApiError } = require('./utils/logger');
 // 路由引入
 const { router: getwordRouter } = require('./router/third_part/getword');
 const authRouter = require('./router/auth');
-const wordRouter = require('./router/word_updated');
+const wordRouter = require('./router/word_updated_new');
 const vocabularyRouter = require('./router/vocabulary');
 const vocabularyLearningRouter = require('./router/vocabularyLearning');
 const flashcardStatsRouter = require('./router/flashcardStats');

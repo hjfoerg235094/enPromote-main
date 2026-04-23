@@ -16,22 +16,18 @@
             结构化闯关学习 + 个性化AI对话 - 从词汇到口语，从基础到实战，让英语学习更有趣更高效
           </p>
           <div class="hero-actions">
-            <button class="btn-primary-large" @click="goToChapters">
-              <span class="btn-icon">🗺️</span>
-              开始闯关学习
+            <button class="btn-primary-large" @click="startTodayStudy">
+              <span class="btn-icon">🚀</span>
+              开始今日学习
             </button>
-            <button class="btn-secondary-outline" @click="goToFreeChat">
-              <span class="btn-icon">💬</span>
-              自由AI对话
-            </button>
-            <button class="btn-secondary-outline" @click="goToOralEvaluation">
-              <span class="btn-icon">🎤</span>
-              口语评测
-            </button>
-            <button class="btn-secondary-outline" @click="showAiPreview = true">
-              <span class="btn-icon">👁️</span>
-              功能预览
-            </button>
+          </div>
+
+          <!-- 个性化引导文案 -->
+          <div class="personalized-guide" v-if="storeUsername && personalizedGuide">
+            <div class="guide-content">
+              <span class="guide-icon">💡</span>
+              <span class="guide-text">{{ personalizedGuide }}</span>
+            </div>
           </div>
           <div class="hero-stats">
             <div class="stat-mini">
@@ -419,6 +415,7 @@ const showUserMessage = ref(false);
 const showAiResponse = ref(false);
 const checkInData = ref(null);
 const reviewData = ref(null);
+const personalizedGuide = ref('');
 
 // 页面加载时的逻辑
 onMounted(() => {
@@ -433,6 +430,8 @@ onMounted(() => {
         fetchCheckInStatus();
         // 获取单词复习数据
         fetchReviewData();
+        // 生成个性化引导文案
+        personalizedGuide.value = generatePersonalizedGuide();
       }
     }).catch(err => {
       console.log('获取用户信息失败:', err);
@@ -458,6 +457,11 @@ const startAiPreviewAnimation = () => {
 };
 
 // 主要导航函数
+function startTodayStudy() {
+  // 进入今日学习页面
+  router.push('/daily-study');
+}
+
 function goToChapters() {
   // 进入结构化闯关学习
   router.push('/chapters');
@@ -471,6 +475,34 @@ function goToFreeChat() {
 function goToOralEvaluation() {
   // 进入口语评测
   router.push('/oral');
+}
+
+// 生成个性化引导文案
+function generatePersonalizedGuide() {
+  if (!storeUsername.value) return '';
+
+  let guide = '根据你的进度，今天建议完成：';
+  const tasks = [];
+
+  // 根据签到状态添加任务
+  if (checkInData.value && !checkInData.value.hasCheckedInToday) {
+    tasks.push('每日签到');
+  }
+
+  // 根据单词复习情况添加任务
+  if (reviewData.value && reviewData.value.pendingReviewCount > 0) {
+    const reviewCount = Math.min(reviewData.value.pendingReviewCount, 20);
+    tasks.push(`${reviewCount}分钟单词复习`);
+  }
+
+  // 如果没有特定任务，添加默认建议
+  if (tasks.length === 0) {
+    tasks.push('1个闯关任务');
+  } else {
+    tasks.push('1个闯关任务');
+  }
+
+  return guide + tasks.join(' + ');
 }
 
 // 选择AI老师并进入对话
@@ -504,9 +536,13 @@ const fetchReviewData = async () => {
     const res = await getReviewWords();
     if (res.data && res.data.code === 200) {
       reviewData.value = {
-        pendingReviewCount: res.data.data.count,
+        pendingReviewCount: res.data.data.count || 0,
         todayReviewedCount: 0 // 这里可以添加获取今日已复习单词数量的逻辑
       };
+      // 更新个性化引导文案
+      if (storeUsername.value) {
+        personalizedGuide.value = generatePersonalizedGuide();
+      }
     }
   } catch (error) {
     console.error('获取复习数据失败:', error);

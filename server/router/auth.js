@@ -478,4 +478,45 @@ async function advanceToNextStage(userid) {
     await user.save();
 }
 
+// 获取用户进度数据
+router.get('/user/progress', async (req, res) => {
+    try {
+        const userid = req.session.userid;
+        if (!userid) {
+            return res.json({
+                code: 401,
+                message: '请先登录'
+            });
+        }
+
+        const user = await User.findById(userid);
+        if (!user) {
+            return res.json({
+                code: 404,
+                message: '用户不存在'
+            });
+        }
+
+        logUserAction(req, 'GET_USER_PROGRESS', { userId: userid });
+
+        // 返回用户进度数据
+        res.json({
+            code: 200,
+            data: {
+                completedChapters: user.chapters ? user.chapters.size : 0,
+                completedTasks: user.totalWords || 0,
+                totalStudyTime: user.totalStudyTime || 0,
+                currentChapter: user.cet4 ? user.cet4.position : null
+            }
+        });
+    } catch (error) {
+        logApiError(req, error, 500);
+        res.status(500).json({
+            code: 500,
+            message: '获取用户进度失败',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;

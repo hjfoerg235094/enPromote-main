@@ -24,6 +24,7 @@ interface WordPriorityData {
     wordId?: string;
     newStatus?: string;
     isCorrect?: boolean;
+    source?: string; // 单词来源：vocabulary(词汇练习)或story(情景模式)
     [key: string]: any;
 }
 

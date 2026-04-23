@@ -78,6 +78,7 @@ import { ref, computed, watch, nextTick, onMounted } from 'vue'
 import { useChatStore } from '@/stores/chatStore'
 import { user } from '@/stores/userStore'
 import ChatMessage from './ChatMessage_debug.vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 interface Props {
   friendId: string
@@ -97,45 +98,84 @@ const inputMessage = ref('')
 const messageContainer = ref<HTMLElement>()
 const showMoreActions = ref(false)
 
-// 处理复制消息
+// 复制消息
 const handleCopyMessage = (message: any) => {
   navigator.clipboard.writeText(message.content)
-  console.log('消息已复制:', message.content)
+  ElMessage.success('复制成功')
 }
 
-// 处理撤回消息
-const handleRecallMessage = (message: any) => {
-  console.log('撤回消息:', message)
-  // TODO: 实现撤回消息的逻辑
+// 撤回消息
+const handleRecallMessage = async (message: any) => {
+  try {
+    await chatStore.recallMessage(props.friendId, message._id)
+    ElMessage.success('消息已撤回')
+  } catch (err) {
+    ElMessage.error('撤回失败')
+  }
 }
 
-// 计算属性：显示名称
+// ==============================================
+// 你要的【清空聊天记录】
+// ==============================================
+const clearHistory = async () => {
+  await ElMessageBox.confirm(
+    '确定要清空所有聊天记录吗？此操作不可恢复！',
+    '提示',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }
+  ).catch(() => false)
+
+  try {
+    await chatStore.clearHistory(props.friendId)
+    ElMessage.success('清空成功')
+    showMoreActions.value = false
+  } catch (err) {
+    ElMessage.error('清空失败')
+  }
+}
+
+// ==============================================
+// 你要的【查看资料】
+// ==============================================
+const viewProfile = () => {
+  showMoreActions.value = false
+  ElMessageBox.alert(
+    `
+用户ID：${props.friendId}
+用户名：${props.friend?.username || '未知'}
+备注名：${props.friend?.remark || '无备注'}
+在线状态：${onlineStatus.value === 'online' ? '在线' : '离线'}
+    `,
+    '用户资料',
+    {
+      confirmButtonText: '关闭',
+      type: 'info'
+    }
+  )
+}
+
+// 显示名称
 const displayName = computed(() => {
   return props.friend?.remark || props.friend?.username || '未知用户'
 })
 
-// 计算属性：在线状态
-const onlineStatus = computed(() => {
-  return 'online' // 这里可以根据实际需求扩展
-})
+// 在线状态
+const onlineStatus = computed(() => 'online')
 
-// 计算属性：消息列表
-const messages = computed(() => {
-  return chatStore.messages.get(props.friendId) || []
-})
-
-// 计算属性：加载状态
+// 消息列表
+const messages = computed(() => chatStore.messages.get(props.friendId) || [])
 const loading = computed(() => chatStore.loading)
-
-// 计算属性：发送状态
 const sending = computed(() => chatStore.sending)
 
-// 获取头像URL
+// 获取头像
 const getAvatarUrl = (userId: string) => {
   return `https://api.dicebear.com/7.x/avataaars/svg?seed=${userId}`
 }
 
-// 监听friendId变化，加载消息
+// 监听切换好友
 watch(() => props.friendId, async (newId) => {
   if (newId) {
     await chatStore.fetchMessages(newId)
@@ -143,7 +183,6 @@ watch(() => props.friendId, async (newId) => {
   }
 }, { immediate: true })
 
-// 组件挂载时加载消息
 onMounted(async () => {
   if (props.friendId) {
     await chatStore.fetchMessages(props.friendId)
@@ -159,28 +198,25 @@ const scrollToBottom = async () => {
   }
 }
 
-// 处理回车键
+// 回车发送
 const handleEnter = (e: KeyboardEvent) => {
-  if (e.shiftKey) {
-    // Shift+Enter 换行
-    return
-  }
-  // Enter 发送消息
+  if (e.shiftKey) return
   sendMessage()
 }
 
 // 发送消息
 const sendMessage = async () => {
   if (!inputMessage.value.trim() || sending.value) return
-
   try {
     await chatStore.sendMessage(props.friendId, inputMessage.value.trim())
     inputMessage.value = ''
-    await scrollToBottom()
+    scrollToBottom()
   } catch (error) {
-    console.error('发送消息失败:', error)
+    console.error('发送失败', error)
   }
 }
+
+
 </script>
 
 <style scoped>

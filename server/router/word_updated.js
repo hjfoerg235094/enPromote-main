@@ -15,6 +15,102 @@ const http = require('http');
 const { updateWordReviewStatus } = require('../utils/spacedRepetition');
 const StudyRecordService = require('../modules/StudyRecordService');
 
+// 词汇库缓存
+let vocabularyCache = null;
+let vocabularyCacheTime = null;
+const CACHE_DURATION = 30 * 60 * 1000; // 30分钟
+
+/**
+ * 从词汇库中获取单词释义
+ * @param {string} word - 单词
+ * @returns {string} 单词释义
+ */
+function getWordMeaningFromVocabulary(word) {
+  try {
+    console.log(`[getWordMeaningFromVocabulary] 开始查找单词: ${word}`);
+    
+    // 如果缓存过期或不存在，重新加载词汇库
+    if (!vocabularyCache || !vocabularyCacheTime || Date.now() - vocabularyCacheTime > CACHE_DURATION) {
+      const vocabularyPath = path.join(__dirname, '..', 'word', 'CET-4.json');
+      console.log(`[getWordMeaningFromVocabulary] 词汇库路径: ${vocabularyPath}`);
+      console.log(`[getWordMeaningFromVocabulary] 文件是否存在: ${fs.existsSync(vocabularyPath)}`);
+      
+      if (fs.existsSync(vocabularyPath)) {
+        vocabularyCache = JSON.parse(fs.readFileSync(vocabularyPath, 'utf-8'));
+        vocabularyCacheTime = Date.now();
+        console.log('[getWordMeaningFromVocabulary] 词汇库已加载到缓存');
+        console.log(`[getWordMeaningFromVocabulary] 词汇库包含的字母: ${Object.keys(vocabularyCache).join(', ')}`);
+      } else {
+        console.error('[getWordMeaningFromVocabulary] 词汇库文件不存在:', vocabularyPath);
+        return '';
+      }
+    }
+
+    // 遍历所有字母分组查找单词
+    const letters = Object.keys(vocabularyCache);
+    console.log(`[getWordMeaningFromVocabulary] 开始遍历字母分组，共 ${letters.length} 个字母`);
+    
+    for (const letter of letters) {
+      const words = vocabularyCache[letter];
+      console.log(`[getWordMeaningFromVocabulary] 检查字母 ${letter}，共 ${words.length} 个单词`);
+      
+      const foundWord = words.find(w => w.word.toLowerCase() === word.toLowerCase());
+      if (foundWord) {
+        console.log(`[getWordMeaningFromVocabulary] 找到单词: ${foundWord.word}`);
+        console.log(`[getWordMeaningFromVocabulary] 单词数据:`, foundWord);
+        if (foundWord.mean) {
+          console.log(`[getWordMeaningFromVocabulary] 找到释义: ${foundWord.mean}`);
+          return foundWord.mean;
+        } else {
+          console.log(`[getWordMeaningFromVocabulary] 单词没有mean字段`);
+        }
+      }
+    }
+
+    console.log(`[getWordMeaningFromVocabulary] 未找到单词: ${word}`);
+    return '';
+  } catch (error) {
+    console.error('[getWordMeaningFromVocabulary] 从词汇库获取词义失败:', error);
+    return '';
+  }
+}
+
+/**
+ * 从词汇库中获取单词音标
+ * @param {string} word - 单词
+ * @returns {string} 单词音标
+ */
+function getPhoneticSymbolFromVocabulary(word) {
+  try {
+    // 如果缓存过期或不存在，重新加载词汇库
+    if (!vocabularyCache || !vocabularyCacheTime || Date.now() - vocabularyCacheTime > CACHE_DURATION) {
+      const vocabularyPath = path.join(__dirname, '..', 'word', 'CET-4.json');
+      if (fs.existsSync(vocabularyPath)) {
+        vocabularyCache = JSON.parse(fs.readFileSync(vocabularyPath, 'utf-8'));
+        vocabularyCacheTime = Date.now();
+      } else {
+        console.error('[getPhoneticSymbolFromVocabulary] 词汇库文件不存在:', vocabularyPath);
+        return '';
+      }
+    }
+
+    // 遍历所有字母分组查找单词
+    const letters = Object.keys(vocabularyCache);
+    for (const letter of letters) {
+      const words = vocabularyCache[letter];
+      const foundWord = words.find(w => w.word.toLowerCase() === word.toLowerCase());
+      if (foundWord && foundWord.phonetic_symbol) {
+        return foundWord.phonetic_symbol;
+      }
+    }
+
+    return '';
+  } catch (error) {
+    console.error('[getPhoneticSymbolFromVocabulary] 从词汇库获取音标失败:', error);
+    return '';
+  }
+}
+
 // 更新用户单词状态
 async function updateUserWordStatus(userId, wordId, status, isCorrect) {
   try {

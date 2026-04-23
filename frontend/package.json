@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "vite build",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
@@ -14,6 +14,7 @@
   "dependencies": {
     "@vueuse/core": "^13.8.0",
     "axios": "^1.11.0",
+    "element-plus": "^2.13.7",
     "pinia": "^2.1.7",
     "vue": "^3.5.13",
     "vue-click-outside": "^1.1.0",

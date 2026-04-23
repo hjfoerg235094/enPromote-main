@@ -20,6 +20,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
+    open: true, // 自动打开浏览器
     proxy: {
       '/api': { // 代理路径
         target: 'http://localhost:3000', // 后端服务地址

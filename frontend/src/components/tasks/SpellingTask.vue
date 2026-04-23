@@ -194,7 +194,8 @@ function completeTask() {
   emit('complete', {
     correctRate: correctRate.value,
     correctWords: Array.from(completedWords.value),
-    incorrectWords: Array.from(incorrectWords.value)
+    incorrectWords: Array.from(incorrectWords.value),
+    source: 'story' // 标记为情景模式来源
   });
 }
 </script>

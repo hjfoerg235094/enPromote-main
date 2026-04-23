@@ -12,6 +12,49 @@ const { getWordFromApi } = require('./third_part/getword');
 const { logger, logApiError, logUserAction, logDbError } = require('../utils/logger');
 const { LEGAL_TLS_SOCKET_OPTIONS } = require('mongodb');
 const http = require('http');
+const { generateAndSaveMeaning, generateAndSaveExample } = require('../ai/aliyunExampleGenerator');
+
+// 缓存词汇库数据
+let vocabularyCache = null;
+let vocabularyCacheTime = null;
+const CACHE_DURATION = 60 * 60 * 1000; // 缓存1小时
+
+/**
+ * 从词汇库中获取单词释义
+ * @param {string} word - 单词
+ * @returns {string} 单词释义
+ */
+function getWordMeaningFromVocabulary(word) {
+  try {
+    // 如果缓存过期或不存在，重新加载词汇库
+    if (!vocabularyCache || !vocabularyCacheTime || Date.now() - vocabularyCacheTime > CACHE_DURATION) {
+      const vocabularyPath = path.join(__dirname, '..', 'word', 'CET-4.json');
+      if (fs.existsSync(vocabularyPath)) {
+        vocabularyCache = JSON.parse(fs.readFileSync(vocabularyPath, 'utf-8'));
+        vocabularyCacheTime = Date.now();
+        console.log('词汇库已加载到缓存');
+      } else {
+        console.error('词汇库文件不存在:', vocabularyPath);
+        return '';
+      }
+    }
+
+    // 遍历所有字母分组查找单词
+    const letters = Object.keys(vocabularyCache);
+    for (const letter of letters) {
+      const words = vocabularyCache[letter];
+      const foundWord = words.find(w => w.word.toLowerCase() === word.toLowerCase());
+      if (foundWord && foundWord.mean) {
+        return foundWord.mean;
+      }
+    }
+
+    return '';
+  } catch (error) {
+    console.error('从词汇库获取词义失败:', error);
+    return '';
+  }
+}
 
 router.get('/getWordProgress', async (req, res) => {
     try {
@@ -319,7 +362,7 @@ router.get('/getWordAudio', async (req, res) => {
 });
 
 // 更新用户单词状态
-async function updateUserWordStatus(userId, wordId, isCorrect) {
+async function updateUserWordStatus(userId, wordId, isCorrect, source = 'vocabulary') {
   try {
     // 查找用户是否已学习过该单词
     let userWord = await UserWord.findOne({
@@ -337,7 +380,8 @@ async function updateUserWordStatus(userId, wordId, isCorrect) {
         firstSeenAt: new Date(),
         lastSeenAt: new Date(),
         nextReviewTime: new Date(Date.now() + 30), // 30秒后复习
-        priority: isCorrect ? 1 : 0
+        priority: isCorrect ? 1 : 0,
+        source: source // 记录单词来源
       });
       await userWord.save();
     } else {
@@ -418,25 +462,77 @@ router.get('/getReviewWords', async (req, res) => {
     });
     
     // 格式化返回数据
-    const formattedWords = reviewWords.map(item => {
+    const formattedWords = await Promise.all(reviewWords.map(async (item) => {
       const word = wordMap[item.wordId];
 
-      // 获取释义
+      // 获取释义 - 优先从词汇库获取
       let meaning = word ? word.chineseMeaning : '';
+
+      // 如果数据库中没有词义，尝试从词汇库获取
+      if (!meaning && word && word.word) {
+        meaning = getWordMeaningFromVocabulary(word.word);
+        console.log(`从词汇库获取词义: ${word.word} -> ${meaning}`);
+
+        // 如果从词汇库获取到词义，保存到数据库
+        if (meaning) {
+          word.chineseMeaning = meaning;
+          try {
+            await word.save();
+            console.log(`词义已保存到数据库: ${word.word}`);
+          } catch (error) {
+            console.error(`保存词义到数据库失败:`, error);
+          }
+        }
+      }
       if (word && !meaning && word.meanings && word.meanings.length > 0) {
         const firstMeaning = word.meanings[0];
         if (firstMeaning.definitions && firstMeaning.definitions.length > 0) {
           meaning = firstMeaning.definitions[0].definition || '';
         }
       }
+      
+      // 如果没有词义，使用AI生成并保存
+      if (!meaning && word) {
+        try {
+          meaning = await generateAndSaveMeaning(item.wordId);
+        } catch (error) {
+          console.error(`生成词义失败:`, error);
+        }
+      }
 
       // 获取例句
       let example = '';
+      console.log(`检查单词 ${word ? word.word : item.wordId} 的例句...`);
+      console.log(`word对象:`, word ? {
+        word: word.word,
+        hasMeanings: !!word.meanings,
+        meaningsLength: word.meanings ? word.meanings.length : 0
+      } : null);
+
       if (word && word.meanings && word.meanings.length > 0) {
         const firstMeaning = word.meanings[0];
+        console.log(`第一个词义:`, {
+          hasDefinitions: !!firstMeaning.definitions,
+          definitionsLength: firstMeaning.definitions ? firstMeaning.definitions.length : 0
+        });
+
         if (firstMeaning.definitions && firstMeaning.definitions.length > 0) {
           example = firstMeaning.definitions[0].example || '';
+          console.log(`从数据库获取的例句: "${example}"`);
         }
+      }
+      
+      // 如果没有例句，使用AI生成并保存
+      if (!example && word) {
+        try {
+          console.log(`为单词 ${word.word} (ID: ${item.wordId}) 生成例句...`);
+          example = await generateAndSaveExample(item.wordId);
+          console.log(`例句生成结果: ${example ? '成功' : '失败'}, 内容: ${example}`);
+        } catch (error) {
+          console.error(`生成例句失败:`, error);
+        }
+      } else {
+        console.log(`单词 ${word ? word.word : item.wordId} 已有例句或word为空，跳过生成`);
       }
 
       return {
@@ -444,6 +540,7 @@ router.get('/getReviewWords', async (req, res) => {
         wordId: item.wordId,
         word: word ? word.word : item.wordId,
         meaning: meaning,
+        mean: meaning, // 添加mean字段，与词汇库字段名一致
         definition: meaning, // 同时提供definition字段，兼容前端
         example: example,
         priority: item.priority,
@@ -452,9 +549,16 @@ router.get('/getReviewWords', async (req, res) => {
         lastSeenAt: item.lastSeenAt,
         nextReviewTime: item.nextReviewTime
       };
-    });
+    }));
 
     logUserAction(req, 'GET_REVIEW_WORDS', { userId: userid, count: formattedWords.length });
+
+    // 记录返回给前端的数据
+    console.log('返回给前端的复习单词数据:', formattedWords.map(w => ({
+      word: w.word,
+      meaning: w.meaning,
+      example: w.example
+    })));
 
     res.json({
       code: 200,
@@ -484,7 +588,7 @@ router.post('/submitReview', async (req, res) => {
       });
     }
 
-    const { wordId, isCorrect, word, newStatus } = req.body;
+    const { wordId, isCorrect, word, newStatus, source } = req.body;
     if (!wordId || typeof isCorrect !== 'boolean') {
       return res.json({
         code: 400,
@@ -520,7 +624,7 @@ router.post('/submitReview', async (req, res) => {
     }
 
     // 更新单词状态
-    await updateUserWordStatus(userid, actualWordId, status, isCorrect);
+    await updateUserWordStatus(userid, actualWordId, isCorrect, source || 'vocabulary');
 
     logUserAction(req, 'SUBMIT_REVIEW', { 
       userId: userid, 
@@ -537,6 +641,65 @@ router.post('/submitReview', async (req, res) => {
     res.status(500).json({
       code: 500,
       message: '提交复习结果失败',
+      error: error.message
+    });
+  }
+});
+
+// 生成单词例句
+router.post('/generateExample', async (req, res) => {
+  try {
+    const { wordId } = req.body;
+    if (!wordId) {
+      return res.json({
+        code: 400,
+        message: '请提供单词ID'
+      });
+    }
+
+    // 查找单词
+    const word = await Word.findById(wordId);
+    if (!word) {
+      return res.json({
+        code: 404,
+        message: '单词不存在'
+      });
+    }
+
+    // 检查是否已有例句
+    let example = '';
+    if (word.meanings && word.meanings.length > 0 && 
+        word.meanings[0].definitions && word.meanings[0].definitions.length > 0) {
+      example = word.meanings[0].definitions[0].example || '';
+    }
+
+    // 如果没有例句，使用AI生成并保存
+    if (!example) {
+      try {
+        example = await generateAndSaveExample(wordId);
+      } catch (error) {
+        console.error('生成例句失败:', error);
+        return res.json({
+          code: 500,
+          message: '生成例句失败',
+          error: error.message
+        });
+      }
+    }
+
+    res.json({
+      code: 200,
+      data: {
+        wordId: wordId,
+        word: word.word,
+        example: example
+      }
+    });
+  } catch (error) {
+    logApiError(req, error, 500);
+    res.status(500).json({
+      code: 500,
+      message: '生成例句失败',
       error: error.message
     });
   }

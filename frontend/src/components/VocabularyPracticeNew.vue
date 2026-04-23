@@ -369,7 +369,8 @@ const handleKnow = () => {
   // 直接标记为认识，不需要显示释义
   updateWordPriority({
     word: wordToQuery,
-    newStatus: "know"
+    newStatus: "know",
+    source: "vocabulary" // 标记为词汇练习来源
   })
   emit('know', currentWordIndex.value)
   nextWord()
@@ -383,7 +384,8 @@ const handleVague = () => {
 
   updateWordPriority({
     word: wordToQuery,
-    newStatus: "vague"
+    newStatus: "vague",
+    source: "vocabulary" // 标记为词汇练习来源
   })
   emit('vague', currentWordIndex.value)
   nextWord()
@@ -397,7 +399,8 @@ const handleUnknown = () => {
 
   updateWordPriority({
     word: wordToQuery,
-    newStatus: "unknown"
+    newStatus: "unknown",
+    source: "vocabulary" // 标记为词汇练习来源
   })
   emit('unknown', currentWordIndex.value)
   nextWord()

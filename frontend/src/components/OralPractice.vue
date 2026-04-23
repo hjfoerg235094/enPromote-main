@@ -196,10 +196,10 @@ const submitEvaluation = async () => {
       level: 'primary'
     });
 
-    if (response.success && response.data) {
-      evaluationResult.value = response.data;
+    if (response.data.success && response.data.data) {
+      evaluationResult.value = response.data.data;
     } else {
-      errorMessage.value = response.message || '评测失败，请重试';
+      errorMessage.value = response.data.message || '评测失败，请重试';
     }
 
   } catch (error) {
@@ -216,6 +216,38 @@ const getScoreClass = (score: number) => {
   if (score >= 60) return 'average';
   return 'poor';
 };
+
+// 重置评测状态
+const resetEvaluation = () => {
+  // 清理之前的录音
+  if (audioUrl.value) {
+    URL.revokeObjectURL(audioUrl.value);
+    audioUrl.value = '';
+  }
+  audioBlob.value = null;
+  audioChunks = [];
+  evaluationResult.value = null;
+  errorMessage.value = '';
+  isEvaluating.value = false;
+
+  // 停止录音
+  if (mediaRecorder && isRecording.value) {
+    mediaRecorder.stop();
+    isRecording.value = false;
+  }
+
+  // 停止计时
+  if (recordingTimer) {
+    clearInterval(recordingTimer);
+    recordingTimer = null;
+  }
+  recordingTime.value = 0;
+};
+
+// 暴露重置方法给父组件
+defineExpose({
+  resetEvaluation
+});
 
 // 组件卸载时清理资源
 onUnmounted(() => {
