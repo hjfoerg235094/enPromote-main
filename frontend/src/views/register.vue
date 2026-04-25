@@ -44,6 +44,10 @@ function clickRegister(e) {
         toast.error('请输入完整信息')
         return
     }
+    if (password.value.length < 6) {
+        toast.error('密码长度不能少于6位')
+        return
+    }
     if (password.value !== confirmPassword.value) {
         toast.error('两次密码不一致')
         return

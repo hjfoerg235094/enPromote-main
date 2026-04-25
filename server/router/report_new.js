@@ -81,16 +81,30 @@ router.get('/daily', async (req, res) => {
     }
 
     const { date } = req.query;
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const queryDate = date ? new Date(date) : today;
+    let queryDate;
+
+    if (date) {
+      // 如果指定了日期，使用指定的日期
+      queryDate = new Date(date);
+    } else {
+      // 否则使用今天的日期（基于本地时区）
+      const now = new Date();
+      queryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    }
+
+    // 设置查询的开始和结束时间
+    const startDate = new Date(queryDate);
+    startDate.setHours(0, 0, 0, 0);
+
+    const endDate = new Date(queryDate);
+    endDate.setHours(23, 59, 59, 999);
 
     // 查询当天的学习记录
     const record = await StudyRecord.findOne({
       userId: userid,
       date: {
-        $gte: queryDate,
-        $lt: new Date(queryDate.getTime() + 24 * 60 * 60 * 1000)
+        $gte: startDate,
+        $lte: endDate
       }
     });
 
