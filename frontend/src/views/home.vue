@@ -1,568 +1,473 @@
 <template>
-  <div class="home-container">
-
-
-    <!-- 主要内容区 -->
-    <main>
-      <!-- AI优先英雄区域 -->
-      <section class="hero">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="badge-icon">🚀</span>
-            <span class="badge-text">全新升级</span>
-          </div>
-          <h1 class="hero-title">智能英语学习平台<br><span class="highlight">AI陪你闯关练口语</span></h1>
-          <p class="hero-description">
-            结构化闯关学习 + 个性化AI对话 - 从词汇到口语，从基础到实战，让英语学习更有趣更高效
-          </p>
-          <div class="hero-actions">
-            <button class="btn-primary-large" @click="startTodayStudy">
-              <span class="btn-icon">🚀</span>
-              开始今日学习
-            </button>
-          </div>
-
-          <!-- 个性化引导文案 -->
-          <div class="personalized-guide" v-if="storeUsername && personalizedGuide">
-            <div class="guide-content">
-              <span class="guide-icon">💡</span>
-              <span class="guide-text">{{ personalizedGuide }}</span>
-            </div>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-mini">
-              <span class="stat-number">2大</span>
-              <span class="stat-label">学习场景</span>
-            </div>
-            <div class="stat-mini">
-              <span class="stat-number">5种</span>
-              <span class="stat-label">AI性格</span>
-            </div>
-            <div class="stat-mini">
-              <span class="stat-number">5关</span>
-              <span class="stat-label">闯关模式</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="ai-chat-preview" :class="{ 'preview-active': showAiPreview }">
-            <div class="chat-window">
-              <div class="chat-header">
-                <div class="ai-avatar">👨‍🏫</div>
-                <div class="ai-info">
-                  <span class="ai-name">AI英语老师</span>
-                  <span class="ai-status">在线</span>
-                </div>
-              </div>
-              <div class="chat-messages">
-                <div class="message ai-message">
-                  <div class="message-content">
-                    Hello! I'm your AI English teacher. Ready to practice?
-                  </div>
-                </div>
-                <div class="message user-message" v-if="showUserMessage">
-                  <div class="message-content">
-                    Yes, I'd like to improve my speaking skills.
-                  </div>
-                </div>
-                <div class="message ai-message" v-if="showAiResponse">
-                  <div class="message-content">
-                    Perfect! Let's start with a conversation about your hobbies. What do you enjoy doing in your free
-                    time?
-                  </div>
-                </div>
-              </div>
-              <div class="chat-input-preview">
-                <input type="text" placeholder="Type your message..." readonly>
-                <button class="send-btn">📤</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 核心功能特色 -->
-      <section class="ai-features">
-        <div class="section-header">
-          <h2 class="section-title">两大核心学习模式</h2>
-          <p class="section-subtitle">结构化学习 + 自由对话，全方位提升英语能力</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-card primary">
-            <div class="feature-icon-wrapper">
-              <div class="feature-icon">🗺️</div>
-              <div class="feature-badge">主推功能</div>
-            </div>
-            <h3>闯关学习模式</h3>
-            <p>酒店、餐厅两大场景，5关递进式学习：词汇→拼写→听力→AI题目→实战对话</p>
-            <div class="feature-highlights">
-              <span class="highlight-tag">✨ 结构化学习路径</span>
-              <span class="highlight-tag">🎯 场景化实用英语</span>
-              <span class="highlight-tag">📊 进度可视化追踪</span>
-            </div>
-            <button class="feature-btn" @click="goToChapters">开始闯关</button>
-          </div>
-          <div class="feature-card primary">
-            <div class="feature-icon-wrapper">
-              <div class="feature-icon">💬</div>
-              <div class="feature-badge">特色功能</div>
-            </div>
-            <h3>自由AI对话</h3>
-            <p>5种AI性格任你选择，随时随地练习口语，获得个性化反馈和指导</p>
-            <div class="feature-highlights">
-              <span class="highlight-tag">🎭 5种AI性格</span>
-              <span class="highlight-tag">⚡ 实时对话反馈</span>
-              <span class="highlight-tag">🔄 24/7随时可用</span>
-            </div>
-            <button class="feature-btn" @click="goToFreeChat">开始对话</button>
-          </div>
-        </div>
-
-        <!-- 学习流程展示 -->
-        <div class="learning-flow">
-          <h3>完整学习流程</h3>
-          <div class="flow-steps">
-            <div class="flow-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h4>📚 词汇学习</h4>
-                <p>掌握场景核心词汇</p>
-              </div>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h4>✏️ 拼写练习</h4>
-                <p>强化单词记忆</p>
-              </div>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h4>🎧 听力训练</h4>
-                <p>提升听力理解</p>
-              </div>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <h4>🤖 AI题目</h4>
-                <p>智能生成练习题</p>
-              </div>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <div class="step-number">5</div>
-              <div class="step-content">
-                <h4>💬 实战对话</h4>
-                <p>AI场景对话练习</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- AI老师介绍 -->
-      <section class="ai-teachers">
-        <div class="section-header">
-          <h2 class="section-title">5种AI性格，总有一款适合你</h2>
-          <p class="section-subtitle">在自由对话模式中，选择最适合你的AI老师性格</p>
-        </div>
-        <div class="teachers-grid">
-          <div class="teacher-card" @click="selectTeacher('gentle')">
-            <div class="teacher-avatar">😊</div>
-            <h3>温和导师</h3>
-            <p>耐心细致，循循善诱，营造轻松学习氛围</p>
-            <div class="teacher-features">
-              <span class="feature-tag">🌟 适合初学者</span>
-              <span class="feature-tag">💝 鼓励式教学</span>
-            </div>
-            <div class="teacher-example">
-              <em>"很好！你的发音有了明显进步，我们继续练习..."</em>
-            </div>
-          </div>
-          <div class="teacher-card" @click="selectTeacher('strict')">
-            <div class="teacher-avatar">🔥</div>
-            <h3>严格教练</h3>
-            <p>直接犀利，快速纠错，追求学习效率</p>
-            <div class="teacher-features">
-              <span class="feature-tag">⚡ 适合进阶者</span>
-              <span class="feature-tag">🎯 高效学习</span>
-            </div>
-            <div class="teacher-example">
-              <em>"这个语法错误需要立即纠正，正确的说法是..."</em>
-            </div>
-          </div>
-          <div class="teacher-card" @click="selectTeacher('humorous')">
-            <div class="teacher-avatar">🎭</div>
-            <h3>幽默伙伴</h3>
-            <p>生动有趣，寓教于乐，让学习充满乐趣</p>
-            <div class="teacher-features">
-              <span class="feature-tag">😄 轻松氛围</span>
-              <span class="feature-tag">🧠 记忆深刻</span>
-            </div>
-            <div class="teacher-example">
-              <em>"哈哈，这个单词就像它的意思一样有趣！让我们..."</em>
-            </div>
-          </div>
-          <div class="teacher-card" @click="selectTeacher('cold')">
-            <div class="teacher-avatar">❄️</div>
-            <h3>超级人机</h3>
-            <p>理性分析，逻辑清晰，专注技能提升</p>
-            <div class="teacher-features">
-              <span class="feature-tag">🤖 理性分析</span>
-              <span class="feature-tag">📊 数据驱动</span>
-            </div>
-            <div class="teacher-example">
-              <em>"根据语言学习规律，建议你重点练习..."</em>
-            </div>
-          </div>
-          <div class="teacher-card" @click="selectTeacher('encouraging')">
-            <div class="teacher-avatar">💪</div>
-            <h3>激励教练</h3>
-            <p>积极鼓励，建立自信，激发学习潜能</p>
-            <div class="teacher-features">
-              <span class="feature-tag">🚀 提升自信</span>
-              <span class="feature-tag">⭐ 正面反馈</span>
-            </div>
-            <div class="teacher-example">
-              <em>"太棒了！你的进步让我刮目相看，继续加油！"</em>
-            </div>
-          </div>
-        </div>
-        <div class="teachers-cta">
-          <p>想要体验不同AI性格的教学风格？</p>
-          <button class="btn-primary" @click="goToFreeChat">立即开始自由对话</button>
-        </div>
-      </section>
-
-      <!-- 平台数据展示 -->
-      <section class="stats">
-        <h2 class="section-title">平台学习数据</h2>
-        <div class="stats-container">
-          <div class="stat-item">
-            <div class="stat-number">2大</div>
-            <div class="stat-label">学习场景</div>
-            <div class="stat-desc">酒店 & 餐厅</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">5关</div>
-            <div class="stat-label">闯关模式</div>
-            <div class="stat-desc">递进式学习</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">5种</div>
-            <div class="stat-label">AI性格</div>
-            <div class="stat-desc">个性化对话</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">在线服务</div>
-            <div class="stat-desc">随时随地学习</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 用户信息区域 -->
-      <section class="user-info-section" v-if="storeUsername">
-        <div class="user-info-card">
-          <div class="user-avatar-wrapper">
-            <img :src="avatarUrl" alt="用户头像" class="user-avatar" />
-          </div>
-          <div class="user-details">
-            <h3 class="user-greeting">欢迎回来，{{ storeUsername }}</h3>
-            <p class="user-tip">继续你的英语学习之旅</p>
-          </div>
-          <router-link to="/profile" class="profile-link">
-            <span>个人中心</span>
-            <span>→</span>
-          </router-link>
-        </div>
-      </section>
-
-      <!-- 学习提醒卡片组 -->
-      <section class="learning-cards" v-if="storeUsername">
-        <!-- 每日签到卡片 -->
-        <div class="check-in-card">
-          <div class="check-in-info">
-            <h3>每日签到</h3>
-            <p>坚持学习，养成好习惯</p>
-            <div class="check-in-stats" v-if="checkInData">
-              <div class="stat">
-                <span class="number">{{ checkInData.continuousCheckInDays }}</span>
-                <span class="label">连续签到</span>
-              </div>
-              <div class="stat">
-                <span class="number">{{ checkInData.totalCheckInDays }}</span>
-                <span class="label">累计签到</span>
-              </div>
-            </div>
-          </div>
-          <button class="check-in-btn" @click="goToCheckIn" :disabled="checkInData && checkInData.hasCheckedInToday">
-            <span v-if="checkInData && checkInData.hasCheckedInToday">已签到</span>
-            <span v-else>立即签到</span>
-          </button>
-        </div>
-        
-        <!-- 单词复习卡片 -->
-        <div class="word-review-card">
-          <div class="review-info">
-            <h3>单词复习</h3>
-            <p>巩固记忆，提高掌握度</p>
-            <div class="review-stats" v-if="reviewData">
-              <div class="stat">
-                <span class="number">{{ reviewData.pendingReviewCount }}</span>
-                <span class="label">待复习</span>
-              </div>
-              <div class="stat">
-                <span class="number">{{ reviewData.todayReviewedCount }}</span>
-                <span class="label">今日已复习</span>
-              </div>
-            </div>
-          </div>
-          <button class="review-btn" @click="goToWordReview" :disabled="!reviewData || reviewData.pendingReviewCount === 0">
-            <span v-if="!reviewData">加载中...</span>
-            <span v-else-if="reviewData.pendingReviewCount === 0">暂无复习</span>
-            <span v-else>开始复习</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- 学习路径推荐 -->
-      <section class="daily-suggestion">
-        <h2 class="section-title">推荐学习路径</h2>
-        <div class="suggestion-cards">
-          <div class="card featured">
-            <div class="card-badge">🌟 推荐</div>
-            <h3>结构化闯关学习</h3>
-            <p>从酒店场景开始，5关递进式学习，系统掌握实用英语</p>
-            <div class="card-features">
-              <span>✅ 词汇积累</span>
-              <span>✅ 听力提升</span>
-              <span>✅ 口语实战</span>
-            </div>
-            <button class="btn-primary" @click="goToChapters">开始闯关</button>
-          </div>
-          <div class="card">
-            <h3>自由AI对话</h3>
-            <p>选择你喜欢的AI性格，随时开始英语对话练习</p>
-            <div class="card-features">
-              <span>🎭 5种性格</span>
-              <span>💬 实时对话</span>
-              <span>🔄 随时可用</span>
-            </div>
-            <button class="btn-secondary" @click="goToFreeChat">开始对话</button>
-          </div>
-          <div class="card">
-            <h3>混合学习模式</h3>
-            <p>结合闯关学习和自由对话，获得最佳学习效果</p>
-            <div class="card-features">
-              <span>📚 系统学习</span>
-              <span>💡 灵活练习</span>
-              <span>🚀 快速提升</span>
-            </div>
-            <button class="btn-secondary" @click="showMixedLearning">了解更多</button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>关于我们</h3>
-          <p>EnglishMastery致力于提供高质量的英语学习体验，帮助学习者轻松掌握英语。</p>
-        </div>
-        <div class="footer-section">
-          <h3>联系方式</h3>
-          <p>邮箱：contact@englishmastery.com</p>
-          <p>电话：123-456-7890</p>
-        </div>
-        <div class="footer-section">
-          <h3>关注我们</h3>
-          <div class="social-icons">
-            <!-- 社交媒体图标 -->
-            <span>微信</span>
-            <span>微博</span>
-            <span>QQ</span>
-          </div>
+  <main class="home-page">
+    <section class="home-hero">
+      <div class="hero-copy">
+        <span class="learn-kicker">今日英语训练台</span>
+        <h1>{{ storeUsername ? `${storeUsername}，今天从这里继续` : '把英语学习变成每天能完成的一关' }}</h1>
+        <p>
+          先用任务卡完成单词和闯关，再用 AI 口语把表达说出来。少一点找入口，多一点真正练习。
+        </p>
+        <div class="hero-actions">
+          <button class="learn-button" type="button" @click="startTodayStudy">继续今日任务</button>
+          <button class="learn-button secondary" type="button" @click="goToFreeChat">AI 口语热身</button>
         </div>
       </div>
-      <div class="copyright">
-        <p>&copy; 2023 EnglishMastery. 保留所有权利。</p>
+
+      <div class="mission-panel learn-card">
+        <div class="panel-top">
+          <div>
+            <span class="panel-label">今日建议</span>
+            <h2>{{ personalizedGuide }}</h2>
+          </div>
+          <div class="streak-pill">{{ checkInData?.continuousCheckInDays || 0 }} 天连续</div>
+        </div>
+
+        <div class="mission-progress">
+          <div class="progress-meta">
+            <span>任务完成度</span>
+            <strong>{{ completedMissionCount }}/{{ missions.length }}</strong>
+          </div>
+          <div class="learn-progress">
+            <span :style="{ width: missionProgress + '%' }"></span>
+          </div>
+        </div>
+
+        <div class="mission-list">
+          <button
+            v-for="mission in missions"
+            :key="mission.key"
+            class="mission-item"
+            :class="{ done: mission.done }"
+            type="button"
+            @click="mission.action"
+          >
+            <span class="mission-icon">{{ mission.icon }}</span>
+            <span>
+              <strong>{{ mission.title }}</strong>
+              <small>{{ mission.desc }}</small>
+            </span>
+            <em>{{ mission.done ? '已完成' : '去完成' }}</em>
+          </button>
+        </div>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <section class="quick-grid">
+      <article class="quick-card featured" @click="goToChapters">
+        <span class="quick-eyebrow">主线推荐</span>
+        <h2>闯关学习</h2>
+        <p>酒店、餐厅场景按词汇、拼写、听力、AI 题目、实战对话推进。</p>
+        <div class="flow-line">
+          <span>词汇</span>
+          <span>拼写</span>
+          <span>听力</span>
+          <span>AI 题目</span>
+          <span>对话</span>
+        </div>
+      </article>
+
+      <article class="quick-card" @click="goToFreeChat">
+        <span class="quick-eyebrow">表达训练</span>
+        <h2>AI 口语</h2>
+        <p>用今日单词开口表达，先完成一段 5 分钟轻练习。</p>
+      </article>
+
+      <article class="quick-card" @click="goToReport">
+        <span class="quick-eyebrow">复盘反馈</span>
+        <h2>学习报告</h2>
+        <p>查看今日数据、薄弱点和下一轮针对练习。</p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="data-card learn-card">
+        <span>待复习单词</span>
+        <strong>{{ reviewData?.pendingReviewCount ?? 0 }}</strong>
+        <p>{{ reviewData?.pendingReviewCount ? '建议先复习再进入新关卡。' : '当前没有待复习单词，可以进入新任务。' }}</p>
+        <button class="learn-button secondary" type="button" @click="goToWordReview">打开单词复习</button>
+      </article>
+
+      <article class="data-card learn-card">
+        <span>签到状态</span>
+        <strong>{{ checkInData?.hasCheckedInToday ? '已签到' : '待签到' }}</strong>
+        <p>连续记录会让每日任务更有反馈感。</p>
+        <button class="learn-button secondary" type="button" @click="goToCheckIn">
+          {{ checkInData?.hasCheckedInToday ? '查看签到' : '立即签到' }}
+        </button>
+      </article>
+
+      <article class="coach-card learn-card">
+        <span class="learn-kicker">AI 教练</span>
+        <h2>今天的口语目标</h2>
+        <p>用 3 句话介绍一次入住酒店或点餐经历，尽量用上今天复习过的单词。</p>
+        <button class="learn-button" type="button" @click="goToFreeChat">开始练 5 分钟</button>
+      </article>
+    </section>
+  </main>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { getUserInfo, username as storeUsername, avatarUrl, clearUserInfo } from '@/stores/userStore';
-import { getCheckInStatus } from '@/api/checkin';
-import { getReviewWords } from '@/api/word';
-import { useRouter } from 'vue-router';
-import { toast, modal } from '@/utils/toastService';
+import { computed, onMounted, ref } from 'vue'
+import { getUserInfo, username as storeUsername } from '@/stores/userStore'
+import { getCheckInStatus } from '@/api/checkin'
+import { getReviewWords } from '@/api/word'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
+const checkInData = ref(null)
+const reviewData = ref(null)
 
-// 响应式数据
-const showAiPreview = ref(false);
-const showUserMessage = ref(false);
-const showAiResponse = ref(false);
-const checkInData = ref(null);
-const reviewData = ref(null);
-const personalizedGuide = ref('');
-
-// 页面加载时的逻辑
-onMounted(() => {
-  console.log('首页加载完成');
-
-  // 检查当前路径，避免在登录/注册页面调用
-  const currentPath = window.location.pathname;
-  if (currentPath !== '/login' && currentPath !== '/register') {
-    getUserInfo().then(userInfo => {
-      if (userInfo) {
-        // 用户登录后获取签到状态
-        fetchCheckInStatus();
-        // 获取单词复习数据
-        fetchReviewData();
-        // 生成个性化引导文案
-        personalizedGuide.value = generatePersonalizedGuide();
-      }
-    }).catch(err => {
-      console.log('获取用户信息失败:', err);
-      // 静默处理错误，不影响页面其他功能
-    });
+const missions = computed(() => [
+  {
+    key: 'checkin',
+    icon: '✓',
+    title: '完成签到',
+    desc: checkInData.value?.hasCheckedInToday ? '今天的学习记录已点亮' : '先点亮今日学习状态',
+    done: Boolean(checkInData.value?.hasCheckedInToday),
+    action: goToCheckIn
+  },
+  {
+    key: 'review',
+    icon: 'Aa',
+    title: '单词复习',
+    desc: `${reviewData.value?.pendingReviewCount ?? 0} 个单词等待巩固`,
+    done: (reviewData.value?.pendingReviewCount ?? 0) === 0,
+    action: goToWordReview
+  },
+  {
+    key: 'chapter',
+    icon: '→',
+    title: '推进一关',
+    desc: '完成一个场景任务，把单词放进语境',
+    done: false,
+    action: goToChapters
+  },
+  {
+    key: 'chat',
+    icon: 'AI',
+    title: 'AI 口语热身',
+    desc: '用 5 分钟把今天的表达说出来',
+    done: false,
+    action: goToFreeChat
   }
+])
 
-  // 启动AI预览动画
-  startAiPreviewAnimation();
-});
+const completedMissionCount = computed(() => missions.value.filter((item) => item.done).length)
+const missionProgress = computed(() => Math.round((completedMissionCount.value / missions.value.length) * 100))
 
-// AI预览动画
-const startAiPreviewAnimation = () => {
-  setTimeout(() => {
-    showAiPreview.value = true;
-    setTimeout(() => {
-      showUserMessage.value = true;
-      setTimeout(() => {
-        showAiResponse.value = true;
-      }, 1500);
-    }, 1000);
-  }, 2000);
-};
+const personalizedGuide = computed(() => {
+  if (!storeUsername.value) return '注册后即可生成你的每日学习路线'
+  if (reviewData.value?.pendingReviewCount > 0) return `先复习 ${Math.min(reviewData.value.pendingReviewCount, 20)} 个单词，再推进一关`
+  if (!checkInData.value?.hasCheckedInToday) return '先签到，再完成一轮闯关和 AI 口语'
+  return '今天适合直接推进一关，再用 AI 做口语巩固'
+})
 
-// 主要导航函数
+onMounted(async () => {
+  try {
+    const userInfo = await getUserInfo()
+    if (userInfo) {
+      await Promise.all([fetchCheckInStatus(), fetchReviewData()])
+    }
+  } catch (error) {
+    console.log('首页用户状态获取失败:', error)
+  }
+})
+
 function startTodayStudy() {
-  // 进入今日学习页面
-  router.push('/daily-study');
+  router.push('/daily-study')
 }
 
 function goToChapters() {
-  // 进入结构化闯关学习
-  router.push('/chapters');
+  router.push('/chapters')
 }
 
 function goToFreeChat() {
-  // 进入自由AI对话
-  router.push('/aiChatExer');
+  router.push('/aiChatExer')
 }
 
-function goToOralEvaluation() {
-  // 进入口语评测
-  router.push('/oral');
+function goToReport() {
+  router.push('/review-ai-chat')
 }
 
-// 生成个性化引导文案
-function generatePersonalizedGuide() {
-  if (!storeUsername.value) return '';
-
-  let guide = '根据你的进度，今天建议完成：';
-  const tasks = [];
-
-  // 根据签到状态添加任务
-  if (checkInData.value && !checkInData.value.hasCheckedInToday) {
-    tasks.push('每日签到');
-  }
-
-  // 根据单词复习情况添加任务
-  if (reviewData.value && reviewData.value.pendingReviewCount > 0) {
-    const reviewCount = Math.min(reviewData.value.pendingReviewCount, 20);
-    tasks.push(`${reviewCount}分钟单词复习`);
-  }
-
-  // 如果没有特定任务，添加默认建议
-  if (tasks.length === 0) {
-    tasks.push('1个闯关任务');
-  } else {
-    tasks.push('1个闯关任务');
-  }
-
-  return guide + tasks.join(' + ');
+function goToCheckIn() {
+  router.push('/checkin')
 }
 
-// 选择AI老师并进入对话
-function selectTeacher(teacherType) {
-  // 保存用户选择的老师类型到localStorage
-  localStorage.setItem('selectedTeacher', teacherType);
-  // 直接进入AI对话页面
-  router.push('/aiChatExer');
+function goToWordReview() {
+  router.push('/flashCardReview')
 }
 
-// 获取签到状态
 const fetchCheckInStatus = async () => {
   try {
-    const res = await getCheckInStatus();
-    if (res.data && res.data.code === 200) {
-      checkInData.value = res.data.data;
-    }
+    const res = await getCheckInStatus()
+    if (res.data?.code === 200) checkInData.value = res.data.data
   } catch (error) {
-    console.error('获取签到状态失败:', error);
+    console.error('获取签到状态失败:', error)
   }
-};
-
-// 跳转到签到页面
-function goToCheckIn() {
-  router.push('/checkin');
 }
 
-// 获取单词复习数据
 const fetchReviewData = async () => {
   try {
-    const res = await getReviewWords();
-    if (res.data && res.data.code === 200) {
+    const res = await getReviewWords()
+    if (res.data?.code === 200) {
       reviewData.value = {
         pendingReviewCount: res.data.data.count || 0,
-        todayReviewedCount: 0 // 这里可以添加获取今日已复习单词数量的逻辑
-      };
-      // 更新个性化引导文案
-      if (storeUsername.value) {
-        personalizedGuide.value = generatePersonalizedGuide();
+        todayReviewedCount: 0
       }
     }
   } catch (error) {
-    console.error('获取复习数据失败:', error);
+    console.error('获取复习数据失败:', error)
   }
-};
-
-// 跳转到单词复习页面
-function goToWordReview() {
-  router.push('/flashCardReview');
-}
-
-// 显示混合学习模式说明
-function showMixedLearning() {
-  modal.showAlert({ message: '混合学习模式：先通过闯关学习掌握基础词汇和语法，再通过自由对话练习实际应用，两种模式结合，学习效果更佳！建议从闯关学习开始 🚀' });
 }
 </script>
-<script>
-import '@/assets/css/home_head.css'
-import '@/assets/css/ai-home.css'
-import '@/assets/css/checkin.css'
-import '@/assets/css/wordReviewCard.css'
-</script>
+
+<style scoped>
+.home-page {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 34px 0 64px;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 430px;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.hero-copy {
+  min-height: 430px;
+  padding: 42px;
+  border-radius: 32px;
+  background:
+    linear-gradient(135deg, rgba(31, 138, 112, 0.12), rgba(240, 164, 58, 0.16)),
+    var(--learn-surface);
+  box-shadow: var(--learn-shadow);
+}
+
+.hero-copy h1 {
+  max-width: 720px;
+  margin: 18px 0 14px;
+  font-size: clamp(36px, 6vw, 68px);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.hero-copy p {
+  max-width: 620px;
+  color: var(--learn-muted);
+  font-size: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.mission-panel {
+  padding: 24px;
+}
+
+.panel-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.panel-label,
+.quick-eyebrow,
+.data-card span {
+  color: var(--learn-muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.panel-top h2 {
+  margin: 4px 0 0;
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+.streak-pill {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--learn-amber-soft);
+  color: #8a5a07;
+  font-weight: 900;
+}
+
+.mission-progress {
+  margin: 24px 0;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: var(--learn-muted);
+  font-size: 14px;
+}
+
+.mission-list {
+  display: grid;
+  gap: 10px;
+}
+
+.mission-item {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  border-radius: 18px;
+  background: #fff;
+  color: var(--learn-ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.mission-item.done {
+  background: var(--learn-green-soft);
+}
+
+.mission-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--learn-ink);
+  color: #fff;
+  font-weight: 900;
+}
+
+.mission-item small {
+  display: block;
+  color: var(--learn-muted);
+}
+
+.mission-item em {
+  color: var(--learn-primary-dark);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.quick-card {
+  min-height: 210px;
+  padding: 26px;
+  border: 1px solid var(--learn-line);
+  border-radius: 26px;
+  background: var(--learn-surface-strong);
+  cursor: pointer;
+  box-shadow: var(--learn-shadow-soft);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.quick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--learn-shadow);
+}
+
+.quick-card.featured {
+  background: linear-gradient(135deg, #1f8a70, #2e695d);
+  color: #fff;
+}
+
+.quick-card.featured .quick-eyebrow,
+.quick-card.featured p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.quick-card h2 {
+  margin: 8px 0 8px;
+  font-size: 28px;
+}
+
+.quick-card p,
+.data-card p,
+.coach-card p {
+  color: var(--learn-muted);
+}
+
+.flow-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.flow-line span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.3fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.data-card,
+.coach-card {
+  padding: 24px;
+}
+
+.data-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 34px;
+}
+
+.coach-card {
+  background: linear-gradient(135deg, var(--learn-amber-soft), #fff);
+}
+
+.coach-card h2 {
+  margin: 14px 0 8px;
+}
+
+@media (max-width: 940px) {
+  .home-hero,
+  .quick-grid,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    min-height: auto;
+    padding: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-page {
+    width: min(100% - 20px, 1180px);
+  }
+
+  .panel-top,
+  .mission-item {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-top {
+    display: grid;
+  }
+}
+</style>

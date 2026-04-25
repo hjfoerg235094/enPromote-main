@@ -23,3 +23,4 @@ build
 .vscode/*
 !.vscode/extensions.json
 server/logs/
+.agents

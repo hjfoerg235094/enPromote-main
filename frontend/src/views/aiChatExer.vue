@@ -115,7 +115,17 @@
             </div>
 
             <button class="settings-btn" @click="showSettingsModal = true" title="AI设置">
-                ⚙️
+                设置
+            </button>
+        </div>
+
+        <div class="practice-goal" v-show="!showGuideModal">
+            <div>
+                <span>今日口语目标</span>
+                <strong>用 3 句话描述一次酒店入住或餐厅点餐经历</strong>
+            </div>
+            <button class="goal-word-btn" type="button" @click="toggleSidebar">
+                {{ showSidebar ? '收起单词' : '查看练习单词' }}
             </button>
         </div>
 
@@ -349,9 +359,9 @@ const showInputWarning = ref(false)
 // 指引相关数据
 const showGuideModal = ref(false)
 const guideStep = ref(1)
-const selectedCharacter = ref('')
-const selectedNature = ref('')
-const selectedUseEnglish = ref(null)
+const selectedCharacter = ref('teacher')
+const selectedNature = ref('gentle')
+const selectedUseEnglish = ref(false)
 
 // 设置模态窗口相关数据
 const showSettingsModal = ref(false)
@@ -430,11 +440,15 @@ const checkAiChooseStatus = async () => {
     try {
         const response = await getUserInfo()
         if (response.data.code === 200) {
-            // 如果用户未完成AI选择，显示指引模态框
             if (!response.data.ai_choose_completed) {
-                showGuideModal.value = true
-                // 设置默认选择
                 selectedCharacter.value = 'teacher'
+                selectedNature.value = 'gentle'
+                selectedUseEnglish.value = false
+                character.value = 'teacher'
+                nature.value = 'gentle'
+                useEnglish.value = false
+                showGuideModal.value = false
+                getHistory()
             } else {
                 // 如果已完成选择，获取历史记录
                 getHistory()

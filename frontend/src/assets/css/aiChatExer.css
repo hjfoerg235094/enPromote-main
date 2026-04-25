@@ -2329,3 +2329,111 @@
         font-size: 14px;
     }
 }
+
+.ai-chat-container {
+    max-width: none;
+    width: 100%;
+    background:
+        radial-gradient(circle at top left, rgba(240, 164, 58, 0.16), transparent 28rem),
+        var(--learn-bg);
+}
+
+.chat-header {
+    border: 1px solid var(--learn-line);
+    border-radius: 22px;
+    background: rgba(255, 253, 247, 0.94);
+    color: var(--learn-ink);
+    box-shadow: var(--learn-shadow-soft);
+}
+
+.settings-btn,
+.goal-word-btn {
+    width: auto;
+    min-width: 72px;
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: var(--learn-amber-soft);
+    color: var(--learn-ink);
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.settings-btn:hover,
+.goal-word-btn:hover {
+    background: var(--learn-amber-soft);
+    transform: translateY(-1px);
+}
+
+.practice-goal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin: 14px auto 0;
+    width: min(940px, calc(100% - 28px));
+    padding: 14px 18px;
+    border: 1px solid var(--learn-line);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: var(--learn-shadow-soft);
+}
+
+.practice-goal span {
+    display: block;
+    color: var(--learn-muted);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.practice-goal strong {
+    display: block;
+    margin-top: 2px;
+    color: var(--learn-ink);
+}
+
+.chat-messages {
+    background: transparent;
+}
+
+.welcome-content {
+    border: 1px solid var(--learn-line);
+    border-radius: 28px;
+    background: rgba(255, 253, 247, 0.92);
+    box-shadow: var(--learn-shadow-soft);
+}
+
+.message-content {
+    border-radius: 18px;
+}
+
+.ai-message .message-content {
+    background: #fff;
+    border: 1px solid var(--learn-line);
+}
+
+.user-message .message-content {
+    background: var(--learn-primary);
+}
+
+.chat-input {
+    background: rgba(255, 253, 247, 0.92);
+    border-top: 1px solid var(--learn-line);
+}
+
+.input-wrapper {
+    border: 1px solid var(--learn-line);
+    border-radius: 999px;
+    background: #fff;
+}
+
+.send-btn {
+    background: var(--learn-primary);
+}
+
+@media (max-width: 720px) {
+    .practice-goal {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

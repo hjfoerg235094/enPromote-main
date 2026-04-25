@@ -1,120 +1,70 @@
-
 <template>
-  <div class="daily-study-container">
-    <div class="study-header">
-      <h1 class="page-title">今日学习</h1>
-      <p class="page-subtitle">完成每日学习任务，持续提升英语能力</p>
-    </div>
-
-    <!-- 学习进度概览 -->
-    <div class="progress-overview">
-      <div class="progress-card">
-        <div class="progress-icon">📅</div>
-        <div class="progress-info">
-          <div class="progress-value">{{ checkInData.continuousCheckInDays || 0 }}</div>
-          <div class="progress-label">连续签到天数</div>
+  <main class="learn-page daily-page">
+    <section class="daily-hero">
+      <div>
+        <span class="learn-kicker">今日任务</span>
+        <h1>先完成基础任务，再进入情境表达</h1>
+        <p>今天的路线按“签到、单词、闯关、AI 口语”推进。部分任务暂无实时完成接口，会用“建议完成”标记，不伪造成已完成。</p>
+      </div>
+      <div class="today-score learn-card">
+        <span>已确认完成</span>
+        <strong>{{ completedTasks }}/{{ totalTasks }}</strong>
+        <div class="learn-progress">
+          <span :style="{ width: completionRate + '%' }"></span>
         </div>
       </div>
-      <div class="progress-card">
-        <div class="progress-icon">📚</div>
-        <div class="progress-info">
-          <div class="progress-value">{{ reviewData.todayReviewedCount || 0 }}</div>
-          <div class="progress-label">今日已复习单词</div>
-        </div>
-      </div>
-      <div class="progress-card">
-        <div class="progress-icon">🎯</div>
-        <div class="progress-info">
-          <div class="progress-value">{{ completedTasks }}/{{ totalTasks }}</div>
-          <div class="progress-label">今日任务完成</div>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- 学习任务列表 -->
-    <div class="study-tasks">
-      <h2 class="section-title">今日学习任务</h2>
+    <section class="metric-grid">
+      <article class="metric-card learn-card">
+        <span>连续学习</span>
+        <strong>{{ checkInData.continuousCheckInDays || 0 }} 天</strong>
+        <p>{{ checkInData.hasCheckedInToday ? '今天已签到' : '今天还未签到' }}</p>
+      </article>
+      <article class="metric-card learn-card">
+        <span>待复习单词</span>
+        <strong>{{ reviewData.pendingReviewCount || 0 }}</strong>
+        <p>优先清掉待复习，再学新内容</p>
+      </article>
+      <article class="metric-card learn-card">
+        <span>今日主线</span>
+        <strong>1 关</strong>
+        <p>推进一个场景任务即可</p>
+      </article>
+    </section>
 
-      <!-- 签到任务 -->
-      <div class="task-card" :class="{ completed: checkInData.hasCheckedInToday }">
-        <div class="task-icon">✅</div>
-        <div class="task-content">
-          <h3>每日签到</h3>
-          <p>坚持学习，养成好习惯</p>
+    <section class="task-track">
+      <article
+        v-for="task in tasks"
+        :key="task.key"
+        class="task-card"
+        :class="{ completed: task.completed, recommended: task.recommended }"
+      >
+        <div class="task-index">{{ task.index }}</div>
+        <div class="task-body">
+          <div class="task-topline">
+            <span>{{ task.type }}</span>
+            <strong>{{ task.completed ? '已完成' : task.status }}</strong>
+          </div>
+          <h2>{{ task.title }}</h2>
+          <p>{{ task.desc }}</p>
         </div>
-        <button 
-          class="task-button" 
-          :class="{ disabled: checkInData.hasCheckedInToday }"
-          @click="goToCheckIn"
-          :disabled="checkInData.hasCheckedInToday"
-        >
-          {{ checkInData.hasCheckedInToday ? '已完成' : '去签到' }}
+        <button class="learn-button" :class="{ secondary: !task.recommended }" type="button" @click="task.action">
+          {{ task.cta }}
         </button>
-      </div>
-
-      <!-- 单词复习任务 -->
-      <div class="task-card" :class="{ completed: reviewData.todayReviewedCount >= reviewData.dailyTarget }">
-        <div class="task-icon">📖</div>
-        <div class="task-content">
-          <h3>单词复习</h3>
-          <p>今日已复习 {{ reviewData.todayReviewedCount || 0 }}/{{ reviewData.dailyTarget || 20 }} 个单词</p>
-        </div>
-        <button 
-          class="task-button" 
-          :class="{ disabled: reviewData.todayReviewedCount >= reviewData.dailyTarget }"
-          @click="goToWordReview"
-          :disabled="reviewData.todayReviewedCount >= reviewData.dailyTarget"
-        >
-          {{ reviewData.todayReviewedCount >= reviewData.dailyTarget ? '已完成' : '去复习' }}
-        </button>
-      </div>
-
-      <!-- 闪卡练习任务 -->
-      <div class="task-card" :class="{ completed: flashCardCompleted }">
-        <div class="task-icon">🎴</div>
-        <div class="task-content">
-          <h3>闪卡练习</h3>
-          <p>通过闪卡强化单词记忆</p>
-        </div>
-        <button 
-          class="task-button" 
-          :class="{ disabled: flashCardCompleted }"
-          @click="goToFlashCard"
-          :disabled="flashCardCompleted"
-        >
-          {{ flashCardCompleted ? '已完成' : '去练习' }}
-        </button>
-      </div>
-
-      <!-- 薄弱点回顾任务 -->
-      <div class="task-card" :class="{ completed: weakPointsReviewed }">
-        <div class="task-icon">🔍</div>
-        <div class="task-content">
-          <h3>薄弱点回顾</h3>
-          <p>针对薄弱环节进行强化练习</p>
-        </div>
-        <button 
-          class="task-button" 
-          :class="{ disabled: weakPointsReviewed }"
-          @click="goToWeakPoints"
-          :disabled="weakPointsReviewed"
-        >
-          {{ weakPointsReviewed ? '已完成' : '去回顾' }}
-        </button>
-      </div>
-    </div>
-  </div>
+      </article>
+    </section>
+  </main>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getCheckInStatus } from '@/api/checkin'
 import { getReviewWords } from '@/api/word'
 
 const router = useRouter()
 
-// 响应式数据
 const checkInData = ref({
   continuousCheckInDays: 0,
   totalCheckInDays: 0,
@@ -127,65 +77,86 @@ const reviewData = ref({
   pendingReviewCount: 0
 })
 
-const flashCardCompleted = ref(false)
-const weakPointsReviewed = ref(false)
+const tasks = computed(() => [
+  {
+    key: 'checkin',
+    index: '01',
+    type: '习惯养成',
+    title: '每日签到',
+    desc: '点亮今天的学习记录，保持连续反馈。',
+    completed: checkInData.value.hasCheckedInToday,
+    recommended: !checkInData.value.hasCheckedInToday,
+    status: '待完成',
+    cta: checkInData.value.hasCheckedInToday ? '查看签到' : '去签到',
+    action: goToCheckIn
+  },
+  {
+    key: 'review',
+    index: '02',
+    type: '记忆巩固',
+    title: '单词复习',
+    desc: `当前有 ${reviewData.value.pendingReviewCount || 0} 个单词等待复习。`,
+    completed: (reviewData.value.pendingReviewCount || 0) === 0,
+    recommended: (reviewData.value.pendingReviewCount || 0) > 0,
+    status: '建议完成',
+    cta: (reviewData.value.pendingReviewCount || 0) > 0 ? '开始复习' : '查看单词',
+    action: goToWordReview
+  },
+  {
+    key: 'chapter',
+    index: '03',
+    type: '主线闯关',
+    title: '推进一个场景关卡',
+    desc: '用酒店或餐厅场景串起词汇、听力和实战对话。',
+    completed: false,
+    recommended: (reviewData.value.pendingReviewCount || 0) === 0,
+    status: '建议完成',
+    cta: '去闯关',
+    action: goToChapters
+  },
+  {
+    key: 'chat',
+    index: '04',
+    type: '表达输出',
+    title: 'AI 口语热身',
+    desc: '用 5 分钟把今日词汇说进真实表达里。',
+    completed: false,
+    recommended: false,
+    status: '可选加练',
+    cta: '开始对话',
+    action: goToFreeChat
+  }
+])
 
-// 计算属性
-const completedTasks = computed(() => {
-  let count = 0
-  if (checkInData.value.hasCheckedInToday) count++
-  if (reviewData.value.todayReviewedCount >= reviewData.value.dailyTarget) count++
-  if (flashCardCompleted.value) count++
-  if (weakPointsReviewed.value) count++
-  return count
-})
+const completedTasks = computed(() => tasks.value.filter((task) => task.completed).length)
+const totalTasks = computed(() => tasks.value.length)
+const completionRate = computed(() => Math.round((completedTasks.value / totalTasks.value) * 100))
 
-const totalTasks = computed(() => 4)
+const goToCheckIn = () => router.push('/checkin')
+const goToWordReview = () => router.push('/flashCardReview')
+const goToChapters = () => router.push('/adventure-story')
+const goToFreeChat = () => router.push('/aiChatExer')
 
-// 方法
-const goToCheckIn = () => {
-  router.push('/checkin')
-}
-
-const goToWordReview = () => {
-  router.push('/wordReview')
-}
-
-const goToFlashCard = () => {
-  router.push('/flashCardReview')
-}
-
-const goToWeakPoints = () => {
-  // 这里可以导航到薄弱点回顾页面，暂时使用闪卡页面作为替代
-  router.push('/flashCardReview?mode=weakpoints')
-}
-
-// 获取签到状态
 const fetchCheckInStatus = async () => {
   try {
     const res = await getCheckInStatus()
-    if (res.data && res.data.code === 200) {
-      checkInData.value = res.data.data
-    }
+    if (res.data?.code === 200) checkInData.value = res.data.data
   } catch (error) {
     console.error('获取签到状态失败:', error)
   }
 }
 
-// 获取单词复习数据
 const fetchReviewData = async () => {
   try {
     const res = await getReviewWords()
-    if (res.data && res.data.code === 200) {
-      reviewData.value.pendingReviewCount = res.data.data.count
-      // 这里可以添加获取今日已复习单词数量的逻辑
+    if (res.data?.code === 200) {
+      reviewData.value.pendingReviewCount = res.data.data.count || 0
     }
   } catch (error) {
     console.error('获取复习数据失败:', error)
   }
 }
 
-// 页面加载时获取数据
 onMounted(() => {
   fetchCheckInStatus()
   fetchReviewData()
@@ -193,139 +164,142 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.daily-study-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.study-header {
-  margin-bottom: 30px;
-}
-
-.page-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 10px 0;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-}
-
-.progress-overview {
+.daily-hero {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 22px;
+  align-items: stretch;
+  margin-bottom: 20px;
 }
 
-.progress-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.daily-hero > div:first-child {
+  padding: 34px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, rgba(31, 138, 112, 0.12), rgba(240, 164, 58, 0.12)), #fffdf7;
+  box-shadow: var(--learn-shadow-soft);
 }
 
-.progress-icon {
-  font-size: 32px;
+.daily-hero h1 {
+  margin: 16px 0 10px;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.08;
+  letter-spacing: 0;
 }
 
-.progress-info {
-  display: flex;
-  flex-direction: column;
+.daily-hero p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--learn-muted);
 }
 
-.progress-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.progress-label {
-  font-size: 14px;
-  color: #666;
-}
-
-.study-tasks {
-  background: white;
-  border-radius: 12px;
+.today-score {
+  display: grid;
+  align-content: center;
+  gap: 12px;
   padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.section-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 20px 0;
+.today-score span,
+.metric-card span {
+  color: var(--learn-muted);
+  font-weight: 800;
+}
+
+.today-score strong {
+  font-size: 44px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.metric-card {
+  padding: 22px;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 30px;
+}
+
+.metric-card p {
+  margin-bottom: 0;
+  color: var(--learn-muted);
+}
+
+.task-track {
+  display: grid;
+  gap: 14px;
 }
 
 .task-card {
-  display: flex;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  gap: 18px;
   align-items: center;
   padding: 20px;
-  margin-bottom: 16px;
-  border-radius: 12px;
-  background: #f9f9f9;
-  transition: all 0.3s ease;
+  border: 1px solid var(--learn-line);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: var(--learn-shadow-soft);
 }
 
-.task-card:hover {
-  background: #f0f0f0;
+.task-card.recommended {
+  border-color: rgba(31, 138, 112, 0.34);
+  background: linear-gradient(90deg, rgba(223, 243, 232, 0.88), #fff);
 }
 
 .task-card.completed {
-  background: #e8f5e9;
+  background: var(--learn-green-soft);
 }
 
-.task-icon {
-  font-size: 28px;
-  margin-right: 20px;
+.task-index {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: var(--learn-ink);
+  color: #fff;
+  font-weight: 900;
 }
 
-.task-content {
-  flex: 1;
+.task-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--learn-muted);
+  font-size: 13px;
+  font-weight: 800;
 }
 
-.task-content h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 5px 0;
+.task-topline strong {
+  color: var(--learn-primary-dark);
 }
 
-.task-content p {
-  font-size: 14px;
-  color: #666;
+.task-body h2 {
+  margin: 5px 0;
+  font-size: 22px;
+}
+
+.task-body p {
   margin: 0;
+  color: var(--learn-muted);
 }
 
-.task-button {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  background: #4facfe;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+@media (max-width: 860px) {
+  .daily-hero,
+  .metric-grid,
+  .task-card {
+    grid-template-columns: 1fr;
+  }
 
-.task-button:hover:not(.disabled) {
-  background: #00f2fe;
-}
-
-.task-button.disabled {
-  background: #ccc;
-  cursor: not-allowed;
+  .task-card {
+    align-items: start;
+  }
 }
 </style>

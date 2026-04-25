@@ -1,160 +1,102 @@
-
 <template>
-  <div class="review-ai-chat-container">
-    <div class="review-header">
-      <h1 class="page-title">复盘/AI对话</h1>
-      <p class="page-subtitle">查看学习报告，通过AI对话针对性提升薄弱环节</p>
-    </div>
+  <main class="learn-page review-page">
+    <section class="review-hero">
+      <div>
+        <span class="learn-kicker">学习报告</span>
+        <h1>看见今天的表现，再决定下一轮怎么练</h1>
+        <p>报告负责告诉你问题在哪里，AI 练习负责把问题转成可执行的口语和表达训练。</p>
+      </div>
+      <button class="learn-button" type="button" @click="goToFreeChat">开始 AI 针对练习</button>
+    </section>
 
-    <!-- 学习报告概览 -->
-    <div class="report-overview">
-      <div class="report-card">
-        <div class="report-icon">📊</div>
-        <div class="report-info">
-          <div class="report-value">{{ formatTime(reportData.totalStudyTime) }}</div>
-          <div class="report-label">今日学习时长</div>
-        </div>
-      </div>
-      <div class="report-card">
-        <div class="report-icon">📚</div>
-        <div class="report-info">
-          <div class="report-value">{{ reportData.wordsLearned || 0 }}</div>
-          <div class="report-label">今日学习单词</div>
-        </div>
-      </div>
-      <div class="report-card">
-        <div class="report-icon">🎯</div>
-        <div class="report-info">
-          <div class="report-value">{{ reportData.accuracy || 0 }}%</div>
-          <div class="report-label">今日正确率</div>
-        </div>
-      </div>
-      <div class="report-card">
-        <div class="report-icon">🔥</div>
-        <div class="report-info">
-          <div class="report-value">{{ reportData.continuousDays || 0 }}</div>
-          <div class="report-label">连续学习天数</div>
-        </div>
-      </div>
-    </div>
+    <section class="report-grid">
+      <article v-for="item in reportMetrics" :key="item.label" class="report-metric learn-card">
+        <span>{{ item.label }}</span>
+        <strong>{{ item.value }}</strong>
+        <p>{{ item.desc }}</p>
+      </article>
+    </section>
 
-    <!-- 学习报告与AI对话 -->
-    <div class="review-chat-section">
-      <div class="section-container">
-        <h2 class="section-title">学习报告</h2>
-        <div class="report-content">
-          <div class="report-card detailed">
-            <h3>今日学习概览</h3>
-            <div class="report-stats">
-              <div class="stat-item">
-                <span class="stat-label">学习时长</span>
-                <span class="stat-value">{{ formatTime(reportData.totalStudyTime) }}</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">学习单词</span>
-                <span class="stat-value">{{ reportData.wordsLearned || 0 }}</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">正确率</span>
-                <span class="stat-value">{{ reportData.accuracy || 0 }}%</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">掌握率</span>
-                <span class="stat-value">{{ reportData.masteryRate || 0 }}%</span>
-              </div>
-            </div>
-            <button class="view-report-button" @click="viewFullReport">查看完整报告</button>
+    <section class="review-layout">
+      <article class="report-panel learn-card">
+        <div class="section-heading">
+          <span class="learn-kicker">今日概览</span>
+          <button class="learn-button secondary" type="button" @click="viewFullReport">查看完整报告</button>
+        </div>
+        <div class="overview-list">
+          <div>
+            <span>学习时长</span>
+            <strong>{{ formatTime(reportData.totalStudyTime) }}</strong>
           </div>
-
-          <div class="report-card detailed">
-            <h3>薄弱点分析</h3>
-            <div class="weak-points" v-if="weakPoints.length > 0">
-              <div 
-                v-for="(point, index) in weakPoints" 
-                :key="index" 
-                class="weak-point-item"
-              >
-                <div class="point-icon">{{ getWeakPointIcon(point.type) }}</div>
-                <div class="point-content">
-                  <div class="point-title">{{ point.title }}</div>
-                  <div class="point-desc">{{ point.description }}</div>
-                </div>
-                <button 
-                  class="practice-button" 
-                  @click="practiceWeakPoint(point)"
-                >
-                  针对性练习
-                </button>
-              </div>
-            </div>
-            <div v-else class="no-weak-points">
-              <div class="no-data-icon">🎉</div>
-              <p>太棒了！目前没有发现明显的薄弱点</p>
-            </div>
+          <div>
+            <span>学习单词</span>
+            <strong>{{ reportData.wordsLearned || 0 }}</strong>
+          </div>
+          <div>
+            <span>正确率</span>
+            <strong>{{ reportData.accuracy || 0 }}%</strong>
+          </div>
+          <div>
+            <span>掌握率</span>
+            <strong>{{ reportData.masteryRate || 0 }}%</strong>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="section-container">
-        <h2 class="section-title">AI对话练习</h2>
-        <div class="chat-options">
-          <div class="chat-option-card" @click="goToFreeChat">
-            <div class="chat-option-icon">💬</div>
-            <div class="chat-option-content">
-              <h3>自由对话</h3>
-              <p>选择AI老师，进行自由对话练习</p>
-              <div class="chat-option-features">
-                <span class="feature-tag">🎭 5种AI性格</span>
-                <span class="feature-tag">💡 实时反馈</span>
-                <span class="feature-tag">🔄 24/7可用</span>
-              </div>
-            </div>
-            <div class="chat-option-arrow">→</div>
-          </div>
+      <article class="weak-panel learn-card">
+        <div class="section-heading">
+          <span class="learn-kicker">薄弱点</span>
+          <small>没有数据时不制造假问题</small>
+        </div>
 
-          <div class="chat-option-card" @click="goToTaskChat">
-            <div class="chat-option-icon">🎯</div>
-            <div class="chat-option-content">
-              <h3>任务导向对话</h3>
-              <p>基于学习报告，AI老师会根据你的薄弱点进行针对性练习</p>
-              <div class="chat-option-features">
-                <span class="feature-tag">📊 基于数据</span>
-                <span class="feature-tag">🎯 针对性强</span>
-                <span class="feature-tag">📈 效果显著</span>
-              </div>
+        <div v-if="weakPoints.length > 0" class="weak-list">
+          <div v-for="(point, index) in weakPoints" :key="index" class="weak-item">
+            <span class="weak-icon">{{ getWeakPointIcon(point.type) }}</span>
+            <div>
+              <strong>{{ point.title }}</strong>
+              <p>{{ point.description }}</p>
             </div>
-            <div class="chat-option-arrow">→</div>
-          </div>
-
-          <div class="chat-option-card" @click="goToWeakPointChat">
-            <div class="chat-option-icon">🔍</div>
-            <div class="chat-option-content">
-              <h3>薄弱点对话练习</h3>
-              <p>选择你的薄弱环节，进行专项对话练习</p>
-              <div class="chat-option-features">
-                <span class="feature-tag">📚 词汇薄弱</span>
-                <span class="feature-tag">🎧 听力薄弱</span>
-                <span class="feature-tag">🎤 口语薄弱</span>
-              </div>
-            </div>
-            <div class="chat-option-arrow">→</div>
+            <button class="learn-button secondary" type="button" @click="practiceWeakPoint(point)">针对练习</button>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <div v-else class="empty-state">
+          <strong>暂时没有明显薄弱点</strong>
+          <p>可以先完成一轮闯关或 AI 口语，报告会在有数据后给出更具体的建议。</p>
+          <button class="learn-button secondary" type="button" @click="goToAdventure">去闯关</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="chat-practice">
+      <article class="practice-card primary" @click="goToFreeChat">
+        <span>自由表达</span>
+        <h2>AI 口语热身</h2>
+        <p>适合没有明确薄弱点时，先用今日主题聊 5 分钟。</p>
+      </article>
+      <article class="practice-card" @click="goToTaskChat">
+        <span>报告驱动</span>
+        <h2>任务型对话</h2>
+        <p>基于今日表现进行针对练习，优先纠正常见表达问题。</p>
+      </article>
+      <article class="practice-card" @click="goToWeakPointChat">
+        <span>薄弱点加练</span>
+        <h2>专项对话</h2>
+        <p>围绕单词、听力、口语或语法薄弱项做短时训练。</p>
+      </article>
+    </section>
+  </main>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { toast } from '@/utils/toastService'
 
 const router = useRouter()
 
-// 响应式数据
 const reportData = ref({
-  totalStudyTime: 0, // 以分钟为单位
+  totalStudyTime: 0,
   wordsLearned: 0,
   accuracy: 0,
   masteryRate: 0,
@@ -163,64 +105,57 @@ const reportData = ref({
 
 const weakPoints = ref([])
 
-// 方法
+const reportMetrics = computed(() => [
+  { label: '今日学习', value: formatTime(reportData.value.totalStudyTime), desc: '累计投入时间' },
+  { label: '新学单词', value: reportData.value.wordsLearned || 0, desc: '今日学习记录' },
+  { label: '正确率', value: `${reportData.value.accuracy || 0}%`, desc: '练习题表现' },
+  { label: '连续天数', value: reportData.value.continuousDays || 0, desc: '学习习惯反馈' }
+])
+
 const formatTime = (minutes) => {
-  if (minutes < 60) return `${minutes}分钟`
+  if (!minutes) return '0 分钟'
+  if (minutes < 60) return `${minutes} 分钟`
   const hours = Math.floor(minutes / 60)
   const mins = minutes % 60
-  return mins > 0 ? `${hours}小时${mins}分钟` : `${hours}小时`
+  return mins > 0 ? `${hours} 小时 ${mins} 分钟` : `${hours} 小时`
 }
 
 const getWeakPointIcon = (type) => {
   const icons = {
-    vocabulary: '📚',
-    listening: '🎧',
-    speaking: '🎤',
-    grammar: '📝',
-    reading: '📖'
+    vocabulary: 'Aa',
+    listening: '听',
+    speaking: '说',
+    grammar: '句',
+    reading: '读'
   }
-  return icons[type] || '🔍'
+  return icons[type] || '练'
 }
 
-const viewFullReport = () => {
-  router.push('/daily-report')
-}
+const viewFullReport = () => router.push('/daily-report')
 
 const practiceWeakPoint = (point) => {
-  // 根据薄弱点类型导航到相应的练习页面
   if (point.type === 'vocabulary') {
     router.push('/flashCardReview?mode=weakpoints')
-  } else if (point.type === 'listening') {
-    router.push('/listening-legacy')
-  } else if (point.type === 'speaking') {
-    router.push('/oral')
-  } else if (point.type === 'grammar') {
-    router.push('/aiChatExer?mode=grammar')
-  } else if (point.type === 'reading') {
-    router.push('/reading')
+    return
   }
-}
-
-const goToFreeChat = () => {
-  router.push('/aiChatExer')
-}
-
-const goToTaskChat = () => {
-  // 导航到任务导向对话，并传递基于学习报告的任务参数
-  router.push('/aiChatExer?mode=task')
-}
-
-const goToWeakPointChat = () => {
-  // 导航到薄弱点对话，并传递薄弱点类型
+  if (point.type === 'speaking' || point.type === 'grammar') {
+    router.push(`/aiChatExer?mode=${point.type}`)
+    return
+  }
+  toast.info('这个专项入口正在整理中，先为你打开 AI 针对练习。')
   router.push('/aiChatExer?mode=weakpoints')
 }
 
-// 获取学习报告数据
+const goToFreeChat = () => router.push('/aiChatExer')
+const goToTaskChat = () => router.push('/aiChatExer?mode=task')
+const goToWeakPointChat = () => router.push('/aiChatExer?mode=weakpoints')
+const goToAdventure = () => router.push('/adventure-story')
+
 const fetchReportData = async () => {
   try {
     const res = await axios.get('/api/daily-report/today')
-    if (res.data && res.data.code === 200) {
-      reportData.value = res.data.data.report || {}
+    if (res.data?.code === 200) {
+      reportData.value = res.data.data.report || reportData.value
       weakPoints.value = res.data.data.weakPoints || []
     }
   } catch (error) {
@@ -228,283 +163,172 @@ const fetchReportData = async () => {
   }
 }
 
-// 页面加载时获取数据
-onMounted(() => {
-  fetchReportData()
-})
+onMounted(fetchReportData)
 </script>
 
 <style scoped>
-.review-ai-chat-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.review-header {
-  margin-bottom: 30px;
-}
-
-.page-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 10px 0;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-}
-
-.report-overview {
+.review-hero {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 20px;
-  margin-bottom: 30px;
+  align-items: end;
+  padding: 34px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, rgba(240, 164, 58, 0.14), rgba(66, 119, 184, 0.12)), #fffdf7;
+  box-shadow: var(--learn-shadow-soft);
+  margin-bottom: 20px;
 }
 
-.report-card {
-  background: white;
-  border-radius: 12px;
+.review-hero h1 {
+  margin: 16px 0 10px;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.review-hero p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--learn-muted);
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.report-metric {
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 15px;
 }
 
-.report-card.detailed {
-  flex-direction: column;
-  align-items: stretch;
-  margin-bottom: 20px;
+.report-metric span,
+.overview-list span,
+.practice-card span {
+  color: var(--learn-muted);
+  font-size: 13px;
+  font-weight: 800;
 }
 
-.report-icon {
-  font-size: 32px;
-}
-
-.report-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.report-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.report-label {
-  font-size: 14px;
-  color: #666;
-}
-
-.review-chat-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 30px;
-}
-
-.section-container {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.section-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 20px 0;
-}
-
-.report-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.report-card.detailed h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 16px 0;
-}
-
-.report-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.stat-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-
-.stat-label {
-  font-size: 14px;
-  color: #666;
-}
-
-.stat-value {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.view-report-button {
-  width: 100%;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: none;
-  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.view-report-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
-}
-
-.weak-points {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.weak-point-item {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  gap: 16px;
-}
-
-.point-icon {
+.report-metric strong {
+  display: block;
+  margin-top: 8px;
   font-size: 28px;
 }
 
-.point-content {
-  flex: 1;
+.report-metric p,
+.weak-item p,
+.empty-state p,
+.practice-card p {
+  color: var(--learn-muted);
 }
 
-.point-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 4px;
+.review-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: 18px;
+  margin-bottom: 20px;
 }
 
-.point-desc {
-  font-size: 14px;
-  color: #666;
-  margin: 0;
+.report-panel,
+.weak-panel {
+  padding: 24px;
 }
 
-.practice-button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
-  background: #4facfe;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.practice-button:hover {
-  background: #00f2fe;
-}
-
-.no-weak-points {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.no-data-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-
-.no-weak-points p {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-}
-
-.chat-options {
+.section-heading {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.chat-option-card {
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
+  justify-content: space-between;
+  gap: 12px;
   align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  margin-bottom: 18px;
 }
 
-.chat-option-card:hover {
-  background: #f0f0f0;
-  transform: translateX(4px);
+.section-heading small {
+  color: var(--learn-muted);
 }
 
-.chat-option-icon {
-  font-size: 40px;
-  margin-right: 16px;
+.overview-list {
+  display: grid;
+  gap: 12px;
 }
 
-.chat-option-content {
-  flex: 1;
-}
-
-.chat-option-content h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 6px 0;
-}
-
-.chat-option-content p {
-  font-size: 14px;
-  color: #666;
-  margin: 0 0 12px 0;
-}
-
-.chat-option-features {
+.overview-list div {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.feature-tag {
-  padding: 4px 12px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
   border-radius: 16px;
-  background: #e0e0e0;
-  font-size: 12px;
-  color: #666;
+  background: #fff;
 }
 
-.chat-option-arrow {
-  font-size: 24px;
-  color: #999;
+.weak-list {
+  display: grid;
+  gap: 12px;
+}
+
+.weak-item {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.weak-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+  background: var(--learn-coral-soft);
+  color: var(--learn-coral);
+  font-weight: 900;
+}
+
+.empty-state {
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--learn-green-soft);
+}
+
+.chat-practice {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.practice-card {
+  padding: 24px;
+  border: 1px solid var(--learn-line);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: var(--learn-shadow-soft);
+  cursor: pointer;
+}
+
+.practice-card.primary {
+  background: linear-gradient(135deg, #1f8a70, #2d6d60);
+  color: #fff;
+}
+
+.practice-card.primary span,
+.practice-card.primary p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.practice-card h2 {
+  margin: 8px 0;
+}
+
+@media (max-width: 920px) {
+  .review-hero,
+  .report-grid,
+  .review-layout,
+  .chat-practice,
+  .weak-item {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

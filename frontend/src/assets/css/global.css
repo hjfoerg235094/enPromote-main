@@ -1,21 +1,138 @@
-/* 重置默认样式 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light;
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+  --learn-bg: #f7f4ea;
+  --learn-surface: #fffdf7;
+  --learn-surface-strong: #ffffff;
+  --learn-ink: #24312f;
+  --learn-muted: #69736f;
+  --learn-line: rgba(36, 49, 47, 0.12);
+  --learn-primary: #1f8a70;
+  --learn-primary-dark: #11614f;
+  --learn-accent: #f0a43a;
+  --learn-coral: #e9685b;
+  --learn-blue: #4277b8;
+  --learn-green-soft: #dff3e8;
+  --learn-amber-soft: #fff1cf;
+  --learn-coral-soft: #ffe2dc;
+  --learn-blue-soft: #e3edf9;
+  --learn-shadow: 0 18px 45px rgba(50, 59, 52, 0.12);
+  --learn-shadow-soft: 0 10px 26px rgba(50, 59, 52, 0.08);
+  --learn-radius-lg: 24px;
+  --learn-radius-md: 16px;
+  --learn-radius-sm: 10px;
 }
 
 html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+body,
+#app {
+  min-height: 100%;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(240, 164, 58, 0.16), transparent 32rem),
+    linear-gradient(180deg, #fbf8ef 0%, var(--learn-bg) 100%);
+  color: var(--learn-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.learn-page {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+}
+
+.learn-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 5px 12px;
+  border: 1px solid rgba(31, 138, 112, 0.2);
+  border-radius: 999px;
+  background: rgba(31, 138, 112, 0.09);
+  color: var(--learn-primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.learn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--learn-primary);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 12px 22px rgba(31, 138, 112, 0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.learn-button:hover {
+  transform: translateY(-2px);
+  background: var(--learn-primary-dark);
+  box-shadow: 0 16px 28px rgba(31, 138, 112, 0.26);
+}
+
+.learn-button.secondary {
+  background: var(--learn-surface-strong);
+  color: var(--learn-primary-dark);
+  border: 1px solid rgba(31, 138, 112, 0.18);
+  box-shadow: none;
+}
+
+.learn-card {
+  border: 1px solid var(--learn-line);
+  border-radius: var(--learn-radius-lg);
+  background: rgba(255, 253, 247, 0.9);
+  box-shadow: var(--learn-shadow-soft);
+}
+
+.learn-progress {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(36, 49, 47, 0.1);
+}
+
+.learn-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--learn-primary), var(--learn-accent));
+}
+
+@media (max-width: 720px) {
+  .learn-page {
+    width: min(100% - 20px, 1180px);
+    padding-top: 18px;
+  }
 }
