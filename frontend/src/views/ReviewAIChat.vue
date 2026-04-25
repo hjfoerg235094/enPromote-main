@@ -120,6 +120,10 @@ const formatTime = (minutes) => {
   return mins > 0 ? `${hours} 小时 ${mins} 分钟` : `${hours} 小时`
 }
 
+const formatPercentage = (value) => {
+  return `${(value * 100).toFixed(2)}%`
+}
+
 const getWeakPointIcon = (type) => {
   const icons = {
     vocabulary: 'Aa',
@@ -153,10 +157,57 @@ const goToAdventure = () => router.push('/adventure-story')
 
 const fetchReportData = async () => {
   try {
-    const res = await axios.get('/api/daily-report/today')
-    if (res.data?.code === 200) {
-      reportData.value = res.data.data.report || reportData.value
-      weakPoints.value = res.data.data.weakPoints || []
+    const res = await axios.get('/api/report/daily')
+    if (res.data && res.data.code === 200) {
+      const data = res.data.data
+      reportData.value = {
+        totalStudyTime: data.totalStudyTime || 0,
+        wordsLearned: (data.wordsLearned?.newWords || 0) + (data.wordsLearned?.reviewWords || 0),
+        accuracy: data.practiceStats?.spellingAccuracy || 0,
+        masteryRate: data.efficiency?.masteryRate || 0,
+        continuousDays: data.achievements?.continuousDays || 0
+      }
+
+      // 分析薄弱点
+      const points = []
+
+      // 分析词汇掌握情况
+      if (data.efficiency?.masteryRate < 0.5) {
+        points.push({
+          type: 'vocabulary',
+          title: '词汇掌握度偏低',
+          description: `当前掌握率为${formatPercentage(data.efficiency.masteryRate)}，建议加强词汇复习`
+        })
+      }
+
+      // 分析听力完成情况
+      if (data.practiceStats?.listeningCompletion < 0.7) {
+        points.push({
+          type: 'listening',
+          title: '听力练习不足',
+          description: `当前听力完成率为${formatPercentage(data.practiceStats.listeningCompletion)}，建议增加听力练习`
+        })
+      }
+
+      // 分析拼写正确率
+      if (data.practiceStats?.spellingAccuracy < 0.7) {
+        points.push({
+          type: 'grammar',
+          title: '拼写正确率偏低',
+          description: `当前拼写正确率为${formatPercentage(data.practiceStats.spellingAccuracy)}，建议加强拼写练习`
+        })
+      }
+
+      // 分析学习时长
+      if (data.totalStudyTime < 30) {
+        points.push({
+          type: 'vocabulary',
+          title: '学习时长不足',
+          description: `今日学习时长仅${formatTime(data.totalStudyTime)}，建议增加学习时间`
+        })
+      }
+
+      weakPoints.value = points
     }
   } catch (error) {
     console.error('获取学习报告失败:', error)
@@ -323,6 +374,7 @@ onMounted(fetchReportData)
 }
 
 @media (max-width: 920px) {
+
   .review-hero,
   .report-grid,
   .review-layout,

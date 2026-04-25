@@ -32,6 +32,7 @@ const friendsRouter = require('./router/friends');
 const settingsRouter = require('./router/settings');
 const chatRouter = require('./router/chat');
 const oralRouter = require('./router/oral');
+const userProgressRouter = require('./router/userProgress');
 
 const app = express();
 
@@ -164,6 +165,7 @@ app.use('/api/friends', friendsRouter);
 app.use('/api/settings', settingsRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/oral', oralRouter);
+app.use('/api/user', userProgressRouter);
 
 // 404处理
 app.use((req, res) => {
