@@ -31,6 +31,7 @@
 import { ref } from 'vue';
 import { register } from '@/api/auth';
 import { useRouter } from 'vue-router';
+import { toast } from '@/utils/toastService';
 const router = useRouter();
 const username = ref('');
 const password = ref('');
@@ -40,11 +41,11 @@ function clickRegister(e) {
 
 
     if (username.value === '' || password.value === '' || confirmPassword.value === '') {
-        alert('请输入完整信息')
+        toast.error('请输入完整信息')
         return
     }
     if (password.value !== confirmPassword.value) {
-        alert('两次密码不一致')
+        toast.error('两次密码不一致')
         return
     }
     const data = {
@@ -58,9 +59,9 @@ function clickRegister(e) {
     }).then(data => {
         console.log(data);
         if (data.code !== 200) {
-            alert(data.message)
+            toast.error(data.message)
         } else {
-            alert('注册成功 跳转登录')
+            toast.success('注册成功，即将跳转到登录页')
             router.push('/login')
         }
     })

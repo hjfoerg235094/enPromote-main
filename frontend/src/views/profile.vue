@@ -140,6 +140,7 @@ import { ref, onMounted } from 'vue'
 import { getUserInfo, changeInfo, uploadAvatar } from '@/api/auth'
 import { getFavoriteWords, removeFavoriteWord } from '@/api/favoriteWords'
 import { updateUserInfo } from '@/stores/userStore'
+import { toast, modal } from '@/utils/toastService'
 
 // 响应式数据
 const userInfo = ref({})
@@ -308,21 +309,17 @@ window.refreshFavoriteWords = fetchFavoriteWords
 
 // 取消收藏
 const handleRemoveFavorite = async (wordId) => {
-    if (!confirm('确定要取消收藏这个单词吗？')) {
-        return
-    }
-    
     try {
         const res = await removeFavoriteWord({ wordId })
-        if (res.data.code === 200) {
-            alert('取消收藏成功')
+    if (res.data.code === 200) {
+            toast.success('取消收藏成功')
             await fetchFavoriteWords()
         } else {
-            alert(res.data.message || '取消收藏失败')
+            toast.error(res.data.message || '取消收藏失败')
         }
     } catch (error) {
         console.error('取消收藏失败:', error)
-        alert('取消收藏失败')
+        toast.error('取消收藏失败')
     }
 }
 

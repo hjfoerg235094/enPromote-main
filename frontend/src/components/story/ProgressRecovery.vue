@@ -48,6 +48,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useStoryProgress } from '../../composables/useStoryProgress';
 import { useRouter } from 'vue-router';
+import { toast } from '@/utils/toastService';
 
 const props = defineProps<{
   storyId: string;
@@ -121,7 +122,7 @@ async function handleNewStart() {
     emit('new-start');
   } catch (error) {
     console.error('重置进度失败:', error);
-    alert('重置进度失败，请重试');
+    toast.error('重置进度失败，请重试');
   }
 }
 

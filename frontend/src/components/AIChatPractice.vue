@@ -219,6 +219,7 @@
 
 <script setup>
 import { ref, nextTick, onMounted, computed } from 'vue'
+import { toast } from '@/utils/toastService'
 
 // Props
 const props = defineProps({
@@ -585,7 +586,7 @@ const sendMessage = async () => {
 // 显示完成模态框
 const showCompletionModal = () => {
   // 这里可以显示任务完成的模态框
-  alert(`恭喜完成任务！\n${completionReport.value.feedback}`)
+  toast.success(`恭喜完成任务！\n${completionReport.value.feedback}`)
 }
 
 // 滚动到底部

@@ -118,16 +118,6 @@ const handleRecallMessage = async (message: any) => {
 // 你要的【清空聊天记录】
 // ==============================================
 const clearHistory = async () => {
-  await ElMessageBox.confirm(
-    '确定要清空所有聊天记录吗？此操作不可恢复！',
-    '提示',
-    {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    }
-  ).catch(() => false)
-
   try {
     await chatStore.clearHistory(props.friendId)
     ElMessage.success('清空成功')

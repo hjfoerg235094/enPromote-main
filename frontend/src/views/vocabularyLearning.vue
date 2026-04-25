@@ -152,6 +152,7 @@ import {
   moveToNextChapter,
   getLearningStatistics
 } from '@/api/vocabularyLearning';
+import { toast } from '@/utils/toastService';
 
 // 学习模式：select（选择页面）, practice（学习模式）, review（复习模式）
 const currentMode = ref('select');
@@ -241,7 +242,7 @@ const startReview = async () => {
 
     if (res.data.code === 200) {
       if (res.data.data.words.length === 0) {
-        alert('暂无需要复习的单词！');
+        toast.info('暂无需要复习的单词！');
         return;
       }
 
@@ -254,7 +255,7 @@ const startReview = async () => {
     }
   } catch (error) {
     console.error('加载复习单词失败:', error);
-    alert('加载复习单词失败，请重试');
+    toast.error('加载复习单词失败，请重试');
   }
 };
 
@@ -265,14 +266,14 @@ const handleNextChapter = async () => {
 
     if (res.data.code === 200) {
       if (res.data.data.isLastChapter) {
-        alert('已经是最后一章了！');
+        toast.info('已经是最后一章了！');
       } else {
         await loadProgress();
       }
     }
   } catch (error) {
     console.error('切换章节失败:', error);
-    alert('切换章节失败，请重试');
+    toast.error('切换章节失败，请重试');
   }
 };
 
@@ -373,7 +374,7 @@ const nextWord = async () => {
       }
     } catch (error) {
       console.error('更新学习进度失败:', error);
-      alert('更新学习进度失败，请重试');
+      toast.error('更新学习进度失败，请重试');
     }
   }
 };

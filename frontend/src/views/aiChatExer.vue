@@ -333,6 +333,7 @@ import { ref, nextTick, onMounted, computed } from 'vue';
 import '@/assets/css/aiChatExer.css'
 import { getHistoryMessages, restartConversation, getPracticeWords } from '@/api/ai';
 import { getUserInfo, changeInfo } from '@/api/auth';
+import { toast } from '@/utils/toastService';
 
 // 响应式数据
 const character = ref('teacher')
@@ -402,7 +403,7 @@ const restart = async () => {
     try {
         const respose = await restartConversation()
         if (respose.data.code == 200) {
-            alert('会话已重置')
+            toast.success('会话已重置')
         }
         messages.value = []
     } catch (err) {
@@ -478,11 +479,11 @@ const completeGuide = async () => {
             getHistory()
         } else {
             console.error('保存AI选择失败:', response.data.message)
-            alert('保存失败，请重试')
+            toast.error('保存失败，请重试')
         }
     } catch (error) {
         console.error('完成AI选择指引失败:', error)
-        alert('网络错误，请重试')
+        toast.error('网络错误，请重试')
     }
 }
 
@@ -554,11 +555,11 @@ const confirmApplySettings = async () => {
             showConfirmModal.value = false
             showSettingsModal.value = false
         } else {
-            alert('重置会话失败，请重试')
+            toast.error('重置会话失败，请重试')
         }
     } catch (error) {
         console.error('应用设置失败:', error)
-        alert('应用设置失败，请重试')
+        toast.error('应用设置失败，请重试')
     }
 }
 

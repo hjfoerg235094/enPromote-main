@@ -80,6 +80,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { resetStoryProgress } from '../api/storyProgress';
+import { toast } from '@/utils/toastService';
 
 const router = useRouter();
 
@@ -171,7 +172,7 @@ function startChapter(chapterId: number) {
   if (!currentStory.value) return;
 
   if (!isChapterAccessible(chapterId)) {
-    alert('请先完成前面的章节!');
+    toast.warning('请先完成前面的章节!');
     return;
   }
 
@@ -193,10 +194,10 @@ async function handleResetProgress() {
     const progressResponse = await axios.get(`/story/progress/${currentStory.value.storyId}`);
     storyProgress.value = progressResponse.data.data;
     showResetConfirm.value = false;
-    alert('进度已重置成功！');
+    toast.success('进度已重置成功！');
   } catch (err: any) {
     console.error('重置进度失败:', err);
-    alert('重置进度失败，请稍后重试');
+    toast.error('重置进度失败，请稍后重试');
   } finally {
     resetting.value = false;
   }

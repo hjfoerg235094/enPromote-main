@@ -207,7 +207,6 @@ function togglePlay() {
     utterance.onerror = (e) => {
       console.log("语音不可用（无英文语音包），已跳过播放");
       isPlaying.value = false;
-      // 这里不弹 alert！避免影响使用
     };
 
     utterance.onend = () => {

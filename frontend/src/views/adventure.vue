@@ -299,6 +299,7 @@ import { ref, computed, onMounted } from 'vue'
 import { getUserInfo, changeInfo, switchChapter } from '@/api/auth'
 import { useRoute, useRouter } from 'vue-router'
 import { getReviewWords } from '@/api/word'
+import { toast } from '@/utils/toastService'
 
 import VocabularyPractice from '@/components/VocabularyPracticeNew.vue'
 import SpellingPractice from '@/components/SpellingPractice.vue'
@@ -734,18 +735,13 @@ const handleVocabularyComplete = async (stats) => {
 
 // 第一关完成后的预加载流程
 const showFirstLevelCompleteAndPreload = async () => {
-  // 先显示第一关完成的提示
-  const message = `🎉 第一关完成！\n\n您的单词掌握情况：\n✅ 认识：${knownWords.value}个\n🤔 模糊：${vagueWords.value}个\n❓ 不认识：${unknownWords.value}个\n\n您的单词情况我们基本了解，点击确定AI将为您生成后续专属题目！`
+  // 显示第一关完成的提示
+  toast.success(`🎉 第一关完成！认识：${knownWords.value}个，模糊：${vagueWords.value}个，不认识：${unknownWords.value}个`)
 
-  if (confirm(message)) {
-    // 用户点击确定，开始预加载AI题目
-    await startAIQuestionPreload()
-    // 完成第一关
-    await completeLevel('wordP')
-  } else {
-    // 用户取消，直接完成第一关
-    await completeLevel('wordP')
-  }
+  // 开始预加载AI题目
+  await startAIQuestionPreload()
+  // 完成第一关
+  await completeLevel('wordP')
 }
 
 // 预加载AI题目
@@ -812,13 +808,13 @@ const startAIQuestionPreload = async () => {
     } else {
       console.error('AI题目生成失败:', data)
       showAILoadingModal.value = false
-      alert(`AI题目生成失败: ${data.message || '未知错误'}`)
+      toast.error(`AI题目生成失败: ${data.message || '未知错误'}`)
     }
 
   } catch (error) {
     console.error('预加载AI题目失败:', error)
     showAILoadingModal.value = false
-    alert('网络错误，请检查连接后重试')
+    toast.error('网络错误，请检查连接后重试')
   }
 }
 
@@ -827,7 +823,7 @@ const completeAIQuestionPreload = () => {
   showAILoadingModal.value = false
   // 显示惊喜提示
   setTimeout(() => {
-    alert('🎉 太棒了！AI已经为您生成了专属的场景练习题目，快去第四关体验吧！')
+    toast.success('🎉 太棒了！AI已经为您生成了专属的场景练习题目，快去第四关体验吧！')
   }, 500)
 }
 

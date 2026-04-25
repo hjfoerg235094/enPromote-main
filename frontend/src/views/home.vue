@@ -406,6 +406,7 @@ import { getUserInfo, username as storeUsername, avatarUrl, clearUserInfo } from
 import { getCheckInStatus } from '@/api/checkin';
 import { getReviewWords } from '@/api/word';
 import { useRouter } from 'vue-router';
+import { toast, modal } from '@/utils/toastService';
 
 const router = useRouter();
 
@@ -556,7 +557,7 @@ function goToWordReview() {
 
 // 显示混合学习模式说明
 function showMixedLearning() {
-  alert('混合学习模式：\n\n1. 先通过闯关学习掌握基础词汇和语法\n2. 再通过自由对话练习实际应用\n3. 两种模式结合，学习效果更佳！\n\n建议从闯关学习开始 🚀');
+  modal.showAlert({ message: '混合学习模式：先通过闯关学习掌握基础词汇和语法，再通过自由对话练习实际应用，两种模式结合，学习效果更佳！建议从闯关学习开始 🚀' });
 }
 </script>
 <script>

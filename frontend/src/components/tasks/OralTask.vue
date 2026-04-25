@@ -139,7 +139,7 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from 'vue';
 import { evaluatePronunciation } from '@/api/oral';
-
+import { toast } from '@/utils/toastService'
 const props = defineProps<{
   task: any;
 }>();
@@ -213,7 +213,7 @@ async function startRecording() {
     }, 1000);
   } catch (error) {
     console.error('录音失败:', error);
-    alert('无法访问麦克风，请检查权限设置');
+    toast.error('无法访问麦克风，请检查权限设置');
   }
 }
 
@@ -266,7 +266,7 @@ async function evaluateAudio(audioBlob: any) {
     }
   } catch (error) {
     console.error('评测失败:', error);
-    alert('评测失败，请重试');
+    toast.error('评测失败，请重试');
   } finally {
     isEvaluating.value = false;
   }

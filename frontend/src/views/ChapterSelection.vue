@@ -70,6 +70,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { switchChapter, getUserInfo } from '@/api/auth'
+import { toast } from '@/utils/toastService'
 
 const router = useRouter()
 const userInfo = ref(null)
@@ -142,7 +143,7 @@ const selectChapter = async (chapterId) => {
   } catch (error) {
     console.error('切换章节错误:', error)
     // 显示更友好的错误提示
-    alert('切换章节失败，请检查网络连接或重新登录')
+    toast.error('切换章节失败，请检查网络连接或重新登录')
   }
 }
 

@@ -139,6 +139,7 @@ import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 import TaskExecutor from '@/components/tasks/TaskExecutor.vue';
 import { useStoryProgress } from '@/composables/useStoryProgress';
+import { toast } from '@/utils/toastService';
 
 const route = useRoute();
 const router = useRouter();
@@ -329,7 +330,7 @@ function goToNextChapter() {
     // 跳转到下一章
     router.push(`/chapter/${storyId.value}/${nextChapterId}`).catch(err => {
       console.error('跳转失败:', err);
-      alert('跳转到下一章失败，请稍后重试');
+      toast.error('跳转到下一章失败，请稍后重试');
     });
   }, 350);
 }
@@ -347,7 +348,7 @@ function goToStoryList() {
     // 返回剧情列表
     router.push(`/story/${storyId.value}`).catch(err => {
       console.error('跳转失败:', err);
-      alert('返回失败，请稍后重试');
+      toast.error('返回失败，请稍后重试');
     });
   }, 350);
 }

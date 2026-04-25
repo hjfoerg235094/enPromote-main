@@ -24,6 +24,7 @@
 <script setup>
 import { ref } from 'vue';
 import { login, getUserInfo as fetchUserInfo } from '@/api/auth';
+import { toast } from '@/utils/toastService';
 const username = ref('');
 const password = ref('');
 async function clickLogin(e) {
@@ -45,15 +46,15 @@ async function clickLogin(e) {
                 // 跳转到首页
                 window.location.href = '/'
             } else {
-                alert('获取用户信息失败: ' + (userInfoRes.data.message || '未知错误'))
+                toast.error('获取用户信息失败: ' + (userInfoRes.data.message || '未知错误'))
             }
         } else {
             // 登录失败
-            alert(res.data.message)
+            toast.error(res.data.message)
         }
     } catch (err) {
         console.log('登录错误:', err);
-        alert('登录失败，请检查网络连接')
+        toast.error('登录失败，请检查网络连接')
     };
 }
 </script>

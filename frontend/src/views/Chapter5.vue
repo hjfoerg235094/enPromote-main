@@ -122,6 +122,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { chapter5Data } from '../data/chapter5';
 import TaskExecutor from '../components/tasks/TaskExecutor.vue';
+import { toast } from '@/utils/toastService';
 
 const router = useRouter();
 const storyId = 'story1';
@@ -216,7 +217,7 @@ function goBack() {
 
 function goToNextChapter() {
   // 这里可以导航到下一章
-  alert('第五章是最后一章，感谢您的游玩！');
+  toast.success('第五章是最后一章，感谢您的游玩！');
   showChapterCompleteModal.value = false;
 }
 

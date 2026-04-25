@@ -25,6 +25,7 @@
 import { ref } from 'vue';
 import { login } from '@/api/auth';
 import { getUserInfo } from '@/stores/userStore';
+import { toast } from '@/utils/toastService';
 const username = ref('');
 const password = ref('');
 function clickLogin(e) {
@@ -43,15 +44,15 @@ function clickLogin(e) {
             if (userInfo) {
                 window.location.href = '/'
             } else {
-                alert('获取用户信息失败，请重试')
+                toast.error('获取用户信息失败，请重试')
             }
         } else {
             // 登录失败
-            alert(res.data.message)
+            toast.error(res.data.message)
         }
     }).catch(err => {
         console.log(err);
-        alert('登录失败，请检查网络连接')
+        toast.error('登录失败，请检查网络连接')
     });
 }
 </script>

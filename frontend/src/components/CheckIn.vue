@@ -106,6 +106,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { dailyCheckIn, getCheckInStatus } from '@/api/checkin';
+import { toast } from '@/utils/toastService';
 
 // 响应式数据
 const isLoading = ref(false);
@@ -162,11 +163,11 @@ const handleCheckIn = async () => {
       showRewardModal.value = true;
     } else {
       // 显示错误信息
-      alert(res.data?.message || '签到失败，请稍后再试');
+      toast.error(res.data?.message || '签到失败，请稍后再试');
     }
   } catch (error) {
     console.error('签到失败:', error);
-    alert('签到失败，请稍后再试');
+    toast.error('签到失败，请稍后再试');
   } finally {
     isLoading.value = false;
   }

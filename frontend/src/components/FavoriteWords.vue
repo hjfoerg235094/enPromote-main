@@ -59,6 +59,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { getFavoriteWords, removeFavoriteWord } from '@/api/favoriteWords';
+import { toast } from '@/utils/toastService';
 
 // 收藏单词列表
 const favoriteWords = ref([]);
@@ -72,11 +73,11 @@ const loadFavoriteWords = async () => {
     if (res.data.code === 200) {
       favoriteWords.value = res.data.data || [];
     } else {
-      alert(res.data.message || '获取收藏单词失败');
+      toast.error(res.data.message || '获取收藏单词失败');
     }
   } catch (error) {
     console.error('获取收藏单词失败:', error);
-    alert('获取收藏单词失败');
+    toast.error('获取收藏单词失败');
   } finally {
     loading.value = false;
   }
@@ -84,22 +85,20 @@ const loadFavoriteWords = async () => {
 
 // 取消收藏
 const handleRemoveFavorite = async (wordId) => {
-  if (!confirm('确定要取消收藏这个单词吗？')) {
-    return;
-  }
+  // 直接执行取消收藏操作
   
   try {
     const res = await removeFavoriteWord({ wordId });
     if (res.data.code === 200) {
-      alert('取消收藏成功');
+      toast.success('取消收藏成功');
       // 重新加载列表
       await loadFavoriteWords();
     } else {
-      alert(res.data.message || '取消收藏失败');
+      toast.error(res.data.message || '取消收藏失败');
     }
   } catch (error) {
     console.error('取消收藏失败:', error);
-    alert('取消收藏失败');
+    toast.error('取消收藏失败');
   }
 };
 

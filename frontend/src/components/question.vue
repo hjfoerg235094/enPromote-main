@@ -52,6 +52,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { changeInfo } from '@/api/auth'
+import { toast } from '@/utils/toastService'
 
 // Props
 const props = defineProps({
@@ -116,11 +117,11 @@ const submitPlan = async () => {
             closeModal()
         } else {
             console.error('保存失败:', response.data.message)
-            alert('保存失败，请重试')
+            toast.error('保存失败，请重试')
         }
     } catch (error) {
         console.error('提交学习计划失败:', error)
-        alert('网络错误，请重试')
+        toast.error('网络错误，请重试')
     } finally {
         loading.value = false
     }

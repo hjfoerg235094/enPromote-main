@@ -3,6 +3,12 @@
   <!-- 展示区路由组件放置处 -->
   <router-view></router-view>
 
+  <!-- Toast 组件容器 -->
+  <div id="toast-container"></div>
+
+  <!-- Modal 组件容器 -->
+  <div id="modal-container"></div>
+
   <!-- 问卷组件 -->
   <!-- <Question :show="showQuestionModal" @close="handleQuestionClose" @completed="handleQuestionCompleted" /> -->
 </template>
@@ -12,6 +18,7 @@ import { ref, onMounted } from 'vue'
 import Header from './components/header.vue'
 import Question from './components/question.vue'
 import { getUserInfo, isLoggedIn, clearUserInfo } from '@/stores/userStore'
+import { toast } from '@/utils/toastService'
 
 // 响应式数据
 const showQuestionModal = ref(false)

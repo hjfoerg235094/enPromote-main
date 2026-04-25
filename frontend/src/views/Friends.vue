@@ -251,6 +251,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useFriendStore } from '@/stores/friendStore'
 import { useRouter } from 'vue-router'
 import FriendRanking from '@/components/FriendRanking.vue'
+import { toast, modal } from '@/utils/toastService'
 
 // 防抖函数
 function debounce(fn, delay) {
@@ -376,7 +377,7 @@ const handleSearchUser = async () => {
     console.log('friendStore.searchResults:', friendStore.searchResults)
   } catch (error) {
     console.error('搜索失败:', error)
-    alert('搜索失败，请稍后重试')
+    toast.error('搜索失败，请稍后重试')
   }
 }
 
@@ -422,17 +423,15 @@ const batchChat = () => {
 // 批量删除
 const batchDelete = async () => {
   if (selectedFriends.value.length === 0) return
-  if (!confirm(`确定要删除选中的 ${selectedFriends.value.length} 位好友吗？`)) return
-
   try {
     for (const friendId of selectedFriends.value) {
       await friendStore.deleteFriend(friendId)
     }
     clearSelection()
-    alert('批量删除成功')
+    toast.success('批量删除成功')
   } catch (error) {
     console.error('批量删除失败:', error)
-    alert('批量删除失败，请稍后重试')
+    toast.error('批量删除失败，请稍后重试')
   }
 }
 
@@ -441,15 +440,15 @@ const sendRequest = async (userId) => {
   try {
     const result = await friendStore.sendRequest(userId)
     if (result.success) {
-      alert(result.message)
+      toast.success(result.message)
       showAddFriendModal.value = false
       addFriendSearchQuery.value = ''
     } else {
-      alert(result.message)
+      toast.success(result.message)
     }
   } catch (error) {
     console.error('发送请求失败:', error)
-    alert('发送请求失败，请稍后重试')
+    toast.error('发送请求失败，请稍后重试')
   }
 }
 
@@ -458,16 +457,16 @@ const handleAccept = async (requestId) => {
   try {
     const result = await friendStore.acceptRequest(requestId)
     if (result.success) {
-      alert(result.message)
+      toast.success(result.message)
       if (requests.length === 0) {
         showRequestsModal.value = false
       }
     } else {
-      alert(result.message)
+      toast.success(result.message)
     }
   } catch (error) {
     console.error('接受请求失败:', error)
-    alert('接受请求失败，请稍后重试')
+    toast.error('接受请求失败，请稍后重试')
   }
 }
 
@@ -476,16 +475,16 @@ const handleReject = async (requestId) => {
   try {
     const result = await friendStore.rejectRequest(requestId)
     if (result.success) {
-      alert(result.message)
+      toast.success(result.message)
       if (requests.length === 0) {
         showRequestsModal.value = false
       }
     } else {
-      alert(result.message)
+      toast.success(result.message)
     }
   } catch (error) {
     console.error('拒绝请求失败:', error)
-    alert('拒绝请求失败，请稍后重试')
+    toast.error('拒绝请求失败，请稍后重试')
   }
 }
 
@@ -524,22 +523,20 @@ const handleSaveRemark = async () => {
   try {
     const result = await friendStore.setRemark(currentFriend.value.id, remarkText.value)
     if (result.success) {
-      alert(result.message)
+      toast.success(result.message)
       showRemarkModal.value = false
     } else {
-      alert(result.message)
+      toast.success(result.message)
     }
   } catch (error) {
     console.error('保存备注失败:', error)
-    alert('保存备注失败，请稍后重试')
+    toast.error('保存备注失败，请稍后重试')
   }
 }
 
 // 确认删除好友
-const confirmDelete = (friend) => {
-  if (confirm(`确定要删除好友 "${friend.remark || friend.username}" 吗？`)) {
-    deleteFriend(friend.id)
-  }
+const confirmDelete = async (friend) => {
+  deleteFriend(friend.id)
 }
 
 // 删除好友
@@ -547,13 +544,13 @@ const deleteFriend = async (friendId) => {
   try {
     const result = await friendStore.deleteFriend(friendId)
     if (result.success) {
-      alert(result.message)
+      toast.success(result.message)
     } else {
-      alert(result.message)
+      toast.success(result.message)
     }
   } catch (error) {
     console.error('删除好友失败:', error)
-    alert('删除好友失败，请稍后重试')
+    toast.error('删除好友失败，请稍后重试')
   }
 }
 
@@ -568,7 +565,7 @@ onMounted(async () => {
     }, 200)
   } catch (error) {
     console.error('加载好友列表失败:', error)
-    alert('加载好友列表失败，请刷新页面重试')
+    toast.error('加载好友列表失败，请刷新页面重试')
   }
 })
 </script>

@@ -115,6 +115,7 @@ import { ref, computed, onMounted } from 'vue';
 import { getUserInfo } from '@/api/auth';
 import { getWordList, updateWordProgress, getWordInfo, updateWordPriority, getReviewWords } from '@/api/word';
 import axios from 'axios';
+import { toast } from '@/utils/toastService';
 
 // 用户信息及进度
 const userInfo = ref({});
@@ -262,7 +263,7 @@ async function loadReviewList() {
 
     // 检查是否有复习单词
     if (!response.data.words || response.data.wordListLen === 0) {
-      alert('暂无需要复习的单词！');
+      toast.info('暂无需要复习的单词！');
       currentMode.value = 'select'; // 返回选择模式
       return;
     }
@@ -275,7 +276,7 @@ async function loadReviewList() {
 
   } catch (err) {
     console.log('review请求失败' + err);
-    alert('获取复习单词失败，请重试');
+    toast.error('获取复习单词失败，请重试');
   }
 }
 
@@ -486,7 +487,7 @@ const nextWord = async () => {
       progressModalMode.value = 'completed';
       showProgressModal.value = true;
     } else {
-      alert('更新失败，请重试');
+      toast.error('更新失败，请重试');
     }
   }
 };

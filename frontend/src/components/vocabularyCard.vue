@@ -101,6 +101,7 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue';
 import { addFavoriteWord, removeFavoriteWord, checkFavoriteWord } from '@/api/favoriteWords';
+import { toast } from '@/utils/toastService';
 
 const props = defineProps({
   word: {
@@ -204,7 +205,7 @@ const toggleFavorite = async () => {
         isFavorite.value = false;
         emit('favorite-changed', { wordId: wordIdToUse, isFavorite: false });
       } else {
-        alert(res.data.message || '取消收藏失败');
+        toast.error(res.data.message || '取消收藏失败');
       }
     } else {
       // 添加收藏
@@ -213,12 +214,12 @@ const toggleFavorite = async () => {
         isFavorite.value = true;
         emit('favorite-changed', { wordId: wordIdToUse, isFavorite: true });
       } else {
-        alert(res.data.message || '添加收藏失败');
+        toast.error(res.data.message || '添加收藏失败');
       }
     }
   } catch (error) {
     console.error('切换收藏状态失败:', error);
-    alert(isFavorite.value ? '取消收藏失败' : '添加收藏失败');
+    toast.error(isFavorite.value ? '取消收藏失败' : '添加收藏失败');
   } finally {
     favoriteLoading.value = false;
   }

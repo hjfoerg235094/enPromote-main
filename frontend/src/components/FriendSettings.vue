@@ -92,6 +92,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { getUserSettings, updateUserSettings } from '@/api/settings'
+import { toast } from '@/utils/toastService'
 
 const settings = reactive({
   privacy: {
@@ -138,13 +139,13 @@ const updateSetting = async (path, value) => {
     if (res.data.code !== 200) {
       // 如果保存失败，恢复原值
       obj[keys[keys.length - 1]] = !value
-      alert(res.data.message || '保存设置失败')
+      toast.error(res.data.message || '保存设置失败')
     }
   } catch (error) {
     console.error('保存设置失败:', error)
     // 恢复原值
     obj[keys[keys.length - 1]] = !value
-    alert('保存设置失败，请稍后重试')
+    toast.error('保存设置失败，请稍后重试')
   } finally {
     loading.value = false
   }
