@@ -174,8 +174,16 @@ router.post('/submitReview', async (req, res) => {
       });
     }
 
-    const { wordId, isCorrect, word, newStatus } = req.body;
-    if (!wordId || typeof isCorrect !== 'boolean') {
+    const { wordId, word, newStatus } = req.body;
+    let { isCorrect } = req.body;
+    const submittedWord = typeof word === 'string' ? word.trim() : '';
+    const submittedWordId = typeof wordId === 'string' ? wordId.trim() : wordId;
+
+    if (typeof isCorrect !== 'boolean' && newStatus) {
+      isCorrect = ['know', 'mastered', 'learning'].includes(newStatus);
+    }
+
+    if ((!submittedWordId && !submittedWord) || typeof isCorrect !== 'boolean') {
       return res.json({
         code: 400,
         message: '参数不完整'
@@ -183,15 +191,15 @@ router.post('/submitReview', async (req, res) => {
     }
 
     // 如果是直接传入单词字符串而不是wordId，需要先查找Word模型获取ID
-    let actualWordId = wordId;
-    if (typeof wordId === 'string' && !wordId.match(/^[0-9a-fA-F]{24}$/)) {
-      const wordDoc = await Word.findOne({ word: wordId });
+    let actualWordId = submittedWordId || submittedWord;
+    if (typeof actualWordId === 'string' && !actualWordId.match(/^[0-9a-fA-F]{24}$/)) {
+      const wordDoc = await Word.findOne({ word: actualWordId });
       if (wordDoc) {
         actualWordId = wordDoc._id.toString();
       } else {
         // 如果找不到单词，创建一个新记录
         const newWord = new Word({
-          word: wordId,
+          word: actualWordId,
           chineseMeaning: ''
         });
         await newWord.save();
