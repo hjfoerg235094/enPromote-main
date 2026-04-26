@@ -1,125 +1,105 @@
 <template>
   <div class="adventure-container" :class="getChapterThemeClass()">
-    <!-- 闯关地图 -->
     <div class="adventure-map" v-if="currentView === 'map'">
-      <div class="map-header">
-        <div class="header-content">
-          <h1 class="map-title">🗺️ 英语闯关之旅</h1>
-          <p class="map-subtitle">完成每个关卡，提升你的英语水平</p>
-        </div>
-
-        <!-- 章节信息 -->
-        <div class="chapter-info" v-if="userInfo && userInfo.currentChapter">
-          <div class="current-chapter">
-            <span class="chapter-label">当前章节:</span>
-            <span class="chapter-name">{{ chapters[userInfo.currentChapter]?.name || '未知章节' }}</span>
-          </div>
-          <button class="chapter-switch-btn" @click="goToChapterSelection">
-            切换章节
-          </button>
-        </div>
-      </div>
-
-      <div class="levels-container">
-        <div class="level-path">
-          <!-- 第一关：词汇练习 -->
-          <div class="level-node" :class="getLevelClass('wordP')" @click="enterLevel('wordP')">
-            <div class="level-icon">📚</div>
-            <div class="level-info">
-              <h3 class="level-title">第一关</h3>
-              <p class="level-name">词汇练习</p>
-              <div class="level-progress">{{ getLevelProgress('wordP') }}</div>
-            </div>
-            <div class="level-status">{{ getLevelStatus('wordP') }}</div>
-          </div>
-
-          <!-- 连接线 -->
-          <div class="level-connector" :class="{ 'unlocked': isLevelUnlocked('spellP') }"></div>
-
-          <!-- 第二关：词汇拼写 -->
-          <div class="level-node" :class="getLevelClass('spellP')" @click="enterLevel('spellP')">
-            <div class="level-icon">✏️</div>
-            <div class="level-info">
-              <h3 class="level-title">第二关</h3>
-              <p class="level-name">词汇拼写</p>
-              <div class="level-progress">{{ getLevelProgress('spellP') }}</div>
-            </div>
-            <div class="level-status">{{ getLevelStatus('spellP') }}</div>
-          </div>
-
-          <!-- 连接线 -->
-          <div class="level-connector" :class="{ 'unlocked': isLevelUnlocked('listenP') }"></div>
-
-          <!-- 第三关：听力训练 -->
-          <div class="level-node" :class="getLevelClass('listenP')" @click="enterLevel('listenP')">
-            <div class="level-icon">🎧</div>
-            <div class="level-info">
-              <h3 class="level-title">第三关</h3>
-              <p class="level-name">听力训练</p>
-              <div class="level-progress">{{ getLevelProgress('listenP') }}</div>
-            </div>
-            <div class="level-status">{{ getLevelStatus('listenP') }}</div>
-          </div>
-
-          <!-- 连接线 -->
-          <div class="level-connector" :class="{ 'unlocked': isLevelUnlocked('customsP') }"></div>
-
-          <!-- 第四关：AI生成题目 -->
-          <div class="level-node" :class="getLevelClass('customsP')" @click="enterLevel('customsP')">
-            <div class="level-icon">🤖</div>
-            <div class="level-info">
-              <h3 class="level-title">第四关</h3>
-              <p class="level-name">AI生成题目</p>
-              <div class="level-progress">{{ getLevelProgress('customsP') }}</div>
-            </div>
-            <div class="level-status">{{ getLevelStatus('customsP') }}</div>
-          </div>
-
-          <!-- 连接线 -->
-          <div class="level-connector" :class="{ 'unlocked': isLevelUnlocked('coverP') }"></div>
-
-          <!-- 第五关：AI对话 -->
-          <div class="level-node" :class="getLevelClass('coverP')" @click="enterLevel('coverP')">
-            <div class="level-icon">💬</div>
-            <div class="level-info">
-              <h3 class="level-title">第五关</h3>
-              <p class="level-name">AI对话练习</p>
-              <div class="level-progress">{{ getLevelProgress('coverP') }}</div>
-            </div>
-            <div class="level-status">{{ getLevelStatus('coverP') }}</div>
+      <section class="console-hero">
+        <div class="console-copy">
+          <span class="eyebrow">当前场景训练台</span>
+          <h1>{{ currentChapterMeta.name }}</h1>
+          <p>{{ currentChapterMeta.description }}</p>
+          <div class="hero-tags">
+            <span>{{ currentChapterMeta.category }}</span>
+            <span>{{ completedLevels }}/5 已完成</span>
+            <span v-if="isChapterCompleted">剧情挑战已解锁</span>
+            <span v-else>下一关：{{ nextPlayableLevel.title }}</span>
           </div>
         </div>
-      </div>
 
-      <!-- 总体进度 -->
-      <div class="overall-progress">
-        <h3>总体进度</h3>
-        <div class="progress-bar">
-          <div class="progress-fill" :style="{ width: overallProgress + '%' }"></div>
+        <div class="next-card">
+          <div class="next-card-top">
+            <span>推荐下一步</span>
+            <strong>{{ isChapterCompleted ? '复盘或进入剧情实战' : nextPlayableLevel.title }}</strong>
+          </div>
+          <p>{{ isChapterCompleted ? '你已完成全部能力关卡，可以进入角色剧情挑战，或回到任意关卡重练。' : nextPlayableLevel.goal }}</p>
+          <div class="progress-meter" aria-label="当前场景总进度">
+            <div class="progress-meter-fill" :style="{ width: overallProgress + '%' }"></div>
+          </div>
+          <div class="hero-actions">
+            <button class="learn-button primary" @click="startNextLevel">
+              {{ isChapterCompleted ? '重练实战对话' : `开始${nextPlayableLevel.title}` }}
+            </button>
+            <button class="learn-button secondary" @click="goToChapterSelection">返回场景库</button>
+          </div>
         </div>
-        <p>{{ completedLevels }}/5 关卡完成</p>
-      </div>
+      </section>
+
+      <section class="route-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">训练路线</span>
+            <h2>先打基础，再进入真实表达</h2>
+          </div>
+          <p>{{ completedLevels }}/5 关卡完成</p>
+        </div>
+
+        <div class="training-route">
+          <article
+            v-for="step in levelSteps"
+            :key="step.key"
+            class="training-step"
+            :class="getLevelCardClass(step.key)"
+            @click="enterLevel(step.key)"
+          >
+            <div class="step-index">{{ step.order }}</div>
+            <div class="step-main">
+              <div class="step-title-row">
+                <h3>{{ step.title }}</h3>
+                <span class="status-pill">{{ getLevelStateText(step.key) }}</span>
+              </div>
+              <p>{{ step.goal }}</p>
+              <div class="step-meta">
+                <span>{{ step.estimate }}</span>
+                <span v-if="!isLevelUnlocked(step.key)">先完成{{ getPreviousLevelTitle(step.key) }}</span>
+                <span v-else>{{ isLevelCompleted(step.key) ? '可重新练习' : '可进入' }}</span>
+              </div>
+            </div>
+            <button class="step-action" :disabled="!isLevelUnlocked(step.key)">
+              {{ getLevelActionText(step.key) }}
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="story-unlock" :class="{ unlocked: isChapterCompleted }">
+        <div>
+          <span class="eyebrow">{{ isChapterCompleted ? '角色剧情已解锁' : '剧情挑战' }}</span>
+          <h2>{{ isChapterCompleted ? '进入角色剧情实战' : '完成实战对话后解锁剧情挑战' }}</h2>
+          <p>{{ isChapterCompleted ? '把刚练过的词汇、听力和表达放进完整剧情里使用。' : '角色剧情是主线训练后的应用奖励，不和基础关卡抢入口。' }}</p>
+        </div>
+        <button class="learn-button primary" :disabled="!isChapterCompleted" @click="goToStory">
+          {{ isChapterCompleted ? '进入剧情挑战' : '尚未解锁' }}
+        </button>
+      </section>
     </div>
 
-    <!-- 第一关：词汇练习 -->
     <div class="level-content" v-if="currentView === 'level-wordP'">
-      <div class="level-header">
-        <button class="back-btn" @click="backToMap">← 返回地图</button>
-        <div class="level-info">
-          <h2>📚 第一关：词汇练习</h2>
-          <p>学习新单词，选择你对每个单词的熟悉程度</p>
+      <div class="level-shell-header">
+        <button class="back-btn" @click="backToMap">返回训练台</button>
+        <div class="level-shell-copy">
+          <span class="eyebrow">{{ currentChapterMeta.name }}</span>
+          <h2>01 词汇学习</h2>
+          <p>认识本场景核心词汇，并标记熟悉程度。</p>
         </div>
+        <div class="mini-progress">{{ completedLevels }}/5</div>
       </div>
 
       <!-- 使用词汇练习组件 -->
       <VocabularyPractice v-if="!showLevelComplete" :words="vocabularyWords" :currentIndex="currentWordIndex"
         @know="handleKnow" @vague="handleVague" @unknown="handleUnknown" @next="handleNext"
         @complete="handleVocabularyComplete" />
-      <!-- 关卡完成 -->
       <div class="level-complete" v-if="showLevelComplete">
-        <div class="complete-icon">🎉</div>
-        <h3>第一关完成！</h3>
-        <p>你已经完成了词汇练习，学习了 {{ vocabularyWords.length }} 个单词</p>
+        <span class="complete-icon">完成</span>
+        <h3>词汇学习完成</h3>
+        <p>你已经学习了 {{ vocabularyWords.length }} 个场景词汇，可以进入拼写练习巩固记忆。</p>
         <div class="complete-stats">
           <div class="stat-item">
             <span class="stat-number">{{ knownWords }}</span>
@@ -135,32 +115,32 @@
           </div>
         </div>
         <div class="complete-actions">
-          <button class="btn-primary" @click="nextLevel">进入下一关</button>
-          <button class="btn-secondary" @click="backToMap">返回地图</button>
+          <button class="btn-primary" @click="nextLevel">下一关</button>
+          <button class="btn-secondary" @click="backToMap">返回训练台</button>
+          <button class="btn-secondary" @click="goToReviewReport">去复盘</button>
         </div>
       </div>
     </div>
 
-    <!-- 第二关：词汇拼写 -->
     <div class="level-content" v-if="currentView === 'level-spellP'">
-      <div class="level-header">
-        <button class="back-btn" @click="backToMap">← 返回地图</button>
-        <div class="level-info">
-          <h2>✏️ 第二关：词汇拼写</h2>
-          <p>根据中文释义和发音，拼写出正确的单词</p>
+      <div class="level-shell-header">
+        <button class="back-btn" @click="backToMap">返回训练台</button>
+        <div class="level-shell-copy">
+          <span class="eyebrow">{{ currentChapterMeta.name }}</span>
+          <h2>02 拼写练习</h2>
+          <p>根据中文释义和发音，拼写出正确的单词。</p>
         </div>
+        <div class="mini-progress">{{ completedLevels }}/5</div>
       </div>
 
-      <!-- 使用拼写练习组件 -->
       <SpellingPractice v-if="!showSpellingComplete" :words="spellingWords" :startIndex="0"
         @complete="handleSpellingComplete" @next="handleSpellingNext" @correct="handleSpellingCorrect"
         @incorrect="handleSpellingIncorrect" />
 
-      <!-- 关卡完成 -->
       <div class="level-complete" v-if="showSpellingComplete">
-        <div class="complete-icon">🎉</div>
-        <h3>第二关完成！</h3>
-        <p>你已经完成了拼写练习，练习了 {{ spellingWords.length }} 个单词</p>
+        <span class="complete-icon">完成</span>
+        <h3>拼写练习完成</h3>
+        <p>你已经练习了 {{ spellingWords.length }} 个单词，下一步可以通过听力训练建立声音记忆。</p>
         <div class="complete-stats">
           <div class="stat-item">
             <span class="stat-number">{{ correctSpellings }}</span>
@@ -172,30 +152,31 @@
           </div>
         </div>
         <div class="complete-actions">
-          <button class="btn-primary" @click="backToMap">返回地图</button>
+          <button class="btn-primary" @click="nextLevel">下一关</button>
+          <button class="btn-secondary" @click="backToMap">返回训练台</button>
+          <button class="btn-secondary" @click="goToReviewReport">去复盘</button>
         </div>
       </div>
     </div>
 
-    <!-- 第三关：听力训练 -->
     <div class="level-content" v-if="currentView === 'level-listenP'">
-      <div class="level-header">
-        <button class="back-btn" @click="backToMap">← 返回地图</button>
-        <div class="level-info">
-          <h2>🎧 第三关：听力训练</h2>
-          <p>听单词发音，根据听到的内容拼写出正确的单词</p>
+      <div class="level-shell-header">
+        <button class="back-btn" @click="backToMap">返回训练台</button>
+        <div class="level-shell-copy">
+          <span class="eyebrow">{{ currentChapterMeta.name }}</span>
+          <h2>03 听力训练</h2>
+          <p>听单词发音，根据听到的内容拼写出正确的单词。</p>
         </div>
+        <div class="mini-progress">{{ completedLevels }}/5</div>
       </div>
 
-      <!-- 使用听力练习组件 -->
       <ListeningPractice v-if="!showListeningComplete" :words="listeningWords" @complete="handleListeningComplete"
         @correct="handleListeningCorrect" @incorrect="handleListeningIncorrect" />
 
-      <!-- 关卡完成 -->
       <div class="level-complete" v-if="showListeningComplete">
-        <div class="complete-icon">🎉</div>
-        <h3>第三关完成！</h3>
-        <p>你已经完成了听力训练，练习了 {{ listeningStats.total }} 个单词</p>
+        <span class="complete-icon">完成</span>
+        <h3>听力训练完成</h3>
+        <p>你已经完成了 {{ listeningStats.total }} 个听力练习，下一步进入 AI 题目检验掌握度。</p>
         <div class="complete-stats">
           <div class="stat-item">
             <span class="stat-number">{{ listeningStats.correct }}</span>
@@ -211,32 +192,33 @@
           </div>
         </div>
         <div class="complete-actions">
-          <button class="btn-primary" @click="backToMap">返回地图</button>
+          <button class="btn-primary" @click="nextLevel">下一关</button>
+          <button class="btn-secondary" @click="backToMap">返回训练台</button>
+          <button class="btn-secondary" @click="goToReviewReport">去复盘</button>
         </div>
       </div>
     </div>
 
-    <!-- 第四关：AI生成题目 -->
     <div class="level-content" v-if="currentView === 'level-customsP'">
-      <div class="level-header">
-        <button class="back-btn" @click="backToMap">← 返回地图</button>
-        <div class="level-info">
-          <h2>🤖 第四关：AI生成题目</h2>
-          <p>AI根据你的学习情况生成个性化题目，检验学习效果</p>
+      <div class="level-shell-header">
+        <button class="back-btn" @click="backToMap">返回训练台</button>
+        <div class="level-shell-copy">
+          <span class="eyebrow">{{ currentChapterMeta.name }}</span>
+          <h2>04 AI 题目</h2>
+          <p>AI 根据你的学习情况生成个性化题目，检验学习效果。</p>
         </div>
+        <div class="mini-progress">{{ completedLevels }}/5</div>
       </div>
 
-      <!-- 使用AI题目练习组件 -->
       <AIQuestionPractice v-if="!showAIQuestionComplete" :positionType="currentPositionType" :wordList="aiQuestionWords"
         :preloadedQuestions="preloadedAIQuestions" :usePreloaded="isAIQuestionsPreloaded"
         @complete="handleAIQuestionComplete" @correct="handleAIQuestionCorrect" @incorrect="handleAIQuestionIncorrect"
         @answer="handleAIQuestionAnswer" @questionsGenerated="handleQuestionsGenerated" />
 
-      <!-- 关卡完成 -->
       <div class="level-complete" v-if="showAIQuestionComplete">
-        <div class="complete-icon">🎉</div>
-        <h3>第四关完成！</h3>
-        <p>你已经完成了AI生成题目练习，共完成 {{ aiQuestionStats.total }} 道题目</p>
+        <span class="complete-icon">完成</span>
+        <h3>AI 题目完成</h3>
+        <p>你已经完成 {{ aiQuestionStats.total }} 道题目，最后进入实战对话。</p>
         <div class="complete-stats">
           <div class="stat-item">
             <span class="stat-number">{{ aiQuestionStats.correct }}</span>
@@ -252,22 +234,31 @@
           </div>
         </div>
         <div class="complete-actions">
-          <button class="btn-primary" @click="backToMap">返回地图</button>
+          <button class="btn-primary" @click="nextLevel">下一关</button>
+          <button class="btn-secondary" @click="backToMap">返回训练台</button>
+          <button class="btn-secondary" @click="goToReviewReport">去复盘</button>
         </div>
       </div>
     </div>
 
-    <!-- 第五关：AI对话 -->
     <div class="level-content" v-if="currentView === 'level-coverP'">
-      <!-- 使用AI对话练习组件 -->
+      <div class="level-shell-header" v-if="!showAIChatComplete">
+        <button class="back-btn" @click="backToMap">返回训练台</button>
+        <div class="level-shell-copy">
+          <span class="eyebrow">{{ currentChapterMeta.name }}</span>
+          <h2>05 实战对话</h2>
+          <p>把词汇、听力和表达放进真实情境里使用。</p>
+        </div>
+        <div class="mini-progress">{{ completedLevels }}/5</div>
+      </div>
+
       <AIChatPractice v-if="!showAIChatComplete" :chapter="currentChapter" @complete="handleAIChatComplete"
         @exit="handleAIChatExit" />
 
-      <!-- 关卡完成 -->
       <div class="level-complete" v-if="showAIChatComplete">
-        <div class="complete-icon">🎉</div>
-        <h3>第五关完成！</h3>
-        <p>恭喜你完成了AI对话练习！你已经完成了所有闯关挑战！</p>
+        <span class="complete-icon">完成</span>
+        <h3>实战对话完成</h3>
+        <p>你已经完成当前场景全部训练，角色剧情挑战已解锁。</p>
         <div class="complete-stats">
           <div class="stat-item">
             <span class="stat-number">{{ aiChatStats.messageCount }}</span>
@@ -283,12 +274,13 @@
           </div>
         </div>
         <div class="complete-actions">
-          <button class="btn-primary" @click="backToMap">返回地图</button>
+          <button class="btn-primary" @click="goToStory">进入剧情挑战</button>
+          <button class="btn-secondary" @click="backToMap">返回训练台</button>
+          <button class="btn-secondary" @click="goToReviewReport">去复盘</button>
         </div>
       </div>
     </div>
 
-    <!-- AI题目加载窗口 -->
     <AIQuestionLoadingModal :visible="showAILoadingModal" @continue="handleAILoadingContinue"
       @close="handleAILoadingContinue" ref="aiLoadingModal" />
   </div>
@@ -320,6 +312,57 @@ const chapters = ref({
   A: { name: '酒店场景', scenario: 'hotel', color: '#4A90E2' },
   B: { name: '餐厅场景', scenario: 'restaurant', color: '#F5A623' }
 })
+
+const levelSteps = [
+  {
+    key: 'wordP',
+    order: '01',
+    title: '词汇学习',
+    goal: '认识本场景核心词汇，建立第一层语义记忆。',
+    estimate: '约 6 分钟'
+  },
+  {
+    key: 'spellP',
+    order: '02',
+    title: '拼写练习',
+    goal: '用拼写把词义和词形绑定起来，减少看得懂但写不出的情况。',
+    estimate: '约 7 分钟'
+  },
+  {
+    key: 'listenP',
+    order: '03',
+    title: '听力训练',
+    goal: '通过发音识别词汇，为真实对话做准备。',
+    estimate: '约 6 分钟'
+  },
+  {
+    key: 'customsP',
+    order: '04',
+    title: 'AI 题目',
+    goal: '用个性化题目检查掌握情况，定位还不稳定的表达。',
+    estimate: '约 8 分钟'
+  },
+  {
+    key: 'coverP',
+    order: '05',
+    title: '实战对话',
+    goal: '在完整场景里开口表达，把训练内容真正用出来。',
+    estimate: '约 10 分钟'
+  }
+]
+
+const chapterMetaFallback = {
+  A: {
+    name: '酒店场景训练',
+    category: '旅行出行',
+    description: '围绕入住、咨询、需求沟通和退房表达，完成从词汇到实战对话的 5 步训练。'
+  },
+  B: {
+    name: '餐厅场景训练',
+    category: '餐饮购物',
+    description: '练习点餐、询问口味、处理服务问题和结账表达，最后进入真实对话应用。'
+  }
+}
 
 // 词汇练习相关数据
 const vocabularyWords = ref([])
@@ -438,55 +481,69 @@ const completedLevels = computed(() => {
   return completed
 })
 
+const currentChapterId = computed(() => userInfo.value?.currentChapter || currentChapter.value || 'A')
+
+const currentChapterMeta = computed(() => {
+  const id = currentChapterId.value
+  const chapter = chapters.value[id] || {}
+  const fallback = chapterMetaFallback[id] || {
+    name: chapter.name ? `${chapter.name}训练` : '当前场景训练',
+    category: '场景任务',
+    description: '按照词汇、拼写、听力、AI 题目和实战对话完成当前场景训练。'
+  }
+
+  return {
+    ...fallback,
+    ...chapter,
+    name: fallback.name || chapter.name || '当前场景训练'
+  }
+})
+
+const isChapterCompleted = computed(() => completedLevels.value >= levelSteps.length)
+
+const nextPlayableLevel = computed(() => {
+  if (!userInfo.value) return levelSteps[0]
+  return levelSteps.find(step => !isLevelCompleted(step.key) && isLevelUnlocked(step.key)) || levelSteps[levelSteps.length - 1]
+})
+
 // 方法
-const getLevelClass = (level) => {
-  if (!userInfo.value) return 'locked'
+const isLevelCompleted = (level) => {
+  if (!userInfo.value) return false
 
-  // 优先使用多章节数据
   if (userInfo.value.chapters && userInfo.value.currentChapter) {
     const chapterProgress = userInfo.value.chapters[userInfo.value.currentChapter]
-    if (chapterProgress && chapterProgress[level]) return 'completed'
-  } else {
-    // 兼容旧数据结构
-    const cet4 = userInfo.value.cet4
-    if (cet4 && cet4[level]) return 'completed'
+    return Boolean(chapterProgress && chapterProgress[level])
   }
 
-  if (isLevelUnlocked(level)) return 'unlocked'
-  return 'locked'
+  const cet4 = userInfo.value.cet4
+  return Boolean(cet4 && cet4[level])
 }
 
-const getLevelProgress = (level) => {
-  if (!userInfo.value) return '未开始'
-
-  // 优先使用多章节数据
-  if (userInfo.value.chapters && userInfo.value.currentChapter) {
-    const chapterProgress = userInfo.value.chapters[userInfo.value.currentChapter]
-    if (chapterProgress && chapterProgress[level]) return '✅ 已完成'
-  } else {
-    // 兼容旧数据结构
-    const cet4 = userInfo.value.cet4
-    if (cet4 && cet4[level]) return '✅ 已完成'
-  }
-
-  return '未开始'
+const getPreviousLevelTitle = (level) => {
+  const index = levelSteps.findIndex(step => step.key === level)
+  if (index <= 0) return '上一关'
+  return levelSteps[index - 1].title
 }
 
-const getLevelStatus = (level) => {
-  if (!userInfo.value) return '🔒'
+const getLevelStateText = (level) => {
+  if (isLevelCompleted(level)) return '已完成'
+  if (nextPlayableLevel.value.key === level && isLevelUnlocked(level)) return '当前建议'
+  if (isLevelUnlocked(level)) return '可进入'
+  return '未解锁'
+}
 
-  // 优先使用多章节数据
-  if (userInfo.value.chapters && userInfo.value.currentChapter) {
-    const chapterProgress = userInfo.value.chapters[userInfo.value.currentChapter]
-    if (chapterProgress && chapterProgress[level]) return '✅'
-  } else {
-    // 兼容旧数据结构
-    const cet4 = userInfo.value.cet4
-    if (cet4 && cet4[level]) return '✅'
+const getLevelActionText = (level) => {
+  if (!isLevelUnlocked(level)) return '锁定'
+  if (isLevelCompleted(level)) return '重练'
+  return nextPlayableLevel.value.key === level ? '开始' : '进入'
+}
+
+const getLevelCardClass = (level) => {
+  return {
+    completed: isLevelCompleted(level),
+    current: nextPlayableLevel.value.key === level && !isLevelCompleted(level),
+    locked: !isLevelUnlocked(level)
   }
-
-  if (isLevelUnlocked(level)) return '🔓'
-  return '🔒'
 }
 
 const isLevelUnlocked = (level) => {
@@ -1086,7 +1143,14 @@ const completeLevel = async (level) => {
 }
 
 const nextLevel = () => {
-  // 进入下一关（暂时返回地图）
+  const currentIndex = levelSteps.findIndex(step => currentView.value === `level-${step.key}`)
+  const nextStep = levelSteps[currentIndex + 1]
+
+  if (nextStep && isLevelUnlocked(nextStep.key)) {
+    enterLevel(nextStep.key)
+    return
+  }
+
   backToMap()
 }
 
@@ -1139,6 +1203,21 @@ const switchToChapter = async (chapter) => {
 // 跳转到章节选择页面
 const goToChapterSelection = () => {
   router.push('/chapters')
+}
+
+const startNextLevel = () => {
+  if (nextPlayableLevel.value?.key) {
+    enterLevel(nextPlayableLevel.value.key)
+  }
+}
+
+const goToStory = () => {
+  if (!isChapterCompleted.value) return
+  router.push('/story')
+}
+
+const goToReviewReport = () => {
+  router.push('/review-ai-chat')
 }
 
 // 获取章节主题类
@@ -1821,6 +1900,410 @@ onMounted(async () => {
 
   .action-buttons {
     flex-direction: column;
+  }
+}
+
+.adventure-container {
+  min-height: 100vh;
+  padding: 28px clamp(16px, 3vw, 40px);
+  background:
+    radial-gradient(circle at 16% 8%, rgba(247, 196, 83, 0.16), transparent 28%),
+    linear-gradient(180deg, var(--learn-surface-soft, #f6f2e8) 0%, #fffaf0 100%) !important;
+  color: var(--learn-ink, #20312d);
+}
+
+.adventure-container::before {
+  display: none !important;
+}
+
+.adventure-map {
+  width: min(1120px, 100%);
+  max-width: none;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.console-hero,
+.route-section,
+.story-unlock,
+.level-shell-header,
+.level-complete {
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 50px rgba(52, 70, 57, 0.12);
+}
+
+.console-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  gap: 24px;
+  align-items: stretch;
+  padding: clamp(22px, 4vw, 42px);
+  border-radius: 26px;
+}
+
+.console-copy h1 {
+  margin: 8px 0 12px;
+  color: var(--learn-ink, #20312d);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.console-copy p,
+.next-card p,
+.story-unlock p,
+.section-heading p,
+.step-main p,
+.level-shell-copy p,
+.level-complete p {
+  color: var(--learn-muted, #65736f);
+}
+
+.hero-tags,
+.step-meta,
+.complete-actions,
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-tags span,
+.status-pill,
+.step-meta span,
+.mini-progress,
+.eyebrow,
+.complete-icon {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.eyebrow {
+  color: var(--learn-accent, #2f7d5c);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.hero-tags span,
+.step-meta span {
+  min-height: 30px;
+  padding: 6px 11px;
+  background: var(--learn-surface-soft, #f6f2e8);
+  color: var(--learn-muted, #65736f);
+  font-size: 0.84rem;
+}
+
+.next-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(246, 242, 232, 0.92), rgba(255, 255, 255, 0.94));
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
+}
+
+.next-card-top {
+  display: grid;
+  gap: 6px;
+}
+
+.next-card-top span {
+  color: var(--learn-muted, #65736f);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.next-card-top strong {
+  color: var(--learn-ink, #20312d);
+  font-size: 1.5rem;
+}
+
+.progress-meter {
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(32, 49, 45, 0.1);
+}
+
+.progress-meter-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--learn-accent, #2f7d5c), var(--learn-warm, #f3b23d));
+  transition: width 0.35s ease;
+}
+
+.learn-button,
+.btn-primary,
+.btn-secondary,
+.back-btn,
+.step-action {
+  min-height: 42px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0 18px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.learn-button.primary,
+.btn-primary {
+  background: var(--learn-accent, #2f7d5c);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(47, 125, 92, 0.22);
+}
+
+.learn-button.secondary,
+.btn-secondary,
+.back-btn {
+  background: #fff;
+  color: var(--learn-ink, #20312d);
+  border-color: var(--learn-border, rgba(32, 49, 45, 0.14));
+  box-shadow: none;
+}
+
+.learn-button:hover:not(:disabled),
+.btn-primary:hover,
+.btn-secondary:hover,
+.back-btn:hover,
+.step-action:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.learn-button:disabled,
+.step-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.route-section,
+.story-unlock {
+  margin-top: 22px;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 24px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2,
+.story-unlock h2 {
+  margin: 6px 0 0;
+  color: var(--learn-ink, #20312d);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+}
+
+.training-route {
+  display: grid;
+  gap: 12px;
+}
+
+.training-step {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+}
+
+.training-step.current {
+  border-color: rgba(47, 125, 92, 0.42);
+  background: rgba(235, 248, 241, 0.82);
+}
+
+.training-step.completed {
+  background: rgba(245, 252, 247, 0.9);
+}
+
+.training-step.locked {
+  cursor: not-allowed;
+  background: rgba(244, 244, 240, 0.72);
+}
+
+.step-index {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--learn-surface-soft, #f6f2e8);
+  color: var(--learn-accent, #2f7d5c);
+  font-weight: 900;
+}
+
+.training-step.completed .step-index {
+  background: rgba(47, 125, 92, 0.12);
+}
+
+.training-step.locked .step-index {
+  color: #9aa39f;
+}
+
+.step-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+.step-title-row h3 {
+  margin: 0;
+  color: var(--learn-ink, #20312d);
+  font-size: 1.08rem;
+}
+
+.status-pill {
+  min-height: 28px;
+  padding: 5px 10px;
+  background: rgba(47, 125, 92, 0.1);
+  color: var(--learn-accent, #2f7d5c);
+  font-size: 0.8rem;
+}
+
+.training-step.locked .status-pill {
+  background: rgba(32, 49, 45, 0.08);
+  color: #7d8884;
+}
+
+.step-main p {
+  margin: 0 0 10px;
+  line-height: 1.55;
+}
+
+.step-action {
+  background: var(--learn-ink, #20312d);
+  color: #fff;
+}
+
+.step-action:disabled {
+  background: #d8ddd9;
+  color: #68736f;
+}
+
+.story-unlock {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+}
+
+.story-unlock.unlocked {
+  border-color: rgba(243, 178, 61, 0.5);
+  background: linear-gradient(135deg, rgba(255, 248, 231, 0.94), rgba(255, 255, 255, 0.92));
+}
+
+.level-content {
+  width: min(1040px, 100%);
+  max-width: none;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.level-shell-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 22px;
+}
+
+.level-shell-copy h2 {
+  margin: 2px 0 4px;
+  color: var(--learn-ink, #20312d);
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+}
+
+.level-shell-copy p {
+  margin: 0;
+}
+
+.mini-progress,
+.complete-icon {
+  padding: 7px 12px;
+  background: rgba(47, 125, 92, 0.1);
+  color: var(--learn-accent, #2f7d5c);
+}
+
+.level-complete {
+  width: min(680px, 100%);
+  margin: 26px auto 0;
+  padding: clamp(22px, 4vw, 34px);
+  border-radius: 24px;
+}
+
+.level-complete h3 {
+  margin: 14px 0 8px;
+  color: var(--learn-ink, #20312d);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.complete-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+  padding: 14px;
+  background: var(--learn-surface-soft, #f6f2e8);
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
+  border-radius: 18px;
+}
+
+.stat-number {
+  color: var(--learn-accent, #2f7d5c);
+}
+
+.complete-actions {
+  justify-content: center;
+  margin-top: 18px;
+}
+
+@media (max-width: 820px) {
+  .console-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading,
+  .story-unlock {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .training-step {
+    grid-template-columns: 46px minmax(0, 1fr);
+  }
+
+  .step-action {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .level-shell-header {
+    grid-template-columns: 1fr;
+  }
+
+  .back-btn,
+  .mini-progress {
+    width: fit-content;
   }
 }
 </style>
