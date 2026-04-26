@@ -378,11 +378,13 @@ const spellingWords = ref([])
 const showSpellingComplete = ref(false)
 const correctSpellings = ref(0)
 const incorrectSpellings = ref(0)
+const spellingStartTime = ref(null)
 
 // 听力练习相关数据
 const listeningWords = ref([])
 const showListeningComplete = ref(false)
 const listeningStats = ref({ total: 0, correct: 0, accuracy: 0 })
+const listeningStartTime = ref(null)
 
 // AI题目练习相关数据
 const aiQuestionWords = ref([])
@@ -663,6 +665,7 @@ const startSpellingPractice = async () => {
       showSpellingComplete.value = false
       correctSpellings.value = 0
       incorrectSpellings.value = 0
+      spellingStartTime.value = new Date()
       currentView.value = 'level-spellP'
     }
   } catch (error) {
@@ -702,6 +705,9 @@ const handleVocabularyComplete = async (stats) => {
 
   // 记录学习活动到StudyRecord，使用实际的学习时长
   const studyTime = stats.studyTime || 0; // 使用前端记录的实际学习时长
+  const totalWords = stats.wordsCount || vocabularyWords.value.length || 0
+  const recognizedWords = knownWords.value || 0
+  const recognitionAccuracy = totalWords > 0 ? (recognizedWords / totalWords) * 100 : 0
   if (studyTime > 0) {
     try {
       await fetch('/api/report/record', {
@@ -712,9 +718,9 @@ const handleVocabularyComplete = async (stats) => {
         body: JSON.stringify({
           module: 'vocabulary',
           studyTime: studyTime,
-          newWords: stats.knownWords || 0,
-          reviewWords: stats.vagueWords + stats.unknownWords || 0,
-          accuracy: stats.knownWords / (stats.knownWords + stats.vagueWords + stats.unknownWords) * 100 || 0,
+          newWords: totalWords,
+          reviewWords: 0,
+          accuracy: recognitionAccuracy,
           startTime: new Date(Date.now() - studyTime * 60 * 1000),
           endTime: new Date()
         })
@@ -759,7 +765,8 @@ const handleVocabularyComplete = async (stats) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            studyWords: vocabularyWords.value.length
+            studyWords: vocabularyWords.value.length,
+            skipStudyRecord: true
           })
         })
 
@@ -889,7 +896,46 @@ const handleAILoadingContinue = () => {
   completeAIQuestionPreload()
 }
 
+const recordPracticeReport = async ({ module, startTime, wordsCount, accuracy }) => {
+  const endTime = new Date()
+  const fallbackMinutes = wordsCount > 0 ? Math.max(1, Math.ceil(wordsCount / 3)) : 0
+  const actualMinutes = startTime ? (endTime.getTime() - startTime.getTime()) / 1000 / 60 : 0
+  const studyTime = actualMinutes > 0 ? Math.max(0.1, Math.round(actualMinutes * 100) / 100) : fallbackMinutes
+
+  if (studyTime <= 0) return
+
+  try {
+    await fetch('/api/report/record', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        module,
+        studyTime,
+        newWords: 0,
+        reviewWords: 0,
+        accuracy,
+        startTime: startTime || new Date(endTime.getTime() - studyTime * 60 * 1000),
+        endTime
+      })
+    })
+  } catch (error) {
+    console.error(`记录${module}练习报告失败:`, error)
+  }
+}
+
 const handleSpellingComplete = async () => {
+  const total = correctSpellings.value + incorrectSpellings.value
+  const accuracy = total > 0 ? Math.round((correctSpellings.value / total) * 100) : 0
+
+  await recordPracticeReport({
+    module: 'spelling',
+    startTime: spellingStartTime.value,
+    wordsCount: total || spellingWords.value.length,
+    accuracy
+  })
+
   // 完成第二关
   showSpellingComplete.value = true
   await completeLevel('spellP')
@@ -939,6 +985,7 @@ const startListeningPractice = async () => {
       
       showListeningComplete.value = false
       listeningStats.value = { total: 0, correct: 0, accuracy: 0 }
+      listeningStartTime.value = new Date()
       currentView.value = 'level-listenP'
     }
   } catch (error) {
@@ -960,12 +1007,19 @@ const startListeningPractice = async () => {
     
     showListeningComplete.value = false
     listeningStats.value = { total: 0, correct: 0, accuracy: 0 }
+    listeningStartTime.value = new Date()
     currentView.value = 'level-listenP'
   }
 }
 
 const handleListeningComplete = async (stats) => {
   listeningStats.value = stats
+  await recordPracticeReport({
+    module: 'listening',
+    startTime: listeningStartTime.value,
+    wordsCount: stats?.total || listeningWords.value.length,
+    accuracy: stats?.accuracy || 0
+  })
   showListeningComplete.value = true
   await completeLevel('listenP')
 }

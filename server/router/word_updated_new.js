@@ -606,6 +606,7 @@ router.get('/getWordList', async (req, res) => {
 router.post('/updateWordProgress', async (req, res) => {
   try {
     const studyWords = req.body.studyWords || 0;
+    const skipStudyRecord = req.body.skipStudyRecord === true;
     const userid = req.session.userid;
 
     if (!userid) {
@@ -697,20 +698,22 @@ router.post('/updateWordProgress', async (req, res) => {
 
     await user.save();
 
-    // 记录学习活动到StudyRecord
-    try {
-      await StudyRecordService.recordStudyActivity(userid, 'vocabulary', {
-        studyTime: Math.ceil(studyWords / 2), // 估算学习时间：每2个单词1分钟
-        newWords: studyWords,
-        reviewWords: 0,
-        wordsCount: studyWords,
-        accuracy: 0, // 词汇学习不计算准确率
-        startTime: new Date(Date.now() - Math.ceil(studyWords / 2) * 60 * 1000), // 估算开始时间
-        endTime: new Date()
-      });
-    } catch (recordError) {
-      logger.error('记录学习活动失败:', recordError);
-      // 不影响主流程，继续返回成功
+    // 兼容旧调用：如果调用方没有单独记录真实学习会话，才使用估算值兜底。
+    if (!skipStudyRecord && studyWords > 0) {
+      try {
+        await StudyRecordService.recordStudyActivity(userid, 'vocabulary', {
+          studyTime: Math.ceil(studyWords / 2), // 估算学习时间：每2个单词1分钟
+          newWords: studyWords,
+          reviewWords: 0,
+          wordsCount: studyWords,
+          accuracy: 0, // 兜底记录不代表真实辨认准确率
+          startTime: new Date(Date.now() - Math.ceil(studyWords / 2) * 60 * 1000), // 估算开始时间
+          endTime: new Date()
+        });
+      } catch (recordError) {
+        logger.error('记录学习活动失败:', recordError);
+        // 不影响主流程，继续返回成功
+      }
     }
 
     logUserAction(req, 'UPDATE_WORD_PROGRESS', {

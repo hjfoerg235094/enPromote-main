@@ -13,6 +13,8 @@ import StudyQualityAssessment from '../components/StudyQualityAssessment.vue';
 <style scoped>
 .daily-report-page {
   min-height: 100vh;
-  background: #f5f5f5;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(243, 178, 61, 0.14), transparent 26%),
+    linear-gradient(180deg, var(--learn-surface-soft, #f6f2e8) 0%, #fffaf0 100%);
 }
 </style>

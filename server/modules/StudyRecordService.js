@@ -2,6 +2,26 @@
 const StudyRecord = require('./StudyRecord');
 const UserWord = require('./UserWord');
 
+const roundNumber = (value, precision = 2) => {
+  const number = Number(value) || 0;
+  return Number(number.toFixed(precision));
+};
+
+const getWeightedSessionAccuracy = (sessions, module) => {
+  const moduleSessions = sessions.filter(s => s.module === module && typeof s.accuracy === 'number');
+  const totalWords = moduleSessions.reduce((sum, s) => sum + (s.wordsCount || 0), 0);
+
+  if (totalWords > 0) {
+    const weightedAccuracy = moduleSessions.reduce((sum, s) => {
+      return sum + ((s.accuracy || 0) * (s.wordsCount || 0));
+    }, 0);
+    return weightedAccuracy / totalWords;
+  }
+
+  if (moduleSessions.length === 0) return 0;
+  return moduleSessions.reduce((sum, s) => sum + (s.accuracy || 0), 0) / moduleSessions.length;
+};
+
 class StudyRecordService {
   /**
    * 记录学习活动
@@ -67,16 +87,28 @@ class StudyRecordService {
         record.wordsLearned.reviewWords += data.reviewWords;
       }
 
-      // 更新练习统计
-      if (data.accuracy !== undefined) {
-        const currentAccuracy = record.practiceStats.spellingAccuracy;
-        const totalSessions = record.sessions.filter(s => s.module === module).length;
-        record.practiceStats.spellingAccuracy = totalSessions > 0
-          ? (currentAccuracy * totalSessions + data.accuracy) / (totalSessions + 1)
-          : data.accuracy;
-      }
-
-      if (module === 'aiPractice') {
+      // 更新练习统计：词汇辨认的 accuracy 只进 sessions，不写入 spellingAccuracy。
+      if (module === 'spelling' && data.accuracy !== undefined) {
+        const nextSessions = [
+          ...record.sessions,
+          {
+            module,
+            wordsCount: data.wordsCount || 0,
+            accuracy: data.accuracy || 0
+          }
+        ];
+        record.practiceStats.spellingAccuracy = roundNumber(getWeightedSessionAccuracy(nextSessions, 'spelling'));
+      } else if (module === 'listening' && data.accuracy !== undefined) {
+        const nextSessions = [
+          ...record.sessions,
+          {
+            module,
+            wordsCount: data.wordsCount || 0,
+            accuracy: data.accuracy || 0
+          }
+        ];
+        record.practiceStats.listeningCompletion = roundNumber(getWeightedSessionAccuracy(nextSessions, 'listening'));
+      } else if (module === 'aiPractice') {
         record.practiceStats.aiPracticeCount += 1;
       }
 
@@ -92,19 +124,21 @@ class StudyRecordService {
       // 计算效率指标
       const totalWords = record.wordsLearned.newWords + record.wordsLearned.reviewWords;
       record.efficiency.wordsPerMinute = record.totalStudyTime > 0
-        ? totalWords / record.totalStudyTime
+        ? roundNumber(totalWords / record.totalStudyTime)
         : 0;
 
-      // 计算掌握率（基于复习次数）
+      // 计算掌握率：优先使用明确掌握状态，兼容旧的 reviewCounts>=3 规则。
       const userWords = await UserWord.find({ userId });
-      const masteredWords = userWords.filter(w => w.reviewCounts >= 3).length;
+      const masteredWords = userWords.filter(w => {
+        return ['know', 'mastered'].includes(w.status) || w.reviewCounts >= 3;
+      }).length;
       record.efficiency.masteryRate = userWords.length > 0
-        ? masteredWords / userWords.length
+        ? roundNumber(masteredWords / userWords.length)
         : 0;
 
-      // 计算掌握速度
+      // 掌握速度：每分钟稳定掌握的词量。
       record.efficiency.masterySpeed = record.totalStudyTime > 0
-        ? record.efficiency.masteryRate / (record.totalStudyTime / 60)
+        ? roundNumber(record.efficiency.wordsPerMinute * record.efficiency.masteryRate, 3)
         : 0;
 
       await record.save();

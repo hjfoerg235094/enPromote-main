@@ -1,58 +1,48 @@
 <template>
   <div class="quality-assessment-container">
-    <!-- 质量得分卡片 -->
-    <div class="quality-score-card">
-      <div class="score-circle">
-        <div class="score-value">{{ qualityData.overallScore }}</div>
-        <div class="score-label">学习质量得分</div>
+    <section class="quality-summary-card">
+      <div class="quality-score-compact">
+        <strong>{{ qualityData.overallScore }}</strong>
+        <span>质量分</span>
+      </div>
+      <div class="quality-summary-copy">
+        <span class="quality-kicker">学习质量诊断</span>
+        <h3>{{ getScoreLevelText(qualityData.overallScore) }}</h3>
+        <p>{{ qualitySummaryText }}</p>
       </div>
       <div class="score-level" :class="getScoreLevelClass(qualityData.overallScore)">
         {{ getScoreLevelText(qualityData.overallScore) }}
       </div>
-    </div>
+    </section>
 
-    <!-- 质量维度分析 -->
-    <div class="quality-dimensions-section">
-      <div class="section-header">
-        <h3 class="section-title">质量维度分析</h3>
-      </div>
+    <section class="quality-dimensions-section">
       <div class="dimensions-grid">
         <div class="dimension-card" v-for="(dimension, key) in qualityData.dimensions" :key="key">
-          <div class="dimension-icon">{{ getDimensionIcon(key) }}</div>
-          <div class="dimension-content">
-            <div class="dimension-header">
-              <span class="dimension-name">{{ getDimensionName(key) }}</span>
-              <span class="dimension-score">{{ dimension.score }}分</span>
-            </div>
-            <div class="dimension-level" :class="getScoreLevelClass(dimension.score)">
-              {{ dimension.level }}
-            </div>
-            <div class="dimension-description">{{ dimension.description }}</div>
-            <div class="dimension-metrics">
-              <div v-for="(value, metricKey) in dimension.metrics" :key="metricKey" class="metric-item">
-                <span class="metric-label">{{ getMetricName(metricKey) }}:</span>
-                <span class="metric-value">{{ formatMetricValue(metricKey, value) }}</span>
-              </div>
-            </div>
+          <span class="dimension-icon">{{ getDimensionIcon(key) }}</span>
+          <div class="dimension-header">
+            <span class="dimension-name">{{ getDimensionName(key) }}</span>
+            <strong>{{ dimension.score }}分</strong>
           </div>
+          <div class="dimension-level" :class="getScoreLevelClass(dimension.score)">
+            {{ dimension.level }}
+          </div>
+          <p>{{ dimension.description }}</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 质量变化趋势 -->
-    <div class="quality-trend-section">
+    <section class="quality-trend-section">
       <InteractiveTrendChart :data="qualityData.trend" />
-    </div>
+    </section>
 
-    <!-- 质量改进建议 -->
-    <div class="quality-suggestions-section" v-if="qualityData.suggestions.length > 0">
+    <section class="quality-suggestions-section" v-if="displaySuggestions.length > 0">
       <div class="section-header">
         <h3 class="section-title">质量改进建议</h3>
       </div>
       <div class="suggestions-list">
         <div
           class="suggestion-card"
-          v-for="(suggestion, index) in qualityData.suggestions"
+          v-for="(suggestion, index) in displaySuggestions"
           :key="index"
           :class="`priority-${suggestion.priority.toLowerCase()}`">
           <div class="suggestion-icon">{{ suggestion.icon }}</div>
@@ -70,7 +60,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -127,6 +117,18 @@ const chartColors = {
 // 计算属性
 const hasTrendData = computed(() => {
   return qualityData.value.trend.length > 0;
+});
+
+const qualitySummaryText = computed(() => {
+  const score = qualityData.value.overallScore;
+  if (score >= 80) return '今天的学习质量不错，可以保持当前节奏，并通过实战对话继续巩固。';
+  if (score >= 60) return '基础表现稳定，建议补齐分数较低的维度，让训练更均衡。';
+  if (score > 0) return '质量分偏低，优先完成词汇、拼写和听力的闭环练习。';
+  return '完成一轮学习后，这里会生成更具体的质量诊断。';
+});
+
+const displaySuggestions = computed(() => {
+  return qualityData.value.suggestions.slice(0, 2);
 });
 
 const overallTrendLinePoints = computed(() => {
@@ -288,77 +290,102 @@ onMounted(() => {
 
 <style scoped>
 .quality-assessment-container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto 36px;
+  padding: 0;
+  color: var(--learn-ink, #20312d);
+}
+
+.quality-summary-card,
+.quality-dimensions-section,
+.quality-trend-section,
+.quality-suggestions-section {
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(47, 67, 62, 0.08);
+}
+
+.quality-summary-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 14px;
   padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 12px;
 }
 
-/* 质量得分卡片 */
-.quality-score-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
+.quality-score-compact {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  width: 86px;
+  height: 86px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(47, 125, 92, 0.14), rgba(243, 178, 61, 0.18));
 }
 
-.score-circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
+.quality-score-compact strong {
+  color: var(--learn-accent, #2f7d5c);
+  font-size: 2rem;
+  line-height: 1;
 }
 
-.score-value {
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
+.quality-score-compact span {
+  color: var(--learn-muted, #65736f);
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
-.score-label {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 4px;
+.quality-kicker {
+  color: var(--learn-accent, #2f7d5c);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.quality-summary-copy h3 {
+  margin: 4px 0 6px;
+  font-size: 1.45rem;
+}
+
+.quality-summary-copy p {
+  margin: 0;
+  color: var(--learn-muted, #65736f);
+  line-height: 1.5;
 }
 
 .score-level {
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 8px 24px;
-  border-radius: 20px;
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 900;
 }
 
 .level-excellent {
-  background-color: #e8f5e9;
-  color: #4CAF50;
+  background-color: rgba(47, 125, 92, 0.12);
+  color: var(--learn-accent, #2f7d5c);
 }
 
 .level-good {
-  background-color: #e3f2fd;
-  color: #2196F3;
+  background-color: rgba(66, 119, 184, 0.12);
+  color: #4277b8;
 }
 
 .level-average {
-  background-color: #fff3e0;
-  color: #FF9800;
+  background-color: rgba(243, 178, 61, 0.18);
+  color: #a86d12;
 }
 
 .level-poor {
-  background-color: #ffebee;
-  color: #F44336;
+  background-color: rgba(198, 111, 75, 0.14);
+  color: #a9492c;
 }
 
-/* 质量维度分析 */
 .quality-dimensions-section {
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+  padding: 16px;
 }
 
 .section-header {
@@ -369,9 +396,10 @@ onMounted(() => {
 }
 
 .section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333;
+  margin: 0;
+  color: var(--learn-ink, #20312d);
+  font-size: 1.15rem;
+  font-weight: 950;
 }
 
 .trend-selector {
@@ -396,94 +424,63 @@ onMounted(() => {
 
 .dimensions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .dimension-card {
-  display: flex;
-  gap: 16px;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: grid;
+  gap: 8px;
+  min-height: 132px;
+  padding: 14px;
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
+  border-radius: 18px;
+  background: var(--learn-surface-soft, #f6f2e8);
 }
 
 .dimension-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dimension-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
-.dimension-content {
-  flex: 1;
+  font-size: 1.45rem;
 }
 
 .dimension-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  gap: 8px;
 }
 
 .dimension-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
+  color: var(--learn-ink, #20312d);
+  font-weight: 900;
 }
 
-.dimension-score {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #667eea;
+.dimension-header strong {
+  color: var(--learn-accent, #2f7d5c);
 }
 
 .dimension-level {
-  display: inline-block;
+  display: inline-flex;
+  width: fit-content;
   padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 8px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
-.dimension-description {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 12px;
+.dimension-card p {
+  margin: 0;
+  color: var(--learn-muted, #65736f);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
-.dimension-metrics {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.metric-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.metric-label {
-  color: #999;
-}
-
-.metric-value {
-  font-weight: 600;
-  color: #333;
-}
-
-/* 质量变化趋势 */
 .quality-trend-section {
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+  padding: 14px;
 }
 
 .chart-container {
@@ -557,32 +554,30 @@ onMounted(() => {
   color: #999;
 }
 
-/* 质量改进建议 */
 .quality-suggestions-section {
-  margin-bottom: 24px;
+  margin-bottom: 0;
+  padding: 16px;
 }
 
 .suggestions-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 12px;
 }
 
 .suggestion-card {
-  display: flex;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--learn-border, rgba(32, 49, 45, 0.12));
   border-left: 4px solid transparent;
+  border-radius: 16px;
+  background: rgba(250, 248, 241, 0.72);
 }
 
 .suggestion-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .suggestion-card.priority-high {
@@ -598,8 +593,13 @@ onMounted(() => {
 }
 
 .suggestion-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 1.25rem;
 }
 
 .suggestion-content {
@@ -614,9 +614,9 @@ onMounted(() => {
 }
 
 .suggestion-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
+  color: var(--learn-ink, #20312d);
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .suggestion-priority {
@@ -642,18 +642,19 @@ onMounted(() => {
 }
 
 .suggestion-description {
-  font-size: 0.95rem;
-  color: #666;
+  color: var(--learn-muted, #65736f);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
 .suggestion-btn {
-  padding: 8px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 38px;
+  padding: 0 16px;
+  background: var(--learn-accent, #2f7d5c);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
+  border-radius: 999px;
+  font-weight: 900;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -664,13 +665,20 @@ onMounted(() => {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .quality-assessment-container {
+    width: min(100% - 20px, 1180px);
+  }
+
+  .quality-summary-card {
+    grid-template-columns: 1fr;
+  }
+
   .dimensions-grid {
     grid-template-columns: 1fr;
   }
 
   .suggestion-card {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
   }
 
   .suggestion-btn {

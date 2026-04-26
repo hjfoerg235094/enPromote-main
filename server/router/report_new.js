@@ -7,6 +7,139 @@ const User = require('../modules/User');
 const UserWord = require('../modules/UserWord');
 const StudyRecordService = require('../modules/StudyRecordService');
 
+const EMPTY_MODULE_STUDY_TIME = {
+  vocabulary: 0,
+  listening: 0,
+  spelling: 0,
+  aiPractice: 0
+};
+
+const EMPTY_WORDS_LEARNED = {
+  newWords: 0,
+  reviewWords: 0
+};
+
+const EMPTY_PRACTICE_STATS = {
+  vocabularyRecognitionAccuracy: 0,
+  spellingAccuracy: 0,
+  listeningCompletion: 0,
+  aiPracticeCount: 0
+};
+
+const roundNumber = (value, precision = 2) => {
+  const number = Number(value) || 0;
+  return Number(number.toFixed(precision));
+};
+
+const parseLocalDate = (date) => {
+  if (typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const [year, month, day] = date.split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  const now = date ? new Date(date) : new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+};
+
+const formatLocalDate = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const getDayRange = (date) => {
+  const startDate = new Date(date);
+  startDate.setHours(0, 0, 0, 0);
+
+  const endDate = new Date(startDate);
+  endDate.setHours(23, 59, 59, 999);
+
+  return { startDate, endDate };
+};
+
+const weightedAccuracy = (sessions = [], module) => {
+  const moduleSessions = sessions.filter(session => {
+    return session.module === module && typeof session.accuracy === 'number';
+  });
+
+  const totalWords = moduleSessions.reduce((sum, session) => sum + (session.wordsCount || 0), 0);
+  if (totalWords > 0) {
+    const weightedTotal = moduleSessions.reduce((sum, session) => {
+      return sum + ((session.accuracy || 0) * (session.wordsCount || 0));
+    }, 0);
+    return roundNumber(weightedTotal / totalWords);
+  }
+
+  if (moduleSessions.length === 0) return 0;
+  const average = moduleSessions.reduce((sum, session) => sum + (session.accuracy || 0), 0) / moduleSessions.length;
+  return roundNumber(average);
+};
+
+const normalizeModuleStudyTime = (moduleStudyTime = {}) => ({
+  vocabulary: roundNumber(moduleStudyTime.vocabulary),
+  listening: roundNumber(moduleStudyTime.listening),
+  spelling: roundNumber(moduleStudyTime.spelling),
+  aiPractice: roundNumber(moduleStudyTime.aiPractice)
+});
+
+const normalizeWordsLearned = (wordsLearned = {}) => ({
+  newWords: Math.max(0, Math.round(Number(wordsLearned.newWords) || 0)),
+  reviewWords: Math.max(0, Math.round(Number(wordsLearned.reviewWords) || 0))
+});
+
+const calculateUserMasteryRate = async (userId) => {
+  const userWords = await UserWord.find({ userId }).select('status reviewCounts').lean();
+  if (!userWords.length) return 0;
+
+  const masteredWords = userWords.filter(word => {
+    return ['know', 'mastered'].includes(word.status) || word.reviewCounts >= 3;
+  }).length;
+
+  return roundNumber(masteredWords / userWords.length);
+};
+
+const buildDailyReport = async ({ userId, user, record, queryDate }) => {
+  const recordObject = record?.toObject ? record.toObject() : record;
+  const sessions = recordObject?.sessions || [];
+  const totalStudyTime = roundNumber(recordObject?.totalStudyTime);
+  const moduleStudyTime = normalizeModuleStudyTime(recordObject?.moduleStudyTime || EMPTY_MODULE_STUDY_TIME);
+  const wordsLearned = normalizeWordsLearned(recordObject?.wordsLearned || EMPTY_WORDS_LEARNED);
+  const totalWords = wordsLearned.newWords + wordsLearned.reviewWords;
+  const wordsPerMinute = totalStudyTime > 0 ? roundNumber(totalWords / totalStudyTime) : 0;
+  const masteryRate = await calculateUserMasteryRate(userId);
+
+  return {
+    date: formatLocalDate(queryDate),
+    totalStudyTime,
+    moduleStudyTime,
+    wordsLearned,
+    practiceStats: {
+      ...EMPTY_PRACTICE_STATS,
+      ...(recordObject?.practiceStats || {}),
+      vocabularyRecognitionAccuracy: weightedAccuracy(sessions, 'vocabulary'),
+      spellingAccuracy: roundNumber(recordObject?.practiceStats?.spellingAccuracy),
+      listeningCompletion: roundNumber(recordObject?.practiceStats?.listeningCompletion),
+      aiPracticeCount: Math.max(0, Math.round(Number(recordObject?.practiceStats?.aiPracticeCount) || 0))
+    },
+    achievements: {
+      continuousDays: user.checkIn?.continuousCheckInDays || user.streakDays || 0,
+      totalDays: user.checkIn?.totalCheckInDays || user.studyHistory?.length || 0,
+      unlockedAchievements: []
+    },
+    efficiency: {
+      wordsPerMinute,
+      masteryRate,
+      masterySpeed: totalStudyTime > 0 ? roundNumber(wordsPerMinute * masteryRate, 3) : 0
+    },
+    dataQuality: {
+      hasRecord: Boolean(recordObject),
+      sessionCount: sessions.length,
+      isEstimated: sessions.some(session => session.module === 'vocabulary' && session.accuracy === 0 && session.wordsCount > 0)
+    }
+  };
+};
+
 /**
  * 记录学习时长
  * POST /report/record
@@ -81,23 +214,8 @@ router.get('/daily', async (req, res) => {
     }
 
     const { date } = req.query;
-    let queryDate;
-
-    if (date) {
-      // 如果指定了日期，使用指定的日期
-      queryDate = new Date(date);
-    } else {
-      // 否则使用今天的日期（基于本地时区）
-      const now = new Date();
-      queryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    }
-
-    // 设置查询的开始和结束时间
-    const startDate = new Date(queryDate);
-    startDate.setHours(0, 0, 0, 0);
-
-    const endDate = new Date(queryDate);
-    endDate.setHours(23, 59, 59, 999);
+    const queryDate = parseLocalDate(date);
+    const { startDate, endDate } = getDayRange(queryDate);
 
     // 查询当天的学习记录
     const record = await StudyRecord.findOne({
@@ -117,36 +235,12 @@ router.get('/daily', async (req, res) => {
       });
     }
 
-    // 如果没有记录，返回默认值
-    const reportData = {
-      date: queryDate.toISOString().split('T')[0],
-      totalStudyTime: record?.totalStudyTime || 0,
-      moduleStudyTime: record?.moduleStudyTime || {
-        vocabulary: 0,
-        listening: 0,
-        spelling: 0,
-        aiPractice: 0
-      },
-      wordsLearned: record?.wordsLearned || {
-        newWords: 0,
-        reviewWords: 0
-      },
-      practiceStats: record?.practiceStats || {
-        spellingAccuracy: 0,
-        listeningCompletion: 0,
-        aiPracticeCount: 0
-      },
-      achievements: {
-        continuousDays: user.checkIn?.continuousCheckInDays || 0,
-        totalDays: user.checkIn?.totalCheckInDays || 0,
-        unlockedAchievements: [] // TODO: 从成就系统获取
-      },
-      efficiency: record?.efficiency || {
-        wordsPerMinute: 0,
-        masteryRate: 0,
-        masterySpeed: 0
-      }
-    };
+    const reportData = await buildDailyReport({
+      userId: userid,
+      user,
+      record,
+      queryDate
+    });
 
     res.json({
       code: 200,

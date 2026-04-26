@@ -42,40 +42,34 @@
 
     <!-- 图表区域 -->
     <div class="chart-wrapper" ref="chartWrapper">
-      <div class="zoom-controls" v-if="isZoomed">
-        <button class="zoom-btn" @click="zoomIn" title="放大">+</button>
-        <button class="zoom-btn" @click="zoomOut" title="缩小">-</button>
-        <button class="zoom-btn" @click="resetZoom" title="重置缩放">⟲</button>
-      </div>
-
       <div v-if="!hasData" class="chart-placeholder">
         <div class="placeholder-icon">📈</div>
         <div class="placeholder-text">暂无数据</div>
       </div>
 
-      <div v-else class="chart-area" @wheel.prevent="handleWheel" @mousedown="startDrag" @mouseup="endDrag" @mouseleave="endDrag" @mousemove="handleDrag">
-        <svg class="chart-svg" :viewBox="viewBox" preserveAspectRatio="none">
-          <!-- 渐变定义 -->
+      <div v-else class="chart-area">
+        <div class="chart-summary">
+          <span>质量趋势</span>
+          <strong>{{ latestOverallScore.toFixed(1) }} 分</strong>
+        </div>
+        <svg class="chart-svg" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid meet" role="img" aria-label="学习质量趋势">
           <defs>
             <linearGradient v-for="option in activeFilterOptions" :id="`${option.key}Gradient`" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" :stop-color="option.color" stop-opacity="0.4"/>
               <stop offset="100%" :stop-color="option.color" stop-opacity="0.05"/>
             </linearGradient>
-            <!-- 添加阴影滤镜 -->
             <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
               <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
             </filter>
           </defs>
 
-          <!-- 网格线 -->
           <g class="grid-lines">
-            <line v-for="i in 5" :key="`grid-${i}`" 
-                  :x1="0" :y1="i * 12" 
-                  :x2="100" :y2="i * 12" 
+            <line v-for="line in gridLines" :key="`grid-${line}`"
+                  :x1="6" :y1="line"
+                  :x2="94" :y2="line"
                   stroke="#e0e0e0" stroke-width="0.1"/>
           </g>
 
-          <!-- 趋势线和区域 -->
           <g v-for="option in activeFilterOptions" :key="option.key">
             <path
               :d="getAreaPath(option.key)"
@@ -86,7 +80,7 @@
               :d="getSmoothPath(option.key)"
               fill="none"
               :stroke="option.color"
-              stroke-width="2.5"
+              stroke-width="1.4"
               stroke-linecap="round"
               stroke-linejoin="round"
               class="trend-line"
@@ -95,14 +89,12 @@
             />
           </g>
 
-          <!-- 数据点 -->
           <g v-for="(point, index) in filteredData" :key="`point-${index}`">
             <g v-for="option in activeFilterOptions" :key="option.key">
-              <!-- 外圈光晕 -->
               <circle
                 :cx="point.x"
                 :cy="(point as any)[option.key]"
-                r="6"
+                r="2.6"
                 :fill="option.color"
                 fill-opacity="0.2"
                 class="data-point-glow"
@@ -111,10 +103,10 @@
               <circle
                 :cx="point.x"
                 :cy="(point as any)[option.key]"
-                r="4"
+                r="1.8"
                 :fill="option.color"
                 stroke="white"
-                stroke-width="2"
+                stroke-width="0.8"
                 class="data-point"
                 @click.stop="showPointDetail(option.key, index, $event)"
               />
@@ -197,17 +189,13 @@ const periods = [
 ];
 
 const filterOptions = ref([
-  { key: 'overallScore', label: '综合得分', color: '#667eea', selected: true },
-  { key: 'memoryScore', label: '记忆', color: '#4CAF50', selected: true },
-  { key: 'understandingScore', label: '理解', color: '#2196F3', selected: true },
-  { key: 'applicationScore', label: '应用', color: '#FF9800', selected: true }
+  { key: 'overallScore', label: '综合得分', color: '#2f7d5c', selected: true },
+  { key: 'memoryScore', label: '记忆', color: '#4277b8', selected: true },
+  { key: 'understandingScore', label: '理解', color: '#f3b23d', selected: true },
+  { key: 'applicationScore', label: '应用', color: '#c66f4b', selected: true }
 ]);
 
-// 缩放和平移状态
-const zoomLevel = ref(1);
-const panOffset = ref({ x: 0, y: 0 });
-const isDragging = ref(false);
-const dragStart = ref({ x: 0, y: 0 });
+const gridLines = [14, 26, 38, 50, 62];
 
 // 计算属性
 const hasData = computed(() => props.data && props.data.length > 0);
@@ -220,33 +208,19 @@ const filteredData = computed(() => {
   if (!hasData.value || props.data.length === 0) return [];
 
   const maxIndex = props.data.length - 1;
-  const data = props.data.map((d, i) => ({
+  return props.data.map((d, i) => ({
     ...d,
-    x: maxIndex === 0 ? 50 : (i / maxIndex) * 100,
-    overallScore: 60 - ((d.overallScore || 0) / 100) * 50,
-    memoryScore: 60 - ((d.memoryScore || 0) / 100) * 50,
-    understandingScore: 60 - ((d.understandingScore || 0) / 100) * 50,
-    applicationScore: 60 - ((d.applicationScore || 0) / 100) * 50
-  }));
-
-  // 应用缩放和平移
-  return data.map(d => ({
-    ...d,
-    x: (d.x + panOffset.value.x) * zoomLevel.value,
-    overallScore: d.overallScore * zoomLevel.value + panOffset.value.y,
-    memoryScore: d.memoryScore * zoomLevel.value + panOffset.value.y,
-    understandingScore: d.understandingScore * zoomLevel.value + panOffset.value.y,
-    applicationScore: d.applicationScore * zoomLevel.value + panOffset.value.y
+    x: maxIndex === 0 ? 50 : 7 + (i / maxIndex) * 86,
+    overallScore: 54 - ((d.overallScore || 0) / 100) * 44,
+    memoryScore: 54 - ((d.memoryScore || 0) / 100) * 44,
+    understandingScore: 54 - ((d.understandingScore || 0) / 100) * 44,
+    applicationScore: 54 - ((d.applicationScore || 0) / 100) * 44
   }));
 });
 
-const isZoomed = computed(() => zoomLevel.value !== 1 || 
-  panOffset.value.x !== 0 || panOffset.value.y !== 0);
-
-const viewBox = computed(() => {
-  const width = 100 * zoomLevel.value;
-  const height = 60 * zoomLevel.value;
-  return `${panOffset.value.x} ${panOffset.value.y} ${width} ${height}`;
+const latestOverallScore = computed(() => {
+  if (!props.data.length) return 0;
+  return props.data[props.data.length - 1].overallScore || 0;
 });
 
 const xLabels = computed(() => {
@@ -256,7 +230,7 @@ const xLabels = computed(() => {
   const maxIndex = props.data.length - 1;
   return props.data
     .map((d, i) => ({
-      x: maxIndex === 0 ? 50 : (i / maxIndex) * 100,
+      x: maxIndex === 0 ? 50 : 7 + (i / maxIndex) * 86,
       text: new Date(d.date).getDate() + '日'
     }))
     .filter((_, i) => i % step === 0);
@@ -309,7 +283,7 @@ const getAreaPath = (key: string): string => {
   if (points.length === 2) {
     const first = points[0];
     const last = points[1];
-    return `M ${first.x} ${first.y} L ${last.x} ${last.y} L ${last.x} 60 L ${first.x} 60 Z`;
+    return `M ${first.x} ${first.y} L ${last.x} ${last.y} L ${last.x} 64 L ${first.x} 64 Z`;
   }
 
   // 使用Catmull-Rom样条曲线生成平滑曲线
@@ -333,7 +307,7 @@ const getAreaPath = (key: string): string => {
   // 添加底部点以形成封闭区域
   const lastPoint = points[points.length - 1];
   const firstPoint = points[0];
-  path += ` L ${lastPoint.x} 60 L ${firstPoint.x} 60 Z`;
+  path += ` L ${lastPoint.x} 64 L ${firstPoint.x} 64 Z`;
 
   return path;
 };
@@ -408,51 +382,6 @@ const calculateMin = (key: string): number => {
   return Math.min(...props.data.map(d => (d as any)[key]));
 };
 
-// 缩放功能
-const handleWheel = (event: WheelEvent): void => {
-  event.preventDefault();
-  const delta = event.deltaY > 0 ? 0.9 : 1.1;
-  const newZoom = Math.min(Math.max(zoomLevel.value * delta, 0.5), 3);
-  zoomLevel.value = newZoom;
-};
-
-const zoomIn = (): void => {
-  zoomLevel.value = Math.min(zoomLevel.value * 1.2, 3);
-};
-
-const zoomOut = (): void => {
-  zoomLevel.value = Math.max(zoomLevel.value * 0.8, 0.5);
-};
-
-const resetZoom = (): void => {
-  zoomLevel.value = 1;
-  panOffset.value = { x: 0, y: 0 };
-};
-
-// 平移功能
-const startDrag = (event: MouseEvent): void => {
-  isDragging.value = true;
-  dragStart.value = { x: event.clientX, y: event.clientY };
-};
-
-const handleDrag = (event: MouseEvent): void => {
-  if (!isDragging.value) return;
-
-  const deltaX = (event.clientX - dragStart.value.x) / 10;
-  const deltaY = (event.clientY - dragStart.value.y) / 10;
-
-  panOffset.value = {
-    x: panOffset.value.x + deltaX,
-    y: panOffset.value.y + deltaY
-  };
-
-  dragStart.value = { x: event.clientX, y: event.clientY };
-};
-
-const endDrag = (): void => {
-  isDragging.value = false;
-};
-
 // 切换筛选面板
 const toggleFilter = (): void => {
   showFilterPanel.value = !showFilterPanel.value;
@@ -460,7 +389,6 @@ const toggleFilter = (): void => {
 
 // 重置图表
 const resetChart = (): void => {
-  resetZoom();
   filterOptions.value.forEach(option => option.selected = true);
 };
 
@@ -508,7 +436,7 @@ watch(selectedPeriod, () => {
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 16px;
 }
 
 /* 控制栏 */
@@ -516,7 +444,7 @@ watch(selectedPeriod, () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .period-selector {
@@ -635,35 +563,10 @@ watch(selectedPeriod, () => {
 /* 图表区域 */
 .chart-wrapper {
   position: relative;
-  height: 400px;
-}
-
-.zoom-controls {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  z-index: 10;
-}
-
-.zoom-btn {
-  width: 32px;
-  height: 32px;
-  border: 1px solid #e0e0e0;
-  background: white;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.zoom-btn:hover {
-  background: #f5f5f5;
+  height: auto;
+  min-height: 240px;
+  overflow: hidden;
+  border-radius: 18px;
 }
 
 .chart-placeholder {
@@ -686,18 +589,42 @@ watch(selectedPeriod, () => {
 
 .chart-area {
   position: relative;
-  height: 100%;
-  cursor: grab;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto minmax(140px, 1fr) auto auto;
+  gap: 6px;
+  min-height: 240px;
+  cursor: default;
+  overflow: hidden;
+  padding: 10px 12px;
 }
 
-.chart-area:active {
-  cursor: grabbing;
+.chart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #65736f;
+  font-weight: 700;
+}
+
+.chart-summary strong {
+  color: #20312d;
+  font-size: 1.12rem;
+  font-weight: 900;
 }
 
 .chart-svg {
   width: 100%;
   height: 100%;
-  overflow: visible;
+  min-height: 140px;
+  display: block;
+  overflow: hidden;
+}
+
+.grid-lines line {
+  stroke: rgba(32, 49, 45, 0.1);
+  stroke-width: 0.35;
 }
 
 .trend-line {
@@ -707,7 +634,7 @@ watch(selectedPeriod, () => {
 }
 
 .trend-line:hover {
-  stroke-width: 3.5;
+  stroke-width: 2;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
@@ -729,12 +656,12 @@ watch(selectedPeriod, () => {
 }
 
 .data-point:hover {
-  r: 6;
-  stroke-width: 2.5;
+  r: 2.4;
+  stroke-width: 1;
 }
 
 .data-point-glow:hover {
-  r: 8;
+  r: 3.4;
   fill-opacity: 0.3;
 }
 
@@ -742,15 +669,16 @@ watch(selectedPeriod, () => {
 .chart-legend {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 0;
+  flex-wrap: wrap;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
+  gap: 5px;
+  font-size: 0.82rem;
   color: #666;
   cursor: pointer;
   opacity: 0.6;
@@ -767,17 +695,16 @@ watch(selectedPeriod, () => {
 
 /* X轴标签 */
 .x-axis-labels {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 24px;
+  position: relative;
+  left: auto;
+  right: auto;
+  height: 18px;
 }
 
 .axis-label {
   position: absolute;
   transform: translateX(-50%);
-  font-size: 0.85rem;
+  font-size: 0.74rem;
   color: #999;
 }
 
@@ -838,7 +765,7 @@ watch(selectedPeriod, () => {
   }
 
   .chart-wrapper {
-    height: 300px;
+    min-height: 240px;
   }
 
   .chart-legend {

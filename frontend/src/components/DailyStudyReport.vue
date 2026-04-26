@@ -204,14 +204,17 @@
           </button>
         </div>
       </div>
-      <div class="chart-container">
+      <div class="chart-container trend-chart-container">
         <div class="chart-placeholder" v-if="!hasTrendData">
           <div class="placeholder-icon">📈</div>
           <div class="placeholder-text">暂无数据</div>
         </div>
-        <div v-else class="line-chart">
-          <svg class="chart-svg" viewBox="0 0 100 60" preserveAspectRatio="none">
-            <!-- 渐变定义 -->
+        <div v-else class="trend-chart-card">
+          <div class="trend-chart-summary">
+            <span>最高 {{ maxStudyTime }} 分钟</span>
+            <strong>{{ latestStudyTime }} 分钟</strong>
+          </div>
+          <svg class="trend-svg" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid meet" role="img" aria-label="学习进度趋势">
             <defs>
               <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" :stop-color="chartColors.primary" stop-opacity="0.6" />
@@ -225,64 +228,35 @@
                 <feDropShadow dx="0" dy="2" stdDeviation="2" :flood-color="chartColors.primary" flood-opacity="0.3" />
               </filter>
             </defs>
-            <!-- 填充区域 -->
+            <g class="trend-grid">
+              <line v-for="line in chartGridLines" :key="`study-grid-${line}`" x1="6" :y1="line" x2="94" :y2="line" />
+            </g>
             <polygon
               :points="areaPoints"
               fill="url(#areaGradient)"
             />
-            <!-- 折线 -->
             <polyline
               :points="trendLinePoints"
               fill="none"
               stroke="url(#lineGradient)"
-              stroke-width="1.5"
+              stroke-width="2.4"
               stroke-linecap="round"
               stroke-linejoin="round"
               filter="url(#shadow)"
             />
-            <!-- 数据点 -->
             <circle
               v-for="(point, index) in trendPoints"
               :key="index"
               :cx="point.x"
               :cy="point.y"
-              r="3"
+              r="2.4"
               :fill="chartColors.primary"
               stroke="white"
-              stroke-width="1.5"
-              class="data-point"
-            />
-            <!-- 数据标签 -->
-            <g
-              v-for="(point, index) in trendPoints"
-              :key="`label-${index}`"
-              class="data-label"
-              :transform="`translate(${point.x}, ${point.y - 8})`"
+              stroke-width="1.2"
+              class="trend-point"
             >
-              <rect
-                x="-20"
-                y="-12"
-                width="40"
-                height="16"
-                rx="4"
-                fill="white"
-                :stroke="chartColors.primary"
-                stroke-width="1"
-                class="label-bg"
-              />
-              <text
-                x="0"
-                y="0"
-                text-anchor="middle"
-                dominant-baseline="middle"
-                :fill="chartColors.primary"
-                font-size="6"
-                font-weight="600"
-                class="label-text"
-              >
-                {{ trendPoints[index].value }}分钟
-              </text>
-            </g>
+              <title>{{ trendPoints[index].value }}分钟</title>
+            </circle>
           </svg>
           <div class="chart-labels">
             <div 
@@ -316,14 +290,17 @@
           </button>
         </div>
       </div>
-      <div class="chart-container">
+      <div class="chart-container trend-chart-container">
         <div class="chart-placeholder" v-if="!hasEfficiencyTrendData">
           <div class="placeholder-icon">📊</div>
           <div class="placeholder-text">暂无数据</div>
         </div>
-        <div v-else class="line-chart">
-          <svg class="chart-svg" viewBox="0 0 100 60" preserveAspectRatio="none">
-            <!-- 渐变定义 -->
+        <div v-else class="trend-chart-card">
+          <div class="trend-chart-summary">
+            <span>最高 {{ maxWordsPerMinute.toFixed(2) }} 词/分钟</span>
+            <strong>{{ latestWordsPerMinute.toFixed(2) }}</strong>
+          </div>
+          <svg class="trend-svg" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid meet" role="img" aria-label="学习效率趋势">
             <defs>
               <linearGradient id="efficiencyLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" :stop-color="chartColors.secondary" stop-opacity="0.6" />
@@ -337,64 +314,35 @@
                 <feDropShadow dx="0" dy="2" stdDeviation="2" :flood-color="chartColors.secondary" flood-opacity="0.3" />
               </filter>
             </defs>
-            <!-- 填充区域 -->
+            <g class="trend-grid">
+              <line v-for="line in chartGridLines" :key="`efficiency-grid-${line}`" x1="6" :y1="line" x2="94" :y2="line" />
+            </g>
             <polygon
               :points="efficiencyAreaPoints"
               fill="url(#efficiencyAreaGradient)"
             />
-            <!-- 折线 -->
             <polyline
               :points="efficiencyTrendLinePoints"
               fill="none"
               stroke="url(#efficiencyLineGradient)"
-              stroke-width="1.5"
+              stroke-width="2.4"
               stroke-linecap="round"
               stroke-linejoin="round"
               filter="url(#efficiencyShadow)"
             />
-            <!-- 数据点 -->
             <circle
               v-for="(point, index) in efficiencyTrendPoints"
               :key="index"
               :cx="point.x"
               :cy="point.y"
-              r="3"
+              r="2.4"
               :fill="chartColors.secondary"
               stroke="white"
-              stroke-width="1.5"
-              class="data-point"
-            />
-            <!-- 数据标签 -->
-            <g
-              v-for="(point, index) in efficiencyTrendPoints"
-              :key="`efficiency-label-${index}`"
-              class="data-label"
-              :transform="`translate(${point.x}, ${point.y - 8})`"
+              stroke-width="1.2"
+              class="trend-point"
             >
-              <rect
-                x="-20"
-                y="-12"
-                width="40"
-                height="16"
-                rx="4"
-                fill="white"
-                :stroke="chartColors.secondary"
-                stroke-width="1"
-                class="label-bg"
-              />
-              <text
-                x="0"
-                y="0"
-                text-anchor="middle"
-                dominant-baseline="middle"
-                :fill="chartColors.secondary"
-                font-size="6"
-                font-weight="600"
-                class="label-text"
-              >
-                {{ efficiencyTrendPoints[index].value.toFixed(2) }}
-              </text>
-            </g>
+              <title>{{ efficiencyTrendPoints[index].value.toFixed(2) }}</title>
+            </circle>
           </svg>
           <div class="chart-labels">
             <div
@@ -462,7 +410,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
-import StudyQualityAssessment from './StudyQualityAssessment.vue';
 import * as api from '@/api/report';
 
 // 数据类型定义
@@ -602,12 +549,12 @@ const suggestions = ref<Suggestion[]>([]);
 
 // 颜色配置
 const chartColors = {
-  primary: '#667eea',
-  secondary: '#764ba2',
-  vocabulary: '#4CAF50',
-  listening: '#2196F3',
-  spelling: '#FF9800',
-  aiPractice: '#9C27B0',
+  primary: '#2f7d5c',
+  secondary: '#f3b23d',
+  vocabulary: '#2f7d5c',
+  listening: '#4277b8',
+  spelling: '#f3b23d',
+  aiPractice: '#c66f4b',
 };
 
 // 计算属性
@@ -631,6 +578,8 @@ const hasEfficiencyData = computed(() => {
 const hasEfficiencyTrendData = computed(() => {
   return efficiencyTrendData.value.length > 0;
 });
+
+const chartGridLines = [14, 26, 38, 50, 62];
 
 const chartSegments = computed(() => {
   const segments: Array<{ style: { background: string } }> = [];
@@ -686,6 +635,26 @@ const displayAchievements = computed(() => {
   return achievements.value.slice(0, 6);
 });
 
+const latestStudyTime = computed(() => {
+  if (!trendData.value.length) return 0;
+  return trendData.value[trendData.value.length - 1].studyTime || 0;
+});
+
+const maxStudyTime = computed(() => {
+  if (!trendData.value.length) return 0;
+  return Math.max(...trendData.value.map(item => item.studyTime || 0));
+});
+
+const latestWordsPerMinute = computed(() => {
+  if (!efficiencyTrendData.value.length) return 0;
+  return efficiencyTrendData.value[efficiencyTrendData.value.length - 1].wordsPerMinute || 0;
+});
+
+const maxWordsPerMinute = computed(() => {
+  if (!efficiencyTrendData.value.length) return 0;
+  return Math.max(...efficiencyTrendData.value.map(item => item.wordsPerMinute || 0));
+});
+
 const trendPoints = computed(() => {
   if (!trendData.value || trendData.value.length === 0) return [];
 
@@ -696,10 +665,10 @@ const trendPoints = computed(() => {
   const maxIndex = trendData.value.length - 1;
 
   return trendData.value.map((d, i) => {
-    const x = maxIndex === 0 ? 50 : (i / maxIndex) * 100;
-    // 将数据映射到 10-55 的 y 坐标范围（留出上下边距）
+    const x = maxIndex === 0 ? 50 : 8 + (i / maxIndex) * 84;
+    // 将数据映射到 14-58 的 y 坐标范围，留出 SVG 内边距。
     const normalizedValue = range > 0 ? ((d.studyTime || 0) - minTime) / range : 0.5;
-    const y = 55 - (normalizedValue * 45); // 10-55 范围
+    const y = 58 - (normalizedValue * 44);
     return { x, y, value: d.studyTime || 0 };
   });
 });
@@ -713,7 +682,7 @@ const areaPoints = computed(() => {
   if (!trendPoints.value || trendPoints.value.length === 0) return '';
   const points = trendPoints.value.map(p => `${p.x},${p.y}`);
   // 添加底部点以形成封闭区域
-  return `${points[0]} ${points.join(' ')} ${trendPoints.value[trendPoints.value.length - 1].x},60 ${trendPoints.value[0].x},60`;
+  return `${points[0]} ${points.join(' ')} ${trendPoints.value[trendPoints.value.length - 1].x},64 ${trendPoints.value[0].x},64`;
 });
 
 const trendLabels = computed(() => {
@@ -726,7 +695,7 @@ const trendLabels = computed(() => {
   return trendData.value
     .filter((_, i) => i % step === 0)
     .map((d, i) => ({
-      x: maxIndex === 0 ? 50 : (trendData.value.indexOf(d) / maxIndex) * 100,
+      x: maxIndex === 0 ? 50 : 8 + (trendData.value.indexOf(d) / maxIndex) * 84,
       text: new Date(d.date).getDate() + '日',
     }));
 });
@@ -741,10 +710,10 @@ const efficiencyTrendPoints = computed(() => {
   const maxIndex = efficiencyTrendData.value.length - 1;
 
   return efficiencyTrendData.value.map((d, i) => {
-    const x = maxIndex === 0 ? 50 : (i / maxIndex) * 100;
-    // 将数据映射到 10-55 的 y 坐标范围（留出上下边距）
+    const x = maxIndex === 0 ? 50 : 8 + (i / maxIndex) * 84;
+    // 将数据映射到 14-58 的 y 坐标范围，留出 SVG 内边距。
     const normalizedValue = range > 0 ? ((d.wordsPerMinute || 0) - minEfficiency) / range : 0.5;
-    const y = 55 - (normalizedValue * 45); // 10-55 范围
+    const y = 58 - (normalizedValue * 44);
     return { x, y, value: d.wordsPerMinute || 0 };
   });
 });
@@ -758,7 +727,7 @@ const efficiencyAreaPoints = computed(() => {
   if (!efficiencyTrendPoints.value || efficiencyTrendPoints.value.length === 0) return '';
   const points = efficiencyTrendPoints.value.map(p => `${p.x},${p.y}`);
   // 添加底部点以形成封闭区域
-  return `${points[0]} ${points.join(' ')} ${efficiencyTrendPoints.value[efficiencyTrendPoints.value.length - 1].x},60 ${efficiencyTrendPoints.value[0].x},60`;
+  return `${points[0]} ${points.join(' ')} ${efficiencyTrendPoints.value[efficiencyTrendPoints.value.length - 1].x},64 ${efficiencyTrendPoints.value[0].x},64`;
 });
 
 const efficiencyTrendLabels = computed(() => {
@@ -771,7 +740,7 @@ const efficiencyTrendLabels = computed(() => {
   return efficiencyTrendData.value
     .filter((_, i) => i % step === 0)
     .map((d, i) => ({
-      x: maxIndex === 0 ? 50 : (efficiencyTrendData.value.indexOf(d) / maxIndex) * 100,
+      x: maxIndex === 0 ? 50 : 8 + (efficiencyTrendData.value.indexOf(d) / maxIndex) * 84,
       text: new Date(d.date).getDate() + '日',
     }));
 });

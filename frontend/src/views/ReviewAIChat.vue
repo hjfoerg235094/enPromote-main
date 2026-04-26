@@ -121,7 +121,14 @@ const formatTime = (minutes) => {
 }
 
 const formatPercentage = (value) => {
-  return `${(value * 100).toFixed(2)}%`
+  const numericValue = Number(value) || 0
+  const percentValue = numericValue > 1 ? numericValue : numericValue * 100
+  return `${percentValue.toFixed(2)}%`
+}
+
+const toPercentValue = (value) => {
+  const numericValue = Number(value) || 0
+  return numericValue > 1 ? numericValue : numericValue * 100
 }
 
 const getWeakPointIcon = (type) => {
@@ -160,11 +167,17 @@ const fetchReportData = async () => {
     const res = await axios.get('/api/report/daily')
     if (res.data && res.data.code === 200) {
       const data = res.data.data
+      const spellingAccuracy = data.practiceStats?.spellingAccuracy || 0
+      const listeningCompletion = data.practiceStats?.listeningCompletion || 0
+      const masteryRate = data.efficiency?.masteryRate || 0
+      const hasSpellingData = (data.moduleStudyTime?.spelling || 0) > 0
+      const hasListeningData = (data.moduleStudyTime?.listening || 0) > 0
+
       reportData.value = {
         totalStudyTime: data.totalStudyTime || 0,
         wordsLearned: (data.wordsLearned?.newWords || 0) + (data.wordsLearned?.reviewWords || 0),
-        accuracy: data.practiceStats?.spellingAccuracy || 0,
-        masteryRate: data.efficiency?.masteryRate || 0,
+        accuracy: toPercentValue(spellingAccuracy),
+        masteryRate: toPercentValue(masteryRate),
         continuousDays: data.achievements?.continuousDays || 0
       }
 
@@ -172,29 +185,29 @@ const fetchReportData = async () => {
       const points = []
 
       // 分析词汇掌握情况
-      if (data.efficiency?.masteryRate < 0.5) {
+      if (masteryRate > 0 && masteryRate < 0.5) {
         points.push({
           type: 'vocabulary',
           title: '词汇掌握度偏低',
-          description: `当前掌握率为${formatPercentage(data.efficiency.masteryRate)}，建议加强词汇复习`
+          description: `当前掌握率为${formatPercentage(masteryRate)}，建议加强词汇复习`
         })
       }
 
       // 分析听力完成情况
-      if (data.practiceStats?.listeningCompletion < 0.7) {
+      if (hasListeningData && toPercentValue(listeningCompletion) < 70) {
         points.push({
           type: 'listening',
           title: '听力练习不足',
-          description: `当前听力完成率为${formatPercentage(data.practiceStats.listeningCompletion)}，建议增加听力练习`
+          description: `当前听力完成率为${formatPercentage(listeningCompletion)}，建议增加听力练习`
         })
       }
 
       // 分析拼写正确率
-      if (data.practiceStats?.spellingAccuracy < 0.7) {
+      if (hasSpellingData && toPercentValue(spellingAccuracy) < 70) {
         points.push({
           type: 'grammar',
           title: '拼写正确率偏低',
-          description: `当前拼写正确率为${formatPercentage(data.practiceStats.spellingAccuracy)}，建议加强拼写练习`
+          description: `当前拼写正确率为${formatPercentage(spellingAccuracy)}，建议加强拼写练习`
         })
       }
 
