@@ -48,6 +48,10 @@ export interface OralEvaluationResult {
       text: string;
       score: number;
       timeLen: number;
+      phonemes?: Array<{
+        text: string;
+        score: number;
+      }>;
     }>;
     phonemes: Array<{
       text: string;
@@ -66,6 +70,9 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
+export type EvaluationCategory = 'word' | 'sentence' | 'paragraph' | 'free';
+export type EvaluationLevel = 'primary' | 'junior' | 'senior' | 'college';
+
 /**
  * 单次口语评测
  */
@@ -77,7 +84,8 @@ export const evaluatePronunciation = async (
 
   // 只有当音频不是 PCM 格式时才进行转换
   // 录音时已经生成了正确的 PCM 格式音频 (audio/l16)
-  if (params.audio.type !== 'audio/l16' && !params.audio.name.endsWith('.pcm')) {
+  const audioName = params.audio instanceof File ? params.audio.name : '';
+  if (params.audio.type !== 'audio/l16' && !audioName.endsWith('.pcm')) {
     // MediaRecorder 输出往往不是 raw PCM，而讯飞后端配置 aue=raw，
     // 所以这里先转成 16kHz/16-bit/mono 的 Int16 little-endian bytes。
     pcmAudio = await blobToPCM16kMono(params.audio);
@@ -93,7 +101,8 @@ export const evaluatePronunciation = async (
     formData.append('level', params.level);
   }
 
-  return request.post('/oral/evaluate', formData);
+  const response = await request.post<ApiResponse<OralEvaluationResult>>('/oral/evaluate', formData);
+  return response.data;
 };
 
 /**
@@ -103,11 +112,13 @@ export const batchEvaluatePronunciation = async (
   params: {
     audio: Blob;
     texts: string[];
-    category?: 'word' | 'sentence' | 'paragraph' | 'free';
-    level?: 'primary' | 'junior' | 'senior' | 'college';
+    category?: EvaluationCategory;
+    level?: EvaluationLevel;
   }
 ): Promise<ApiResponse<OralEvaluationResult[]>> => {
-  const pcmAudio = await blobToPCM16kMono(params.audio);
+  const pcmAudio = params.audio.type === 'audio/l16'
+    ? params.audio
+    : await blobToPCM16kMono(params.audio);
 
   const formData = new FormData();
   formData.append('audio', pcmAudio, 'recording.pcm');
@@ -119,7 +130,8 @@ export const batchEvaluatePronunciation = async (
     formData.append('level', params.level);
   }
 
-  return request.post('/oral/batch-evaluate', formData);
+  const response = await request.post<ApiResponse<OralEvaluationResult[]>>('/oral/batch-evaluate', formData);
+  return response.data;
 };
 
 /**
@@ -131,5 +143,11 @@ export const getEvaluationConfig = async (): Promise<
     levels: Record<string, string>;
   }>
 > => {
-  return request.get('/oral/config');
+  const response = await request.get<
+    ApiResponse<{
+      categories: Record<string, string>;
+      levels: Record<string, string>;
+    }>
+  >('/oral/config');
+  return response.data;
 };

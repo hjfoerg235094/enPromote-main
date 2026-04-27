@@ -196,10 +196,10 @@ const submitEvaluation = async () => {
       level: 'primary'
     });
 
-    if (response.data.success && response.data.data) {
-      evaluationResult.value = response.data.data;
+    if (response.success && response.data) {
+      evaluationResult.value = response.data;
     } else {
-      errorMessage.value = response.data.message || '评测失败，请重试';
+      errorMessage.value = response.message || '评测失败，请重试';
     }
 
   } catch (error) {

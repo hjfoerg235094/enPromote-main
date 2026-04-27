@@ -213,13 +213,6 @@ import { ref, onUnmounted } from 'vue';
 import { evaluatePronunciation, type OralEvaluationResult } from '../api/oral';
 
 // 定义 API 响应结构
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  message?: string;
-}
-
-
 const evaluationConfig = ref({
   category: 'sentence' as const,
   level: 'senior' as const
@@ -341,11 +334,10 @@ const submitEvaluation = async () => {
     });
 
     // 使用 ApiResponse 类型来正确处理响应
-    const apiResponse = response.data as unknown as ApiResponse<OralEvaluationResult>;
-    if (apiResponse.success && apiResponse.data) {
-      evaluationResult.value = apiResponse.data;
+    if (response.success && response.data) {
+      evaluationResult.value = response.data;
     } else {
-      errorMessage.value = apiResponse.message || '评测失败';
+      errorMessage.value = response.message || '评测失败';
     }
   } catch (error) {
     console.error('评测失败', error);

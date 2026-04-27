@@ -311,6 +311,110 @@ router.get('/practice_words', async (req, res) => {
         });
     }
 });
+
+router.post('/oralCoachFeedback', async (req, res) => {
+    try {
+        const userid = req.session.userid;
+        if (!userid) {
+            return res.json({ code: 401, message: '请先登录' });
+        }
+
+        const {
+            targetText,
+            evaluation,
+            mode = 'free',
+            useEnglish = false,
+            practiceWords = []
+        } = req.body || {};
+
+        if (!targetText || !evaluation) {
+            return res.json({ code: 400, message: '缺少口语评测数据' });
+        }
+
+        const weakWords = Array.isArray(evaluation?.details?.words)
+            ? evaluation.details.words
+                .filter(item => Number(item.score) < 82)
+                .sort((a, b) => Number(a.score) - Number(b.score))
+                .slice(0, 4)
+                .map(item => ({ text: item.text, score: Math.round(Number(item.score) || 0) }))
+            : [];
+
+        const dimensions = evaluation.dimensions || {};
+        const lowestDimension = Object.entries(dimensions)
+            .filter(([, value]) => typeof value === 'number')
+            .sort((a, b) => Number(a[1]) - Number(b[1]))[0];
+
+        const systemPrompt = [
+            'You are an English speaking coach inside a language-learning product.',
+            'Return ONLY valid JSON. No markdown, no extra commentary.',
+            'The JSON shape must be:',
+            '{"feedback":"string","nextAction":"retry|next","retryText":"string","nextPrompt":"string","nextTargetText":"string"}',
+            'Rules:',
+            '- feedback should sound like a real coach speaking to the learner, friendly and specific.',
+            '- If weakWords exist or any dimension is below 75, nextAction must be "retry" and retryText must be the smallest useful phrase to repeat, usually the weakest word or phrase from targetText.',
+            '- If the score is good enough, nextAction must be "next".',
+            '- nextTargetText must be exactly the sentence the frontend should ask the learner to say next.',
+            '- nextTargetText must be natural spoken English, 8 to 18 words.',
+            '- nextPrompt must briefly explain the speaking situation.',
+            `- Respond language for feedback: ${useEnglish ? 'English' : 'Chinese, with key English phrases when useful'}.`
+        ].join('\n');
+
+        const userPrompt = JSON.stringify({
+            targetText,
+            mode,
+            overallScore: evaluation.overallScore,
+            dimensions,
+            lowestDimension: lowestDimension ? { name: lowestDimension[0], score: lowestDimension[1] } : null,
+            advice: evaluation.advice,
+            weakWords,
+            practiceWords: Array.isArray(practiceWords) ? practiceWords.slice(0, 8) : []
+        });
+
+        const completion = await openai.chat.completions.create({
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userPrompt }
+            ],
+            model: 'qwen-turbo',
+            stream: false
+        });
+
+        let content = completion.choices[0]?.message?.content || '';
+        content = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+
+        let parsed;
+        try {
+            parsed = JSON.parse(content);
+        } catch (parseError) {
+            logger.error('口语教练反馈 JSON 解析失败:', { parseError, content });
+            const weakestText = weakWords[0]?.text || targetText;
+            parsed = {
+                feedback: useEnglish
+                    ? `Good effort. Let's repeat "${weakestText}" once more and make it clearer.`
+                    : `整体不错，但 "${weakestText}" 还可以更清楚。我们先把这一小段再练一遍。`,
+                nextAction: weakWords.length ? 'retry' : 'next',
+                retryText: weakestText,
+                nextPrompt: weakWords.length ? '复练低分片段' : '继续完成场景表达',
+                nextTargetText: weakWords.length ? weakestText : 'I can explain my choice clearly and naturally.'
+            };
+        }
+
+        res.json({
+            code: 200,
+            message: '生成成功',
+            data: {
+                feedback: String(parsed.feedback || ''),
+                nextAction: parsed.nextAction === 'retry' ? 'retry' : 'next',
+                retryText: String(parsed.retryText || weakWords[0]?.text || ''),
+                nextPrompt: String(parsed.nextPrompt || '继续口语练习'),
+                nextTargetText: String(parsed.nextTargetText || parsed.retryText || 'I can say this sentence more clearly.')
+            }
+        });
+    } catch (error) {
+        logger.error('生成口语教练反馈失败:', error);
+        res.json({ code: 500, message: '生成口语教练反馈失败' });
+    }
+});
 async function aiChat(message, character, history, userid, res, word_list, useEn) {
     try {
         // 确保history是数组

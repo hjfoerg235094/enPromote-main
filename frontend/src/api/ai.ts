@@ -4,7 +4,8 @@ interface ApiResponse<T = any> {
     data: {
         code: number;
         message: string;
-    } & T;
+        data: T;
+    };
 }
 
 function getHistoryMessages(): Promise<ApiResponse> {
@@ -34,5 +35,25 @@ function getPracticeWords(): Promise<ApiResponse<PracticeWordsResponse>> {
     return request.get('/aiApi/practice_words');
 }
 
-export { getHistoryMessages, restartConversation, getPracticeWords };
+interface OralCoachFeedbackRequest {
+    targetText: string;
+    evaluation: unknown;
+    mode?: string;
+    useEnglish?: boolean;
+    practiceWords?: string[];
+}
+
+interface OralCoachFeedback {
+    feedback: string;
+    nextAction: 'retry' | 'next';
+    retryText: string;
+    nextPrompt: string;
+    nextTargetText: string;
+}
+
+function getOralCoachFeedback(data: OralCoachFeedbackRequest): Promise<ApiResponse<OralCoachFeedback>> {
+    return request.post('/aiApi/oralCoachFeedback', data);
+}
+
+export { getHistoryMessages, restartConversation, getPracticeWords, getOralCoachFeedback };
 export type { PracticeWord, PracticeWordsResponse };

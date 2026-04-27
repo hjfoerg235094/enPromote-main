@@ -1,824 +1,606 @@
 <template>
-    <div class="ai-chat-container">
-        <!-- AI角色选择指引模态框 -->
-        <div v-if="showGuideModal" class="guide-modal-overlay">
-            <div class="guide-modal">
-                <div v-if="guideStep === 1" class="guide-step">
-                    <div class="guide-header">
-                        <h2>ai 解说</h2>
-                        <p>本ai旨在将需要练习的单词融合进正常对话中帮助用户更好地理解单词,那么开始你的第一次对话吧,AI老师会帮助你提升英语水平.</p>
-                        <p style="color: blue;">ai会使用的单词可在左侧栏打开</p>
+  <main class="voice-coach-page">
+    <section class="voice-hero">
+      <div>
+        <span class="learn-kicker">AI 口语陪练</span>
+        <h1>听一句，开口说一句，马上知道哪里要再练。</h1>
+        <p>
+          当前采用语音优先流程：先按目标句录音，完成口语评测，再让 AI 根据本轮表现推进下一句。
+        </p>
+      </div>
 
-                    </div>
-                    <div class="guide-actions">
-                        <button class="btn-primary" :disabled="!selectedCharacter" @click="nextStep">
-                            下一步
-                        </button>
-                    </div>
-                </div>
-                <!-- 步骤1: 选择AI角色 -->
-                <div v-if="guideStep === 2" class="guide-step">
-                    <div class="guide-header">
-                        <h2>🎭 选择你的AI老师角色</h2>
-                        <p>选择一个适合你的AI老师角色来开始英语对话练习</p>
-                    </div>
-                    <div class="role-options">
-                        <div class="role-card" :class="{ active: selectedCharacter === 'teacher' }"
-                            @click="selectedCharacter = 'teacher'">
-                            <div class="role-icon">👨‍🏫</div>
-                            <h3>英语老师</h3>
-                            <p>专业的英语教学，帮助你提升英语水平</p>
-                        </div>
-                        <!-- 可以在这里添加更多角色选项 -->
-                    </div>
-                    <div class="guide-actions">
-                        <button class="btn-secondary" @click="prevStep">上一步</button>
-                        <button class="btn-primary" :disabled="!selectedCharacter" @click="nextStep">
-                            下一步
-                        </button>
-                    </div>
-                </div>
+      <div class="session-card">
+        <span>本轮进度</span>
+        <strong>{{ completedTurns }}/{{ targetTurnCount }}</strong>
+        <div class="learn-progress">
+          <span :style="{ width: sessionProgress + '%' }"></span>
+        </div>
+        <button class="text-button" type="button" @click="resetSession">重新开始</button>
+      </div>
+    </section>
 
-                <!-- 步骤2: 选择AI性格 -->
-                <div v-if="guideStep === 3" class="guide-step">
-                    <div class="guide-header">
-                        <h2>🎨 选择AI老师的性格</h2>
-                        <p>选择一种你喜欢的教学风格</p>
-                    </div>
-                    <div class="personality-options">
-                        <div v-for="personality in personalityOptions" :key="personality.value" class="personality-card"
-                            :class="{ active: selectedNature === personality.value }"
-                            @click="selectedNature = personality.value">
-                            <div class="personality-icon">{{ personality.icon }}</div>
-                            <h3>{{ personality.name }}</h3>
-                            <p>{{ personality.description }}</p>
-                        </div>
-                    </div>
-                    <div class="guide-actions">
-                        <button class="btn-secondary" @click="prevStep">上一步</button>
-                        <button class="btn-primary" :disabled="!selectedNature" @click="nextStep">
-                            下一步
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 步骤3: 选择语言模式 -->
-                <div v-if="guideStep === 4" class="guide-step">
-                    <div class="guide-header">
-                        <h2>🌍 选择对话语言</h2>
-                        <p>选择你希望的对话语言模式</p>
-                    </div>
-                    <div class="language-options">
-                        <div class="language-card" :class="{ active: selectedUseEnglish === false }"
-                            @click="selectedUseEnglish = false">
-                            <div class="language-icon">🇨🇳</div>
-                            <h3>中英混合</h3>
-                            <p>AI会用中文解释，但会强调英文单词的使用</p>
-                            <div class="language-example">
-                                <span class="example-label">示例：</span>
-                                <span class="example-text">"你刚才用的 'beautiful' 这个词很棒！它比 'good' 更生动..."</span>
-                            </div>
-                        </div>
-                        <div class="language-card" :class="{ active: selectedUseEnglish === true }"
-                            @click="selectedUseEnglish = true">
-                            <div class="language-icon">🇺🇸</div>
-                            <h3>全英文模式</h3>
-                            <p>完全使用英文对话，提供沉浸式英语环境</p>
-                            <div class="language-example">
-                                <span class="example-label">Example：</span>
-                                <span class="example-text">"Great use of 'beautiful'! It's much more vivid than
-                                    'good'..."</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="guide-actions">
-                        <button class="btn-secondary" @click="prevStep">上一步</button>
-                        <button class="btn-primary" :disabled="selectedUseEnglish === null" @click="completeGuide">
-                            开始对话
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <section class="voice-layout">
+      <div class="coach-column">
+        <div class="training-strip">
+          <div>
+            <span>训练模式</span>
+            <strong>{{ modeLabel }}</strong>
+          </div>
+          <div>
+            <span>评测等级</span>
+            <strong>高中 / 句子</strong>
+          </div>
+          <div>
+            <span>AI 风格</span>
+            <strong>{{ natureLabel }}</strong>
+          </div>
         </div>
 
-        <!-- 简化的顶部信息栏 -->
-        <div class="chat-header" v-show="!showGuideModal">
-            <div class="ai-info">
-                <div class="ai-avatar-display">{{ getAiAvatar() }}</div>
-                <div class="ai-details">
-                    <span class="ai-name">{{ getAiName() }}</span>
-                    <span class="ai-status">
-                        <span class="status-dot"></span>
-                        在线
-                    </span>
-                </div>
+        <div ref="turnListRef" class="turn-list">
+          <article
+            v-for="(turn, index) in turns"
+            :key="turn.id"
+            class="turn-card"
+            :class="{ active: index === currentTurnIndex }"
+          >
+            <div class="turn-head">
+              <span>Round {{ index + 1 }}</span>
+              <strong>{{ turn.prompt }}</strong>
             </div>
 
-            <button class="settings-btn" @click="showSettingsModal = true" title="AI设置">
-                设置
+            <div class="target-sentence">
+              <span>跟读 / 回答目标句</span>
+              <p>{{ turn.targetText }}</p>
+            </div>
+
+            <div v-if="turn.result" class="score-card">
+              <div class="score-main">
+                <div class="score-ring" :class="scoreClass(turn.result.overallScore)">
+                  <strong>{{ Math.round(turn.result.overallScore) }}</strong>
+                  <span>总分</span>
+                </div>
+                <div>
+                  <h3>{{ turn.result.advice?.overall || '本轮已完成评测' }}</h3>
+                  <p>{{ weakestAdvice(turn.result) }}</p>
+                </div>
+              </div>
+
+              <div class="dimension-grid">
+                <div v-for="item in dimensionsFor(turn.result)" :key="item.key" class="dimension-item">
+                  <span>{{ item.label }}</span>
+                  <strong>{{ Math.round(item.value) }}</strong>
+                  <div class="mini-bar">
+                    <i :style="{ width: item.value + '%' }"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="lowScoreWords(turn.result).length" class="weak-words">
+                <span>建议复练</span>
+                <button
+                  v-for="word in lowScoreWords(turn.result)"
+                  :key="word.text"
+                  type="button"
+                  :class="{ selected: expandedWord === word.text }"
+                  @click="toggleWordDetail(word.text)"
+                >
+                  {{ word.text }} · {{ Math.round(word.score) }}
+                </button>
+              </div>
+
+              <div v-if="expandedWord" class="phoneme-panel">
+                <strong>{{ expandedWord }} 的音素细节</strong>
+                <div class="phoneme-list">
+                  <span
+                    v-for="phoneme in phonemesForExpandedWord(turn.result)"
+                    :key="`${phoneme.text}-${phoneme.score}`"
+                    :class="scoreClass(phoneme.score)"
+                  >
+                    {{ phoneme.text }} {{ Math.round(phoneme.score) }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="turn.coachReply" class="coach-reply">
+              <span>AI 教练</span>
+              <p>{{ turn.coachReply }}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="practice-panel" :class="{ open: showPracticePanel }">
+        <div class="panel-section">
+          <div class="section-title">
+            <span>今日练习词</span>
+            <button type="button" @click="showPracticePanel = false">收起</button>
+          </div>
+          <div v-if="practiceWords.length" class="practice-word-list">
+            <button
+              v-for="word in practiceWords"
+              :key="word.id"
+              type="button"
+              class="practice-word"
+              @click="useWordInTarget(word.word)"
+            >
+              <strong>{{ word.word }}</strong>
+              <span>{{ word.chineseMeaning || '暂无释义' }}</span>
             </button>
+          </div>
+          <div v-else class="empty-panel">
+            暂无练习词，本轮会使用默认场景句。
+          </div>
         </div>
 
-        <div class="practice-goal" v-show="!showGuideModal">
-            <div>
-                <span>今日口语目标</span>
-                <strong>用 3 句话描述一次酒店入住或餐厅点餐经历</strong>
-            </div>
-            <button class="goal-word-btn" type="button" @click="toggleSidebar">
-                {{ showSidebar ? '收起单词' : '查看练习单词' }}
-            </button>
+        <div class="panel-section">
+          <div class="section-title">
+            <span>训练设置</span>
+          </div>
+          <label class="setting-row">
+            <span>AI 风格</span>
+            <select v-model="nature">
+              <option value="gentle">温和鼓励</option>
+              <option value="blunt">直接纠错</option>
+              <option value="cold">精简专业</option>
+              <option value="exaggerated">活泼夸张</option>
+            </select>
+          </label>
+          <label class="setting-row">
+            <span>AI 回复语言</span>
+            <select v-model="useEnglish">
+              <option :value="false">中英混合</option>
+              <option :value="true">全英文</option>
+            </select>
+          </label>
         </div>
 
-        <!-- AI设置模态窗口 -->
-        <div v-if="showSettingsModal" class="settings-modal-overlay" @click="closeSettingsModal">
-            <div class="settings-modal" @click.stop>
-                <div class="settings-modal-header">
-                    <h3>🤖 AI助手设置</h3>
-                    <button class="close-btn" @click="closeSettingsModal">✕</button>
-                </div>
-
-                <div class="settings-modal-content">
-                    <div class="setting-section">
-                        <label class="setting-label">
-                            <span class="label-icon">🎭</span>
-                            AI角色
-                        </label>
-                        <select v-model="tempCharacter" class="setting-select">
-                            <option value="teacher">👨‍🏫 英语老师</option>
-                        </select>
-                    </div>
-
-                    <div class="setting-section">
-                        <label class="setting-label">
-                            <span class="label-icon">🎨</span>
-                            AI性格
-                        </label>
-                        <select v-model="tempNature" class="setting-select">
-                            <option value="gentle">😊 彬彬有礼</option>
-                            <option value="blunt">🔥 脾气火爆</option>
-                            <option value="tsundere">😤 傲娇毒舌</option>
-                            <option value="cold">❄️ 超级人机</option>
-                            <option value="exaggerated">🎭 夸张幽默</option>
-                        </select>
-                    </div>
-
-                    <div class="setting-section">
-                        <label class="setting-label">
-                            <span class="label-icon">🌍</span>
-                            对话语言
-                        </label>
-                        <div class="language-options-modal">
-                            <label class="radio-option">
-                                <input type="radio" :value="false" v-model="tempUseEnglish" />
-                                <span class="radio-label">🇨🇳 中英混合</span>
-                                <span class="radio-desc">AI会用中文解释，但会强调英文单词的使用</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" :value="true" v-model="tempUseEnglish" />
-                                <span class="radio-label">🇺🇸 全英文模式</span>
-                                <span class="radio-desc">完全使用英文对话，提供沉浸式英语环境</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="settings-modal-actions">
-                    <button class="btn-cancel" @click="closeSettingsModal">取消</button>
-                    <button class="btn-apply" @click="applySettings" :disabled="!hasSettingsChanged">
-                        应用设置
-                    </button>
-                </div>
-            </div>
+        <div class="panel-section">
+          <div class="section-title">
+            <span>辅助文字</span>
+          </div>
+          <textarea
+            v-model="customTargetText"
+            rows="4"
+            placeholder="输入一句你想练的英文，可设为本轮目标句。"
+          ></textarea>
+          <button
+            class="learn-button secondary full"
+            type="button"
+            :disabled="!customTargetText.trim() || isBusy"
+            @click="applyCustomTarget"
+          >
+            设为本轮目标
+          </button>
         </div>
+      </aside>
+    </section>
 
-        <!-- 确认重置对话模态窗口 -->
-        <div v-if="showConfirmModal" class="confirm-modal-overlay">
-            <div class="confirm-modal">
-                <div class="confirm-header">
-                    <span class="confirm-icon">⚠️</span>
-                    <h3>确认应用设置</h3>
-                </div>
-                <div class="confirm-content">
-                    <p>应用新的AI设置后会重置当前对话记录，是否继续？</p>
-                    <div class="settings-preview">
-                        <div class="preview-item">
-                            <span class="preview-label">AI角色：</span>
-                            <span>{{ getPreviewCharacterName() }}</span>
-                        </div>
-                        <div class="preview-item">
-                            <span class="preview-label">AI性格：</span>
-                            <span>{{ getPreviewNatureName() }}</span>
-                        </div>
-                        <div class="preview-item">
-                            <span class="preview-label">对话语言：</span>
-                            <span>{{ tempUseEnglish ? '🇺🇸 全英文模式' : '🇨🇳 中英混合' }}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="confirm-actions">
-                    <button class="btn-cancel" @click="showConfirmModal = false">取消</button>
-                    <button class="btn-confirm" @click="confirmApplySettings">确认应用</button>
-                </div>
-            </div>
-        </div>
+    <section class="recording-dock">
+      <button class="panel-toggle" type="button" @click="showPracticePanel = true">练习词</button>
 
-        <!-- 左侧边栏 -->
-        <div class="sidebar" :class="{ 'sidebar-open': showSidebar }">
-            <div class="sidebar-header">
-                <h3>📚 练习单词</h3>
-                <button class="sidebar-close" @click="toggleSidebar">✕</button>
-            </div>
-            <div class="sidebar-content">
-                <div v-if="practiceWords.length === 0" class="no-words">
-                    <div class="no-words-icon">📖</div>
-                    <p>暂无练习单词</p>
-                    <small>开始学习后这里会显示需要练习的单词</small>
-                </div>
-                <div v-else class="word-list">
-                    <div v-for="word in practiceWords" :key="word.id" class="word-item"
-                        :class="{ 'word-expanded': expandedWordId === word.id }" @click="toggleWordMeaning(word.id)">
-                        <div class="word-header">
-                            <div class="word-main">
-                                <span class="word-text">{{ word.word }}</span>
-                                <span v-if="word.phonetic" class="word-phonetic">{{ word.phonetic }}</span>
-                            </div>
-                            <div class="word-status">
-                                <span class="status-badge" :class="getStatusClass(word.status)">
-                                    {{ getStatusText(word.status) }}
-                                </span>
-                                <span class="expand-icon">{{ expandedWordId === word.id ? '▼' : '▶' }}</span>
-                            </div>
-                        </div>
-                        <div v-if="expandedWordId === word.id" class="word-meaning">
-                            <div class="meaning-content">
-                                <span class="meaning-label">中文释义：</span>
-                                <span class="meaning-text">{{ word.chineseMeaning }}</span>
-                            </div>
-                            <div class="word-stats">
-                                <span class="stat-item">优先级: {{ word.priority }}</span>
-                                <span class="stat-item">复习次数: {{ word.reviewCounts }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="record-copy">
+        <span>{{ recorderStatus }}</span>
+        <strong>{{ currentTurn.targetText }}</strong>
+        <p v-if="recorderError || evaluationError">{{ recorderError || evaluationError }}</p>
+      </div>
 
-        <!-- 侧边栏切换按钮 -->
-        <button class="sidebar-toggle" @click="toggleSidebar" :class="{ 'sidebar-toggle-active': showSidebar }">
-            <span class="toggle-icon">📚</span>
-            <span class="toggle-text">单词列表</span>
+      <div class="record-actions">
+        <button
+          class="record-button"
+          type="button"
+          :class="{ recording: isRecording }"
+          :disabled="isEvaluating || loadingAi"
+          @click="toggleRecording"
+        >
+          <span v-if="isRecording">停止 {{ recordingTime }}s</span>
+          <span v-else>开始录音</span>
         </button>
-
-        <!-- 优化后的聊天区域 -->
-        <div class="chat-messages" :class="{ 'chat-with-sidebar': showSidebar }" ref="messagesContainer">
-            <div v-if="messages.length === 0" class="welcome-message">
-                <div class="welcome-content">
-                    <div class="welcome-icon">💬</div>
-                    <h3>欢迎来到AI英语对话练习！</h3>
-                    <p>开始你的第一次对话吧，AI老师会帮助你提升英语水平</p>
-                    <div class="welcome-tips">
-                        <div class="tip-item">
-                            <span class="tip-icon">💡</span>
-                            <span>AI会根据你的水平调整对话难度</span>
-                        </div>
-                        <div class="tip-item">
-                            <span class="tip-icon">📚</span>
-                            <span>重点单词会在对话中自然出现</span>
-                        </div>
-                        <div class="tip-item">
-                            <span class="tip-icon">🎯</span>
-                            <span>每次对话都是学习的机会</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div v-for="msg in messages" :key="msg.id"
-                :class="['message', msg.role === 'user' ? 'user-message' : 'ai-message']">
-                <div class="message-avatar">
-                    <div v-if="msg.role === 'user'" class="avatar user-avatar">👤</div>
-                    <div v-else class="avatar ai-avatar">{{ getAiAvatar() }}</div>
-                </div>
-                <div class="message-bubble">
-                    <div class="message-content">
-                        <div class="message-text">{{ msg.content }}</div>
-                        <span v-if="msg.streaming" class="typing-indicator">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </span>
-                    </div>
-                    <div class="message-time">{{ formatTime(msg.timestamp) }}</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 优化后的输入区域 -->
-        <div class="chat-input">
-            <div class="input-container">
-                <div class="input-wrapper">
-                    <input v-model="inputMessage" @keyup.enter="sendMessage" @input="validateEnglishInput"
-                        @paste="handlePaste"
-                        :placeholder="useEnglish ? 'Type your message in English...' : '请用英文输入你的消息...'"
-                        :disabled="loading" class="message-input" />
-                    <div class="input-actions">
-                        <button class="send-btn" @click="sendMessage" :disabled="loading || !inputMessage.trim()">
-                            <span v-if="loading" class="loading-spinner">⏳</span>
-                            <span v-else class="send-icon">📤</span>
-                        </button>
-                    </div>
-                </div>
-                <div v-if="showInputWarning" class="input-warning">
-                    <span class="warning-icon">⚠️</span>
-                    <span class="warning-text">请只使用英文字符进行练习</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        <button
+          class="learn-button secondary"
+          type="button"
+          :disabled="!currentTurn.result || loadingAi"
+          @click="retryCurrentTurn"
+        >
+          重录
+        </button>
+        <button
+          class="learn-button"
+          type="button"
+          :disabled="!currentTurn.result || loadingAi"
+          @click="confirmTurnAndContinue"
+        >
+          {{ loadingAi ? 'AI 生成反馈中...' : '继续下一轮' }}
+        </button>
+      </div>
+    </section>
+  </main>
 </template>
 
-<script setup>
-import { ref, nextTick, onMounted, computed } from 'vue';
+<script setup lang="ts">
+import { computed, nextTick, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import '@/assets/css/aiChatExer.css'
-import { getHistoryMessages, restartConversation, getPracticeWords } from '@/api/ai';
-import { getUserInfo, changeInfo } from '@/api/auth';
-import { toast } from '@/utils/toastService';
+import { getOralCoachFeedback, getPracticeWords, restartConversation, type PracticeWord } from '@/api/ai'
+import { batchEvaluatePronunciation, type OralEvaluationResult } from '@/api/oral'
+import { usePcmRecorder } from '@/composables/usePcmRecorder'
+import { toast } from '@/utils/toastService'
 
-// 响应式数据
-const character = ref('teacher')
-const nature = ref('gentle')
-const model = ref('review')
+type CoachNature = 'gentle' | 'blunt' | 'cold' | 'exaggerated'
+
+interface PracticeTurn {
+  id: number
+  prompt: string
+  targetText: string
+  result?: OralEvaluationResult
+  coachReply?: string
+  nextAction?: 'retry' | 'next'
+  nextPrompt?: string
+  nextTargetText?: string
+}
+
+const route = useRoute()
+const turnListRef = ref<HTMLElement | null>(null)
+const practiceWords = ref<PracticeWord[]>([])
+const turns = ref<PracticeTurn[]>([])
+const currentTurnIndex = ref(0)
+const customTargetText = ref('')
+const expandedWord = ref('')
+const evaluationError = ref('')
+const isEvaluating = ref(false)
+const loadingAi = ref(false)
+const showPracticePanel = ref(false)
+const nature = ref<CoachNature>('gentle')
 const useEnglish = ref(false)
-const inputMessage = ref('')
-const messages = ref([])
-const loading = ref(false)
-const messagesContainer = ref(null)
-const showInputWarning = ref(false)
+const targetTurnCount = 3
 
-// 指引相关数据
-const showGuideModal = ref(false)
-const guideStep = ref(1)
-const selectedCharacter = ref('teacher')
-const selectedNature = ref('gentle')
-const selectedUseEnglish = ref(false)
+const {
+  errorMessage: recorderError,
+  isRecording,
+  recordingTime,
+  resetRecorder,
+  startRecording,
+  stopRecording
+} = usePcmRecorder()
 
-// 设置模态窗口相关数据
-const showSettingsModal = ref(false)
-const showConfirmModal = ref(false)
-const tempCharacter = ref('teacher')
-const tempNature = ref('gentle')
-const tempUseEnglish = ref(false)
+const mode = computed(() => String(route.query.mode || 'free'))
+const currentTurn = computed(() => turns.value[currentTurnIndex.value] || createTurn(0))
+const completedTurns = computed(() => turns.value.filter((turn) => Boolean(turn.result)).length)
+const sessionProgress = computed(() => Math.min(100, Math.round((completedTurns.value / targetTurnCount) * 100)))
+const isBusy = computed(() => isRecording.value || isEvaluating.value || loadingAi.value)
 
-// 侧边栏相关数据
-const showSidebar = ref(false)
-const practiceWords = ref([])
-const expandedWordId = ref(null)
-
-// 性格选项配置
-const personalityOptions = ref([
-    {
-        value: 'gentle',
-        name: '彬彬有礼',
-        icon: '😊',
-        description: '温和耐心，循循善诱的教学风格'
-    },
-    {
-        value: 'blunt',
-        name: '脾气火爆',
-        icon: '🔥',
-        description: '直接犀利，用生动比喻纠正错误'
-    },
-    {
-        value: 'tsundere',
-        name: '傲娇毒舌',
-        icon: '😤',
-        description: '表面严厉内心关怀的教学方式'
-    },
-    {
-        value: 'cold',
-        name: '高冷?精英',
-        icon: '❄️',
-        description: '是人机'
-    },
-    {
-        value: 'exaggerated',
-        name: '夸张幽默',
-        icon: '🎭',
-        description: '生动有趣，用夸张方式加深印象'
-    }
-])
-// 重置
-const restart = async () => {
-    try {
-        const respose = await restartConversation()
-        if (respose.data.code == 200) {
-            toast.success('会话已重置')
-        }
-        messages.value = []
-    } catch (err) {
-        console.log(err);
-
-    }
-
-
-}
-// 获取历史记录
-const getHistory = async () => {
-    try {
-        const response = await getHistoryMessages()
-        messages.value = response.data.data
-        console.log(messages.value);
-
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-// 检查用户AI选择状态
-const checkAiChooseStatus = async () => {
-    try {
-        const response = await getUserInfo()
-        if (response.data.code === 200) {
-            if (!response.data.ai_choose_completed) {
-                selectedCharacter.value = 'teacher'
-                selectedNature.value = 'gentle'
-                selectedUseEnglish.value = false
-                character.value = 'teacher'
-                nature.value = 'gentle'
-                useEnglish.value = false
-                showGuideModal.value = false
-                getHistory()
-            } else {
-                // 如果已完成选择，获取历史记录
-                getHistory()
-            }
-        }
-    } catch (error) {
-        console.error('获取用户信息失败:', error)
-        // 出错时也获取历史记录，保证功能正常
-        getHistory()
-    }
-}
-
-// 指引步骤控制
-const nextStep = () => {
-    if (guideStep.value < 4) {
-        guideStep.value++
-    }
-}
-
-const prevStep = () => {
-    if (guideStep.value > 1) {
-        guideStep.value--
-    }
-}
-
-// 完成指引设置
-const completeGuide = async () => {
-    try {
-        // 设置选择的角色、性格和语言模式
-        character.value = selectedCharacter.value
-        nature.value = selectedNature.value
-        useEnglish.value = selectedUseEnglish.value
-
-        // 更新用户的AI选择完成状态
-        const response = await changeInfo({
-            ai_choose_completed: true
-        })
-
-        if (response.data.code === 200) {
-            showGuideModal.value = false
-            // 获取历史记录
-            getHistory()
-        } else {
-            console.error('保存AI选择失败:', response.data.message)
-            toast.error('保存失败，请重试')
-        }
-    } catch (error) {
-        console.error('完成AI选择指引失败:', error)
-        toast.error('网络错误，请重试')
-    }
-}
-
-// 获取AI头像
-const getAiAvatar = () => {
-    const avatarMap = {
-        'teacher': '👨‍🏫'
-    }
-    return avatarMap[character.value] || '👨‍🏫'
-}
-
-// 获取AI名称
-const getAiName = () => {
-    const nameMap = {
-        'teacher': '英语老师'
-    }
-    const baseName = nameMap[character.value] || '英语老师'
-
-    // 根据性格添加描述
-    const personalityMap = {
-        'gentle': '温和的',
-        'blunt': '直率的',
-        'tsundere': '傲娇的',
-        'cold': '高冷的',
-        'exaggerated': '幽默的'
-    }
-
-    const personalityDesc = personalityMap[nature.value] || ''
-    return personalityDesc ? `${personalityDesc}${baseName}` : baseName
-}
-
-// 设置模态窗口相关方法
-const closeSettingsModal = () => {
-    showSettingsModal.value = false
-    // 重置临时设置为当前设置
-    tempCharacter.value = character.value
-    tempNature.value = nature.value
-    tempUseEnglish.value = useEnglish.value
-}
-
-// 检查设置是否有变化
-const hasSettingsChanged = computed(() => {
-    return tempCharacter.value !== character.value ||
-        tempNature.value !== nature.value ||
-        tempUseEnglish.value !== useEnglish.value
+const modeLabel = computed(() => {
+  const labels: Record<string, string> = {
+    free: '自由表达热身',
+    task: '任务型对话',
+    weakpoints: '薄弱点加练',
+    speaking: '口语专项',
+    grammar: '表达纠错',
+    vocabulary: '词汇输出'
+  }
+  return labels[mode.value] || '自由表达热身'
 })
 
-// 应用设置
-const applySettings = () => {
-    if (hasSettingsChanged.value) {
-        showConfirmModal.value = true
-    } else {
-        closeSettingsModal()
-    }
-}
-
-// 确认应用设置
-const confirmApplySettings = async () => {
-    try {
-        // 应用新设置
-        character.value = tempCharacter.value
-        nature.value = tempNature.value
-        useEnglish.value = tempUseEnglish.value
-
-        // 重置会话
-        const response = await restartConversation()
-        if (response.data.code == 200) {
-            messages.value = []
-            showConfirmModal.value = false
-            showSettingsModal.value = false
-        } else {
-            toast.error('重置会话失败，请重试')
-        }
-    } catch (error) {
-        console.error('应用设置失败:', error)
-        toast.error('应用设置失败，请重试')
-    }
-}
-
-// 获取预览的角色名称
-const getPreviewCharacterName = () => {
-    const nameMap = {
-        'teacher': '👨‍🏫 英语老师'
-    }
-    return nameMap[tempCharacter.value] || '👨‍🏫 英语老师'
-}
-
-// 获取预览的性格名称
-const getPreviewNatureName = () => {
-    const nameMap = {
-        'gentle': '😊 彬彬有礼',
-        'blunt': '🔥 脾气火爆',
-        'tsundere': '😤 傲娇毒舌',
-        'cold': '❄️ 高冷精英',
-        'exaggerated': '🎭 夸张幽默'
-    }
-    return nameMap[tempNature.value] || '😊 彬彬有礼'
-}
-
-// 组件挂载时检查状态
-onMounted(() => {
-    // 初始化临时设置
-    tempCharacter.value = character.value
-    tempNature.value = nature.value
-    tempUseEnglish.value = useEnglish.value
-
-    // 延迟检查，确保用户已登录
-    setTimeout(() => {
-        checkAiChooseStatus()
-        // 预加载练习单词
-        loadPracticeWords()
-    }, 1000)
+const natureLabel = computed(() => {
+  const labels: Record<CoachNature, string> = {
+    gentle: '温和鼓励',
+    blunt: '直接纠错',
+    cold: '精简专业',
+    exaggerated: '活泼夸张'
+  }
+  return labels[nature.value]
 })
 
-// 发送消息
-const sendMessage = async () => {
-    if (!inputMessage.value.trim() || loading.value) return
+const recorderStatus = computed(() => {
+  if (isEvaluating.value) return '正在评测这轮发音'
+  if (loadingAi.value) return 'AI 正在准备下一轮'
+  if (isRecording.value) return '正在录音，读完后点击停止'
+  if (currentTurn.value.result) return '本轮已评测，可以确认继续'
+  return '按目标句开口练习'
+})
 
-    const userMessage = inputMessage.value.trim()
+onMounted(async () => {
+  await loadPracticeWords()
+  turns.value = [createTurn(0)]
+})
 
-    // 添加用户消息
-    messages.value.push({
-        id: Date.now(),
-        role: 'user',
-        content: userMessage,
-        timestamp: new Date()
+async function loadPracticeWords() {
+  try {
+    const response = await getPracticeWords()
+    if (response.data?.code === 200) {
+      practiceWords.value = response.data.data.words || []
+    }
+  } catch (error) {
+    console.error('获取练习词失败:', error)
+  }
+}
+
+function createTurn(index: number, coachReply = ''): PracticeTurn {
+  const word = practiceWords.value[index % Math.max(practiceWords.value.length, 1)]?.word
+  const templates = getModeTemplates(word)
+  const template = templates[index % templates.length]
+
+  return {
+    id: Date.now() + index,
+    prompt: template.prompt,
+    targetText: template.targetText,
+    coachReply
+  }
+}
+
+function getModeTemplates(word?: string) {
+  const focusWord = word || 'reservation'
+  const templatesByMode: Record<string, Array<{ prompt: string; targetText: string }>> = {
+    task: [
+      {
+        prompt: '向前台说明你的入住需求。',
+        targetText: `Hello, I have a reservation, and I would like to check in now.`
+      },
+      {
+        prompt: '礼貌询问餐厅推荐。',
+        targetText: `Could you recommend a quiet table and one popular dish for dinner?`
+      },
+      {
+        prompt: '确认下一步安排。',
+        targetText: `That sounds good. I will come back in ten minutes and confirm the details.`
+      }
+    ],
+    weakpoints: [
+      {
+        prompt: '慢一点，把重音读清楚。',
+        targetText: `I need to pronounce ${focusWord} clearly and use it in a natural sentence.`
+      },
+      {
+        prompt: '用完整句表达原因。',
+        targetText: `I made a small mistake, but I can correct it and say the sentence again.`
+      },
+      {
+        prompt: '复述并加入一个细节。',
+        targetText: `The experience was useful because it helped me speak with more confidence.`
+      }
+    ],
+    free: [
+      {
+        prompt: '用一句话开始今天的口语热身。',
+        targetText: `Today I want to practice speaking English for a real travel situation.`
+      },
+      {
+        prompt: '描述一个酒店或餐厅场景。',
+        targetText: `I walked into the hotel lobby and asked the staff for some help.`
+      },
+      {
+        prompt: '表达你的选择。',
+        targetText: `I prefer this option because it is simple, clear, and comfortable for me.`
+      }
+    ]
+  }
+
+  return templatesByMode[mode.value] || templatesByMode.free
+}
+
+async function toggleRecording() {
+  if (isRecording.value) {
+    const audioBlob = await stopRecording()
+    if (audioBlob) {
+      await evaluateCurrentTurn(audioBlob)
+    }
+    return
+  }
+
+  await startRecording()
+}
+
+async function evaluateCurrentTurn(audio: Blob) {
+  if (!currentTurn.value?.targetText) return
+
+  try {
+    isEvaluating.value = true
+    evaluationError.value = ''
+    expandedWord.value = ''
+
+    const response = await batchEvaluatePronunciation({
+      audio,
+      texts: [currentTurn.value.targetText],
+      category: 'sentence',
+      level: 'senior'
     })
 
-    // 添加AI消息占位符
-    const aiMessageId = Date.now() + 1
-    messages.value.push({
-        id: aiMessageId,
-        role: 'assistant',
-        content: '',
-        timestamp: new Date(),
-        streaming: true
+    if (!response.success || !response.data?.length) {
+      evaluationError.value = response.message || '评测失败，请重试。'
+      return
+    }
+
+    const result = response.data[0]
+    turns.value[currentTurnIndex.value] = {
+      ...currentTurn.value,
+      result
+    }
+    await generateCoachFeedback(result)
+  } catch (error) {
+    console.error('口语评测失败:', error)
+    evaluationError.value = '评测请求失败，请检查网络或稍后重试。'
+  } finally {
+    isEvaluating.value = false
+    scrollToLatestTurn()
+  }
+}
+
+async function confirmTurnAndContinue() {
+  if (!currentTurn.value.result || loadingAi.value) return
+
+  if (turns.value.length < targetTurnCount) {
+    turns.value.push({
+      id: Date.now() + turns.value.length,
+      prompt: currentTurn.value.nextPrompt || '继续完成下一句场景表达。',
+      targetText: currentTurn.value.nextTargetText || fallbackNextTargetText(),
+      coachReply: ''
+    })
+    currentTurnIndex.value += 1
+  }
+
+  await resetRecorder()
+  scrollToLatestTurn()
+}
+
+async function generateCoachFeedback(result: OralEvaluationResult) {
+  try {
+    loadingAi.value = true
+    const response = await getOralCoachFeedback({
+      targetText: currentTurn.value.targetText,
+      evaluation: result,
+      mode: mode.value,
+      useEnglish: useEnglish.value,
+      practiceWords: practiceWords.value.map((word) => word.word)
     })
 
-    inputMessage.value = ''
-    loading.value = true
+    if (response.data?.code === 200 && response.data.data) {
+      const feedback = response.data.data
+      const nextTargetText = feedback.nextAction === 'retry'
+        ? feedback.retryText || feedback.nextTargetText
+        : feedback.nextTargetText
 
-    try {
-        // 使用fetch处理SSE流式响应
-        const response = await fetch('api/aiApi/aiChat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                message: userMessage,
-                character: character.value,
-                nature: nature.value,
-                model: model.value,
-                useEnglish: useEnglish.value
-            })
-        })
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        const reader = response.body.getReader()
-        const decoder = new TextDecoder()
-
-        while (true) {
-            const { done, value } = await reader.read()
-            if (done) break
-
-            const chunk = decoder.decode(value)
-            const lines = chunk.split('\n')
-
-            for (const line of lines) {
-                if (line.startsWith('data: ')) {
-                    const data = line.slice(6)
-                    if (data === '[DONE]') {
-                        // 流结束
-                        const aiMessage = messages.value.find(msg => msg.id === aiMessageId)
-                        if (aiMessage) {
-                            aiMessage.streaming = false
-                        }
-                        break
-                    }
-
-                    try {
-                        const parsed = JSON.parse(data)
-                        if (parsed.content) {
-                            // 更新AI消息内容
-                            const aiMessage = messages.value.find(msg => msg.id === aiMessageId)
-                            if (aiMessage) {
-                                aiMessage.content += parsed.content
-                                scrollToBottom()
-                            }
-                        }
-                    } catch (e) {
-                        // 忽略解析错误
-                    }
-                }
-            }
-        }
-
-    } catch (error) {
-        console.error('发送消息失败:', error)
-        // 更新AI消息为错误提示
-        const aiMessage = messages.value.find(msg => msg.id === aiMessageId)
-        if (aiMessage) {
-            aiMessage.content = '抱歉，发生了错误，请稍后重试。'
-            aiMessage.streaming = false
-        }
-    } finally {
-        loading.value = false
-        scrollToBottom()
-    }
-}
-
-// 滚动到底部
-const scrollToBottom = () => {
-    nextTick(() => {
-        if (messagesContainer.value) {
-            messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
-        }
-    })
-}
-
-// 英文输入验证
-const validateEnglishInput = (event) => {
-    const value = event.target.value
-    // 正则表达式：只允许英文字母、数字、标点符号、空格
-    const englishOnlyRegex = /^[a-zA-Z0-9\s.,!?;:'"()\-_@#$%^&*+=<>{}[\]|\\\/~`]*$/
-
-    if (!englishOnlyRegex.test(value)) {
-        // 移除非英文字符
-        const filteredValue = value.replace(/[^a-zA-Z0-9\s.,!?;:'"()\-_@#$%^&*+=<>{}[\]|\\\/~`]/g, '')
-        inputMessage.value = filteredValue
-
-        // 显示警告
-        showInputWarning.value = true
-        setTimeout(() => {
-            showInputWarning.value = false
-        }, 3000)
-    }
-}
-
-// 侧边栏相关方法
-const toggleSidebar = () => {
-    showSidebar.value = !showSidebar.value
-    if (showSidebar.value && practiceWords.value.length === 0) {
-        loadPracticeWords()
-    }
-}
-
-const toggleWordMeaning = (wordId) => {
-    expandedWordId.value = expandedWordId.value === wordId ? null : wordId
-}
-
-const getStatusClass = (status) => {
-    const statusMap = {
-        'new': 'status-new',
-        'learning': 'status-learning',
-        'know': 'status-know',
-        'unknown': 'status-unknown'
-    }
-    return statusMap[status] || 'status-default'
-}
-
-const getStatusText = (status) => {
-    const statusMap = {
-        'vague': '模糊',
-        'know': '已知',
-        'unknown': '不知道'
-    }
-    return statusMap[status] || status
-}
-
-const loadPracticeWords = async () => {
-    try {
-        const response = await getPracticeWords()
-        if (response.data && response.data.code === 200) {
-            practiceWords.value = response.data.data.words || []
-        }
-    } catch (error) {
-        console.error('获取练习单词失败:', error)
-    }
-}
-
-// 处理粘贴事件
-const handlePaste = (event) => {
-    event.preventDefault()
-    const pastedText = event.clipboardData ? event.clipboardData.getData('text') : ''
-
-    // 过滤非英文字符
-    const englishOnlyRegex = /[a-zA-Z0-9\s.,!?;:'"()\-_@#$%^&*+=<>{}[\]|\\\/~`]/g
-    const filteredText = pastedText.match(englishOnlyRegex)?.join('') || ''
-
-    if (filteredText !== pastedText) {
-        showInputWarning.value = true
-        setTimeout(() => {
-            showInputWarning.value = false
-        }, 3000)
+      turns.value[currentTurnIndex.value] = {
+        ...currentTurn.value,
+        coachReply: feedback.feedback,
+        nextAction: feedback.nextAction,
+        nextPrompt: feedback.nextPrompt,
+        nextTargetText: nextTargetText || fallbackNextTargetText()
+      }
+      return
     }
 
-    // 插入过滤后的文本
-    const input = event.target
-    const start = input.selectionStart
-    const end = input.selectionEnd
-    const currentValue = inputMessage.value
-
-    inputMessage.value = currentValue.substring(0, start) + filteredText + currentValue.substring(end)
-
-    // 设置光标位置
-    nextTick(() => {
-        input.setSelectionRange(start + filteredText.length, start + filteredText.length)
-    })
+    applyLocalCoachFallback(result)
+  } catch (error) {
+    console.error('生成口语教练反馈失败:', error)
+    applyLocalCoachFallback(result)
+  } finally {
+    loadingAi.value = false
+    scrollToLatestTurn()
+  }
 }
 
-// 格式化时间
-const formatTime = (timestamp) => {
-    return new Date(timestamp).toLocaleTimeString('zh-CN', {
-        hour: '2-digit',
-        minute: '2-digit'
-    })
+function applyLocalCoachFallback(result: OralEvaluationResult) {
+  const weakWord = lowScoreWords(result)[0]?.text
+  const shouldRetry = Boolean(weakWord) || Math.min(...dimensionsFor(result).map((item) => item.value)) < 75
+  turns.value[currentTurnIndex.value] = {
+    ...currentTurn.value,
+    coachReply: shouldRetry
+      ? `整体不错，但 "${weakWord || currentTurn.value.targetText}" 还需要更清楚。我们先把这一小段再练一遍。`
+      : '这一句整体不错，我们继续推进到下一句场景表达。',
+    nextAction: shouldRetry ? 'retry' : 'next',
+    nextPrompt: shouldRetry ? '复练低分片段' : '继续完成场景表达',
+    nextTargetText: shouldRetry ? weakWord || currentTurn.value.targetText : fallbackNextTargetText()
+  }
+}
+
+function fallbackNextTargetText() {
+  const nextIndex = Math.min(turns.value.length, targetTurnCount - 1)
+  return createTurn(nextIndex).targetText
+}
+
+function retryCurrentTurn() {
+  turns.value[currentTurnIndex.value] = {
+    ...currentTurn.value,
+    result: undefined,
+    coachReply: undefined,
+    nextAction: undefined,
+    nextPrompt: undefined,
+    nextTargetText: undefined
+  }
+  expandedWord.value = ''
+  evaluationError.value = ''
+  void resetRecorder()
+}
+
+async function resetSession() {
+  try {
+    await restartConversation()
+  } catch (error) {
+    console.error('重置 AI 会话失败:', error)
+  }
+
+  currentTurnIndex.value = 0
+  turns.value = [createTurn(0)]
+  expandedWord.value = ''
+  evaluationError.value = ''
+  customTargetText.value = ''
+  await resetRecorder()
+  toast.success('口语训练已重新开始')
+}
+
+function applyCustomTarget() {
+  if (!customTargetText.value.trim()) return
+
+  turns.value[currentTurnIndex.value] = {
+    ...currentTurn.value,
+    targetText: customTargetText.value.trim(),
+    result: undefined,
+    coachReply: undefined,
+    nextAction: undefined,
+    nextPrompt: undefined,
+    nextTargetText: undefined
+  }
+  customTargetText.value = ''
+  evaluationError.value = ''
+}
+
+function useWordInTarget(word: string) {
+  const nextSentence = `I want to use the word ${word} in a clear and natural English sentence.`
+  customTargetText.value = nextSentence
+  applyCustomTarget()
+  showPracticePanel.value = false
+}
+
+function dimensionsFor(result: OralEvaluationResult) {
+  return [
+    { key: 'accuracy', label: '准确度', value: result.dimensions.accuracy || 0 },
+    { key: 'fluency', label: '流利度', value: result.dimensions.fluency || 0 },
+    { key: 'integrity', label: '完整度', value: result.dimensions.integrity || 0 },
+    { key: 'pronunciation', label: '发音', value: result.dimensions.pronunciation || 0 }
+  ]
+}
+
+function lowScoreWords(result: OralEvaluationResult) {
+  return (result.details?.words || [])
+    .filter((word) => Number(word.score) < 82)
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 4)
+}
+
+function weakestAdvice(result: OralEvaluationResult) {
+  const sorted = dimensionsFor(result).sort((a, b) => a.value - b.value)
+  const weakest = sorted[0]
+  const adviceMap: Record<string, string | undefined> = {
+    accuracy: result.advice?.accuracy,
+    fluency: result.advice?.fluency,
+    integrity: result.advice?.integrity,
+    pronunciation: result.advice?.pronunciation
+  }
+
+  return adviceMap[weakest.key] || `${weakest.label} 是本轮最值得复练的维度。`
+}
+
+function toggleWordDetail(wordText: string) {
+  expandedWord.value = expandedWord.value === wordText ? '' : wordText
+}
+
+function phonemesForExpandedWord(result: OralEvaluationResult) {
+  const word = result.details?.words?.find((item) => item.text === expandedWord.value)
+  return word?.phonemes?.length ? word.phonemes : result.details?.phonemes || []
+}
+
+function scoreClass(score: number) {
+  if (score >= 90) return 'excellent'
+  if (score >= 80) return 'good'
+  if (score >= 60) return 'fair'
+  return 'poor'
+}
+
+function scrollToLatestTurn() {
+  nextTick(() => {
+    if (turnListRef.value) {
+      turnListRef.value.scrollTop = turnListRef.value.scrollHeight
+    }
+  })
 }
 </script>
-
-<style scoped></style>
