@@ -2,8 +2,27 @@ const { aliyunApiKey: apiKey, aliyunBaseUrl: baseUrl } = require('../config/serv
 const Word = require('../modules/Word');
 const { logger } = require('../utils/logger');
 
-// 使用阿里云百炼的兼容模式端点
-const API_ENDPOINT = `${baseUrl}/compatible-mode/v1/chat/completions`;
+function resolveApiEndpoint(rawBaseUrl) {
+    const normalizedBaseUrl = (rawBaseUrl || 'https://dashscope.aliyuncs.com/compatible-mode/v1').replace(/\/+$/, '');
+
+    if (normalizedBaseUrl.endsWith('/chat/completions')) {
+        return normalizedBaseUrl;
+    }
+
+    if (normalizedBaseUrl.endsWith('/compatible-mode/v1')) {
+        return `${normalizedBaseUrl}/chat/completions`;
+    }
+
+    return `${normalizedBaseUrl}/compatible-mode/v1/chat/completions`;
+}
+
+// 使用阿里云百炼 DashScope 的 OpenAI 兼容模式端点。
+const API_ENDPOINT = resolveApiEndpoint(baseUrl);
+const MISSING_EXAMPLE_TEXT = '暂无例句';
+
+function isUsableExample(example) {
+    return Boolean(example && example.trim() && example.trim() !== MISSING_EXAMPLE_TEXT);
+}
 
 console.log('阿里云百炼API配置:', {
     hasApiKey: !!apiKey,
@@ -197,7 +216,7 @@ async function generateAndSaveExample(wordId) {
         // 检查是否已有例句
         if (word.meanings && word.meanings.length > 0 &&
             word.meanings[0].definitions && word.meanings[0].definitions.length > 0 &&
-            word.meanings[0].definitions[0].example) {
+            isUsableExample(word.meanings[0].definitions[0].example)) {
             return word.meanings[0].definitions[0].example;
         }
 

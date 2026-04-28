@@ -15,6 +15,11 @@ const http = require('http');
 const { updateWordReviewStatus } = require('../utils/spacedRepetition');
 const StudyRecordService = require('../modules/StudyRecordService');
 const { generateAndSaveExample } = require('../ai/aliyunExampleGenerator_new');
+const MISSING_EXAMPLE_TEXT = '暂无例句';
+
+function isUsableExample(example) {
+  return Boolean(example && example.trim() && example.trim() !== MISSING_EXAMPLE_TEXT);
+}
 
 // 词汇库缓存
 let vocabularyCache = null;
@@ -345,10 +350,21 @@ router.get('/getReviewWords', async (req, res) => {
       console.log(`[getReviewWords] 最终获取的音标: "${phonetic_symbol}"`);
 
       // 获取例句信息
-      let example = '暂无例句';
+      let example = '';
       if (word && word.meanings && word.meanings.length > 0 &&
           word.meanings[0].definitions && word.meanings[0].definitions.length > 0) {
-        example = word.meanings[0].definitions[0].example || '暂无例句';
+        example = word.meanings[0].definitions[0].example || '';
+      }
+
+      if (!isUsableExample(example) && word) {
+        try {
+          console.log(`[getReviewWords] 单词 ${word.word} 缺少例句，尝试自动生成...`);
+          example = await generateAndSaveExample(item.wordId);
+          console.log(`[getReviewWords] 自动生成例句结果: ${example ? '成功' : '失败'}, 内容: ${example}`);
+        } catch (error) {
+          console.error(`[getReviewWords] 自动生成例句失败: ${word.word}`, error);
+          example = '';
+        }
       }
 
       return {
@@ -359,7 +375,7 @@ router.get('/getReviewWords', async (req, res) => {
         mean: meaning,
         definition: meaning,
         phonetic_symbol: phonetic_symbol,
-        example: example,
+        example: example || MISSING_EXAMPLE_TEXT,
         priority: item.priority,
         status: item.status,
         reviewCounts: item.reviewCounts,
@@ -423,7 +439,7 @@ router.post('/generateExample', async (req, res) => {
     }
 
     // 如果没有例句，使用AI生成并保存
-    if (!example) {
+    if (!isUsableExample(example)) {
       try {
         console.log(`[generateExample] 开始为单词 ${word.word} (ID: ${wordId}) 生成例句...`);
         example = await generateAndSaveExample(wordId);
@@ -443,7 +459,7 @@ router.post('/generateExample', async (req, res) => {
       data: {
         wordId: wordId,
         word: word.word,
-        example: example
+        example: example || MISSING_EXAMPLE_TEXT
       }
     });
   } catch (error) {
