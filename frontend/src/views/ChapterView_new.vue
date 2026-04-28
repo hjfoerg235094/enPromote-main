@@ -1,63 +1,90 @@
 <template>
-  <div class="chapter-view">
-    <div v-if="loading" class="loading">加载中...</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
+  <main class="chapter-view">
+    <div v-if="loading" class="loading-panel">
+      <span></span>
+      <strong>正在载入章节任务</strong>
+      <p>同步角色、场景和训练目标。</p>
+    </div>
+
+    <div v-else-if="error" class="loading-panel error">
+      <strong>章节加载失败</strong>
+      <p>{{ error }}</p>
+      <button class="primary-button" type="button" @click="fetchChapter">重新加载</button>
+    </div>
+
     <div v-else-if="chapter" class="chapter-content">
-      <!-- 章节头部 -->
-      <div class="chapter-header">
-        <button class="back-btn" @click="goBack">← 返回</button>
-        <h1>{{ chapter.title }}</h1>
-        <div class="scene-info">
-          <span class="label">场景:</span>
-          <span>{{ chapter.scene }}</span>
+      <section class="chapter-brief">
+        <button class="back-btn" type="button" @click="goBack">返回剧情</button>
+        <div class="brief-copy">
+          <span class="chapter-kicker">{{ chapter.scene }}</span>
+          <h1>{{ chapter.title }}</h1>
+          <p>{{ chapter.storyBackground }}</p>
         </div>
-      </div>
+        <aside class="brief-status" aria-label="章节进度">
+          <span>Chapter Progress</span>
+          <strong>{{ completedTasksCount }}/{{ totalTasksCount }}</strong>
+          <div class="meter">
+            <i :style="{ width: taskProgressPercent + '%' }"></i>
+          </div>
+        </aside>
+      </section>
 
-      <!-- 剧情背景 -->
-      <div class="story-background">
-        <h3>剧情背景</h3>
-        <p>{{ chapter.storyBackground }}</p>
-      </div>
+      <section class="role-strip" aria-label="角色信息">
+        <article class="role-card user-role">
+          <span>你的角色</span>
+          <strong>{{ chapter.userRole }}</strong>
+        </article>
+        <article class="role-card ai-role">
+          <span>AI 角色</span>
+          <strong>{{ chapter.aiRole }}</strong>
+        </article>
+        <article class="role-card next-role">
+          <span>下一步提示</span>
+          <strong>{{ allTasksCompleted ? chapter.nextChapterHint : nextTaskLabel }}</strong>
+        </article>
+      </section>
 
-      <!-- 角色信息 -->
-      <div class="roles">
-        <div class="role-card">
-          <h4>你的角色</h4>
-          <p>{{ chapter.userRole }}</p>
+      <section class="mission-board">
+        <div class="section-heading">
+          <div>
+            <span class="chapter-kicker">Mission Tasks</span>
+            <h2>任务列表</h2>
+          </div>
+          <p>点击未完成任务即可进入训练。已完成任务会保留在档案中，避免重复提交。</p>
         </div>
-        <div class="role-card">
-          <h4>AI角色</h4>
-          <p>{{ chapter.aiRole }}</p>
-        </div>
-      </div>
 
-      <!-- 任务列表 -->
-      <div class="tasks">
-        <h2>任务列表</h2>
         <div class="task-list">
-          <div
-            v-for="task in chapter.tasks"
+          <article
+            v-for="(task, index) in chapter.tasks"
             :key="task.id"
             class="task-card"
-            :class="{ completed: isTaskCompleted(task.id) }"
+            :class="{ completed: isTaskCompleted(task.id), active: selectedTask?.id === task.id }"
             @click="selectTask(task)"
           >
             <div class="task-header">
+              <span class="task-index">{{ String(index + 1).padStart(2, '0') }}</span>
               <span class="task-type">{{ getTaskTypeLabel(task.type) }}</span>
-              <span v-if="isTaskCompleted(task.id)" class="completed-badge">✓</span>
             </div>
             <h3>{{ task.name }}</h3>
             <p>{{ task.description }}</p>
             <div class="task-words">
-              <strong>目标单词:</strong>
-              <span>{{ task.requiredWords.join(', ') }}</span>
+              <span v-for="word in task.requiredWords" :key="word">{{ word }}</span>
             </div>
-          </div>
+            <div class="task-footer">
+              <strong>{{ isTaskCompleted(task.id) ? '已完成' : '待执行' }}</strong>
+              <button type="button" :disabled="isTaskCompleted(task.id)">
+                {{ isTaskCompleted(task.id) ? '锁定' : '开始' }}
+              </button>
+            </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <!-- 任务执行器 -->
-      <div v-if="selectedTask" class="task-executor-container">
+      <section v-if="selectedTask" class="task-executor-container">
+        <div class="executor-heading">
+          <span class="chapter-kicker">Active Task</span>
+          <h2>{{ selectedTask.name }}</h2>
+        </div>
         <TaskExecutor
           :task="selectedTask"
           :story-id="storyId"
@@ -66,44 +93,39 @@
           @complete="handleTaskComplete"
           @cancel="selectedTask = null"
         />
-      </div>
+      </section>
 
-      <!-- 任务反馈 -->
-      <div v-if="taskFeedback" class="task-feedback" :class="taskFeedback.isCompleted ? 'success' : 'error'">
-        <h3>{{ taskFeedback.isCompleted ? '任务完成！' : '任务未通过' }}</h3>
-        <p>{{ taskFeedback.feedback.message }}</p>
+      <section v-if="taskFeedback" class="task-feedback" :class="taskFeedback.isCompleted ? 'success' : 'error'">
+        <div>
+          <span class="chapter-kicker">{{ taskFeedback.isCompleted ? 'Accepted' : 'Review Needed' }}</span>
+          <h3>{{ taskFeedback.isCompleted ? '任务完成' : '任务未通过' }}</h3>
+          <p>{{ taskFeedback.feedback.message }}</p>
+        </div>
+        <div class="feedback-score">
+          <span>得分</span>
+          <strong>{{ taskFeedback.feedback.score }} / {{ taskFeedback.feedback.maxScore }}</strong>
+        </div>
         <div v-if="taskFeedback.feedback.improvements && taskFeedback.feedback.improvements.length > 0" class="improvements">
-          <h4>改进建议:</h4>
+          <h4>改进建议</h4>
           <ul>
             <li v-for="(improvement, index) in taskFeedback.feedback.improvements" :key="index">
               {{ improvement }}
             </li>
           </ul>
         </div>
-        <div class="feedback-score">
-          <span>得分: {{ taskFeedback.feedback.score }} / {{ taskFeedback.feedback.maxScore }}</span>
-        </div>
-        <button class="close-feedback-btn" @click="taskFeedback = null">关闭</button>
-      </div>
+        <button class="ghost-button" type="button" @click="taskFeedback = null">关闭反馈</button>
+      </section>
 
-      <!-- 下一章提示 -->
-      <div v-if="allTasksCompleted" class="next-hint">
+      <section v-if="allTasksCompleted" class="next-hint">
+        <span class="chapter-kicker">Chapter Clear</span>
         <p>{{ chapter.nextChapterHint }}</p>
-      </div>
+      </section>
     </div>
 
-    <!-- 章节完成模态框 -->
-    <div v-if="showChapterCompleteModal" class="chapter-complete-modal" :class="{ 'show': showModalAnimation }">
-      <div class="modal-content" :class="{ 'show': showModalAnimation }">
-        <div class="celebration-animation">
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="trophy-icon">🏆</div>
-        </div>
-        <h3 class="modal-title">章节完成！</h3>
+    <div v-if="showChapterCompleteModal" class="chapter-complete-modal" :class="{ show: showModalAnimation }">
+      <div class="modal-content" :class="{ show: showModalAnimation }">
+        <div class="modal-emblem">CLEAR</div>
+        <h3 class="modal-title">章节完成</h3>
         <p class="modal-text">{{ chapter.nextChapterHint }}</p>
 
         <div class="chapter-stats">
@@ -118,19 +140,19 @@
         </div>
 
         <div class="modal-actions">
-          <button v-if="hasNextChapter" @click="goToNextChapter" class="btn-primary">
-            进入下一章 →
+          <button v-if="hasNextChapter" class="primary-button" type="button" @click="goToNextChapter">
+            进入下一章
           </button>
-          <button v-else @click="goToStoryList" class="btn-primary">
-            完成剧情 🎉
+          <button v-else class="primary-button" type="button" @click="goToStoryList">
+            完成剧情
           </button>
-          <button @click="closeModal" class="btn-secondary">
+          <button class="ghost-button" type="button" @click="closeModal">
             稍后再说
           </button>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -143,11 +165,10 @@ import { toast } from '@/utils/toastService';
 
 const route = useRoute();
 const router = useRouter();
-const { 
-  fetchStoryProgress, 
-  initChapter, 
-  updateProgress,
-  currentProgress 
+const {
+  fetchStoryProgress,
+  initChapter,
+  currentProgress
 } = useStoryProgress();
 
 const chapter = ref<any>(null);
@@ -161,16 +182,11 @@ const showModalAnimation = ref(false);
 const storyId = ref<string>(route.params.storyId as string);
 const chapterId = ref<number>(parseInt(route.params.chapterId as string));
 
-console.log('ChapterView - storyId:', storyId.value);
-console.log('ChapterView - chapterId:', chapterId.value);
-
-// 监听路由参数变化
 watch(() => route.params, (newParams) => {
-  console.log('路由参数变化:', newParams);
   storyId.value = newParams.storyId as string;
   chapterId.value = parseInt(newParams.chapterId as string);
-  console.log('更新后的章节ID:', chapterId.value);
-  // 重新获取章节数据
+  selectedTask.value = null;
+  taskFeedback.value = null;
   fetchChapter();
 }, { immediate: false });
 
@@ -189,6 +205,16 @@ const totalTasksCount = computed(() => {
   return chapter.value.tasks.length;
 });
 
+const taskProgressPercent = computed(() => {
+  if (!totalTasksCount.value) return 0;
+  return Math.round((completedTasksCount.value / totalTasksCount.value) * 100);
+});
+
+const nextTaskLabel = computed(() => {
+  const next = chapter.value?.tasks?.find((task: any) => !isTaskCompleted(task.id));
+  return next ? `${getTaskTypeLabel(next.type)}：${next.name}` : '全部任务已完成';
+});
+
 const averageScore = computed(() => {
   if (!currentProgress.value) return 0;
   const chapterProgress = currentProgress.value.chapters?.find((ch: any) => ch.chapterId === chapterId.value);
@@ -199,7 +225,6 @@ const averageScore = computed(() => {
 
 const hasNextChapter = computed(() => {
   if (!chapter.value) return false;
-  // 使用实际的章节数量
   return chapterId.value < chapter.value.totalChapters;
 });
 
@@ -214,13 +239,9 @@ async function fetchChapter() {
     const response = await axios.get(`/api/story/${storyId.value}/chapter/${chapterId.value}`);
     chapter.value = response.data.data;
 
-    // 初始化章节进度
     await initChapter(storyId.value, chapterId.value);
-
-    // 获取章节进度
     await fetchStoryProgress(storyId.value);
 
-    // 更新任务完成状态
     if (currentProgress.value) {
       const chapterProgress = currentProgress.value.chapters?.find((ch: any) => ch.chapterId === chapterId.value);
       if (chapterProgress?.tasks) {
@@ -245,7 +266,8 @@ function getTaskTypeLabel(type: string) {
     dialogue: '对话',
     spelling: '拼写',
     listening: '听力',
-    reading: '阅读'
+    reading: '阅读',
+    oral: '口语'
   };
   return labels[type] || type;
 }
@@ -266,14 +288,12 @@ function selectTask(task: any) {
 
 async function handleTaskComplete(result: any) {
   if (!selectedTask.value) return;
-  
-  // 更新任务状态
+
   const task = chapter.value.tasks.find((t: any) => t.id === selectedTask.value.id);
   if (task) {
     task.isCompleted = result.isCompleted;
   }
-  
-  // 刷新进度
+
   try {
     await fetchStoryProgress(storyId.value);
   } catch (err: any) {
@@ -281,16 +301,12 @@ async function handleTaskComplete(result: any) {
   }
 
   taskFeedback.value = result;
-  
-  // 关闭任务执行器
   selectedTask.value = null;
 
-  // 检查是否所有任务都已完成
   if (allTasksCompleted.value) {
-    // 延迟显示模态框，让用户先看到任务完成反馈
     setTimeout(() => {
       showChapterComplete();
-    }, 1500);
+    }, 1000);
   }
 }
 
@@ -300,7 +316,6 @@ function goBack() {
 
 function showChapterComplete() {
   showChapterCompleteModal.value = true;
-  // 延迟添加动画类，实现淡入效果
   setTimeout(() => {
     showModalAnimation.value = true;
   }, 50);
@@ -314,20 +329,10 @@ function closeModal() {
 }
 
 function goToNextChapter() {
-  // 先关闭模态框
   closeModal();
 
-  // 延迟跳转，等待模态框关闭动画完成
   setTimeout(() => {
     const nextChapterId = chapterId.value + 1;
-    console.log('跳转到下一章:', {
-      storyId: storyId.value,
-      currentChapterId: chapterId.value,
-      nextChapterId: nextChapterId,
-      totalChapters: chapter.value?.totalChapters
-    });
-
-    // 跳转到下一章
     router.push(`/chapter/${storyId.value}/${nextChapterId}`).catch(err => {
       console.error('跳转失败:', err);
       toast.error('跳转到下一章失败，请稍后重试');
@@ -336,16 +341,9 @@ function goToNextChapter() {
 }
 
 function goToStoryList() {
-  // 先关闭模态框
   closeModal();
 
-  // 延迟跳转，等待模态框关闭动画完成
   setTimeout(() => {
-    console.log('返回剧情列表:', {
-      storyId: storyId.value
-    });
-
-    // 返回剧情列表
     router.push(`/story/${storyId.value}`).catch(err => {
       console.error('跳转失败:', err);
       toast.error('返回失败，请稍后重试');
@@ -356,308 +354,413 @@ function goToStoryList() {
 
 <style scoped>
 .chapter-view {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  min-height: calc(100vh - 68px);
+  padding: clamp(16px, 4vw, 42px);
+  background:
+    linear-gradient(90deg, rgba(20, 31, 39, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(20, 31, 39, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 12% 16%, rgba(216, 157, 49, 0.22), transparent 30rem),
+    radial-gradient(circle at 88% 10%, rgba(30, 91, 104, 0.14), transparent 34rem),
+    #f5efe4;
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+  color: #1d2b2e;
 }
 
-.loading,
-.error { 
-  text-align: center;
-  padding: 40px;
-  color: #666;
-}
-
-.error {
-  color: #f56c6c;
-}
-
-.chapter-header {
-  margin-bottom: 30px;
-}
-
-.back-btn {
-  background: #f5f5f5;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
-  transition: background 0.2s;
-}
-
-.back-btn:hover {
-  background: #e0e0e0;
-}
-
-.chapter-header h1 {
-  font-size: 32px;
-  margin: 0 0 15px 0;
-  color: #333;
-}
-
-.scene-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #666;
-  font-size: 16px;
-}
-
-.scene-info .label {
-  font-weight: bold;
-}
-
-.story-background {
-  background: #f8f9fa;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.story-background h3 {
-  margin: 0 0 10px 0;
-  color: #333;
-}
-
-.story-background p {
-  margin: 0;
-  color: #666;
-  line-height: 1.6;
-}
-
-.roles {
+.chapter-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  margin-bottom: 30px;
+  gap: 18px;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.chapter-brief,
+.role-card,
+.mission-board,
+.task-card,
+.task-executor-container,
+.task-feedback,
+.next-hint,
+.loading-panel,
+.modal-content {
+  border: 1px solid rgba(29, 43, 46, 0.13);
+  background: rgba(255, 252, 243, 0.9);
+  box-shadow: 0 22px 58px rgba(48, 46, 38, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.chapter-brief {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 230px;
+  gap: 22px;
+  align-items: start;
+  overflow: hidden;
+  padding: clamp(22px, 4vw, 38px);
+  border-radius: 8px;
+}
+
+.brief-copy h1,
+.section-heading h2,
+.executor-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+}
+
+.brief-copy h1 {
+  max-width: 760px;
+  margin-top: 14px;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 0.98;
+}
+
+.brief-copy p,
+.section-heading p,
+.task-card p,
+.task-feedback p,
+.next-hint p,
+.loading-panel p,
+.modal-text {
+  margin: 0;
+  color: #617073;
+  line-height: 1.72;
+}
+
+.brief-copy p {
+  max-width: 780px;
+  margin-top: 16px;
+}
+
+.chapter-kicker {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  padding: 4px 10px;
+  border: 1px solid rgba(175, 52, 44, 0.28);
+  background: rgba(175, 52, 44, 0.08);
+  color: #9b2d26;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 16px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.back-btn,
+.ghost-button {
+  background: rgba(29, 43, 46, 0.08);
+  color: #1d2b2e;
+}
+
+.primary-button {
+  background: #1d2b2e;
+  color: #fffaf0;
+  box-shadow: 0 16px 28px rgba(29, 43, 46, 0.22);
+}
+
+.brief-status {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  background: #1d2b2e;
+  color: #fffaf0;
+}
+
+.brief-status span,
+.role-card span,
+.task-footer strong,
+.feedback-score span,
+.stat-label {
+  color: rgba(29, 43, 46, 0.62);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.brief-status span {
+  color: rgba(255, 250, 240, 0.68);
+}
+
+.brief-status strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 54px;
+  line-height: 1;
+}
+
+.meter {
+  height: 10px;
+  overflow: hidden;
+  background: rgba(255, 250, 240, 0.14);
+}
+
+.meter i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #d89d31, #fff0b8);
+}
+
+.role-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 12px;
 }
 
 .role-card {
-  background: white;
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: grid;
+  gap: 8px;
+  min-height: 116px;
+  padding: 18px;
+  border-radius: 8px;
 }
 
-.role-card h4 {
-  margin: 0 0 8px 0;
-  color: #333;
-  font-size: 16px;
+.role-card strong {
+  font-size: 18px;
+  line-height: 1.45;
 }
 
-.role-card p {
-  margin: 0;
-  color: #666;
+.user-role {
+  border-top: 5px solid #20483f;
 }
 
-.tasks h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
+.ai-role {
+  border-top: 5px solid #9b2d26;
+}
+
+.next-role {
+  border-top: 5px solid #d89d31;
+}
+
+.mission-board,
+.task-executor-container,
+.task-feedback,
+.next-hint {
+  display: grid;
+  gap: 18px;
+  padding: clamp(18px, 3vw, 26px);
+  border-radius: 8px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+}
+
+.section-heading h2,
+.executor-heading h2 {
+  margin-top: 8px;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.section-heading p {
+  max-width: 420px;
+  font-size: 14px;
 }
 
 .task-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 14px;
 }
 
 .task-card {
-  background: white;
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  position: relative;
+  display: grid;
+  gap: 14px;
+  min-height: 300px;
+  padding: 18px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
 }
 
 .task-card:hover:not(.completed) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  border-color: #409eff;
+  border-color: rgba(32, 72, 63, 0.32);
+  box-shadow: 0 28px 66px rgba(48, 46, 38, 0.15);
+}
+
+.task-card.active {
+  outline: 2px solid rgba(216, 157, 49, 0.48);
 }
 
 .task-card.completed {
-  opacity: 0.6;
+  background:
+    linear-gradient(135deg, rgba(32, 72, 63, 0.09), rgba(255, 252, 243, 0.9)),
+    rgba(255, 252, 243, 0.9);
   cursor: not-allowed;
 }
 
-.task-header {
+.task-header,
+.task-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.task-index {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .task-type {
-  display: inline-block;
-  padding: 4px 8px;
-  background: #e8f4ff;
-  color: #409eff;
-  border-radius: 4px;
+  padding: 5px 10px;
+  background: rgba(29, 43, 46, 0.08);
+  color: #1d2b2e;
   font-size: 12px;
-  font-weight: bold;
-}
-
-.completed-badge {
-  color: #67c23a;
-  font-size: 20px;
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .task-card h3 {
-  margin: 0 0 8px 0;
-  color: #333;
-  font-size: 16px;
-}
-
-.task-card p {
-  margin: 0 0 12px 0;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
 }
 
 .task-words {
-  font-size: 13px;
-  color: #999;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-self: end;
 }
 
-.task-words strong {
-  color: #666;
+.task-words span {
+  padding: 5px 9px;
+  background: #fff3cf;
+  color: #82580f;
+  font-size: 12px;
+  font-weight: 900;
 }
 
-.next-hint {
-  background: #f0f9ff;
-  border-left: 4px solid #409eff;
-  padding: 16px;
-  border-radius: 4px;
+.task-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(29, 43, 46, 0.1);
 }
 
-.next-hint p {
-  margin: 0;
-  color: #666;
-  line-height: 1.6;
+.task-footer button {
+  min-height: 36px;
+  background: #1d2b2e;
+  color: #fffaf0;
 }
 
 .task-executor-container {
-  margin-bottom: 30px;
+  background:
+    linear-gradient(135deg, rgba(32, 72, 63, 0.08), rgba(255, 252, 243, 0.92)),
+    rgba(255, 252, 243, 0.9);
 }
 
 .task-feedback {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  animation: slideIn 0.3s ease-in;
-}
-
-.task-feedback.success {
-  border-left: 4px solid #67c23a;
-}
-
-.task-feedback.error {
-  border-left: 4px solid #f56c6c;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  align-items: start;
+  animation: slideIn 0.26s ease-out;
 }
 
 .task-feedback h3 {
-  margin: 0 0 12px 0;
-  color: #333;
-  font-size: 20px;
+  margin: 8px 0 8px;
+  font-size: 28px;
 }
 
-.task-feedback.success h3 {
-  color: #67c23a;
+.task-feedback.success {
+  border-top: 5px solid #20483f;
 }
 
-.task-feedback.error h3 {
-  color: #f56c6c;
+.task-feedback.error {
+  border-top: 5px solid #9b2d26;
 }
 
-.task-feedback p {
-  margin: 0 0 16px 0;
-  color: #666;
-  line-height: 1.6;
-}
-
-.task-feedback .improvements {
-  margin: 16px 0;
+.feedback-score {
+  display: grid;
+  gap: 6px;
   padding: 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  background: rgba(29, 43, 46, 0.06);
 }
 
-.task-feedback .improvements h4 {
-  margin: 0 0 8px 0;
-  color: #333;
-  font-size: 16px;
+.feedback-score strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
 }
 
-.task-feedback .improvements ul {
+.improvements {
+  grid-column: 1 / -1;
+  padding: 16px;
+  background: rgba(29, 43, 46, 0.05);
+}
+
+.improvements h4 {
+  margin: 0 0 8px;
+}
+
+.improvements ul {
   margin: 0;
   padding-left: 20px;
+  color: #617073;
 }
 
-.task-feedback .improvements li {
-  color: #666;
-  margin-bottom: 8px;
-  line-height: 1.5;
+.task-feedback .ghost-button {
+  justify-self: start;
 }
 
-.task-feedback .feedback-score {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #e0e0e0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+.next-hint {
+  border-left: 5px solid #d89d31;
 }
 
-.close-feedback-btn {
-  margin-top: 16px;
-  padding: 8px 24px;
-  background: #409eff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s;
+.loading-panel {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: min(680px, 100%);
+  min-height: 300px;
+  margin: 0 auto;
+  padding: 42px 20px;
+  border-radius: 8px;
+  text-align: center;
+  align-content: center;
 }
 
-.close-feedback-btn:hover {
-  background: #66b1ff;
+.loading-panel > span {
+  width: 38px;
+  height: 38px;
+  border: 3px solid rgba(29, 43, 46, 0.14);
+  border-top-color: #9b2d26;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.loading-panel strong {
+  font-size: 28px;
 }
 
-/* 章节完成模态框 */
+.loading-panel.error strong {
+  color: #9b2d26;
+}
+
 .chapter-complete-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  inset: 0;
   z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(15, 21, 22, 0.48);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -666,188 +769,111 @@ function goToStoryList() {
   opacity: 1;
 }
 
-.chapter-complete-modal .modal-content {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  max-width: 480px;
-  width: 90%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  transform: scale(0.9);
-  opacity: 0;
-  transition: all 0.3s ease;
+.modal-content {
+  display: grid;
+  gap: 16px;
+  width: min(500px, 100%);
+  padding: 30px;
+  border-radius: 8px;
   text-align: center;
+  transform: translateY(16px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.chapter-complete-modal .modal-content.show {
-  transform: scale(1);
+.modal-content.show {
+  transform: translateY(0) scale(1);
   opacity: 1;
 }
 
-/* 庆祝动画 */
-.celebration-animation {
-  position: relative;
-  height: 120px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-emblem {
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: 116px;
+  height: 116px;
+  border: 2px solid #20483f;
+  color: #20483f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0;
 }
 
-.trophy-icon {
-  font-size: 64px;
-  animation: bounce 0.6s ease infinite alternate;
-}
-
-@keyframes bounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-10px);
-  }
-}
-
-.confetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-  animation: confetti-fall 3s linear infinite;
-}
-
-.confetti:nth-child(1) {
-  background: #ff6b6b;
-  left: 20%;
-  animation-delay: 0s;
-}
-
-.confetti:nth-child(2) {
-  background: #4ecdc4;
-  left: 40%;
-  animation-delay: 0.5s;
-}
-
-.confetti:nth-child(3) {
-  background: #45b7d1;
-  left: 60%;
-  animation-delay: 1s;
-}
-
-.confetti:nth-child(4) {
-  background: #96ceb4;
-  left: 80%;
-  animation-delay: 1.5s;
-}
-
-.confetti:nth-child(5) {
-  background: #ffeaa7;
-  left: 50%;
-  animation-delay: 2s;
-}
-
-@keyframes confetti-fall {
-  0% {
-    top: -20px;
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    top: 100px;
-    transform: rotate(720deg);
-    opacity: 0;
-  }
-}
-
-/* 模态框标题和文本 */
 .modal-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #67c23a;
-  margin: 0 0 16px 0;
-  animation: slideIn 0.5s ease;
+  margin: 0;
+  font-size: 32px;
 }
 
-.modal-text {
-  color: #666;
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0 0 24px 0;
-  animation: slideIn 0.5s ease 0.1s both;
-}
-
-/* 章节统计 */
 .chapter-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
-  animation: slideIn 0.5s ease 0.2s both;
+  gap: 12px;
 }
 
 .stat-item {
-  background: #f5f7fa;
+  display: grid;
+  gap: 8px;
   padding: 16px;
-  border-radius: 8px;
-}
-
-.stat-label {
-  display: block;
-  font-size: 13px;
-  color: #909399;
-  margin-bottom: 8px;
+  background: rgba(29, 43, 46, 0.06);
 }
 
 .stat-value {
-  display: block;
-  font-size: 24px;
-  font-weight: bold;
-  color: #409eff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 900;
 }
 
-/* 模态框按钮 */
 .modal-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  animation: slideIn 0.5s ease 0.3s both;
+  display: grid;
+  gap: 10px;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.btn-primary:active {
-  transform: translateY(0);
+@media (max-width: 900px) {
+  .chapter-brief,
+  .role-strip,
+  .task-feedback {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .brief-status {
+    width: 100%;
+  }
 }
 
-.btn-secondary {
-  background: #f5f7fa;
-  color: #666;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
+@media (max-width: 560px) {
+  .chapter-view {
+    padding: 12px;
+  }
 
-.btn-secondary:hover {
-  background: #e4e7ed;
-  color: #333;
+  .brief-copy h1 {
+    font-size: clamp(34px, 12vw, 52px);
+  }
+
+  .chapter-stats {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
