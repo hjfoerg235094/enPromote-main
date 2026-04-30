@@ -173,6 +173,13 @@ const studyStartTime = ref(null);
 const completedWordsCount = ref(0);
 const progressModalMode = ref('completed');
 
+const calculateStudyMinutes = (startTime, endTime = new Date()) => {
+  if (!startTime) return 0;
+  const minutes = (endTime - startTime) / 1000 / 60;
+  if (minutes <= 0) return 0;
+  return Math.max(0.1, Math.round(minutes * 100) / 100);
+};
+
 // 加载学习进度和统计
 const loadProgress = async () => {
   try {
@@ -352,7 +359,7 @@ const nextWord = async () => {
 
         // 计算学习时长（分钟）
         const endTime = new Date();
-        const studyTimeMinutes = Math.floor((endTime - studyStartTime.value) / (1000 * 60));
+        const studyTimeMinutes = calculateStudyMinutes(studyStartTime.value, endTime);
 
         // 记录学习时长到每日报告
         try {

@@ -31,6 +31,38 @@ const roundNumber = (value, precision = 2) => {
   return Number(number.toFixed(precision));
 };
 
+const normalizeStudyModule = (module) => {
+  if (module === 'review') return 'vocabulary';
+  return module;
+};
+
+const ALLOWED_STUDY_MODULES = new Set(['vocabulary', 'listening', 'spelling', 'aiPractice']);
+const MIN_STUDY_MINUTES = 0.1;
+const MAX_STUDY_MINUTES = 180;
+
+const clampStudyMinutes = (minutes) => {
+  const value = Number(minutes);
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  return roundNumber(Math.min(Math.max(value, MIN_STUDY_MINUTES), MAX_STUDY_MINUTES));
+};
+
+const parseValidDate = (value) => {
+  if (!value) return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date;
+};
+
+const calculateStudyMinutes = ({ studyTime, startTime, endTime }) => {
+  const start = parseValidDate(startTime);
+  const end = parseValidDate(endTime);
+
+  if (start && end && end > start) {
+    return clampStudyMinutes((end.getTime() - start.getTime()) / 1000 / 60);
+  }
+
+  return clampStudyMinutes(studyTime);
+};
+
 const parseLocalDate = (date) => {
   if (typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
     const [year, month, day] = date.split('-').map(Number);
@@ -163,24 +195,28 @@ router.post('/record', async (req, res) => {
     }
 
     const { module, studyTime, newWords, reviewWords, accuracy, startTime, endTime } = req.body;
+    const normalizedModule = normalizeStudyModule(module);
+    const calculatedStudyTime = calculateStudyMinutes({ studyTime, startTime, endTime });
+    const normalizedStartTime = parseValidDate(startTime) || new Date(Date.now() - calculatedStudyTime * 60 * 1000);
+    const normalizedEndTime = parseValidDate(endTime) || new Date();
 
     // 验证参数
-    if (!module || typeof studyTime !== 'number') {
+    if (!ALLOWED_STUDY_MODULES.has(normalizedModule) || calculatedStudyTime <= 0) {
       return res.status(400).json({
         code: 400,
-        message: '参数不完整'
+        message: '学习模块不支持或学习时长无效'
       });
     }
 
     // 记录学习活动
-    await StudyRecordService.recordStudyActivity(userid, module, {
-      studyTime: studyTime || 0,
+    await StudyRecordService.recordStudyActivity(userid, normalizedModule, {
+      studyTime: calculatedStudyTime,
       newWords: newWords || 0,
       reviewWords: reviewWords || 0,
       wordsCount: (newWords || 0) + (reviewWords || 0),
       accuracy: accuracy || 0,
-      startTime: startTime ? new Date(startTime) : new Date(),
-      endTime: endTime ? new Date(endTime) : new Date()
+      startTime: normalizedStartTime,
+      endTime: normalizedEndTime
     });
 
     res.json({

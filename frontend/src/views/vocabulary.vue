@@ -147,6 +147,13 @@ const studyStartTime = ref(null);
 const completedWordsCount = ref(0);
 const progressModalMode = ref('completed'); // 'completed', 'spelling', 'spellingCompleted'
 
+const calculateStudyMinutes = (startTime, endTime = new Date()) => {
+  if (!startTime) return 0;
+  const minutes = (endTime - startTime) / 1000 / 60;
+  if (minutes <= 0) return 0;
+  return Math.max(0.1, Math.round(minutes * 100) / 100);
+};
+
 
 
 // 获取单词数据
@@ -454,7 +461,7 @@ const nextWord = async () => {
 
     // 更新用户进度（实际项目中应调用API保存进度）
     const studyWords = words.value.length;
-    const res = await updateWordProgress({ studyWords });
+    const res = await updateWordProgress({ studyWords, skipStudyRecord: true });
     if (res.status === 200) {
       console.log('进度更新成功');
 
@@ -466,7 +473,7 @@ const nextWord = async () => {
       let studyDuration = 0;
       
       if (studyStartTime.value) {
-        studyDuration = Math.round((studyEndTime - studyStartTime.value) / 1000 / 60);
+        studyDuration = calculateStudyMinutes(studyStartTime.value, studyEndTime);
         console.log('学习时长:', studyDuration, '分钟');
       } else {
         console.warn('学习开始时间未设置');
@@ -475,7 +482,7 @@ const nextWord = async () => {
       // 记录学习时长
       if (studyDuration > 0) {
         await recordStudyTime(
-          currentMode.value === 'practice' ? 'vocabulary' : 'review',
+          'vocabulary',
           studyDuration,
           currentMode.value === 'practice' ? words.value.length : 0,
           currentMode.value === 'review' ? words.value.length : 0,

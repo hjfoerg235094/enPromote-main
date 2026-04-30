@@ -4,6 +4,7 @@ const User = require('../modules/User');
 const Friendship = require('../modules/Friendship');
 const FriendRequest = require('../modules/FriendRequest');
 const UserSettings = require('../modules/UserSettings');
+const StudyRecord = require('../modules/StudyRecord');
 const { logger, logApiError, logUserAction } = require('../utils/logger');
 
 /**
@@ -864,18 +865,18 @@ router.get('/compare/:friendId', async (req, res) => {
             });
         }
 
-        // 计算最近30天的学习时长（假设每个单词学习2分钟）
+        // 计算最近30天的学习时长
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        thirtyDaysAgo.setHours(0, 0, 0, 0);
 
-        const calculateStudyTime = (studyHistory) => {
-            return studyHistory
-                .filter(record => new Date(record.date) >= thirtyDaysAgo)
-                .reduce((total, record) => total + record.words * 2, 0); // 每个单词2分钟
-        };
+        const [userStudyRecords, friendStudyRecords] = await Promise.all([
+            StudyRecord.find({ userId: userid, date: { $gte: thirtyDaysAgo } }).select('totalStudyTime'),
+            StudyRecord.find({ userId: friendId, date: { $gte: thirtyDaysAgo } }).select('totalStudyTime')
+        ]);
 
-        const userStudyMinutes = calculateStudyTime(currentUser.studyHistory || []);
-        const friendStudyMinutes = calculateStudyTime(friendUser.studyHistory || []);
+        const userStudyMinutes = userStudyRecords.reduce((total, record) => total + (record.totalStudyTime || 0), 0);
+        const friendStudyMinutes = friendStudyRecords.reduce((total, record) => total + (record.totalStudyTime || 0), 0);
 
         // 计算学习时长差异
         const studyTimeDiff = {

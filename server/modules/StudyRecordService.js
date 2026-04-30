@@ -7,6 +7,13 @@ const roundNumber = (value, precision = 2) => {
   return Number(number.toFixed(precision));
 };
 
+const normalizeStudyModule = (module) => {
+  if (module === 'review') return 'vocabulary';
+  return module;
+};
+
+const ALLOWED_MODULES = new Set(['vocabulary', 'listening', 'spelling', 'aiPractice']);
+
 const getWeightedSessionAccuracy = (sessions, module) => {
   const moduleSessions = sessions.filter(s => s.module === module && typeof s.accuracy === 'number');
   const totalWords = moduleSessions.reduce((sum, s) => sum + (s.wordsCount || 0), 0);
@@ -31,6 +38,11 @@ class StudyRecordService {
    */
   async recordStudyActivity(userId, module, data) {
     try {
+      const normalizedModule = normalizeStudyModule(module);
+      if (!ALLOWED_MODULES.has(normalizedModule)) {
+        throw new Error(`Unsupported study module: ${module}`);
+      }
+
       // 使用学习开始时间来确定记录的日期
       const studyDate = data.startTime ? new Date(data.startTime) : new Date();
       const today = new Date(studyDate);
@@ -75,9 +87,9 @@ class StudyRecordService {
       }
 
       // 更新学习时长
-      const studyTime = data.studyTime || 0;
+      const studyTime = Math.max(0, roundNumber(data.studyTime));
       record.totalStudyTime += studyTime;
-      record.moduleStudyTime[module] += studyTime;
+      record.moduleStudyTime[normalizedModule] += studyTime;
 
       // 更新单词学习统计
       if (data.newWords) {
@@ -88,27 +100,27 @@ class StudyRecordService {
       }
 
       // 更新练习统计：词汇辨认的 accuracy 只进 sessions，不写入 spellingAccuracy。
-      if (module === 'spelling' && data.accuracy !== undefined) {
+      if (normalizedModule === 'spelling' && data.accuracy !== undefined) {
         const nextSessions = [
           ...record.sessions,
           {
-            module,
+            module: normalizedModule,
             wordsCount: data.wordsCount || 0,
             accuracy: data.accuracy || 0
           }
         ];
         record.practiceStats.spellingAccuracy = roundNumber(getWeightedSessionAccuracy(nextSessions, 'spelling'));
-      } else if (module === 'listening' && data.accuracy !== undefined) {
+      } else if (normalizedModule === 'listening' && data.accuracy !== undefined) {
         const nextSessions = [
           ...record.sessions,
           {
-            module,
+            module: normalizedModule,
             wordsCount: data.wordsCount || 0,
             accuracy: data.accuracy || 0
           }
         ];
         record.practiceStats.listeningCompletion = roundNumber(getWeightedSessionAccuracy(nextSessions, 'listening'));
-      } else if (module === 'aiPractice') {
+      } else if (normalizedModule === 'aiPractice') {
         record.practiceStats.aiPracticeCount += 1;
       }
 
@@ -116,7 +128,7 @@ class StudyRecordService {
       record.sessions.push({
         startTime: data.startTime || new Date(),
         endTime: data.endTime || new Date(),
-        module,
+        module: normalizedModule,
         wordsCount: data.wordsCount || 0,
         accuracy: data.accuracy || 0
       });
