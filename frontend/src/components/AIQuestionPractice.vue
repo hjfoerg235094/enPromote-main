@@ -453,7 +453,7 @@ onMounted(() => {
     if (props.usePreloaded && props.preloadedQuestions) {
       console.log('组件挂载时发现预加载题目')
       generateQuestions()
-    } else if (props.positionType && props.wordList.length > 0) {
+    } else if (props.positionType) {
       generateQuestions()
     }
   })

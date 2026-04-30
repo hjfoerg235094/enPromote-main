@@ -143,6 +143,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getReviewWords, submitWordReview } from '@/api/word'
 import { generateWordExample } from '@/api/wordExample'
+import request from '@/utils/request'
 
 const router = useRouter()
 
@@ -156,6 +157,8 @@ const generatingExample = ref(false)
 const exampleError = ref('')
 const streakCount = ref(0)
 const stats = ref({ reviewed: 0, correct: 0, incorrect: 0 })
+const reviewStartTime = ref(null)
+const reportRecorded = ref(false)
 
 const difficultyLevels = [
   { value: 0, label: '很难', hint: '完全想不起', class: 'hard' },
@@ -243,7 +246,7 @@ async function submitReview(difficulty) {
       streakCount.value = 0
     }
 
-    goNextAfterSubmit()
+    await goNextAfterSubmit()
   } catch (error) {
     console.error('提交复习结果失败:', error)
   } finally {
@@ -251,7 +254,38 @@ async function submitReview(difficulty) {
   }
 }
 
-function goNextAfterSubmit() {
+const calculateStudyMinutes = (startTime, endTime = new Date()) => {
+  if (!startTime) return 0
+  const minutes = (endTime - startTime) / 1000 / 60
+  if (minutes <= 0) return 0
+  return Math.max(0.1, Math.round(minutes * 100) / 100)
+}
+
+async function recordReviewStudyTime() {
+  if (reportRecorded.value || !stats.value.reviewed) return
+
+  const endTime = new Date()
+  const studyTime = calculateStudyMinutes(reviewStartTime.value, endTime)
+  if (studyTime <= 0) return
+
+  try {
+    reportRecorded.value = true
+    await request.post('/report/record', {
+      module: 'vocabulary',
+      studyTime,
+      newWords: 0,
+      reviewWords: stats.value.reviewed,
+      accuracy: accuracy.value,
+      startTime: reviewStartTime.value,
+      endTime
+    })
+  } catch (error) {
+    reportRecorded.value = false
+    console.error('记录复习学习时长失败:', error)
+  }
+}
+
+async function goNextAfterSubmit() {
   if (currentIndex.value < words.value.length - 1) {
     currentIndex.value += 1
     isFlipped.value = false
@@ -260,6 +294,7 @@ function goNextAfterSubmit() {
   }
 
   showSummary.value = true
+  await recordReviewStudyTime()
 }
 
 function skipCard() {
@@ -290,6 +325,8 @@ async function loadReviewWords() {
       showSummary.value = false
       stats.value = { reviewed: 0, correct: 0, incorrect: 0 }
       streakCount.value = 0
+      reviewStartTime.value = words.value.length ? new Date() : null
+      reportRecorded.value = false
     } else {
       words.value = []
     }
@@ -297,6 +334,10 @@ async function loadReviewWords() {
     console.error('获取复习单词失败:', error)
     words.value = []
   } finally {
+    if (!words.value.length) {
+      reviewStartTime.value = null
+      reportRecorded.value = false
+    }
     loading.value = false
   }
 }

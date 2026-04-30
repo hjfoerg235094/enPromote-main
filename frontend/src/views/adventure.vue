@@ -814,11 +814,11 @@ const startAIQuestionPreload = async () => {
 
   try {
     // 使用当前章节而不是cet4.position
-    const currentChapter = userInfo.value?.currentChapter || 'A'
+    const activeChapter = currentChapterId.value
+    const currentChapter = activeChapter
 
     // 获取复习单词列表
-    const { data: wordData } = await getReviewWords()
-    const wordList = wordData.code === 200 ? (wordData.data.words || []) : []
+    const wordList = []
 
     // 确保有单词列表，否则使用默认单词
     if (wordList.length === 0) {
@@ -835,7 +835,7 @@ const startAIQuestionPreload = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        chapter: currentChapter,
+        chapter: activeChapter,
         level: 4,
         aiProvider: 'aliyun'
       })
@@ -853,7 +853,7 @@ const startAIQuestionPreload = async () => {
       // 保存到localStorage，防止页面刷新丢失
       localStorage.setItem('preloadedAIQuestions', JSON.stringify({
         data: data.data,
-        chapter: currentChapter.value,
+        chapter: activeChapter,
         timestamp: Date.now()
       }))
 
@@ -1039,8 +1039,8 @@ const startAIQuestionPractice = async () => {
     console.log('preloadedAIQuestions:', preloadedAIQuestions.value)
 
     // 使用当前章节而不是cet4.position
-    const currentChapter = userInfo.value?.currentChapter || 'A'
-    currentPositionType.value = currentChapter
+    const activeChapter = currentChapterId.value
+    currentPositionType.value = activeChapter
 
     // 优先使用预加载的题目
     if (isAIQuestionsPreloaded.value && preloadedAIQuestions.value) {
@@ -1057,7 +1057,7 @@ const startAIQuestionPractice = async () => {
       try {
         const parsed = JSON.parse(savedQuestions)
         // 检查是否是当前章节的题目，且不超过1小时
-        if (parsed.chapter === currentChapter.value &&
+        if (parsed.chapter === activeChapter &&
           (Date.now() - parsed.timestamp) < 3600000) {
           preloadedAIQuestions.value = parsed.data
           isAIQuestionsPreloaded.value = true
@@ -1076,14 +1076,10 @@ const startAIQuestionPractice = async () => {
     console.log('实时生成AI题目')
 
     // 获取复习单词列表用于AI生成题目
-    const { data } = await getReviewWords()
-
-    if (data.code === 200) {
-      aiQuestionWords.value = data.data.words || []
-      showAIQuestionComplete.value = false
-      aiQuestionStats.value = { total: 0, correct: 0, accuracy: 0 }
-      currentView.value = 'level-customsP'
-    }
+    aiQuestionWords.value = []
+    showAIQuestionComplete.value = false
+    aiQuestionStats.value = { total: 0, correct: 0, accuracy: 0 }
+    currentView.value = 'level-customsP'
   } catch (error) {
     console.error('获取AI题目单词列表失败:', error)
   }
@@ -1118,7 +1114,7 @@ const handleAIQuestionAnswer = (answerData) => {
   const savedAnswers = JSON.parse(localStorage.getItem('aiQuestionAnswers') || '[]')
   savedAnswers.push({
     ...answerData,
-    chapter: currentChapter.value,
+    chapter: currentChapterId.value,
     timestamp: Date.now()
   })
   localStorage.setItem('aiQuestionAnswers', JSON.stringify(savedAnswers))
@@ -1134,7 +1130,7 @@ const handleQuestionsGenerated = (questionsData) => {
   // 将实时生成的题目也存储到localStorage，就像预加载题目一样
   localStorage.setItem('preloadedAIQuestions', JSON.stringify({
     data: questionsData.data,
-    chapter: questionsData.chapter || currentChapter.value,
+    chapter: questionsData.chapter || currentChapterId.value,
     timestamp: questionsData.timestamp
   }))
 
@@ -1287,7 +1283,7 @@ const checkPreloadedQuestions = () => {
     if (savedQuestions) {
       const parsed = JSON.parse(savedQuestions)
       // 检查是否是当前章节的题目，且不超过1小时
-      if (parsed.chapter === currentChapter.value &&
+      if (parsed.chapter === currentChapterId.value &&
         (Date.now() - parsed.timestamp) < 3600000) {
         preloadedAIQuestions.value = parsed.data
         isAIQuestionsPreloaded.value = true
@@ -1312,7 +1308,7 @@ const checkSavedAnswers = () => {
       const parsed = JSON.parse(savedAnswers)
       // 过滤当前章节的答题记录
       const currentChapterAnswers = parsed.filter(answer =>
-        answer.chapter === currentChapter.value
+        answer.chapter === currentChapterId.value
       )
       aiQuestionAnswers.value = currentChapterAnswers
       console.log(`恢复了 ${currentChapterAnswers.length} 条答题记录`)

@@ -5,7 +5,7 @@
         <span class="learn-kicker">AI 口语陪练</span>
         <h1>听一句，开口说一句，马上知道哪里要再练。</h1>
         <p>
-          当前采用语音优先流程：先按目标句录音，完成口语评测，再让 AI 根据本轮表现推进下一句。
+          <!-- 当前采用语音优先流程：先按目标句录音，完成口语评测，再让 AI 根据本轮表现推进下一句。 -->
         </p>
       </div>
 
@@ -37,12 +37,8 @@
         </div>
 
         <div ref="turnListRef" class="turn-list">
-          <article
-            v-for="(turn, index) in turns"
-            :key="turn.id"
-            class="turn-card"
-            :class="{ active: index === currentTurnIndex }"
-          >
+          <article v-for="(turn, index) in turns" :key="turn.id" class="turn-card"
+            :class="{ active: index === currentTurnIndex }">
             <div class="turn-head">
               <span>Word {{ index + 1 }} / {{ targetWordCount }}</span>
               <strong>{{ turn.prompt }}</strong>
@@ -81,13 +77,8 @@
 
               <div v-if="lowScoreWords(turn.result).length" class="weak-words">
                 <span>建议复练</span>
-                <button
-                  v-for="word in lowScoreWords(turn.result)"
-                  :key="word.text"
-                  type="button"
-                  :class="{ selected: expandedWord === word.text }"
-                  @click="toggleWordDetail(word.text)"
-                >
+                <button v-for="word in lowScoreWords(turn.result)" :key="word.text" type="button"
+                  :class="{ selected: expandedWord === word.text }" @click="toggleWordDetail(word.text)">
                   {{ word.text }} · {{ Math.round(word.score) }}
                 </button>
               </div>
@@ -95,11 +86,8 @@
               <div v-if="expandedWord" class="phoneme-panel">
                 <strong>{{ expandedWord }} 的音素细节</strong>
                 <div class="phoneme-list">
-                  <span
-                    v-for="phoneme in phonemesForExpandedWord(turn.result)"
-                    :key="`${phoneme.text}-${phoneme.score}`"
-                    :class="scoreClass(phoneme.score)"
-                  >
+                  <span v-for="phoneme in phonemesForExpandedWord(turn.result)"
+                    :key="`${phoneme.text}-${phoneme.score}`" :class="scoreClass(phoneme.score)">
                     {{ phoneme.text }} {{ Math.round(phoneme.score) }}
                   </span>
                 </div>
@@ -133,7 +121,8 @@
               </div>
             </div>
             <div class="summary-actions">
-              <button class="learn-button secondary" type="button" :disabled="!reviewTurns.length" @click="practiceReviewWords">
+              <button class="learn-button secondary" type="button" :disabled="!reviewTurns.length"
+                @click="practiceReviewWords">
                 复练建议词
               </button>
               <button class="learn-button" type="button" @click="resetSession">再练一组</button>
@@ -152,14 +141,8 @@
             <button type="button" @click="showPracticePanel = false">收起</button>
           </div>
           <div v-if="sessionWords.length" class="practice-word-list">
-            <button
-              v-for="word in sessionWords"
-              :key="word.id"
-              type="button"
-              class="practice-word"
-              :class="wordStateClass(word.word)"
-              @click="useWordInTarget(word.word)"
-            >
+            <button v-for="word in sessionWords" :key="word.id" type="button" class="practice-word"
+              :class="wordStateClass(word.word)" @click="useWordInTarget(word.word)">
               <strong>{{ word.word }}</strong>
               <span>{{ word.chineseMeaning || '暂无释义' }}</span>
               <small>{{ wordStateLabel(word.word) }}</small>
@@ -196,17 +179,9 @@
           <div class="section-title">
             <span>辅助文字</span>
           </div>
-          <textarea
-            v-model="customTargetText"
-            rows="4"
-            placeholder="输入一句你想练的英文，可设为当前词的目标句。"
-          ></textarea>
-          <button
-            class="learn-button secondary full"
-            type="button"
-            :disabled="!customTargetText.trim() || isBusy"
-            @click="applyCustomTarget"
-          >
+          <textarea v-model="customTargetText" rows="4" placeholder="输入一句你想练的英文，可设为当前词的目标句。"></textarea>
+          <button class="learn-button secondary full" type="button" :disabled="!customTargetText.trim() || isBusy"
+            @click="applyCustomTarget">
             设为本轮目标
           </button>
         </div>
@@ -223,30 +198,17 @@
       </div>
 
       <div class="record-actions">
-        <button
-          class="record-button"
-          type="button"
-          :class="{ recording: isRecording }"
-          :disabled="isEvaluating || loadingAi"
-          @click="toggleRecording"
-        >
+        <button class="record-button" type="button" :class="{ recording: isRecording }"
+          :disabled="isEvaluating || loadingAi" @click="toggleRecording">
           <span v-if="isRecording">停止 {{ recordingTime }}s</span>
           <span v-else>开始录音</span>
         </button>
-        <button
-          class="learn-button secondary"
-          type="button"
-          :disabled="!currentTurn.result || loadingAi"
-          @click="retryCurrentTurn"
-        >
+        <button class="learn-button secondary" type="button" :disabled="!currentTurn.result || loadingAi"
+          @click="retryCurrentTurn">
           重录
         </button>
-        <button
-          class="learn-button"
-          type="button"
-          :disabled="!currentTurn.result || loadingAi"
-          @click="confirmTurnAndContinue"
-        >
+        <button class="learn-button" type="button" :disabled="!currentTurn.result || loadingAi"
+          @click="confirmTurnAndContinue">
           {{ continueButtonLabel }}
         </button>
       </div>

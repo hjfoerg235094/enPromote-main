@@ -4,7 +4,7 @@
       <div>
         <span class="learn-kicker">学习报告</span>
         <h1>看见今天的表现，再决定下一轮怎么练</h1>
-        <p>报告负责告诉你问题在哪里，AI 练习负责把问题转成可执行的口语和表达训练。</p>
+        <!-- <p>报告负责告诉你问题在哪里，AI 练习负责把问题转成可执行的口语和表达训练。</p> -->
       </div>
       <button class="learn-button" type="button" @click="goToFreeChat">开始 AI 针对练习</button>
     </section>

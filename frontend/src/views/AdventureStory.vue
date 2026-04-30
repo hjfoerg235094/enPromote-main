@@ -4,7 +4,7 @@
       <div>
         <span class="learn-kicker">闯关学习</span>
         <h1>一条主线，两种训练节奏</h1>
-        <p>主线闯关负责稳定推进能力，角色剧情负责把英语放进更沉浸的任务里。建议先完成闯关，再进入剧情应用。</p>
+        <!-- <p>主线闯关负责稳定推进能力，角色剧情负责把英语放进更沉浸的任务里。建议先完成闯关，再进入剧情应用。</p> -->
       </div>
       <div class="progress-summary learn-card">
         <span>当前进度</span>
@@ -43,7 +43,7 @@
       <article class="progress-card learn-card">
         <span>已完成任务</span>
         <strong>{{ completedTasks }}/{{ totalTasks }}</strong>
-        <p>任务数据来自现有进度接口，失败时显示保守默认值。</p>
+        <p>记录你的点滴进步，让努力清晰可见。</p>
       </article>
       <article class="progress-card learn-card">
         <span>累计学习</span>
@@ -139,7 +139,7 @@ onMounted(fetchProgressData)
   margin-bottom: 20px;
 }
 
-.adventure-hero > div:first-child {
+.adventure-hero>div:first-child {
   padding: 34px;
   border-radius: 30px;
   background: linear-gradient(135deg, rgba(66, 119, 184, 0.12), rgba(31, 138, 112, 0.12)), #fffdf7;
@@ -270,6 +270,7 @@ onMounted(fetchProgressData)
 }
 
 @media (max-width: 880px) {
+
   .adventure-hero,
   .mode-grid,
   .progress-grid {

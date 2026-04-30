@@ -4,7 +4,7 @@
       <div>
         <span class="learn-kicker">今日任务</span>
         <h1>先完成基础任务，再进入情境表达</h1>
-        <p>今天的路线按“签到、单词、闯关、AI 口语”推进。部分任务暂无实时完成接口，会用“建议完成”标记，不伪造成已完成。</p>
+        <p></p>
       </div>
       <div class="today-score learn-card">
         <span>已确认完成</span>
@@ -34,12 +34,8 @@
     </section>
 
     <section class="task-track">
-      <article
-        v-for="task in tasks"
-        :key="task.key"
-        class="task-card"
-        :class="{ completed: task.completed, recommended: task.recommended }"
-      >
+      <article v-for="task in tasks" :key="task.key" class="task-card"
+        :class="{ completed: task.completed, recommended: task.recommended }">
         <div class="task-index">{{ task.index }}</div>
         <div class="task-body">
           <div class="task-topline">
@@ -172,7 +168,7 @@ onMounted(() => {
   margin-bottom: 20px;
 }
 
-.daily-hero > div:first-child {
+.daily-hero>div:first-child {
   padding: 34px;
   border-radius: 30px;
   background: linear-gradient(135deg, rgba(31, 138, 112, 0.12), rgba(240, 164, 58, 0.12)), #fffdf7;
@@ -292,6 +288,7 @@ onMounted(() => {
 }
 
 @media (max-width: 860px) {
+
   .daily-hero,
   .metric-grid,
   .task-card {
