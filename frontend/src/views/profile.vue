@@ -29,7 +29,7 @@
             <div class="stats-section">
                 <div class="stat-card">
                     <h3>连续学习</h3>
-                    <p>{{ userInfo.streakDays || 0 }} 天</p>
+                    <p>{{ continuousLearningDays }} 天</p>
                 </div>
                 <div class="stat-card">
                     <h3>今日学习</h3>
@@ -136,8 +136,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { getUserInfo, changeInfo, uploadAvatar } from '@/api/auth'
+import { getCheckInStatus } from '@/api/checkin'
 import { getFavoriteWords, removeFavoriteWord } from '@/api/favoriteWords'
 import { updateUserInfo } from '@/stores/userStore'
 import { toast, modal } from '@/utils/toastService'
@@ -151,6 +152,11 @@ const messageType = ref('success')
 const favoriteWords = ref([])
 const fileInput = ref(null)
 const avatarUploading = ref(false)
+const checkInStatus = ref(null)
+
+const continuousLearningDays = computed(() => {
+    return checkInStatus.value?.continuousCheckInDays ?? userInfo.value.streakDays ?? 0
+})
 
 // 获取完整头像URL
 const getAvatarUrl = (avatarPath) => {
@@ -208,6 +214,17 @@ const fetchUserInfo = async () => {
     } catch (error) {
         console.error('获取用户信息失败:', error)
         showMessage('获取用户信息失败', 'error')
+    }
+}
+
+const fetchCheckInStatus = async () => {
+    try {
+        const res = await getCheckInStatus()
+        if (res.data.code === 200) {
+            checkInStatus.value = res.data.data || null
+        }
+    } catch (error) {
+        console.error('获取签到状态失败:', error)
     }
 }
 
@@ -385,6 +402,7 @@ const handleAvatarChange = async (event) => {
 // 组件挂载时获取用户信息和收藏单词
 onMounted(() => {
     fetchUserInfo()
+    fetchCheckInStatus()
     fetchFavoriteWords()
 })
 </script>
