@@ -30,15 +30,15 @@
           </div>
           <div>
             <span>学习单词</span>
-            <strong>{{ reportData.wordsLearned || 0 }}</strong>
+            <strong>{{ formatNumber(reportData.wordsLearned) }}</strong>
           </div>
           <div>
             <span>正确率</span>
-            <strong>{{ reportData.accuracy || 0 }}%</strong>
+            <strong>{{ formatNumber(reportData.accuracy) }}%</strong>
           </div>
           <div>
             <span>掌握率</span>
-            <strong>{{ reportData.masteryRate || 0 }}%</strong>
+            <strong>{{ formatNumber(reportData.masteryRate) }}%</strong>
           </div>
         </div>
       </article>
@@ -46,7 +46,7 @@
       <article class="weak-panel learn-card">
         <div class="section-heading">
           <span class="learn-kicker">薄弱点</span>
-          <small>没有数据时不制造假问题</small>
+          <!-- <small>没有数据时不制造假问题</small> -->
         </div>
 
         <div v-if="weakPoints.length > 0" class="weak-list">
@@ -107,8 +107,8 @@ const weakPoints = ref([])
 
 const reportMetrics = computed(() => [
   { label: '今日学习', value: formatTime(reportData.value.totalStudyTime), desc: '累计投入时间' },
-  { label: '新学单词', value: reportData.value.wordsLearned || 0, desc: '今日学习记录' },
-  { label: '正确率', value: `${reportData.value.accuracy || 0}%`, desc: '练习题表现' },
+  { label: '新学单词', value: formatNumber(reportData.value.wordsLearned), desc: '今日学习记录' },
+  { label: '正确率', value: `${formatNumber(reportData.value.accuracy)}%`, desc: '练习题表现' },
   { label: '连续天数', value: reportData.value.continuousDays || 0, desc: '学习习惯反馈' }
 ])
 
@@ -124,6 +124,10 @@ const formatPercentage = (value) => {
   const numericValue = Number(value) || 0
   const percentValue = numericValue > 1 ? numericValue : numericValue * 100
   return `${percentValue.toFixed(2)}%`
+}
+
+const formatNumber = (value) => {
+  return (Number(value) || 0).toFixed(1)
 }
 
 const toPercentValue = (value) => {

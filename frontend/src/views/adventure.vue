@@ -391,10 +391,12 @@ const aiQuestionWords = ref([])
 const showAIQuestionComplete = ref(false)
 const aiQuestionStats = ref({ total: 0, correct: 0, accuracy: 0 })
 const currentPositionType = ref('')
+const aiQuestionStartTime = ref(null)
 
 // 第五关：AI对话相关数据
 const showAIChatComplete = ref(false)
 const aiChatStats = ref({ messageCount: 0, userMessages: 0, aiMessages: 0 })
+const aiChatStartTime = ref(null)
 
 // AI题目预加载相关
 const showAILoadingModal = ref(false)
@@ -1041,6 +1043,7 @@ const startAIQuestionPractice = async () => {
     // 使用当前章节而不是cet4.position
     const activeChapter = currentChapterId.value
     currentPositionType.value = activeChapter
+    aiQuestionStartTime.value = new Date()
 
     // 优先使用预加载的题目
     if (isAIQuestionsPreloaded.value && preloadedAIQuestions.value) {
@@ -1056,9 +1059,8 @@ const startAIQuestionPractice = async () => {
     if (savedQuestions) {
       try {
         const parsed = JSON.parse(savedQuestions)
-        // 检查是否是当前章节的题目，且不超过1小时
-        if (parsed.chapter === activeChapter &&
-          (Date.now() - parsed.timestamp) < 3600000) {
+        // 检查是否是当前章节的题目
+        if (parsed.chapter === activeChapter) {
           preloadedAIQuestions.value = parsed.data
           isAIQuestionsPreloaded.value = true
           console.log('使用localStorage中的预加载题目')
@@ -1087,6 +1089,12 @@ const startAIQuestionPractice = async () => {
 
 const handleAIQuestionComplete = async (stats) => {
   aiQuestionStats.value = stats
+  await recordPracticeReport({
+    module: 'aiPractice',
+    startTime: aiQuestionStartTime.value,
+    wordsCount: stats?.total || aiQuestionAnswers.value.length,
+    accuracy: stats?.accuracy || 0
+  })
   showAIQuestionComplete.value = true
   await completeLevel('customsP')
 }
@@ -1144,6 +1152,7 @@ const handleQuestionsGenerated = (questionsData) => {
 const startAIChatPractice = () => {
   showAIChatComplete.value = false
   aiChatStats.value = { messageCount: 0, userMessages: 0, aiMessages: 0 }
+  aiChatStartTime.value = new Date()
   currentView.value = 'level-coverP'
 }
 
@@ -1151,8 +1160,20 @@ const handleAIChatComplete = async (stats) => {
   // 只有真正完成任务时才标记为完成
   if (stats.completed) {
     aiChatStats.value = stats
-    showAIChatComplete.value = true
-    await completeLevel('coverP')
+    const completedTasks = stats.completedTasks || stats.progress?.tasksCompleted || 0
+    const totalTasks = stats.totalTasks || stats.progress?.totalTasks || 0
+    await recordPracticeReport({
+      module: 'aiPractice',
+      startTime: aiChatStartTime.value,
+      wordsCount: completedTasks,
+      accuracy: totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 100
+    })
+    const saved = await completeLevel('coverP')
+    if (saved) {
+      showAIChatComplete.value = true
+    } else {
+      toast.error('闯关进度保存失败，请稍后重试')
+    }
   } else {
     // 如果没有完成，只是退出到地图
     aiChatStats.value = stats
@@ -1187,8 +1208,10 @@ const completeLevel = async (level) => {
     if (level === 'wordP') {
       showLevelComplete.value = true
     }
+    return true
   } catch (error) {
     console.error('更新关卡进度失败:', error)
+    return false
   }
 }
 
@@ -1282,9 +1305,8 @@ const checkPreloadedQuestions = () => {
     const savedQuestions = localStorage.getItem('preloadedAIQuestions')
     if (savedQuestions) {
       const parsed = JSON.parse(savedQuestions)
-      // 检查是否是当前章节的题目，且不超过1小时
-      if (parsed.chapter === currentChapterId.value &&
-        (Date.now() - parsed.timestamp) < 3600000) {
+      // 检查是否是当前章节的题目
+      if (parsed.chapter === currentChapterId.value) {
         preloadedAIQuestions.value = parsed.data
         isAIQuestionsPreloaded.value = true
         console.log('发现localStorage中的预加载题目')

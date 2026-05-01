@@ -58,6 +58,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getCheckInStatus } from '@/api/checkin'
 import { getReviewWords } from '@/api/word'
+import { getDailyStudyReport } from '@/api/report'
 
 const router = useRouter()
 
@@ -73,8 +74,13 @@ const reviewData = ref({
   pendingReviewCount: 0
 })
 
-const tasks = computed(() => [
-  {
+const hasReviewedToday = computed(() => (reviewData.value.todayReviewedCount || 0) > 0)
+
+const tasks = computed(() => {
+  const reviewDone = hasReviewedToday.value || (reviewData.value.pendingReviewCount || 0) === 0
+
+  return [
+    {
     key: 'checkin',
     index: '01',
     type: '习惯养成',
@@ -91,11 +97,13 @@ const tasks = computed(() => [
     index: '02',
     type: '记忆巩固',
     title: '单词复习',
-    desc: `当前有 ${reviewData.value.pendingReviewCount || 0} 个单词等待复习。`,
-    completed: (reviewData.value.pendingReviewCount || 0) === 0,
-    recommended: (reviewData.value.pendingReviewCount || 0) > 0,
+    desc: hasReviewedToday.value
+      ? `今天已复习 ${reviewData.value.todayReviewedCount || 0} 个单词，剩余待复习可明天继续推进。`
+      : `当前有 ${reviewData.value.pendingReviewCount || 0} 个单词等待复习。`,
+    completed: reviewDone,
+    recommended: !reviewDone && (reviewData.value.pendingReviewCount || 0) > 0,
     status: '建议完成',
-    cta: (reviewData.value.pendingReviewCount || 0) > 0 ? '开始复习' : '查看单词',
+    cta: reviewDone ? '查看单词' : '开始复习',
     action: goToWordReview
   },
   {
@@ -105,7 +113,7 @@ const tasks = computed(() => [
     title: '推进一个场景关卡',
     desc: '用酒店或餐厅场景串起词汇、听力和实战对话。',
     completed: false,
-    recommended: (reviewData.value.pendingReviewCount || 0) === 0,
+    recommended: reviewDone,
     status: '建议完成',
     cta: '去闯关',
     action: goToChapters
@@ -121,8 +129,9 @@ const tasks = computed(() => [
     status: '可选加练',
     cta: '开始对话',
     action: goToFreeChat
-  }
-])
+    }
+  ]
+})
 
 const completedTasks = computed(() => tasks.value.filter((task) => task.completed).length)
 const totalTasks = computed(() => tasks.value.length)
@@ -144,9 +153,15 @@ const fetchCheckInStatus = async () => {
 
 const fetchReviewData = async () => {
   try {
-    const res = await getReviewWords()
-    if (res.data?.code === 200) {
-      reviewData.value.pendingReviewCount = res.data.data.count || 0
+    const [reviewRes, reportRes] = await Promise.all([
+      getReviewWords(),
+      getDailyStudyReport()
+    ])
+    if (reviewRes.data?.code === 200) {
+      reviewData.value.pendingReviewCount = reviewRes.data.data.count || 0
+    }
+    if (reportRes.data?.code === 200) {
+      reviewData.value.todayReviewedCount = reportRes.data.data?.wordsLearned?.reviewWords || 0
     }
   } catch (error) {
     console.error('获取复习数据失败:', error)

@@ -115,6 +115,17 @@
       </div>
 
       <!-- 输入区域 -->
+      <div v-if="pendingCompletion" class="completion-banner">
+        <div class="completion-banner-copy">
+          <strong>实战任务已达标</strong>
+          <p>
+            已完成 {{ pendingCompletion.completedTasks }}/{{ pendingCompletion.totalTasks }} 个任务。
+            点击完成闯关后会保存第5关进度并解锁后续内容。
+          </p>
+        </div>
+        <button class="complete-run-btn" @click="confirmCompletion">完成闯关</button>
+      </div>
+
       <div class="chat-input">
         <div class="input-container">
           <div class="input-wrapper">
@@ -122,9 +133,9 @@
               📋
             </button>
             <input v-model="inputMessage" @keyup.enter="sendMessage"
-              :placeholder="useEnglish ? 'Type your message in English...' : '请用英文输入你的消息...'" :disabled="loading"
+              :placeholder="pendingCompletion ? '任务已达标，请点击完成闯关保存进度' : (useEnglish ? 'Type your message in English...' : '请用英文输入你的消息...')" :disabled="loading || pendingCompletion"
               class="message-input" />
-            <button class="send-btn" @click="sendMessage" :disabled="loading || !inputMessage.trim()">
+            <button class="send-btn" @click="sendMessage" :disabled="loading || pendingCompletion || !inputMessage.trim()">
               <span v-if="loading" class="loading-spinner">⏳</span>
               <span v-else class="send-icon">📤</span>
             </button>
@@ -253,6 +264,7 @@ const progress = ref({
 })
 const showTaskProgress = ref(false)
 const completionReport = ref(null)
+const pendingCompletion = ref(null)
 
 const showWordsSidebar = ref(false)
 const showTaskSidebar = ref(false)
@@ -415,7 +427,7 @@ const saveChatMessage = async (role, content) => {
 
 // 发送任务导向消息
 const sendMessage = async () => {
-  if (!inputMessage.value.trim() || loading.value || !sessionId.value) return
+  if (!inputMessage.value.trim() || loading.value || pendingCompletion.value || !sessionId.value) return
 
   const userMessage = inputMessage.value.trim()
 
@@ -537,14 +549,20 @@ const sendMessage = async () => {
               if (parsed.completed) {
                 console.log('🎉 任务真正完成!')
                 completionReport.value = parsed.report
-                // 触发真正的任务完成事件
-                emit('complete', {
-                  completedTasks: tasks.value.filter(t => t.completed).length,
-                  totalTasks: tasks.value.length,
-                  progress: progress.value,
-                  isRealCompletion: true, // 标记这是真正的任务完成
-                  report: parsed.report
-                })
+                if (parsed.progress) {
+                  progress.value = parsed.progress
+                }
+                pendingCompletion.value = {
+                  completed: true,
+                  completedTasks: parsed.progress?.tasksCompleted || progress.value.tasksCompleted,
+                  totalTasks: parsed.progress?.totalTasks || progress.value.totalTasks || tasks.value.length,
+                  progress: parsed.progress || progress.value,
+                  isRealCompletion: true,
+                  report: parsed.report,
+                  messageCount: messages.value.length,
+                  userMessages: messages.value.filter(msg => msg.role === 'user').length,
+                  aiMessages: messages.value.filter(msg => msg.role === 'assistant').length
+                }
                 showCompletionModal()
               }
             } catch (e) {
@@ -586,7 +604,19 @@ const sendMessage = async () => {
 // 显示完成模态框
 const showCompletionModal = () => {
   // 这里可以显示任务完成的模态框
-  toast.success(`恭喜完成任务！\n${completionReport.value.feedback}`)
+  const feedback = completionReport.value?.feedback || '点击“完成闯关”保存本关进度。'
+  toast.success(`恭喜完成任务！\n${feedback}`)
+}
+
+const confirmCompletion = () => {
+  if (!pendingCompletion.value) return
+
+  emit('complete', {
+    ...pendingCompletion.value,
+    messageCount: messages.value.length,
+    userMessages: messages.value.filter(msg => msg.role === 'user').length,
+    aiMessages: messages.value.filter(msg => msg.role === 'assistant').length
+  })
 }
 
 // 滚动到底部
@@ -622,6 +652,11 @@ const showPracticeWords = async () => {
 
 // 退出对话
 const exitChat = () => {
+  if (pendingCompletion.value) {
+    confirmCompletion()
+    return
+  }
+
   // 发送退出事件，而不是完成事件
   emit('exit', {
     messageCount: messages.value.length,
@@ -1059,6 +1094,56 @@ onMounted(() => {
 
 .typing-indicator span:nth-child(3) {
   animation-delay: 0.4s;
+}
+
+.completion-banner {
+  width: min(900px, calc(100% - 3rem));
+  margin: 0 auto 1rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  border-left: 5px solid #22c55e;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.completion-banner-copy {
+  min-width: 0;
+}
+
+.completion-banner-copy strong {
+  display: block;
+  color: #166534;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.completion-banner-copy p {
+  margin: 0;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.complete-run-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.25rem;
+  background: linear-gradient(135deg, #16a34a 0%, #0f766e 100%);
+  color: #ffffff;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.complete-run-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.32);
 }
 
 @keyframes typing {
@@ -1729,6 +1814,17 @@ onMounted(() => {
 
   .chat-input {
     padding: 1rem;
+  }
+
+  .completion-banner {
+    width: calc(100% - 2rem);
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0.75rem;
+  }
+
+  .complete-run-btn {
+    width: 100%;
   }
 
   .input-wrapper {

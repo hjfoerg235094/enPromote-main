@@ -333,7 +333,8 @@ router.post('/generate', async (req, res) => {
     const scenario = chapterConfig.name || '酒店场景';
 
     // 构建AI提示词
-    const prompt = LEVEL_4_PROMPT_TEMPLATE(chapter, scenario, validWordList);
+    let prompt = LEVEL_4_PROMPT_TEMPLATE(chapter, scenario, validWordList);
+    prompt += '\n\nIMPORTANT: Do not generate translation, writing, or listening_comprehension questions. Only generate multiple_choice, fill_in_blank, scenario_dialogue, cloze_test, and true_false.';
 
     logger.info(`生成第四关题目 - 用户: ${userid}, 章节: ${chapter}, 单词数: ${validWordList.length}, AI提供商: ${aiProvider}`);
 
@@ -420,6 +421,10 @@ router.post('/generate', async (req, res) => {
     }
 
     // 保存题目到数据库，带去重和回滚机制
+    delete generatedQuestions.translation;
+    delete generatedQuestions.writing;
+    delete generatedQuestions.listening_comprehension;
+
     const savedQuestions = [];
     const savedQuestionIds = [];
     let hasError = false;
@@ -481,8 +486,9 @@ router.post('/generate', async (req, res) => {
       if (generatedQuestions.fill_in_blank && Array.isArray(generatedQuestions.fill_in_blank)) {
         for (const fb of generatedQuestions.fill_in_blank) {
           for (const blank of fb.blanks) {
+            const questionText = `${fb.context}\n\n填空位置：${blank.position || blank.answer}`;
             // 检查题目是否重复
-            const isDuplicate = await isQuestionDuplicate(userid, chapter, level, fb.context);
+            const isDuplicate = await isQuestionDuplicate(userid, chapter, level, questionText);
             if (isDuplicate) {
               logger.warn(`跳过重复的填空题: ${fb.context.substring(0, 50)}...`);
               continue;
@@ -502,8 +508,8 @@ router.post('/generate', async (req, res) => {
               level: level,
               questionType: QUESTION_TYPES.FILL_IN_BLANK,
               difficulty: DIFFICULTY_LEVELS.MEDIUM,
-              question: fb.context,
-              questionHash: generateQuestionHash(fb.context),
+              question: questionText,
+              questionHash: generateQuestionHash(questionText),
               options: blank.options.map((opt, idx) => ({
                 key: String.fromCharCode(65 + idx),
                 content: opt
@@ -526,9 +532,10 @@ router.post('/generate', async (req, res) => {
       // 保存情景对话题到数据库
       if (generatedQuestions.scenario_dialogue) {
         const sd = generatedQuestions.scenario_dialogue;
+        const questionText = `${sd.dialogue}\n\n问题：${sd.question}`;
         
         // 检查题目是否重复
-        const isDuplicate = await isQuestionDuplicate(userid, chapter, level, sd.dialogue);
+        const isDuplicate = await isQuestionDuplicate(userid, chapter, level, questionText);
         if (!isDuplicate) {
           // 构建relatedWords，包含wordId
           const relatedWords = (sd.relatedWords || []).map(w => {
@@ -554,8 +561,8 @@ router.post('/generate', async (req, res) => {
             level: level,
             questionType: QUESTION_TYPES.SCENARIO,
             difficulty: DIFFICULTY_LEVELS.MEDIUM,
-            question: sd.dialogue,
-            questionHash: generateQuestionHash(sd.dialogue),
+            question: questionText,
+            questionHash: generateQuestionHash(questionText),
             options: sd.options,
             correctAnswer: validatedCorrectAnswer,
             explanation: sd.explanation,
@@ -647,14 +654,15 @@ router.post('/generate', async (req, res) => {
           });
 
           for (const blank of ct.blanks) {
+            const questionText = `${ct.content}\n\n填空位置：${blank.position || blank.answer}`;
             const question = new Question({
               userId: userid,
               chapter: chapter,
               level: level,
               questionType: QUESTION_TYPES.CLOZE_TEST,
               difficulty: DIFFICULTY_LEVELS.MEDIUM,
-              question: ct.content,
-              questionHash: generateQuestionHash(ct.content),
+              question: questionText,
+              questionHash: generateQuestionHash(questionText),
               options: blank.options.map((opt, idx) => ({
                 key: String.fromCharCode(65 + idx),
                 content: opt

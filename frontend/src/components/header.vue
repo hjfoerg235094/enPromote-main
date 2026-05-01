@@ -4,7 +4,7 @@
       <span class="brand-mark">E</span>
       <span class="brand-copy">
         <strong>EnglishMastery</strong>
-        <small>轻闯关英语训练</small>
+        <!-- <small>轻闯关英语训练</small> -->
       </span>
     </router-link>
 

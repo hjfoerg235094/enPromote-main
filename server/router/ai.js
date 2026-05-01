@@ -596,6 +596,7 @@ router.post('/startTaskChat', async (req, res) => {
         const sessionId = `${userid}_${Date.now()}`;
         const sceneConfig = aiChatPrompts[scene];
         
+        const minTasksCompleted = Math.max(1, Math.floor(sceneConfig.tasks.length * 0.6));
         const newSession = new AiChatSession({
             userid: userid,
             scene: scene,
@@ -605,7 +606,10 @@ router.post('/startTaskChat', async (req, res) => {
                 ...task,
                 usedWords: []
             })),
-            completionCriteria: sceneConfig.completionCriteria,
+            completionCriteria: {
+                ...sceneConfig.completionCriteria,
+                minTasksCompleted
+            },
             progress: {
                 totalTasks: sceneConfig.tasks.length,
                 totalWords: sceneConfig.tasks.reduce((sum, task) => sum + task.requiredWords.length, 0)

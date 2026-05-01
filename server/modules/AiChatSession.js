@@ -116,12 +116,11 @@ aiChatSessionSchema.index({ userid: 1, status: 1 });
 
 // 实例方法：检查是否完成
 aiChatSessionSchema.methods.checkCompletion = function() {
-    const criteria = this.completionCriteria;
     const progress = this.progress;
-    
-    return progress.tasksCompleted >= criteria.minTasksCompleted &&
-           progress.wordsUsed >= criteria.minWordsUsed &&
-           progress.turnCount >= criteria.minTurns;
+    const totalTasks = progress.totalTasks || this.tasks.length || 0;
+    const minTasksCompleted = Math.max(1, Math.floor(totalTasks * 0.6));
+
+    return progress.tasksCompleted >= minTasksCompleted;
 };
 
 // 实例方法：更新进度

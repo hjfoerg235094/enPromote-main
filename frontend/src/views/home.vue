@@ -111,11 +111,14 @@ import { computed, onMounted, ref } from 'vue'
 import { getUserInfo, username as storeUsername } from '@/stores/userStore'
 import { getCheckInStatus } from '@/api/checkin'
 import { getReviewWords } from '@/api/word'
+import { getDailyStudyReport } from '@/api/report'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const checkInData = ref(null)
 const reviewData = ref(null)
+
+const hasReviewedToday = computed(() => (reviewData.value?.todayReviewedCount || 0) > 0)
 
 const missions = computed(() => [
   {
@@ -130,8 +133,10 @@ const missions = computed(() => [
     key: 'review',
     icon: 'Aa',
     title: '单词复习',
-    desc: `${reviewData.value?.pendingReviewCount ?? 0} 个单词等待巩固`,
-    done: (reviewData.value?.pendingReviewCount ?? 0) === 0,
+    desc: hasReviewedToday.value
+      ? `今天已复习 ${reviewData.value?.todayReviewedCount || 0} 个单词`
+      : `${reviewData.value?.pendingReviewCount ?? 0} 个单词等待巩固`,
+    done: hasReviewedToday.value || (reviewData.value?.pendingReviewCount ?? 0) === 0,
     action: goToWordReview
   },
   {
@@ -157,7 +162,7 @@ const missionProgress = computed(() => Math.round((completedMissionCount.value /
 
 const personalizedGuide = computed(() => {
   if (!storeUsername.value) return '注册后即可生成你的每日学习路线'
-  if (reviewData.value?.pendingReviewCount > 0) return `先复习 ${Math.min(reviewData.value.pendingReviewCount, 20)} 个单词，再推进一关`
+  if (!hasReviewedToday.value && reviewData.value?.pendingReviewCount > 0) return `先复习 ${Math.min(reviewData.value.pendingReviewCount, 20)} 个单词，再推进一关`
   if (!checkInData.value?.hasCheckedInToday) return '先签到，再完成一轮闯关和 AI 口语'
   return '今天适合直接推进一关，再用 AI 做口语巩固'
 })
@@ -208,11 +213,16 @@ const fetchCheckInStatus = async () => {
 
 const fetchReviewData = async () => {
   try {
-    const res = await getReviewWords()
-    if (res.data?.code === 200) {
+    const [reviewRes, reportRes] = await Promise.all([
+      getReviewWords(),
+      getDailyStudyReport()
+    ])
+    if (reviewRes.data?.code === 200) {
       reviewData.value = {
-        pendingReviewCount: res.data.data.count || 0,
-        todayReviewedCount: 0
+        pendingReviewCount: reviewRes.data.data.count || 0,
+        todayReviewedCount: reportRes.data?.code === 200
+          ? reportRes.data.data?.wordsLearned?.reviewWords || 0
+          : 0
       }
     }
   } catch (error) {

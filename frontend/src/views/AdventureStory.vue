@@ -4,7 +4,7 @@
       <div>
         <span class="learn-kicker">闯关学习</span>
         <h1>一条主线，两种训练节奏</h1>
-        <!-- <p>主线闯关负责稳定推进能力，角色剧情负责把英语放进更沉浸的任务里。建议先完成闯关，再进入剧情应用。</p> -->
+        <p>无论是稳扎稳打还是高效突击，总有一种节奏适合你。</p>
       </div>
       <div class="progress-summary learn-card">
         <span>当前进度</span>
@@ -73,6 +73,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { getUserInfo } from '@/api/auth'
 
 const router = useRouter()
 
@@ -82,6 +83,7 @@ const completedTasks = ref(0)
 const totalTasks = ref(25)
 const totalStudyTime = ref(0)
 const currentChapter = ref(null)
+const levelKeys = ['wordP', 'spellP', 'listenP', 'customsP', 'coverP']
 
 const chapterProgress = computed(() => {
   if (!currentChapter.value?.tasks) return 0
@@ -96,11 +98,9 @@ const chapterProgressText = computed(() => {
 })
 
 const formatTime = (minutes) => {
-  if (!minutes) return '0 分钟'
-  if (minutes < 60) return `${minutes} 分钟`
-  const hours = Math.floor(minutes / 60)
-  const mins = minutes % 60
-  return mins > 0 ? `${hours} 小时 ${mins} 分钟` : `${hours} 小时`
+  const value = Number(minutes) || 0
+  if (value < 60) return `${value.toFixed(2)} 分钟`
+  return `${(value / 60).toFixed(2)} 小时`
 }
 
 const goToStoryMode = () => router.push('/story')
@@ -114,13 +114,29 @@ const continueChapter = () => {
 
 const fetchProgressData = async () => {
   try {
-    const progressRes = await axios.get('/api/user/progress')
+    const [progressRes, userInfoRes] = await Promise.all([
+      axios.get('/api/user/progress'),
+      getUserInfo()
+    ])
+
     if (progressRes.data?.code === 200) {
       const data = progressRes.data.data
-      completedChapters.value = data.completedChapters || 0
-      completedTasks.value = data.completedTasks || 0
       totalStudyTime.value = data.totalStudyTime || 0
       currentChapter.value = data.currentChapter || null
+    }
+
+    if (userInfoRes.data?.code === 200) {
+      const chapters = userInfoRes.data.chapters || {}
+      const chapterList = Object.values(chapters)
+
+      totalChapters.value = chapterList.length || totalChapters.value
+      totalTasks.value = chapterList.length ? chapterList.length * levelKeys.length : totalTasks.value
+      completedTasks.value = chapterList.reduce((sum, chapter) => {
+        return sum + levelKeys.filter((key) => Boolean(chapter?.[key])).length
+      }, 0)
+      completedChapters.value = chapterList.filter((chapter) => {
+        return levelKeys.every((key) => Boolean(chapter?.[key]))
+      }).length
     }
   } catch (error) {
     console.error('获取闯关进度失败:', error)

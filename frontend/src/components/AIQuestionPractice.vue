@@ -7,7 +7,7 @@
         <div class="progress-bar">
           <div class="progress-fill" :style="{ width: progressPercentage + '%' }"></div>
         </div>
-        <span class="progress-count">{{ currentQuestionIndex + 1 }} / {{ questions.length }}</span>
+        <span class="progress-count">{{ completedQuestionCount }} / {{ questions.length }}</span>
       </div>
     </div>
 
@@ -45,12 +45,17 @@
       <div class="question-section">
         <div class="question-header">
           <div class="ai-badge">🤖 AI生成</div>
-          <div class="question-type">填空题</div>
+          <div class="question-type">{{ questionTypeText }}</div>
         </div>
 
-        <div class="question-content">
-          <h3 class="question-title">{{ currentQuestion.sentence }}</h3>
-          <p class="question-instruction">请选择正确的单词填入空白处</p>
+        <div class="question-content" :class="questionContentClass">
+          <div v-if="currentQuestion.passage" class="passage-block">
+            <div class="passage-label">{{ passageLabel }}</div>
+            <div class="question-passage">{{ currentQuestion.passage }}</div>
+          </div>
+          <h3 class="question-title">{{ questionPrompt }}</h3>
+          <p v-if="blankLabelText" class="blank-label">{{ blankLabelText }}</p>
+          <p class="question-instruction">{{ questionInstruction }}</p>
         </div>
       </div>
 
@@ -59,8 +64,8 @@
         <div class="options-grid">
           <button v-for="(option, index) in currentQuestion.options" :key="index" class="option-btn" :class="{
             'selected': selectedOption === index,
-            'correct': showResult && getOptionKey(option, index) === currentQuestion.correctAnswer,
-            'incorrect': showResult && selectedOption === index && getOptionKey(option, index) !== currentQuestion.correctAnswer
+            'correct': showResult && isOptionCorrect(option, index),
+            'incorrect': showResult && selectedOption === index && !isOptionCorrect(option, index)
           }" @click="selectOption(index)" :disabled="showResult">
             <span class="option-label">{{ getOptionKey(option, index) }}.</span>
             <span class="option-text">{{ getOptionContent(option) }}</span>
@@ -164,6 +169,7 @@ const showResult = ref(false)
 const isCorrect = ref(false)
 const correctCount = ref(0)
 const showComplete = ref(false)
+const errorMessage = ref('')
 
 // 计算属性
 const currentQuestion = computed(() => {
@@ -175,12 +181,60 @@ const currentQuestion = computed(() => {
 
 const progressPercentage = computed(() => {
   if (questions.value.length === 0) return 0
-  return (currentQuestionIndex.value / questions.value.length) * 100
+  return (completedQuestionCount.value / questions.value.length) * 100
+})
+
+const completedQuestionCount = computed(() => {
+  if (questions.value.length === 0) return 0
+  if (showComplete.value) return questions.value.length
+  return currentQuestionIndex.value + (showResult.value ? 1 : 0)
 })
 
 const canSubmit = computed(() => {
   if (!currentQuestion.value) return false
   return selectedOption.value !== null
+})
+
+const currentQuestionType = computed(() => currentQuestion.value?.type || 'multiple_choice')
+
+const questionTypeText = computed(() => getQuestionTypeText(currentQuestionType.value))
+
+const questionContentClass = computed(() => ({
+  'is-fill-blank': currentQuestionType.value === 'fill_in_blank',
+  'is-cloze-test': currentQuestionType.value === 'cloze_test'
+}))
+
+const passageLabel = computed(() => {
+  if (currentQuestionType.value === 'cloze_test') return '完形短文'
+  if (currentQuestionType.value === 'fill_in_blank') return '语境材料'
+  if (currentQuestionType.value === 'scenario') return '情景对话'
+  return '题目材料'
+})
+
+const questionPrompt = computed(() => {
+  if (!currentQuestion.value) return ''
+  if (currentQuestionType.value === 'cloze_test') return '阅读完整短文，选择最适合当前空格的词'
+  if (currentQuestionType.value === 'fill_in_blank') return '根据语境选择正确单词补全句子'
+  return currentQuestion.value.prompt || currentQuestion.value.sentence
+})
+
+const blankLabelText = computed(() => {
+  if (!currentQuestion.value?.blankLabel) return ''
+  if (currentQuestionType.value === 'cloze_test') {
+    return currentQuestion.value.blankLabel.replace(/^填空位置：/, '当前空格：')
+  }
+  return currentQuestion.value.blankLabel
+})
+
+const questionInstruction = computed(() => {
+  const instructionMap = {
+    'multiple_choice': '请选择正确答案',
+    'fill_in_blank': '请选择正确的单词填入空白处',
+    'cloze_test': '请选择最适合填入空白处的单词',
+    'true_false': '请选择判断结果',
+    'scenario': '请根据情景对话选择正确答案',
+  }
+  return instructionMap[currentQuestionType.value] || '请选择正确答案'
 })
 
 // 监听props变化
@@ -195,6 +249,153 @@ watch(() => [props.positionType, props.usePreloaded, props.preloadedQuestions], 
 })
 
 // 方法
+const SUPPORTED_QUESTION_TYPES = new Set([
+  'multiple_choice',
+  'fill_in_blank',
+  'scenario',
+  'cloze_test',
+  'true_false'
+])
+
+const normalizeQuestionType = (type) => {
+  if (type === 'scenario_dialogue') return 'scenario'
+  return type || 'multiple_choice'
+}
+
+const toOptionObjects = (options = []) => {
+  return options.map((option, index) => {
+    if (typeof option === 'object' && option !== null) {
+      return {
+        key: option.key || String.fromCharCode(65 + index),
+        content: option.content ?? option.label ?? option.value ?? ''
+      }
+    }
+    return {
+      key: String.fromCharCode(65 + index),
+      content: option
+    }
+  })
+}
+
+const splitQuestionText = (text = '') => {
+  const blankMarker = '\n\n填空位置：'
+  const blankIndex = text.indexOf(blankMarker)
+  if (blankIndex !== -1) {
+    return {
+      passage: text.slice(0, blankIndex).trim(),
+      prompt: '请选择正确答案完成当前空格',
+      blankLabel: `填空位置：${text.slice(blankIndex + blankMarker.length).trim()}`
+    }
+  }
+
+  const markers = ['\n\n问题：', '\n\nQuestion:', '\n\n题目：']
+  for (const marker of markers) {
+    const index = text.indexOf(marker)
+    if (index !== -1) {
+      return {
+        passage: text.slice(0, index).trim(),
+        prompt: text.slice(index + marker.length).trim()
+      }
+    }
+  }
+  return {
+    passage: '',
+    prompt: text,
+    blankLabel: ''
+  }
+}
+
+const normalizeQuestion = (question) => {
+  const type = normalizeQuestionType(question.type || question.questionType)
+  if (!SUPPORTED_QUESTION_TYPES.has(type)) return null
+  const sourceText = question.question || question.sentence || question.context || question.statement || ''
+  const splitText = splitQuestionText(sourceText)
+
+  return {
+    id: question.id || question._id,
+    type,
+    passage: question.passage || question.dialogue || splitText.passage,
+    prompt: question.prompt || splitText.prompt,
+    sentence: sourceText,
+    blankLabel: question.blankLabel || question.position || splitText.blankLabel || '',
+    correctAnswer: question.correctAnswer || question.correct_answer || question.answer,
+    explanation: question.explanation || question.tips || '',
+    options: toOptionObjects(question.options || [])
+  }
+}
+
+const normalizeQuestions = (items = []) => {
+  return items.map(normalizeQuestion).filter(Boolean)
+}
+
+const normalizeRawGeneratedQuestions = (data) => {
+  const result = []
+
+  if (Array.isArray(data.multiple_choice)) {
+    result.push(...data.multiple_choice.map(q => normalizeQuestion({
+      ...q,
+      type: 'multiple_choice'
+    })))
+  }
+
+  if (Array.isArray(data.fill_in_blank)) {
+    data.fill_in_blank.forEach(item => {
+      ;(item.blanks || []).forEach(blank => {
+        result.push(normalizeQuestion({
+          type: 'fill_in_blank',
+          question: item.context,
+          blankLabel: `填空位置：${blank.position || blank.answer}`,
+          options: blank.options || [],
+          correctAnswer: blank.answer,
+          explanation: blank.explanation
+        }))
+      })
+    })
+  }
+
+  if (data.scenario_dialogue) {
+    const scenario = data.scenario_dialogue
+    result.push(normalizeQuestion({
+      type: 'scenario',
+      question: scenario.question,
+      passage: scenario.dialogue,
+      options: scenario.options || [],
+      correctAnswer: scenario.correctAnswer,
+      explanation: scenario.explanation
+    }))
+  }
+
+  if (Array.isArray(data.cloze_test)) {
+    data.cloze_test.forEach(item => {
+      ;(item.blanks || []).forEach(blank => {
+        result.push(normalizeQuestion({
+          type: 'cloze_test',
+          question: item.content,
+          blankLabel: `第 ${blank.position || ''} 空`,
+          options: blank.options || [],
+          correctAnswer: blank.answer,
+          explanation: blank.explanation
+        }))
+      })
+    })
+  }
+
+  if (Array.isArray(data.true_false)) {
+    result.push(...data.true_false.map(q => normalizeQuestion({
+      type: 'true_false',
+      question: q.statement,
+      options: [
+        { key: 'A', content: '正确' },
+        { key: 'B', content: '错误' }
+      ],
+      correctAnswer: String(q.correctAnswer).toLowerCase() === 'true' ? 'A' : 'B',
+      explanation: q.explanation
+    })))
+  }
+
+  return result.filter(Boolean)
+}
+
 const generateQuestions = async () => {
   // 优先使用预加载的题目
   if (props.usePreloaded && props.preloadedQuestions) {
@@ -230,33 +431,7 @@ const generateQuestions = async () => {
       const allQuestions = data.data.questions || []
       
       // 将所有题目转换为统一格式
-      questions.value = allQuestions.map(q => {
-        // 填空题
-        if (q.type === 'fill_in_blank' || q.questionType === 'fill_in_blank') {
-          return {
-            sentence: q.question,
-            correctAnswer: q.correctAnswer,
-            explanation: q.explanation || '',
-            options: q.options || []
-          }
-        }
-        // 选择题
-        if (q.type === 'multiple_choice' || q.questionType === 'multiple_choice') {
-          return {
-            sentence: q.question,
-            correctAnswer: q.correctAnswer,
-            explanation: q.explanation || '',
-            options: q.options || []
-          }
-        }
-        // 其他题型
-        return {
-          sentence: q.question,
-          correctAnswer: q.correctAnswer,
-          explanation: q.explanation || '',
-          options: q.options || []
-        }
-      })
+      questions.value = normalizeQuestions(allQuestions)
       
       console.log('✅ 实时生成题目成功,题目数量:', questions.value.length)
       
@@ -300,30 +475,24 @@ const loadPreloadedQuestions = () => {
     
     // 支持多种题目类型：填空题、理解题和通用题目
     if (data.questions && data.questions.length > 0) {
-      questions.value = data.questions.map(q => ({
-        sentence: q.question || q.sentence,
-        correctAnswer: q.correctAnswer || q.correct_answer || q.answer,
-        explanation: q.explanation || '',
-        options: q.options || []
-      }))
+      questions.value = normalizeQuestions(data.questions)
       console.log('✅ 加载通用题目类型')
     } else if (data.fill_in_the_blanks && data.fill_in_the_blanks.length > 0) {
-      questions.value = data.fill_in_the_blanks.map(q => ({
+      questions.value = normalizeQuestions(data.fill_in_the_blanks.map(q => ({
         ...q,
-        sentence: q.sentence,
-        correctAnswer: q.correct_answer || q.correctAnswer || q.answer,
-        explanation: q.explanation || ''
-      }))
+        type: 'fill_in_blank',
+        question: q.question || q.sentence
+      })))
       console.log('✅ 加载填空题类型')
     } else if (data.comprehension_questions && data.comprehension_questions.length > 0) {
       // 将理解题转换为填空题格式
-      questions.value = data.comprehension_questions.map(q => ({
-        sentence: q.question,
-        correctAnswer: q.correct_answer || q.correctAnswer,
-        explanation: q.explanation || '',
-        options: q.options
-      }))
-      console.log('✅ 加载理解题类型并转换格式')
+      questions.value = normalizeQuestions(data.comprehension_questions.map(q => ({
+        ...q,
+        type: 'multiple_choice'
+      })))
+    } else if (data.multiple_choice || data.fill_in_blank || data.scenario_dialogue || data.cloze_test || data.true_false) {
+      questions.value = normalizeRawGeneratedQuestions(data)
+      console.log('✅ 加载AI原始题目结构')
     } else {
       questions.value = []
       console.warn('⚠️ 未找到有效的题目数据')
@@ -369,16 +538,7 @@ const submitAnswer = () => {
   const selectedOptionContent = getOptionContent(optionObj)
   const correctAnswer = currentQuestion.value.correctAnswer
 
-  // 判断答案是否正确
-  // 如果correctAnswer是单个字母（A/B/C/D），则比较字母
-  // 如果correctAnswer是完整单词，则比较选项内容
-  if (/^[A-D]$/.test(correctAnswer)) {
-    // 理解题：比较字母
-    isCorrect.value = selectedOptionKey === correctAnswer
-  } else {
-    // 填空题：比较选项内容
-    isCorrect.value = selectedOptionContent.toLowerCase().trim() === correctAnswer.toLowerCase().trim()
-  }
+  isCorrect.value = isOptionCorrect(optionObj, selectedOption.value)
 
   showResult.value = true
 
@@ -436,11 +596,28 @@ const getOptionContent = (option) => {
   return option
 }
 
+const normalizeAnswerText = (value) => {
+  return String(value ?? '').toLowerCase().trim()
+}
+
+const isOptionCorrect = (option, index) => {
+  const correctAnswer = currentQuestion.value?.correctAnswer
+  const optionKey = getOptionKey(option, index)
+  const optionContent = getOptionContent(option)
+
+  if (/^[A-D]$/.test(String(correctAnswer || ''))) {
+    return optionKey === correctAnswer
+  }
+  return normalizeAnswerText(optionContent) === normalizeAnswerText(correctAnswer)
+}
+
 const getQuestionTypeText = (type) => {
   const typeMap = {
     'multiple_choice': '选择题',
-    'fill_blank': '填空题',
-    'true_false': '判断题'
+    'fill_in_blank': '填空题',
+    'cloze_test': '完形填空',
+    'true_false': '判断题',
+    'scenario': '情景对话题',
   }
   return typeMap[type] || '题目'
 }
@@ -634,11 +811,54 @@ onMounted(() => {
   padding: 1.5rem;
 }
 
+.question-content.is-cloze-test {
+  background: #f7fbf7;
+  border-left: 4px solid #2f855a;
+}
+
+.question-content.is-fill-blank {
+  background: #f8f9ff;
+  border-left: 4px solid #667eea;
+}
+
+.passage-block {
+  margin-bottom: 1rem;
+}
+
+.passage-label {
+  color: #667eea;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.is-cloze-test .passage-label {
+  color: #2f855a;
+}
+
+.question-passage {
+  color: #444;
+  line-height: 1.7;
+  white-space: pre-line;
+  margin-bottom: 1rem;
+}
+
 .question-title {
   font-size: 1.3rem;
   color: #333;
   margin-bottom: 0.5rem;
   line-height: 1.6;
+}
+
+.blank-label {
+  display: inline-block;
+  background: #eef2ff;
+  color: #4f46e5;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  font-weight: 600;
 }
 
 .question-instruction {
