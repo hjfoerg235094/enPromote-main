@@ -14,11 +14,19 @@ const router = createRouter({
             component: () => import('../views/register.vue'),
         },
 
-        // 首页
+        // 未登录品牌首页
+        {
+            path: '/@branding',
+            name: 'Branding',
+            component: () => import('../views/MarketingLanding.vue'),
+        },
+
+        // 登录后首页
         {
             path: '/',
             name: 'Home',
             component: () => import('../views/home.vue'),
+            meta: { requiresAuth: true }
         },
 
         // 三大核心学习路径
@@ -195,6 +203,19 @@ const router = createRouter({
 
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
+    if (to.path === '/@branding') {
+        const { isLoggedIn, getUserInfo } = await import('@/stores/userStore');
+        if (!isLoggedIn.value) {
+            await getUserInfo();
+        }
+        if (isLoggedIn.value) {
+            next('/');
+            return;
+        }
+        next();
+        return;
+    }
+
     // 如果路由需要认证
     if (to.meta.requiresAuth) {
         // 检查是否在登录/注册页面
@@ -211,12 +232,12 @@ router.beforeEach(async (to, from, next) => {
                 await getUserInfo();
                 // 如果获取后仍未登录，重定向到登录页
                 if (!isLoggedIn.value) {
-                    next('/login');
+                    next(to.path === '/' ? '/@branding' : '/login');
                     return;
                 }
             } catch (error) {
                 console.error('获取用户信息失败:', error);
-                next('/login');
+                next(to.path === '/' ? '/@branding' : '/login');
                 return;
             }
         }

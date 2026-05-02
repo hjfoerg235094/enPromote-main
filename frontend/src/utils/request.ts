@@ -27,6 +27,11 @@ request.interceptors.response.use((response: AxiosResponse) => {
 
     // 检查error.response是否存在，避免访问undefined的属性
     if (error.response && error.response.status === 401) {
+        const requestUrl = error.config?.url || '';
+        if (requestUrl.includes('/auth/info')) {
+            return Promise.reject(error);
+        }
+
         // 防止重复跳转到登录页面
         const currentPath = window.location.pathname;
         if (currentPath !== '/login' && currentPath !== '/register') {
