@@ -1,7 +1,7 @@
 <template>
   <header class="app-header">
     <router-link to="/" class="brand" aria-label="EnglishMastery 首页">
-      <span class="brand-mark">E</span>
+      <!-- <span class="brand-mark">E</span> -->
       <span class="brand-copy">
         <strong>EnglishMastery</strong>
         <!-- <small>轻闯关英语训练</small> -->

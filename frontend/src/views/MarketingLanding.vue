@@ -1,23 +1,5 @@
 <template>
   <main class="branding-page">
-    <!-- <nav class="brand-nav" aria-label="EnglishMastery navigation">
-      <button class="brand-mark" type="button" @click="scrollToTop">
-        <span>LQ</span>
-        <strong>EnglishMastery</strong>
-      </button>
-
-      <div class="nav-links">
-        <a href="#route">闯关学习</a>
-        <a href="#coach">口语教练</a>
-        <a href="#social">好友同行</a>
-      </div>
-
-      <div class="nav-actions">
-        <button class="nav-login" type="button" @click="goLogin">登录</button>
-        <button class="nav-register" type="button" @click="goRegister">注册开始</button>
-      </div>
-    </nav> -->
-
     <section class="hero-section">
       <div class="hero-copy">
         <span class="section-kicker">AI 场景化英语学习平台</span>
@@ -42,7 +24,16 @@
           </div>
         </div>
 
-        <img class="abc-image" :src="abcImage" alt="ABC 英语学习视觉" />
+        <div class="scene-card" aria-label="酒店场景闯关路径">
+          <div class="scene-card-top">
+            <span>Hotel Quest</span>
+            <strong>入住酒店</strong>
+          </div>
+          <div class="scene-path">
+            <span v-for="stage in sceneStages" :key="stage" class="scene-stage">{{ stage }}</span>
+          </div>
+          <p>从 reservation 到 check in，把单词、听力和表达串进同一个任务。</p>
+        </div>
 
         <div class="board-card score-card">
           <span>Oral Coach</span>
@@ -80,8 +71,8 @@
         <span class="section-kicker">AI Practice Lab</span>
         <h2>题目会根据当前章节生成，对话会带着任务推进。</h2>
         <p>
-          平台源码中提供个性化题目生成与任务式场景对话：系统按当前词汇生成选择、填空、完型等练习，
-          再把关键表达放进 AI 对话任务里检验。
+          系统会根据当前章节词汇生成选择、填空、完型等练习，再把关键表达放进 AI 场景任务里检验。
+          学完一组词，就能马上知道自己能不能用出来。
         </p>
         <div class="prompt-window">
           <div class="prompt-row">
@@ -126,15 +117,16 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import abcImage from '@/assets/images/ABC_pic.png'
 
 const router = useRouter()
 
 const metrics = [
-  { value: '5', label: '步场景闯关闭环' },
+  { value: '5关', label: '从认词到实战对话' },
   { value: 'AI', label: '个性化题目与任务对话' },
-  { value: '3', label: '口语、复盘、好友长期陪跑' }
+  { value: '报告', label: '复盘薄弱点与学习趋势' }
 ]
+
+const sceneStages = ['词汇', '拼写', '听力', 'AI 题目', '实战对话']
 
 const questSteps = [
   { index: '01', title: '词汇学习', desc: '围绕场景认识核心词，先知道要用什么表达。', tone: 'mint' },
@@ -146,7 +138,6 @@ const questSteps = [
 
 const goLogin = () => router.push('/login')
 const goRegister = () => router.push('/register')
-const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 </script>
 
 <style scoped>
@@ -156,71 +147,10 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
   padding: 18px 0 72px;
 }
 
-.brand-nav {
-  position: sticky;
-  top: 12px;
-  z-index: 5;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 24px;
-  min-height: 66px;
-  padding: 10px 12px;
-  border: 1px solid rgba(36, 49, 47, 0.1);
-  border-radius: 18px;
-  background: rgba(255, 253, 247, 0.86);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 16px 42px rgba(50, 59, 52, 0.1);
-}
-
-.brand-mark,
-.nav-login,
-.nav-register,
 .brand-button {
   cursor: pointer;
 }
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 6px;
-  background: transparent;
-  color: var(--learn-ink);
-  font-weight: 900;
-}
-
-.brand-mark span {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: #24312f;
-  color: #fffdf7;
-  font-size: 14px;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: center;
-  gap: clamp(12px, 3vw, 34px);
-  color: #485752;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.nav-links a {
-  text-decoration: none;
-}
-
-.nav-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.nav-login,
-.nav-register,
 .brand-button {
   min-height: 42px;
   border-radius: 999px;
@@ -228,13 +158,6 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
-.nav-login {
-  padding: 0 14px;
-  background: transparent;
-  color: var(--learn-ink);
-}
-
-.nav-register,
 .brand-button.primary {
   padding: 0 20px;
   background: #ffd400;
@@ -242,7 +165,6 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
   box-shadow: 0 14px 24px rgba(214, 159, 0, 0.2);
 }
 
-.nav-register:hover,
 .brand-button:hover {
   transform: translateY(-2px);
 }
@@ -397,13 +319,60 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
   color: var(--learn-ink);
 }
 
-.abc-image {
+.scene-card {
   position: absolute;
   top: 190px;
   left: 0;
   width: min(76%, 430px);
+  min-height: 250px;
+  padding: 22px;
+  border: 1px solid rgba(36, 49, 47, 0.12);
   border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(255, 242, 0, 0.72), rgba(189, 232, 247, 0.82)),
+    #fffdf7;
   box-shadow: 0 26px 58px rgba(50, 59, 52, 0.16);
+}
+
+.scene-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(36, 49, 47, 0.62);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.scene-card-top strong {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.74);
+  color: var(--learn-ink);
+}
+
+.scene-path {
+  display: grid;
+  gap: 9px;
+  margin: 28px 0 20px;
+}
+
+.scene-stage {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background: rgba(255, 253, 247, 0.78);
+  color: var(--learn-ink);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.scene-card p {
+  margin: 0;
+  color: #4c5b56;
+  font-weight: 800;
 }
 
 .score-card {
@@ -641,19 +610,6 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
     padding-top: 10px;
   }
 
-  .brand-nav {
-    position: static;
-    grid-template-columns: 1fr auto;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .brand-mark strong {
-    display: none;
-  }
-
   .hero-section {
     padding-top: 34px;
   }
@@ -671,7 +627,7 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
     right: auto;
   }
 
-  .abc-image {
+  .scene-card {
     top: 226px;
     width: 100%;
   }
@@ -696,15 +652,6 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 @media (max-width: 460px) {
-  .nav-actions {
-    gap: 4px;
-  }
-
-  .nav-login {
-    padding: 0 8px;
-  }
-
-  .nav-register,
   .brand-button.primary {
     padding: 0 14px;
   }
