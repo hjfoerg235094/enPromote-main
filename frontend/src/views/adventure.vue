@@ -411,7 +411,7 @@ const currentVocabularyWord = computed(() => {
 
 const vocabularyProgress = computed(() => {
   if (vocabularyWords.value.length === 0) return 0
-  return (currentWordIndex.value / vocabularyWords.value.length) * 100
+  return Math.min(100, ((currentWordIndex.value + 1) / vocabularyWords.value.length) * 100)
 })
 
 // 答题记录统计

@@ -107,7 +107,7 @@ const audioEnd = ref(false)
 // 计算属性
 const progressPercentage = computed(() => {
   if (props.words.length === 0) return 0
-  return (currentIndex.value / props.words.length) * 100
+  return Math.min(100, ((currentIndex.value + 1) / props.words.length) * 100)
 })
 
 const currentWord = computed(() => {

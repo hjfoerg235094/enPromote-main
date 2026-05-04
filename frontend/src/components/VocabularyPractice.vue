@@ -78,7 +78,7 @@ const showMeaning = ref(false)
 
 const progressPercentage = computed(() => {
   if (props.words.length === 0) return 0
-  return (currentWordIndex.value / props.words.length) * 100
+  return Math.min(100, ((currentWordIndex.value + 1) / props.words.length) * 100)
 })
 
 const currentWord = computed(() => {
