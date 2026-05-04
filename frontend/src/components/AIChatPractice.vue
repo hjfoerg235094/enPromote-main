@@ -104,7 +104,7 @@
               {{ message.role === 'user' ? '👤' : '👨‍🏫' }}
             </div>
             <div class="message-content">
-              <div class="message-text">{{ message.content }}</div>
+              <div class="message-text" v-html="renderMessageContent(message.content)"></div>
               <div class="message-time">{{ formatTime(message.timestamp) }}</div>
               <div v-if="message.streaming" class="typing-indicator">
                 <span></span><span></span><span></span>
@@ -304,6 +304,23 @@ const currentTask = computed(() => {
   const incompleteTasks = tasks.value.filter(t => !t.completed)
   return incompleteTasks.length > 0 ? incompleteTasks[0] : null
 })
+
+const escapeHtml = (value = '') => {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+const renderMessageContent = (content = '') => {
+  return escapeHtml(content)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+    .replace(/\n/g, '<br>')
+}
 
 // 根据章节获取场景图标
 const getSceneIcon = computed(() => {
@@ -1067,6 +1084,26 @@ onMounted(() => {
 .message-text {
   line-height: 1.5;
   margin-bottom: 0.5rem;
+}
+
+.message-text :deep(strong) {
+  font-weight: 700;
+}
+
+.message-text :deep(em) {
+  font-style: italic;
+}
+
+.message-text :deep(code) {
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.08);
+  font-family: 'Courier New', monospace;
+  font-size: 0.92em;
+}
+
+.user-message .message-text :deep(code) {
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .message-time {
