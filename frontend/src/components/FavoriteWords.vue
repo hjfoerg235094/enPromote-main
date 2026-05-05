@@ -38,9 +38,13 @@
           {{ word.meaning }}
         </div>
 
-        <div class="word-example" v-if="word.example">
+        <div class="word-example" v-if="hasUsableExample(word.example)">
           <div class="example-label">例句：</div>
           <div class="example-text">{{ word.example }}</div>
+        </div>
+        <div class="word-example pending" v-else-if="generatingExampleIds.has(word.wordId)">
+          <div class="example-label">例句：</div>
+          <div class="example-text">正在生成例句...</div>
         </div>
 
         <div class="word-footer">
@@ -59,11 +63,37 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { getFavoriteWords, removeFavoriteWord } from '@/api/favoriteWords';
+import { generateWordExample } from '@/api/wordExample';
 import { toast } from '@/utils/toastService';
 
 // 收藏单词列表
 const favoriteWords = ref([]);
 const loading = ref(false);
+const generatingExampleIds = ref(new Set());
+
+const hasUsableExample = (example) => {
+  return Boolean(example && example.trim() && example.trim() !== '暂无例句');
+};
+
+const fillMissingExamples = async () => {
+  const wordsWithoutExample = favoriteWords.value.filter((word) => {
+    return word.wordId && !hasUsableExample(word.example);
+  });
+
+  if (!wordsWithoutExample.length) return;
+
+  generatingExampleIds.value = new Set(wordsWithoutExample.map((word) => word.wordId));
+
+  await Promise.allSettled(wordsWithoutExample.map(async (word) => {
+    const res = await generateWordExample(word.wordId);
+    const example = res.data?.data?.example || '';
+    if (res.data?.code === 200 && hasUsableExample(example)) {
+      word.example = example;
+    }
+  }));
+
+  generatingExampleIds.value = new Set();
+};
 
 // 获取收藏单词列表
 const loadFavoriteWords = async () => {
@@ -72,6 +102,7 @@ const loadFavoriteWords = async () => {
     const res = await getFavoriteWords();
     if (res.data.code === 200) {
       favoriteWords.value = res.data.data || [];
+      fillMissingExamples();
     } else {
       toast.error(res.data.message || '获取收藏单词失败');
     }

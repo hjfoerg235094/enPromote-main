@@ -229,6 +229,11 @@
   margin-bottom: 20px;
 }
 
+.word-example.pending {
+  background: #fffbe6;
+  border: 1px dashed #f0c36a;
+}
+
 .example-label {
   font-size: 13px;
   color: #666;

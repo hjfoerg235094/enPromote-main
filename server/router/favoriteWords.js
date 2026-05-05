@@ -4,6 +4,22 @@ const UserWord = require('../modules/UserWord');
 const Word = require('../modules/Word');
 const { logger } = require('../utils/logger');
 
+const MISSING_EXAMPLE_TEXT = '暂无例句';
+
+function getWordExample(word) {
+  const directExample = word.example;
+  if (directExample && directExample.trim() && directExample.trim() !== MISSING_EXAMPLE_TEXT) {
+    return directExample;
+  }
+
+  const nestedExample = word.meanings?.[0]?.definitions?.[0]?.example;
+  if (nestedExample && nestedExample.trim() && nestedExample.trim() !== MISSING_EXAMPLE_TEXT) {
+    return nestedExample;
+  }
+
+  return MISSING_EXAMPLE_TEXT;
+}
+
 // 获取用户收藏的单词列表
 router.get('/list', async (req, res) => {
   try {
@@ -31,7 +47,7 @@ router.get('/list', async (req, res) => {
         word: word.word,
         meaning: word.chineseMeaning || word.mean || word.definition,
         phonetic: word.phonetics && word.phonetics[0] ? word.phonetics[0].text : '',
-        example: word.example || '暂无例句',
+        example: getWordExample(word),
         status: userWord.status,
         reviewCounts: userWord.reviewCounts,
         priority: userWord.priority,
