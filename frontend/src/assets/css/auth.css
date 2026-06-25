@@ -1,3 +1,6 @@
+/* 导入 Google 字体 */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
 /* 通用样式 */
 * {
     margin: 0;
@@ -6,10 +9,12 @@
 }
 
 body {
-
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(240, 164, 58, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(31, 138, 112, 0.08) 0%, transparent 40%),
+        linear-gradient(135deg, #fbf8ef 0%, #f7f4ea 100%);
+    color: #24312f; /* --learn-ink */
     line-height: 1.6;
 }
 
@@ -17,96 +22,282 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
-    padding: 20px;
+    min-height: calc(100vh - 70px); /* 扣除 Header 高度 */
+    padding: 40px 20px;
 }
 
+/* 玻璃卡片/软纸质地容器 */
 .form-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    background-color: #fffdf7; /* --learn-surface */
+    border: 1.5px solid rgba(36, 49, 47, 0.08); /* --learn-line */
+    border-radius: 24px; /* --learn-radius-lg */
+    box-shadow: 0 20px 50px rgba(36, 49, 47, 0.08);
+    padding: 40px 35px;
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #1f8a70 0%, #f0a43a 100%); /* 渐变顶部条 */
+}
+
+/* 标题样式 */
 h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
     text-align: center;
-    margin-bottom: 24px;
-    color: #2c3e50;
+    margin-bottom: 28px;
+    color: #1f8a70; /* --learn-primary */
+    font-size: 32px;
+    letter-spacing: 0.5px;
 }
 
-/* 表单样式 */
+/* 表单组 */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    color: #555;
+    font-size: 14px;
+    color: #24312f;
+    letter-spacing: 0.3px;
 }
 
+/* 输入框样式 */
 input {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    padding: 12px 16px;
+    border: 2px solid rgba(36, 49, 47, 0.1);
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    color: #24312f;
+    background-color: #ffffff;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input:focus {
-    border-color: #3498db;
+    border-color: #1f8a70; /* --learn-primary */
+    box-shadow: 0 0 0 4px rgba(31, 138, 112, 0.1);
     outline: none;
 }
 
+/* 密码包装器与切换按钮 */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-input-wrapper input {
+    padding-right: 44px;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #69736f;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+    color: #1f8a70;
+}
+
+.password-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* 动作按钮 */
 .form-actions {
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 .btn-primary {
     display: block;
     width: 100%;
-    padding: 12px;
-    background-color: #3498db;
-    color: white;
+    padding: 14px;
+    background: #1f8a70; /* --learn-primary */
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 999px; /* 药丸圆形按钮 */
+    font-family: 'Fredoka', sans-serif;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    box-shadow: 0 10px 20px rgba(31, 138, 112, 0.2);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btn-primary:hover {
-    background-color: #2980b9;
+.btn-primary:hover:not(:disabled) {
+    background: #11614f; /* --learn-primary-dark */
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(31, 138, 112, 0.3);
 }
 
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* 底部页脚链接 */
 .form-footer {
-    margin-top: 20px;
+    margin-top: 24px;
     text-align: center;
     font-size: 14px;
+    color: #69736f;
 }
 
 .form-footer a {
-    color: #3498db;
+    color: #1f8a70;
+    font-weight: 600;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .form-footer a:hover {
+    color: #11614f;
     text-decoration: underline;
 }
 
-/* 错误消息样式 */
-.error-message {
-    color: #e74c3c;
-    font-size: 14px;
-    margin-top: 5px;
-    display: none;
+/* 输入框异常状态 */
+.form-group input.is-invalid {
+    border-color: #e9685b; /* --learn-coral */
+    background-color: #fffaf9;
 }
 
-.error-message.visible {
-    display: block;
+.form-group input.is-invalid:focus {
+    border-color: #e9685b;
+    box-shadow: 0 0 0 4px rgba(233, 104, 91, 0.1);
+}
+
+/* 错误提示 */
+.error-feedback {
+    color: #e9685b;
+    font-size: 12px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 密码强度指示器 */
+.password-strength-container {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background-color: #fbfbf9;
+    border: 1px solid rgba(36, 49, 47, 0.06);
+    border-radius: 8px;
+}
+
+.password-strength-text {
+    font-size: 12px;
+    color: #69736f;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.password-strength-text span.strength-label {
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.password-strength-text span.strength-label.weak {
+    color: #e9685b;
+}
+
+.password-strength-text span.strength-label.medium {
+    color: #f0a43a;
+}
+
+.password-strength-text span.strength-label.strong {
+    color: #1f8a70;
+}
+
+.password-strength-bars {
+    display: flex;
+    gap: 6px;
+    height: 4px;
+}
+
+.strength-bar {
+    flex: 1;
+    background-color: #e0e0d8;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+/* 强度激活颜色 */
+.strength-bar.weak {
+    background-color: #e9685b;
+}
+
+.strength-bar.medium {
+    background-color: #f0a43a;
+}
+
+.strength-bar.strong {
+    background-color: #1f8a70;
+}
+
+/* 按钮加载状态与禁用状态 */
+.btn-primary:disabled {
+    background-color: #bdc3c7;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.btn-primary:disabled:hover {
+    background-color: #bdc3c7;
+    transform: none;
+}
+
+.btn-primary .btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
