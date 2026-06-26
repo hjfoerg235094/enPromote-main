@@ -307,6 +307,16 @@ const router = useRouter()
 // 响应式数据
 const currentView = ref('map')
 const userInfo = ref(null)
+
+const preloadedQuestionsKey = computed(() => {
+  const userId = userInfo.value?._id || 'guest'
+  return `preloadedAIQuestions:${userId}`
+})
+
+const questionAnswersKey = computed(() => {
+  const userId = userInfo.value?._id || 'guest'
+  return `aiQuestionAnswers:${userId}`
+})
 const currentChapter = ref('A') // 当前章节
 const chapters = ref({
   A: { name: '酒店场景', scenario: 'hotel', color: '#4A90E2' },
@@ -853,7 +863,7 @@ const startAIQuestionPreload = async () => {
       isAIQuestionsPreloaded.value = true
 
       // 保存到localStorage，防止页面刷新丢失
-      localStorage.setItem('preloadedAIQuestions', JSON.stringify({
+      localStorage.setItem(preloadedQuestionsKey.value, JSON.stringify({
         data: data.data,
         chapter: activeChapter,
         timestamp: Date.now()
@@ -1055,7 +1065,7 @@ const startAIQuestionPractice = async () => {
     }
 
     // 检查localStorage中是否有预加载的题目
-    const savedQuestions = localStorage.getItem('preloadedAIQuestions')
+    const savedQuestions = localStorage.getItem(preloadedQuestionsKey.value)
     if (savedQuestions) {
       try {
         const parsed = JSON.parse(savedQuestions)
@@ -1119,13 +1129,13 @@ const handleAIQuestionAnswer = (answerData) => {
   })
 
   // 保存到localStorage
-  const savedAnswers = JSON.parse(localStorage.getItem('aiQuestionAnswers') || '[]')
+  const savedAnswers = JSON.parse(localStorage.getItem(questionAnswersKey.value) || '[]')
   savedAnswers.push({
     ...answerData,
     chapter: currentChapterId.value,
     timestamp: Date.now()
   })
-  localStorage.setItem('aiQuestionAnswers', JSON.stringify(savedAnswers))
+  localStorage.setItem(questionAnswersKey.value, JSON.stringify(savedAnswers))
 
   console.log('答题记录已保存:', answerData)
   console.log('📊 当前答题统计:', answerStats.value)
@@ -1136,7 +1146,7 @@ const handleQuestionsGenerated = (questionsData) => {
   console.log('🎯 收到AI题目生成完成通知:', questionsData)
 
   // 将实时生成的题目也存储到localStorage，就像预加载题目一样
-  localStorage.setItem('preloadedAIQuestions', JSON.stringify({
+  localStorage.setItem(preloadedQuestionsKey.value, JSON.stringify({
     data: questionsData.data,
     chapter: questionsData.chapter || currentChapterId.value,
     timestamp: questionsData.timestamp
@@ -1302,7 +1312,7 @@ const getChapterThemeClass = () => {
 // 检查localStorage中的预加载题目
 const checkPreloadedQuestions = () => {
   try {
-    const savedQuestions = localStorage.getItem('preloadedAIQuestions')
+    const savedQuestions = localStorage.getItem(preloadedQuestionsKey.value)
     if (savedQuestions) {
       const parsed = JSON.parse(savedQuestions)
       // 检查是否是当前章节的题目
@@ -1312,20 +1322,20 @@ const checkPreloadedQuestions = () => {
         console.log('发现localStorage中的预加载题目')
       } else {
         // 清除过期的题目
-        localStorage.removeItem('preloadedAIQuestions')
+        localStorage.removeItem(preloadedQuestionsKey.value)
         console.log('清除过期的预加载题目')
       }
     }
   } catch (error) {
     console.error('检查预加载题目失败:', error)
-    localStorage.removeItem('preloadedAIQuestions')
+    localStorage.removeItem(preloadedQuestionsKey.value)
   }
 }
 
 // 检查localStorage中的答题记录
 const checkSavedAnswers = () => {
   try {
-    const savedAnswers = localStorage.getItem('aiQuestionAnswers')
+    const savedAnswers = localStorage.getItem(questionAnswersKey.value)
     if (savedAnswers) {
       const parsed = JSON.parse(savedAnswers)
       // 过滤当前章节的答题记录
@@ -1337,7 +1347,7 @@ const checkSavedAnswers = () => {
     }
   } catch (error) {
     console.error('检查答题记录失败:', error)
-    localStorage.removeItem('aiQuestionAnswers')
+    localStorage.removeItem(questionAnswersKey.value)
   }
 }
 

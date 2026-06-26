@@ -217,7 +217,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import '@/assets/css/aiChatExer.css'
 import { getOralCoachFeedback, getPracticeWords, restartConversation, type PracticeWord } from '@/api/ai'
@@ -225,6 +225,7 @@ import { batchEvaluatePronunciation, type OralEvaluationResult } from '@/api/ora
 import { submitWordReview } from '@/api/word'
 import { usePcmRecorder } from '@/composables/usePcmRecorder'
 import { toast } from '@/utils/toastService'
+import { user } from '@/stores/userStore'
 
 type CoachNature = 'gentle' | 'blunt' | 'cold' | 'exaggerated'
 
@@ -274,7 +275,10 @@ const {
 } = usePcmRecorder()
 
 const mode = computed(() => String(route.query.mode || 'free'))
-const storageKey = computed(() => `aiChatExer:session:${mode.value}`)
+const storageKey = computed(() => {
+  const userId = user.value?._id || 'guest'
+  return `aiChatExer:session:${userId}:${mode.value}`
+})
 const sessionWords = computed(() => {
   const seen = new Set<string>()
   return [...practiceWords.value, ...fallbackWords]
@@ -363,13 +367,19 @@ const sessionSummaryText = computed(() => {
   return '先别急着加难度，优先复练低分词，把发音和完整度稳住。'
 })
 
-onMounted(async () => {
-  await loadPracticeWords()
-  restoreSession()
-  if (!turns.value.length) {
-    turns.value = [createTurn(0)]
-  }
-})
+watch(
+  storageKey,
+  async () => {
+    if (practiceWords.value.length === 0) {
+      await loadPracticeWords()
+    }
+    restoreSession()
+    if (!turns.value.length) {
+      turns.value = [createTurn(0)]
+    }
+  },
+  { immediate: true }
+)
 
 watch(
   [turns, currentTurnIndex, submittedReviewWords],
